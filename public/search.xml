@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>My first blog</title>
+      <link href="/title/"/>
+      <url>/title/</url>
+      
+        <content type="html"><![CDATA[<p>这是我的第一条博客，创立个人博客的目的有很多，记录生活（类似日记？），展现上海科技大学最近距离的一面，留下自己在技术上探索的足迹以及经验，锻炼自己的写作表达能力等等。</p><span id="more"></span><p>目前我在搭建博客的知识方面还十分欠缺，比如在博客中插入图片（我甚至还不知道这个能不能做到），使用背景图片，插入外源音乐播放器，最为迫切的是我现在的markdown语法知识几乎为零。</p><p>使用next主题其实并不是因为我最喜欢它而是因为用它的人相对更多，现存的相关插件，博客，教程会多很多，非常适合我这种beginner；也因此以后或许会去换一个主题（例如butterfly);幸运的是我的博客是基于github page搭建，所以如果将来要更换一个更好的域名应该会十分方便。话说到底要不要用英文写呢。。。</p><p>考虑到现在已经是深夜，不再多写，赶紧睡觉保命XD。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Feeling Life 感受 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
