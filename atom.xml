@@ -6,7 +6,7 @@
   <link href="http://zivmax.top/atom.xml" rel="self"/>
   
   <link href="http://zivmax.top/"/>
-  <updated>2022-08-12T06:57:45.470Z</updated>
+  <updated>2022-08-18T23:37:24.301Z</updated>
   <id>http://zivmax.top/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>咕咕咕</title>
+    <link href="http://zivmax.top/title/"/>
+    <id>http://zivmax.top/title/</id>
+    <published>2022-08-18T23:34:14.882Z</published>
+    <updated>2022-08-18T23:37:24.301Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>咕咕咕。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>My first blog</title>
