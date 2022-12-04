@@ -85,14 +85,13 @@
 </noscript>
 
 
-  	<!-- require APlayer -->
+  <!-- require APlayer -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
 	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-	
-      <!--网易云-->   
-    <meting-js
+
+      <meting-js
       server = "netease"
       id = "7585293889"
 	    type = "playlist" 
@@ -108,6 +107,7 @@
       preload = "auto"
       mutex = "true">
     </meting-js>
+
 <link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
 </head>
 
