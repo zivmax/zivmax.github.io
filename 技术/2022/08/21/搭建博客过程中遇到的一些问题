@@ -86,10 +86,11 @@
 
 
   <!-- require APlayer -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+<div id="aplayer"></div>
+<script src="/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
-	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+	<script src="/assets/js/Meting.min.js"></script>
 
       <meting-js
       server = "netease"
