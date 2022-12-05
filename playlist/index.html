@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="青山后小塘">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-12T09:40:43.000Z">
-<meta property="article:modified_time" content="2022-12-05T17:55:23.154Z">
+<meta property="article:modified_time" content="2022-12-05T18:28:51.881Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="blog 博客 个人博客 上海科技大学">
 <meta name="twitter:card" content="summary">
@@ -84,6 +84,8 @@
   <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
   <div id="aplayer"></div>
   <script src="/dist/APlayer.min.js"></script>
+
+
 <link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
 </head>
 
@@ -230,7 +232,7 @@
       
       
       <div class="post-body">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" id="7791894134" type="playlist" fixed="false" mini="false" list-folded="false" autoplay="false" volume="0.4" theme="#87CEFA" order="random" loop="all" preload="auto" listmaxheight="600px" mutex="true"><br></meting-js></p>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><meting-js server="netease" id="7791894134" type="playlist" fixed="false" mini="false" list-folded="false" autoplay="false" volume="0.4" theme="#87CEFA" order="random" loop="all" preload="auto" listmaxheight="600px" lrctype="1" mutex="true"><br></meting-js></p>
 
       </div>
       
@@ -302,22 +304,6 @@
   <p class="site-author-name" itemprop="name">Zivmax</p>
   <div class="site-description" itemprop="description">记录我在SHTU的所见所闻,以及成长</div>
 </div>
-
-<meting-js
-  server = netease
-  id = 7585293889
-  type = playlist
-  mini = true
-  fixed = true
-  list-folded = true
-  autoplay = true
-  volume = 0.4
-  theme = #FADFA3
-  order = "random"
-  loop = "all"
-  preload = "auto"
-  mutex = true>
-</meting-js>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
@@ -454,6 +440,22 @@ $(document).ready(function() {
 
       	  <!-- require MetingJS -->
 	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "true"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
       </div>
     </footer>
   </div>
