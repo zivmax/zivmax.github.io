@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -238,14 +238,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-08-21 16:24:08" itemprop="dateCreated datePublished" datetime="2022-08-21T16:24:08+08:00">2022-08-21</time>
+              <time title="创建时间: 2022-08-21 16:24:08" itemprop="dateCreated datePublished" datetime="2022-08-21T16:24:08+08:00">2022-08-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-05 03:15:53" itemprop="dateModified" datetime="2022-12-05T03:15:53+08:00">2022-12-05</time>
+                <time title="修改时间: 2022-12-05 03:15:53" itemprop="dateModified" datetime="2022-12-05T03:15:53+08:00">2022-12-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="post-meta-item-text">阅读次数: </span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
 
@@ -387,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -525,7 +525,7 @@ $(document).ready(function() {
         mini = "true"
         fixed = "true"
         list-folded = "true"
-        autoplay = "true"
+        autoplay = "false"
         volume = "0.4"
         theme = "#FADFA3"
         order = "random"
