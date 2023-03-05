@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
   <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
   <link rel="manifest" href="/images/manifest.json">
 
@@ -21,18 +21,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在我搭建博客的过程中遇到过一些比较棘手的问题，这些内容以10%的内容占有率耗费了我80%的时间；由于个人能力的缘故，解决这些问题的方法就是上google、简书和csdn找。 现在我将我遇到的一些问题和解决方案抄写在这里，作为一个经验总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建博客过程中遇到的一些问题">
-<meta property="og:url" content="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98">
+<meta property="og:url" content="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="青山后小塘">
 <meta property="og:description" content="在我搭建博客的过程中遇到过一些比较棘手的问题，这些内容以10%的内容占有率耗费了我80%的时间；由于个人能力的缘故，解决这些问题的方法就是上google、简书和csdn找。 现在我将我遇到的一些问题和解决方案抄写在这里，作为一个经验总结。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-21T12:16:01.000Z">
-<meta property="article:modified_time" content="2023-02-26T13:54:36.240Z">
+<meta property="article:modified_time" content="2023-03-05T13:27:57.575Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="博客搭建">
 <meta property="article:tag" content="HTML">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="NEXT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98">
+<link rel="canonical" href="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -217,7 +217,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -247,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-02-26 21:54:36" itemprop="dateModified" datetime="2023-02-26T21:54:36+08:00">2023-02-26</time>
+                <time title="修改时间: 2023-03-05 21:27:57" itemprop="dateModified" datetime="2023-03-05T21:27:57+08:00">2023-03-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,13 +260,6 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -284,8 +277,7 @@
 
 <p>TIPS: 带有下划线的是超链接，可打开；最底端有脚注汇总，里面也有可打开的超链接。</p>
 <hr>
-<h2 id="内置播放器"><a href="#内置播放器" class="headerlink" title="内置播放器"></a>内置播放器</h2><hr>
-<h3 id="网易云外链播放器"><a href="#网易云外链播放器" class="headerlink" title="网易云外链播放器"></a>网易云外链播放器</h3><p>想要挂载这个播放器非常的简单，在网络上教程随处可见，因此我只在此提供细节上一些的tips。</p>
+<h2 id="内置播放器"><a href="#内置播放器" class="headerlink" title="内置播放器"></a>内置播放器</h2><h3 id="网易云外链播放器"><a href="#网易云外链播放器" class="headerlink" title="网易云外链播放器"></a>网易云外链播放器</h3><p>想要挂载这个播放器非常的简单，在网络上教程随处可见，因此我只在此提供细节上一些的tips。</p>
 <blockquote>
 <ul>
 <li><p>网易云的外链播放器选项中有自动播放的功能，但是这个功能很容易被现在的浏览器拦截<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="尤其在移动端，几乎是必拦截自动的音视频播放。">[1]</span></a></sup>，所以自动播放失效不用担心，这是正常的。</p>
@@ -304,18 +296,12 @@
 <blockquote>
 <ol>
 <li>在 <code>themes/next/layout/-macro</code> 目录下的 <code>sidebar.swig</code> 文件或 <code>themes/next/layout</code> 目录下的 <code>layout.swig</code> 文件<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="个人只测试过这两个文件，理论上，只要是点开网站就会执行的文件，就可以把请求代码放在里面。
-">[4]</span></a></sup>加入以下代码。</li>
-</ol>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- require APlayer --></span> #分别在线请求aplayer和metingjs
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+">[4]</span></a></sup>加入以下代码。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- require APlayer --></span> #分别在线请求aplayer和metingjs
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token comment">&lt;!-- require MetingJS --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>在请求插件后，便开始配置播放器。将如下代码放入  <code>themes/next/layout/-macro</code> 目录下的 <code>sidebar.swig</code> 文件或 <code>themes/next/layout</code> 目录下的 <code>layout.swig</code> 文件。请自行阅读源码来确定你要插入的位置<sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="关注源码中关键词如 endif body head 等。">[5]</span></a></sup>，代码中的参数都是我自己设好的，你可以参考<a target="_blank" rel="noopener" href="https://aplayer.js.org/#/zh-Hans/">官方DOCS</a>来自行设置，markdown的表格输入起来还比较麻烦，我也导不出别人表格的markdown源码（别问，问就是菜）。</li>
-</ol>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--这里是注释，用来标记你的播放器类型（爱写不写XD）--></span>   
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>在请求插件后，便开始配置播放器。将如下代码放入  <code>themes/next/layout/-macro</code> 目录下的 <code>sidebar.swig</code> 文件或 <code>themes/next/layout</code> 目录下的 <code>layout.swig</code> 文件。请自行阅读源码来确定你要插入的位置<sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="关注源码中关键词如 endif body head 等。">[5]</span></a></sup>，代码中的参数都是我自己设好的，你可以参考<a target="_blank" rel="noopener" href="https://aplayer.js.org/#/zh-Hans/">官方DOCS</a>来自行设置，markdown的表格输入起来还比较麻烦，我也导不出别人表格的markdown源码（别问，问就是菜）。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--这里是注释，用来标记你的播放器类型（爱写不写XD）--></span>   
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meting-js</span>
   <span class="token attr-name">server</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>netease<span class="token punctuation">"</span></span>
   <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>7585293889<span class="token punctuation">"</span></span>
@@ -331,7 +317,8 @@
   <span class="token attr-name">lrc_type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> 0</span>
   <span class="token attr-name">preload</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>auto<span class="token punctuation">"</span></span>
   <span class="token attr-name">mutex</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meting-js</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meting-js</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 </blockquote>
 <hr>
 <h3 id="全局播放"><a href="#全局播放" class="headerlink" title="全局播放"></a>全局播放</h3><p>当设置好播放器后，很快便能发现无法全局播放，每切换一个网页就会自动中断播放，需要手动重播，所以我们想要真正让音乐播放器达到应有的效果，就要去配置好全局播放功能。话不多说。</p>
@@ -339,76 +326,62 @@
 <ol>
 <li>首先直接在git bash中转到hexo根目录下的next主题目录下<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token builtin class-name">cd</span> themes/next   
 
-<span class="token operator">></span><span class="token comment"># 在git bash中执行该命令。</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
-<li>安装pjax模块</li>
-</ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">git</span> clone https://github.com/theme-next/theme-next-pjax source/lib/pjax
+<span class="token operator">></span><span class="token comment"># 在git bash中执行该命令。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>安装pjax模块<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">git</span> clone https://github.com/theme-next/theme-next-pjax source/lib/pjax
 
-<span class="token operator">></span><span class="token comment"># 获取pjax模块，将模块安装到source/lib目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ol start="3">
-<li>在Next主题的_config.yml文件中，启用pjax模块</li>
-</ol>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">
-# Easily enable fast Ajax navigation on your website.
+<span class="token operator">></span><span class="token comment"># 获取pjax模块，将模块安装到source/lib目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>在Next主题的_config.yml文件中，启用pjax模块<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"># Easily enable fast Ajax navigation on your website.
    # Dependencies: https://github.com/theme-next/theme-next-pjax
-   pjax: false ==> true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+   pjax: false ==> true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 </blockquote>
 <hr>
 <h3 id="在一篇blog中单独插入音乐"><a href="#在一篇blog中单独插入音乐" class="headerlink" title="在一篇blog中单独插入音乐"></a>在一篇blog中单独插入音乐</h3><p>有时只是想分享一首音乐，如果把它放入左下角的背景音乐播放器很难起到良好的安利效果，这时我们就可以单独<del>水</del>发一篇blog来专门安利。</p>
 <h4 id="方法一（-此方法恰好在检查这篇blog时发现有致命bug，暂无解决方案，慎用-）"><a href="#方法一（-此方法恰好在检查这篇blog时发现有致命bug，暂无解决方案，慎用-）" class="headerlink" title="方法一（(此方法恰好在检查这篇blog时发现有致命bug，暂无解决方案，慎用)）"></a>方法一（(此方法恰好在检查这篇blog时发现有致命bug，暂无解决方案，慎用)）</h4><blockquote>
 <ol>
 <li><p>首先我们需要安装插件 <code>hexo-tag-aplayer</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">npm</span> <span class="token function">install</span> --save hexo-tag-aplayer<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> --save hexo-tag-aplayer<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>然后在blog的markdown文件中插入如下代码在希望出现音乐播放器的地方。</p>
-</li>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span><span class="token operator">%</span> meting <span class="token string">"1959535653"</span> <span class="token string">"netease"</span> <span class="token string">"song"</span> <span class="token string">"theme:#555"</span> <span class="token string">"mutex:true"</span> <span class="token string">"listmaxheight:340px"</span> <span class="token string">"preload:metadata"</span> <span class="token string">"autoplay:false"</span> <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token operator">%</span> meting <span class="token string">"1959535653"</span> <span class="token string">"netease"</span> <span class="token string">"song"</span> <span class="token string">"theme:#555"</span> <span class="token string">"mutex:true"</span> <span class="token string">"listmaxheight:340px"</span> <span class="token string">"preload:metadata"</span> <span class="token string">"autoplay:false"</span> <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>具体的参数调整可以移步参考内容中的<a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">Hexo主题插入音乐之aplayer音乐播放器</a></p>
 </blockquote>
 <h4 id="方法二-利用我们已经在线加载的aplayer插件和metingjs插入播放器"><a href="#方法二-利用我们已经在线加载的aplayer插件和metingjs插入播放器" class="headerlink" title="方法二(利用我们已经在线加载的aplayer插件和metingjs插入播放器)"></a>方法二(利用我们已经在线加载的aplayer插件和metingjs插入播放器)</h4><blockquote>
 <ul>
-<li>将下列代码插入markdown文件中你想要的位置就可以了，具体参数配置和之前的是一样的，这里有一个<a target="_blank" rel="noopener" href="https://aplayer.js.org/#/zh-Hans/">官方DOCS</a>的传送门(〃’▽’〃)。</li>
-</ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meting-js</span>
+<li>将下列代码插入markdown文件中你想要的位置就可以了，具体参数配置和之前的是一样的，这里有一个<a target="_blank" rel="noopener" href="https://aplayer.js.org/#/zh-Hans/">官方DOCS</a>的传送门(〃’▽’〃)。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meting-js</span>
       <span class="token attr-name">server</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>netease<span class="token punctuation">"</span></span>
       <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>1959535653<span class="token punctuation">"</span></span>
       <span class="token attr-name">type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>song<span class="token punctuation">"</span></span> 
       <span class="token attr-name">mini</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meting-js</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meting-js</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 </blockquote>
 <hr>
-<h2 id="HEXO脚注"><a href="#HEXO脚注" class="headerlink" title="HEXO脚注"></a>HEXO脚注</h2><hr>
-<p>正是在写这篇博客的过程中，我发现markdown中的脚注语法无效;起初还怀疑是我阅读的markdown语法教程过时，事实似乎是因为hexo并不原生支持渲染markdown的脚注，所以需要我们安装一个简单的 Reference 插件完成脚注功能。</p>
+<h2 id="HEXO脚注"><a href="#HEXO脚注" class="headerlink" title="HEXO脚注"></a>HEXO脚注</h2><p>正是在写这篇博客的过程中，我发现markdown中的脚注语法无效;起初还怀疑是我阅读的markdown语法教程过时，事实似乎是因为hexo并不原生支持渲染markdown的脚注，所以需要我们安装一个简单的 Reference 插件完成脚注功能。</p>
 <blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-reference --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
 <p>markdown的脚注语法<sup id="fnref:6"><a href="#fn:6" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="我是在[菜鸟教程](https://www.runoob.com/markdown/md-tutorial.html)上面学的markdown语法。">[6]</span></a></sup>在这里就不赘述了。</p>
 <hr>
-<h2 id="设置背景图片"><a href="#设置背景图片" class="headerlink" title="设置背景图片"></a>设置背景图片</h2><hr>
-<p>没想到吧，╮(─▽─)╭ ，设置背景图片居然无法在next的配置文件里完成，而且网上盛传的新建stlyes文件夹的方法根本用不了，只会导致页面排版错乱。所以实际上想要给next主题设置背景图片需要我们去修改目录 <code>\themes\next\source\css\_schemes</code> 下的scheme文件夹中的 <code>index.html</code> 文件（这取决于你选择的scheme，比如我选择了Gemini）。</p>
+<h2 id="设置背景图片"><a href="#设置背景图片" class="headerlink" title="设置背景图片"></a>设置背景图片</h2><p>没想到吧，╮(─▽─)╭ ，设置背景图片居然无法在next的配置文件里完成，而且网上盛传的新建stlyes文件夹的方法根本用不了，只会导致页面排版错乱。所以实际上想要给next主题设置背景图片需要我们去修改目录 <code>\themes\next\source\css\_schemes</code> 下的scheme文件夹中的 <code>index.html</code> 文件（这取决于你选择的scheme，比如我选择了Gemini）。</p>
 <blockquote>
 <ol>
 <li>准备好你的背景图片<sup id="fnref:7"><a href="#fn:7" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="我的背景图片来自[NASA-哈勃望远镜(ﾟ▽ﾟ*)♪](https://www.h128.com/show-60318.html)。">[7]</span></a></sup>，放在目录 <code>\themes\next\source</code>下的任意文件夹中（实际上我建议放在目录 <code>\themes\next\source\images</code> 下）。</li>
-<li>打开目录 <code>\themes\next\source\css\_schemes</code> 下的scheme文件夹中的 <code>index.styl</code> 文件，并作出如下修改</li>
-</ol>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">body &#123; 
+<li>打开目录 <code>\themes\next\source\css\_schemes</code> 下的scheme文件夹中的 <code>index.styl</code> 文件，并作出如下修改<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">body &#123; 
 background: url(/images/background6.jpg); // background6.jpg是我的背景图片的全称（注意带上文件类型后缀）
 background-repeat: no-repeat; // 设定背景图片非重复填充
 background-attachment: fixed; // 设置背景图片不随页面滚动
 background-position: 50% 50%; // 设置背景图片位置
 background-size: cover // 设置背景图片大小
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 </blockquote>
 <hr>
-<h2 id="POSTpage中的按钮只能指向第一个blog"><a href="#POSTpage中的按钮只能指向第一个blog" class="headerlink" title="POSTpage中的按钮只能指向第一个blog"></a>POSTpage中的按钮只能指向第一个blog</h2><hr>
-<p>我不知道这是不是一个个例问题，但是我觉得任何碰上的人都绝对很绝望（比如我(T＿T)。。。），所以还是在这里写一下解决办法。先说好，我并不知道其中原理（菜☹），我只是通过观察别人的配置试错得出的解决办法，如果有人明白其中原理，还请加我的QQ或WeChat赐教（在sidebar底端）。</p>
+<h2 id="POSTpage中的按钮只能指向第一个blog"><a href="#POSTpage中的按钮只能指向第一个blog" class="headerlink" title="POSTpage中的按钮只能指向第一个blog"></a>POSTpage中的按钮只能指向第一个blog</h2><p>我不知道这是不是一个个例问题，但是我觉得任何碰上的人都绝对很绝望（比如我(T＿T)。。。），所以还是在这里写一下解决办法。先说好，我并不知道其中原理（菜☹），我只是通过观察别人的配置试错得出的解决办法，如果有人明白其中原理，还请加我的QQ或WeChat赐教（在sidebar底端）。</p>
 <blockquote>
 <ol>
-<li>问题似乎出在hexo的配置文件中的配置选项 <code>permalink</code> ，如下。</li>
-</ol>
+<li><p>问题似乎出在hexo的配置文件中的配置选项 <code>permalink</code> ，如下。</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"># URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://zivmax.top
@@ -417,12 +390,10 @@ permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>当我将其改为如下时，问题得到解决。</li>
+</li>
+<li><p>当我将其改为如下时，问题得到解决。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">permalink: :year/:month/:day/:title/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">permalink: :year/:month/:day/:title/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 </blockquote>
 <hr>
 <h3 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h3><p>这是我的第一篇技术博客，<del>虽然我其实没有任何技术</del>，实际上呢光是在写这篇博客的过程中就发现很多问题（如第二个和第四个问题），甚至是发布前都能发现bug。。。然后在总结内置aplayer播放器的过程中，我又成功发现插件插入位置的奥秘，优化了我的内置播放器，当然这些也让写这篇博客的70%时间流走 ╮(─▽─)╭ 。</p>
@@ -457,16 +428,6 @@ pretty_urls:
     
     
 
-    
-      <div>
-        <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:24px;">--本文结束<i class="fa fa-paw"></i>感谢阅读--</div>
-    
-</div>
-      </div>
-    
-
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag"># 博客搭建</a>
@@ -481,11 +442,11 @@ pretty_urls:
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E7%94%9F%E6%B4%BB/2022/08/21/%E5%92%95%E5%92%95%E5%92%95" rel="prev" title="咕咕咕">
+    <a href="/%E7%94%9F%E6%B4%BB/2022/08/21/%E5%92%95%E5%92%95%E5%92%95/" rel="prev" title="咕咕咕">
       <i class="fa fa-chevron-left"></i> 咕咕咕
     </a></div>
       <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/2023/02/26/multi-varibles-calculus" rel="next" title="多元函数的微分学">
+    <a href="/%E5%AD%A6%E4%B9%A0/2023/02/26/multi-varibles-calculus/" rel="next" title="多元函数的微分学">
       多元函数的微分学 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -627,35 +588,6 @@ pretty_urls:
   </div>
 
 
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-    <span class="post-meta-divider">|</span>
-    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
-    <span class="post-meta-divider">|</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script>
-$(document).ready(function() {
-
-    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
-    var countOffset = 20000;  // 初始化首次数据
-
-    function fixCount() {            
-       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
-        {
-            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
-            clearInterval(int);
-        }                  
-        if ($("#busuanzi_container_site_pv").css("display") != "none")
-        {
-            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
-            clearInterval(int); // 停止检测
-        }  
-    }
-       	
-});
-</script> 
-
 
 
 <div class="theme-info">
@@ -663,25 +595,6 @@ $(document).ready(function() {
   <span class="post-count">博客全站共4.8k字</span>
 </div>
         
-<div class="busuanzi-count">
-  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
 
 
 
@@ -713,8 +626,7 @@ $(document).ready(function() {
   </div>
 
   
-  
-  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/pjax/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
