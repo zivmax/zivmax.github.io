@@ -23,22 +23,22 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":"ture","scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。">
+  <meta name="description" content="有关全增量、全微分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多元函数的微分学">
-<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/02/26/multi-varibles-calculus/index.html">
+<meta property="og:title" content="多元微分学-2">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。">
+<meta property="og:description" content="有关全增量、全微分">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-26T13:40:13.000Z">
-<meta property="article:modified_time" content="2023-03-05T13:40:40.195Z">
+<meta property="article:published_time" content="2023-03-06T08:17:34.000Z">
+<meta property="article:modified_time" content="2023-03-06T08:19:24.333Z">
 <meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="笔记">
 <meta property="article:tag" content="高等数学">
 <meta property="article:tag" content="微积分">
-<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/02/26/multi-varibles-calculus/">
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/">
 
 
 <script id="page-configurations">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>多元函数的微分学 | 青山后小塘</title>
+  <title>多元微分学-2 | 青山后小塘</title>
   
 
 
@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -211,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/02/26/multi-varibles-calculus/">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          多元函数的微分学
+          多元微分学-2
         </h1>
 
         <div class="post-meta">
@@ -233,16 +233,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间: 2023-02-26 21:40:13" itemprop="dateCreated datePublished" datetime="2023-02-26T21:40:13+08:00">2023-02-26</time>
+              <time title="创建时间: 2023-03-06 16:17:34 / 修改时间: 16:19:24" itemprop="dateCreated datePublished" datetime="2023-03-06T16:17:34+08:00">2023-03-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-05 21:40:40" itemprop="dateModified" datetime="2023-03-05T21:40:40+08:00">2023-03-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -254,7 +248,7 @@
             </span>
 
           
-            <div class="post-description">微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。</div>
+            <div class="post-description">有关全增量、全微分</div>
 
         </div>
       </header>
@@ -265,68 +259,75 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>数学公式若未被自动渲染请手动刷新页面</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。<br>简单来说，多元微积分是一元微积分的推广，但也有本质的不同：</p>
-<ul>
-<li><p>定义范围不同<br>  一元微积分是研究一个自变量的函数的导数和积分，而多元微积分则是研究多个自变量的函数的偏导数和积分。</p>
-</li>
-<li><p>研究对象不同<br>  在一元微积分中，研究的是<strong>实数集</strong>上的函数，我们只需要考虑一个自变量，因此计算对象只有一个变量。而在多元微积分中，研究的是<strong>欧氏空间</strong>上的函数，我们需要考虑多个自变量，因此计算对象就变成了多个变量。</p>
-</li>
-<li><p>关注性质不同<br>  一元微积分主要关注函数的极限、连续性、导数、积分等性质。<br>  多元微积分除了关注函数的这些性质外，还涉及到向量值函数、偏导数、方向导数、梯度、散度、旋度、曲线积分、曲面积分等概念。</p>
-</li>
-<li><p>计算方法不同<br>  一元微积分中的计算方法主要有<em>牛顿-莱布尼茨公式</em>、<em>分部积分法</em>、<em>换元积分法</em>等。而多元微积分中的计算方法包括偏导数的计算、重积分的计算、<em>格林公式</em>和<em>斯托克斯公式</em>等。</p>
-</li>
-<li><p>应用领域不同<br>  一元微积分主要应用于物理、经济、生物学等领域的分析问题，如速度、加速度、最优化、曲线拟合等。而多元微积分则更多应用于物理、工程、计算机科学、天文学等领域，如流体力学、电磁场、最优控制、计算机图形学等。</p>
-</li>
-</ul>
-<p>总之，一元微积分和多元微积分都是微积分的重要部分，它们的定义、计算方法和应用领域都有所不同，但它们都是处理实际问题和建模的有力工具。</p>
-<h1 id="前置基本概念"><a href="#前置基本概念" class="headerlink" title="前置基本概念"></a>前置基本概念</h1><h3 id="n维点集"><a href="#n维点集" class="headerlink" title="n维点集"></a>n维点集</h3><h5 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h5><p>n维点集的定义是指由n维空间中的点组成的集合。n维空间是指由n个实数坐标确定的空间，比如二维空间就是平面，三维空间就是立体。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="全增量"><a href="#全增量" class="headerlink" title="全增量"></a>全增量</h2><p>全增量是指一个多元函数在一定范围内所有自变量的增量之和，它可以表示为一个微分形式的积分。</p>
 <blockquote>
-<p>举个例子，如果我们在二维平面上画一个圆，那么圆上的所有点就构成了一个二维点集。如果我们在三维空间中画一个球体，那么球体上的所有点就构成了一个三伟维点集。</p>
+<p>具体地说，设 $z&#x3D;f(x_1,x_2,\dots,x_n)$ 是一个 $n$ 元函数，如果 $\Delta x_1,\Delta x_2,\dots,\Delta x_n$ 分别表示 $x_1,x_2,\dots,x_n$ 的一组增量，那么 $z$ 的全增量可以表示为：</p>
+<p>$$\Delta z &#x3D; f(x_1+\Delta x_1,\ x_2+\Delta x_2,\ \dots,\ x_n+\Delta x_n) - f(x_1,x_2,\dots,x_n)$$</p>
+<p>全增量可以看作是函数在一定范围内所有自变量增量之和，它可以用微分形式来表示为：</p>
+<p>$$\Delta z &#x3D; \Delta f &#x3D; \frac{\partial f}{\partial x_1} \Delta x_1 + \frac{\partial f}{\partial x_2} \Delta x_2 + \dots + \frac{\partial f}{\partial x_n} \Delta x_n$$</p>
+<p>这里的 $df$ 表示函数 $f$ 的微分形式，也称全微分。全增量的计算可以看作是对微分形式的积分，即：</p>
+<p>$$\Delta z &#x3D; \int_{P}^{Q} df$$</p>
+<p>其中 $P$ 和 $Q$ 是自变量从 $(x_1,x_2,\dots,x_n)$ 变化到 $(x_1+\Delta x_1, x_2+\Delta x_2, \dots, x_n+\Delta x_n)$ 的过程中经过的路径，称为<strong>积分路径</strong>。</p>
 </blockquote>
-<p>你可以想象一下，如果我们有更多的坐标轴，比如四个、五个或者更多，那么我们就可以定义出更高维度的空间和点集。但是这些高维度的空间和点集很难用直观的方式来表示和理解，所以我们通常用数学符号和公式来描述它们。</p>
-<p>在微积分的语境下，n维点集的定义和上面的定义是一致的，只是n维空间中的点通常被称为n维向量, $n$ 维点集可以被定义为包含 $n$ 维向量的集合。具体来说，如果我们有一个实数域 $\mathbb{R}$ 上的向量空间 $V$ <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="实数域上的向量空间是指一个集合 $V$ 和在实数域 $\mathbb{R}$ 上定义的两种运算，加法和数乘，满足以下性质：
-    1.  $V$ 中任意两个元素的加法结果仍然属于 $V$，即对于 $\boldsymbol{u}, \boldsymbol{v} \in V$，$\boldsymbol{u} + \boldsymbol{v} \in V$；
-    2.  $V$ 中任意一个元素与实数 $\lambda$ 的乘积仍然属于 $V$，即对于 $\boldsymbol{u} \in V$，$\lambda \boldsymbol{u} \in V$；
-    3.  加法满足交换律和结合律，即对于任意 $\boldsymbol{u}, \boldsymbol{v}, \boldsymbol{w} \in V$，有 $\boldsymbol{u} + \boldsymbol{v} = \boldsymbol{v} + \boldsymbol{u}$ 和 $(\boldsymbol{u} + \boldsymbol{v}) + \boldsymbol{w} = \boldsymbol{u} + (\boldsymbol{v} + \boldsymbol{w})$；
-    4.  加法有一个零元素，使得对于任意 $\boldsymbol{u} \in V$，有 $\boldsymbol{u} + \boldsymbol{0} = \boldsymbol{u}$，其中 $\boldsymbol{0}$ 表示加法单位元素；
-    5.  每个元素 $\boldsymbol{u} \in V$ 都有一个加法逆元素 $\boldsymbol{-u}$，使得 $\boldsymbol{u} + \boldsymbol{-u} = \boldsymbol{0}$；
-    6.  数乘满足分配律，即对于任意 $\boldsymbol{u} \in V$ 和 $\lambda, \mu \in \mathbb{R}$，有 $\lambda (\boldsymbol{u} + \boldsymbol{v}) = \lambda \boldsymbol{u} + \lambda \boldsymbol{v}$ 和 $(\lambda + \mu) \boldsymbol{u} = \lambda \boldsymbol{u} + \mu \boldsymbol{u}$；
-    7.  数乘有一个单位元素，即对于任意 $\boldsymbol{u} \in V$，有 $1 \cdot \boldsymbol{u} = \boldsymbol{u}$。
-    \
-    通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。">[1]</span></a></sup>，那么 $V$ 中的每一个元素都是 $n$ 维的，其中 $n$ 是正整数。$n$ 维点集就是 $V$ 中的一个子集，它包含了若干个 $n$ 维向量。</p>
-<p>在一些特定的情况下，$n$ 维点集可以被描述为一个函数的图像，例如在二维平面中，一条曲线可以被表示为 $y&#x3D;f(x)$，其中 $x$ 和 $y$ 是实数，$f(x)$ 是一个实数函数。这个曲线的点集可以被定义为所有满足 $y&#x3D;f(x)$ 的 $(x,y)$ 点的集合。在三维空间中，一个曲面可以被表示为 $z&#x3D;f(x,y)$，其中 $x$、$y$ 和 $z$ 都是实数，$f(x,y)$ 是一个实数函数。这个曲面的点集可以被定义为所有满足 $z&#x3D;f(x,y)$ 的 $(x,y,z)$ 点的集合。</p>
-<h5 id="2-基础性质-（optional）"><a href="#2-基础性质-（optional）" class="headerlink" title="2. 基础性质 （optional）"></a>2. 基础性质 <em>（optional）</em></h5><ul>
-<li><p>闭合性：<br>  如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，则该点集具有闭合性。</p>
-</li>
-<li><p>开放性：<br>  如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，并且该操作不包括点集的边界，则该点集具有开放性。</p>
-</li>
-<li><p>连通性：<br>  如果点集中的任何两个点都可以通过该点集中的其他点相连通，则该点集具有连通性。</p>
-</li>
-<li><p>路径连通性：<br>  如果点集中的任何两个点都可以通过一条路径相连通，则该点集具有路径连通性。</p>
-</li>
-</ul>
-<h5 id="3-基础定理-（optional）"><a href="#3-基础定理-（optional）" class="headerlink" title="3. 基础定理 （optional）"></a>3. 基础定理 <em>（optional）</em></h5><ul>
-<li><p><em>Bolzano-Weierstrass定理</em>：<br>  任何有界的无限点集中必定存在至少一个收敛于某个点的子序列。</p>
-</li>
-<li><p><em>Heine-Borel定理</em>：<br>  在N维向量空间中，任何有界的闭合点集都是紧致的。</p>
-</li>
-<li><p><em>Arzela-Ascoli定理</em>：<br>  如果一个函数序列在某点处局部有界且等度连续，则存在一个收敛于该函数序列的子序列。</p>
-</li>
-<li><p><em>Weierstrass逼近定理</em>：<br>  任何连续函数都可以用多项式逼近，即在一个给定的区间内，可以找到一个多项式函数，使得该函数与原函数的差趋近于零。</p>
-</li>
-</ul>
 <hr>
-<h1 id="未完待续-……"><a href="#未完待续-……" class="headerlink" title="未完待续 ……"></a>未完待续 ……</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">实数域上的向量空间是指一个集合 $V$ 和在实数域 $\mathbb{R}$ 上定义的两种运算，加法和数乘，满足以下性质：
-1.  $V$ 中任意两个元素的加法结果仍然属于 $V$，即对于 $\boldsymbol{u}, \boldsymbol{v} \in V$，$\boldsymbol{u} + \boldsymbol{v} \in V$；
-2.  $V$ 中任意一个元素与实数 $\lambda$ 的乘积仍然属于 $V$，即对于 $\boldsymbol{u} \in V$，$\lambda \boldsymbol{u} \in V$；
-3.  加法满足交换律和结合律，即对于任意 $\boldsymbol{u}, \boldsymbol{v}, \boldsymbol{w} \in V$，有 $\boldsymbol{u} + \boldsymbol{v} = \boldsymbol{v} + \boldsymbol{u}$ 和 $(\boldsymbol{u} + \boldsymbol{v}) + \boldsymbol{w} = \boldsymbol{u} + (\boldsymbol{v} + \boldsymbol{w})$；
-4.  加法有一个零元素，使得对于任意 $\boldsymbol{u} \in V$，有 $\boldsymbol{u} + \boldsymbol{0} = \boldsymbol{u}$，其中 $\boldsymbol{0}$ 表示加法单位元素；
-5.  每个元素 $\boldsymbol{u} \in V$ 都有一个加法逆元素 $\boldsymbol{-u}$，使得 $\boldsymbol{u} + \boldsymbol{-u} = \boldsymbol{0}$；
-6.  数乘满足分配律，即对于任意 $\boldsymbol{u} \in V$ 和 $\lambda, \mu \in \mathbb{R}$，有 $\lambda (\boldsymbol{u} + \boldsymbol{v}) = \lambda \boldsymbol{u} + \lambda \boldsymbol{v}$ 和 $(\lambda + \mu) \boldsymbol{u} = \lambda \boldsymbol{u} + \mu \boldsymbol{u}$；
-7.  数乘有一个单位元素，即对于任意 $\boldsymbol{u} \in V$，有 $1 \cdot \boldsymbol{u} = \boldsymbol{u}$。
-<br>
-通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+<h2 id="全微分"><a href="#全微分" class="headerlink" title="全微分"></a>全微分</h2><h4 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h4><p>其实全微分就是给多元函数的微分的特殊称谓；对于一元函数的微分我们直接称为微分。</p>
+<p>全微分是指一个函数的函数值在某一点处的微小变化，可以用该点的偏导数来计算出来的微分形式。</p>
+<p>具体地说，如果一个函数 $f(x,\ y)$ 可以被表示为 $f(x,\ y) &#x3D; g(x) + h(y)$，那么它的全微分可以被表示为：</p>
+<p>$$df &#x3D; \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy$$</p>
+<p>其中 $dx$ 和 $dy$ 分别表示 $x$ 和 $y$ 的微小变化量。这个式子可以理解为，全微分是由函数在 $x$ 方向和 $y$ 方向上的微小变化量加权得到的。</p>
+<p>稍加观察我们能发现函数 $f$ 在点 $(x_0,\ y_0)$ 的全微分就是 $\Delta f$ 对于 $\Delta x$ 和 $\Delta y$ 的线性近似<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="线性近似是指通过对一个函数在某一点处进行一阶泰勒展开，得到该点附近的线性函数，以此来近似原函数在该点附近的行为。">[1]</span></a></sup></p>
+<p>需要注意的是，只有所有偏导数都连续的函数（函数在该区间内连续可微）才能有全微分，否则全微分不存在。这其实就是多元函数可微，可导和可偏导的关系，我们在接下来更有条理的叙述这点。</p>
+<h4 id="2-可微，可导和可偏导的关系"><a href="#2-可微，可导和可偏导的关系" class="headerlink" title="2. 可微，可导和可偏导的关系"></a>2. 可微，可导和可偏导的关系</h4><p><strong>针对点</strong></p>
+<ul>
+<li><p>可微 $\longleftrightarrow$ 可导</p>
+<blockquote>
+<p>因为导数就是增量除以微分；增量必定能存在，所以只要微分存在，导数就存在</p>
+</blockquote>
+</li>
+<li><p>可偏导 $\longleftrightarrow$ 可微</p>
+<blockquote>
+<p>对于每个变量都是可偏导的，那么根据全微分的定义，此时全微分存在</p>
+</blockquote>
+</li>
+<li><p>总结：<strong>可偏导 $\longleftrightarrow$ 可微 $\longleftrightarrow$ 可导</strong></p>
+</li>
+</ul>
+<p><strong>针对域</strong></p>
+<ul>
+<li><p>均可微 $\longrightarrow$ 函数连续</p>
+<blockquote>
+<p>只有连续的函数才能做到均可微</p>
+</blockquote>
+</li>
+<li><p>导数连续 $\longleftrightarrow$ 均可微</p>
+<blockquote>
+<p>均连续就意味着在这个域中每个点都是可导的，那么每个点都是可微分的</p>
+</blockquote>
+</li>
+<li><p>偏导数均连续 $\longleftrightarrow$ 均可微</p>
+<blockquote>
+<p>均连续就意味着在这个域中每个点都是可偏导的，那么每个点都是可微分的</p>
+</blockquote>
+</li>
+<li><p>总结： <strong>偏导数均连续 $\longleftrightarrow$ 导数连续 $\longleftrightarrow$ 均可微 $\longrightarrow$ 函数连续</strong></p>
+</li>
+</ul>
+<h4 id="3-全微分的几何意义"><a href="#3-全微分的几何意义" class="headerlink" title="3. 全微分的几何意义"></a>3. 全微分的几何意义</h4><p>正如前文所说，全微分是全增量的线性近似，所以我们可以得到全微分的近似计算公式。</p>
+<blockquote>
+<p>假设有一个二元函数 $f(x,\ y)$，并且 $f(x,\ y)$ 在某一点 $(x_0,\ y_0)$ 处连续可微，那么它在该点的全微分可以近似表示为：</p>
+<p>$$df &#x3D; \frac{\partial f}{\partial x}(x_0,\ y_0) \Delta x + \frac{\partial f}{\partial y}(x_0,\ y_0) \Delta y$$</p>
+<p>需要注意的是，这个公式只是一个近似值，并且只在 $(x_0,\ y_0)$ 点附近有效。当增量 $\Delta x$ 和 $\Delta y$ 很小的时候，这个公式的误差可以忽略不计；因此要比较准确地计算全微分，需要令 $\Delta x$ 和 $\Delta y$ 趋近于零。</p>
+</blockquote>
+<p>根据这个公式，我们可以窥见全微分的几何意义：<em><strong>全微分的几何意义是微小的平面区域，即微元。</strong></em></p>
+<p>我们来推演一下其由来：</p>
+<blockquote>
+<p>对于二元函数 $f(x,\ y)$，全微分 $df$ 的向量$(dx,\ dy)$在点 $(x,\ y)$ 附近可以看做是一个平面的法向量，该平面是通过点 $(x,\ y,f(x,y))$ 的函数曲面的切平面。这个切平面描述了函数在该点的局部变化率。</p>
+<p>对于微小增量 $(dx,\ dy)$，$df$ 等于切平面的法向量与增量的点积，即：</p>
+<p>$$df &#x3D; \nabla f \cdot d\mathbf{r} &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$$</p>
+<p>其中，$\nabla f$ 是函数 $f$ 的梯度，即 $(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y})$，$d\mathbf{r}$ 是微小增量 $(dx,\ dy)$ 的向量形式。这个式子可以解释为：当 $(dx,\ dy)$ 增加时，函数值的变化率等于切平面法向量与增量向量的点积。</p>
+<p>从几何上来看，全微分可以看做是函数 $f(x,\ y)$  在 $(x,\ y)$ 点附近的一个微小平面区域的切平面的法向量乘以微小增量的内积。也就是说，全微分 $df(x,\ y)$  表示的是函数 $f(x,\ y)$ 在点 $(x,\ y)$  处沿着微小平面区域的方向的微小变化率。</p>
+</blockquote>
+ <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">线性近似是指通过对一个函数在某一点处进行一阶泰勒展开，得到该点附近的线性函数，以此来近似原函数在该点附近的行为。<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
     
@@ -335,9 +336,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
               <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"># 高等数学</a>
               <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 微积分</a>
-              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
           </div>
 
         
@@ -346,13 +347,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E6%8A%80%E6%9C%AF/2022/08/21/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" rel="prev" title="搭建博客过程中遇到的一些问题">
-      <i class="fa fa-chevron-left"></i> 搭建博客过程中遇到的一些问题
+    <a href="/%E5%AD%A6%E4%B9%A0/2023/03/05/%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/" rel="prev" title="供给和需求">
+      <i class="fa fa-chevron-left"></i> 供给和需求
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/2023/03/05/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%80%BB%E8%A7%88/" rel="next" title="经济学总览">
-      经济学总览 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -426,7 +424,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -501,7 +499,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.9k字</span>
+  <span class="post-count">博客全站共9k字</span>
 </div>
         
 
