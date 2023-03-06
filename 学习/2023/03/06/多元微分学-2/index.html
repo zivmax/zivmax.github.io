@@ -23,21 +23,22 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":"ture","scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在市场中唯四发生的事情就是： 供给增加 供给减少 需求增加 需求减少">
+  <meta name="description" content="有关二元函数的极限和连续性的概念和性质介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="供给和需求">
-<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/05/%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/index.html">
+<meta property="og:title" content="多元微分学-2">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="在市场中唯四发生的事情就是： 供给增加 供给减少 需求增加 需求减少">
+<meta property="og:description" content="有关二元函数的极限和连续性的概念和性质介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-05T14:15:55.000Z">
-<meta property="article:modified_time" content="2023-03-05T14:32:01.531Z">
+<meta property="article:published_time" content="2023-03-06T11:54:37.000Z">
+<meta property="article:modified_time" content="2023-03-06T11:58:55.274Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="经济学">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="微积分">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/05/%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/">
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/">
 
 
 <script id="page-configurations">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>供给和需求 | 青山后小塘</title>
+  <title>多元微分学-2 | 青山后小塘</title>
   
 
 
@@ -210,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/05/%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -223,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          供给和需求
+          多元微分学-2
         </h1>
 
         <div class="post-meta">
@@ -234,7 +235,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间: 2023-03-05 22:15:55 / 修改时间: 22:32:01" itemprop="dateCreated datePublished" datetime="2023-03-05T22:15:55+08:00">2023-03-05</time>
+              <time title="创建时间: 2023-03-06 19:54:37 / 修改时间: 19:58:55" itemprop="dateCreated datePublished" datetime="2023-03-06T19:54:37+08:00">2023-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +248,7 @@
             </span>
 
           
-            <div class="post-description">在市场中唯四发生的事情就是： 供给增加 供给减少 需求增加 需求减少</div>
+            <div class="post-description">有关二元函数的极限和连续性的概念和性质介绍</div>
 
         </div>
       </header>
@@ -258,68 +259,89 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="市场"><a href="#市场" class="headerlink" title="市场"></a>市场</h2><p>任何一个可以让买卖双方交换商品和服务的地方都可以称作市场。</p>
-<h6 id="核心：自愿交换"><a href="#核心：自愿交换" class="headerlink" title="核心：自愿交换"></a><strong>核心：自愿交换</strong></h6><blockquote>
-<p>例如 买草莓的人认为草莓比10元更有价值，而卖草莓的人认为10元比草莓更有价值，此时构成自愿交换。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="二元函数的极限"><a href="#二元函数的极限" class="headerlink" title="二元函数的极限"></a>二元函数的极限</h1><h3 id="1-二重极限（多重极限）"><a href="#1-二重极限（多重极限）" class="headerlink" title="1. 二重极限（多重极限）"></a>1. 二重极限（多重极限）</h3><p>二元函数的二次极限是指在二元函数的定义域中，当自变量沿着某个路径<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="指自变量沿着一条特定的曲线或直线路径（即一个图形为线的函数）变化。
+">[1]</span></a></sup>无限趋近于某一点时（简单来讲，当两个自变量同时趋于某个值时），函数的极限值。</p>
+<blockquote>
+<p>换句话说，二元函数 $f(x,y)$ 在点 $(x_0, y_0)$ 处的二次极限为 $L$，当且仅当对于任意以 $(x_0, y_0)$ 为极限的点列 $(x_n, y_n)$，当 $(x_n, y_n)$ 沿着任何一条路径趋近于 $(x_0, y_0)$ 时，$f(x_n, y_n)$ 都趋近于 $L$。</p>
 </blockquote>
-<p>自愿交换的不断进行和连锁，形成了商品生产链；而自愿交换能够不断进行和连锁则体现一个思想：市场是无处不在的，并且大部分都基于自愿交换。</p>
-<h5 id="高效性"><a href="#高效性" class="headerlink" title="高效性"></a>高效性</h5><p>一般而言，市场非常擅长高效地分配使用稀缺资源。通过价格信号<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="正式地表述：市场产生的指导资源分配的信息。">[1]</span></a></sup>，生产者会对其产量不断调整</p>
-<h5 id="激励性"><a href="#激励性" class="headerlink" title="激励性"></a>激励性</h5><p>通过市场竞争，市场能够激励高质量产品的产出。自愿交换时的一个理想情况是如果卖方不考虑让买方满意，那么卖方自己一定不会对结果满意。</p>
-<h5 id="市场失灵"><a href="#市场失灵" class="headerlink" title="市场失灵"></a>市场失灵</h5><p>市场通常是组织经济活动的一种好方法，但市场也 会失灵。在某些情况下，市场本身不能有效配置资源，即市场失灵（market failure）。</p>
-<p>市场失灵的可能原因包括：</p>
-<ul>
-<li>外部性（externality）<blockquote>
-<p>一个人的行为对其他人福利的影响 <em>e.g.污染</em></p>
+<p>二次极限的概念是对函数在某一点处的极限的推广，对于二元函数<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="对于一元函数，我们只需要考虑自变量沿着一条路径趋近于某一点。">[2]</span></a></sup>，我们需要考虑自变量沿着任意路径趋近于某一点，因为沿着不同路径趋近于某一点可能会得到不同的极限值。这一点在之后的偏导数中有所体现。</p>
+<h3 id="2-二次极限（累次极限）"><a href="#2-二次极限（累次极限）" class="headerlink" title="2. 二次极限（累次极限）"></a>2. 二次极限（累次极限）</h3><p>累次的思想是先固定一个变量，然后让另一个变量趋于某个值，得到一个中间结果，再让固定的变量趋于另一个值，得到最终结果。</p>
+<p>套用这个思想，对一个二元函数的某一点处，先对一个自变量取极限，再对另一个自变量取极限，得到的极限值就是这个函数的二次极限。这个过程是逐次进行的，每次只对一个自变量取极限。需要注意的是，求极限的顺序可能会影响结果。</p>
+<blockquote>
+<p>也就是说，对于一个二元函数 $f(x,y)$，我们可以先对 $x$ 取极限，然后再对 $y$ 取极限，得到：<br>$$\lim_{y\to b}\left(\lim_{x\to a}f(x,y)\right)$$<br>其中 $a$ 和 $b$ 是该函数的定义域内的某些值。</p>
 </blockquote>
-</li>
-<li>市场势力（market power）<blockquote>
-<p>某个经济活动者（或某个经济活动小团体）对市场价格有显著影响的能力 <em>e.g.垄断</em></p>
+<h3 id="3-累次极限和多重极限的区别"><a href="#3-累次极限和多重极限的区别" class="headerlink" title="3. 累次极限和多重极限的区别"></a>3. 累次极限和多重极限的区别</h3><p>多重极限是指一个多元函数在一个点 $(a_1,a_2,\dots,a_n)$ 的所有自变量同时趋近于这个点时的极限，也就是说，它涉及到所有自变量的同时趋近，用符号表示为：</p>
+<p>$$\lim_{(x_1,x_2,\dots,x_n)\to (a_1,a_2,\dots,a_n)}f(x_1,x_2,\dots,x_n)$$</p>
+<p>而累次极限则是一个逐步逼近的过程，先对一个自变量取极限，再对另一个自变量取极限，以此类推。它的过程是按照自变量的顺序逐层进行的，用符号表示为：</p>
+<p>$$\lim_{x_n\to a_n}\lim_{x_{n-1}\to a_{n-1}}\dots\lim_{x_1\to a_1}f(x_1,x_2,\dots,x_n)$$</p>
+<p>多重极限和累次极限的<strong>本质区别</strong>在于</p>
+<blockquote>
+<p>多重极限考虑的是所有自变量同时趋近于极限点，而累次极限则是逐步逼近，按照自变量的顺序逐层取极限。</p>
 </blockquote>
-</li>
-</ul>
+<p>需要注意的是，多重极限和累次极限并<strong>不总是</strong>相等，因为它们是不同的极限过程。</p>
 <hr>
-<h2 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h2><p>价格来自供需关系.</p>
-<h5 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h5><ul>
-<li><p>需求定律</p>
+<h1 id="二元函数的连续性"><a href="#二元函数的连续性" class="headerlink" title="二元函数的连续性"></a>二元函数的连续性</h1><h3 id="1-连续"><a href="#1-连续" class="headerlink" title="1. 连续"></a>1. 连续</h3><p>一个二元函数在某一点连续是指函数在某一点的极限值等于该点的函数值。</p>
 <blockquote>
-<p>价格和需求成反比</p>
+<p>更具体和符号化一些，对于一个二元函数 $f(x,y)$，如果在某个点 $(a,b)$ 处，当 $(x,y)$ 趋近于 $(a,b)$ 时，函数值 $f(x,y)$ 也趋近于 $f(a,b)$，那么我们称这个函数在点 $(a,b)$ 处连续。换句话说，如果 $\lim_{(x,y)\to (a,b)}f(x,y) &#x3D; f(a,b)$，那么 $f(x,y)$ 在点 $(a,b)$ 处连续。</p>
 </blockquote>
-</li>
-<li><p>供给定律</p>
+<p>如果一个二元函数在其定义域内每一个点都连续，我们称这个函数是连续的。</p>
+<h3 id="2-间断"><a href="#2-间断" class="headerlink" title="2. 间断"></a>2. 间断</h3><p>二元函数的间断可以分为三种类型：</p>
 <blockquote>
-<p>价格和生产成正比</p>
-</blockquote>
+<ol>
+<li><p>第一类间断点：当 $(x,y)$ 趋近于 $(a,b)$ 时，函数的极限存在，但与 $f(a,b)$ 不相等。这种间断点也被称为<strong>可去间断点</strong>。</p>
 </li>
-<li><p>盈余（surplus）</p>
+<li><p>第二类间断点：当 $(x,y)$ 趋近于 $(a,b)$ 时，函数的极限不存在或者为无穷大，例如函数在该点附近震荡不定，没有确定的极限值。这种间断点也被称为<strong>跳跃间断点</strong>。</p>
+</li>
+<li><p>第三类间断点：当 $(x,y)$ 趋近于 $(a,b)$ 时，函数的极限既不存在，又无穷大。这种间断点也被称为<strong>无穷间断点</strong>。</p>
+</li>
+</ol>
+</blockquote>
+<p>当一个二元函数在某个点 $(a,b)$ 处不满足连续性时，我们称该函数在 $(a,b)$ 处出现了<strong>间断</strong>或者说是<strong>不连续</strong>。</p>
+<h3 id="3-连续的性质"><a href="#3-连续的性质" class="headerlink" title="3. 连续的性质"></a>3. 连续的性质</h3><p>一些性质可以帮助我们判断一个二元函数是否连续：</p>
 <blockquote>
-<p>生产大于需求时，两者的差值叫盈余</p>
-</blockquote>
+<ol>
+<li><p>二元函数在定义域内每一个点都连续。</p>
 </li>
-<li><p>短缺（shortage）</p>
+<li><p>如果两个二元函数都在某个点连续，那么它们的和、差、积、商（分母不为零）也在该点连续。</p>
+</li>
+<li><p>一个多项式函数在其定义域内是连续的。</p>
+</li>
+<li><p>一个有理函数在其定义域内除了它的极点外都是连续的。</p>
+</li>
+<li><p>一个三角函数或者指数函数在其定义域内都是连续的。</p>
+</li>
+<li><p>复合函数的连续性：若 $f(x,y)$ 在 $(a,b)$ 连续，而 $g(u,v)$ 在 $(f(a,b),c)$ 连续，则复合函数 $h(u,v) &#x3D; g(f(u,v), c)$ 在 $(a,b)$ 连续。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="4-函数光滑"><a href="#4-函数光滑" class="headerlink" title="4. 函数光滑"></a>4. 函数光滑</h3><p>函数光滑通常指的是函数在其定义域内具有良好的连续性、可导性和高阶可导性。</p>
 <blockquote>
-<p>需求大于生产时，两者的差值叫短缺</p>
+<p>也就是说，这个函数可以在其定义域内<strong>无限次</strong>可导，它的导函数在定义域内连续，没有任何断点或者角点<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="角点是一个函数图像上的一种特殊点，也称为拐点；在这个点上，函数的图像突然改变了方向，类似于一条直线的转角处。
+">[3]</span></a></sup>。</p>
 </blockquote>
-</li>
-<li><p>均衡价格，均衡数量</p>
-<blockquote>
-<p>生产等于需求时的商品价格叫均衡价格，生产的商品数量叫均衡数量</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="价格变动"><a href="#价格变动" class="headerlink" title="价格变动"></a>价格变动</h5><p>由于外力的因素，供给和需求的曲线会变形，导致均衡价格和均衡数量发生变化，进而让价格开始波动</p>
-<p>在市场中唯四发生的事情就是：</p>
+<p>从视觉上说，如果函数在某个点处光滑，函数在该点附近的变化不会出现突然的变化或者角度，而是呈现出一种平滑的变化趋势。</p>
+<p>在数学上，我们通常用函数的导数来描述其光滑性。当函数在定义域内每一个点都可导时，我们称这个函数是光滑的。特别地，如果函数在定义域内的导函数也连续，我们称这个函数是光滑可微的。</p>
+<p>连续和光滑是不同的概念。一个函数在某个点处连续不一定光滑，也就是说一个连续的函数在某个点处仍然可能存在不可导的点，而光滑的函数在定义域内一定是连续的<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="因为如果一个函数是光滑的，那么它的导数存在，而导数的存在保证了函数在该点的连续性。">[4]</span></a></sup></p>
+<h3 id="5-二元连续函数的性质"><a href="#5-二元连续函数的性质" class="headerlink" title="5. 二元连续函数的性质"></a>5. 二元连续函数的性质</h3><p>有界闭区间区域上的二元连续函数与闭区间上的一元连续函数有类似的性质</p>
 <ul>
-<li>供给增加</li>
-<li>供给减少</li>
-<li>需求增加</li>
-<li>需求减少</li>
+<li>有界性定理<blockquote>
+<p>如果函数 $f(x,y)$ 在有界闭区域 $D$ 上连续，那么函数 $f(x,y)$ 在 $D$ 内必定有界；即存在常数 $M$，使得 $|f(x,y)| \leq M$。</p>
+</blockquote>
+</li>
+<li>最值定理<blockquote>
+<p>如果函数 $f(x,y)$ 在有界闭区域 $D$ 上连续，那么函数 $f(x,y)$ 在 $D$ 内必定有最大值和最小值；即存在 $(x_0,y_0) \in D$，使得 $f(x_0,y_0) \geq f(x,y)$ 对于所有 $(x,y) \in D$ 成立，并且存在 $(x_1,y_1) \in D$，使得 $f(x_1,y_1) \leq f(x,y)$ 对于所有 $(x,y) \in D$ 成立。</p>
+</blockquote>
+</li>
+<li>零点存在定理<blockquote>
+<p>如果函数 $f(x,y)$ 在有界闭区域 $D$ 上连续，并且 $f(x,y)$ 在 $D$ 的边界上不变号，那么函数 $f(x,y)$ 在 $D$ 内必定存在至少一个零点；即存在 $(x_0,y_0) \in D$，使得 $f(x_0,y_0) &#x3D; 0$。</p>
+</blockquote>
+</li>
+<li>介值定理<blockquote>
+<p>如果函数 $f(x,y)$ 在有界闭区域 $D$ 上连续，那么对于任意 $a \in [f_{\min},f_{\max}]$，都存在 $(x_0,y_0) \in D$，使得 $f(x_0,y_0) &#x3D; a$；其中 $f_{\min}$ 和 $f_{\max}$ 分别是函数 $f(x,y)$ 在 $D$ 上的最小值和最大值。</p>
+</blockquote>
+</li>
 </ul>
-<hr>
-<h2 id="市场监管"><a href="#市场监管" class="headerlink" title="市场监管"></a>市场监管</h2><p>一些市场满足自愿交换的条件，但是出于伦理道德，这些市场必须收到监管或者被消灭</p>
-<p>例如：人体器官交易，国防，公共安全，电力……</p>
-<p>根据供给定律，这些市场的需求量很大，价格非常高，而此时生产会被大大刺激，导致犯罪增加等。</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>经济定律并不像物理定律那样保持不变，毕竟在市场中交易的双方都是人类，人类的行为受相当多因素的影响。人们的行为能改变供给和需求，但是永远无法改变物理定律，不管人们的愿望多么强烈。</p>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">正式地表述：市场产生的指导资源分配的信息。<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">指自变量沿着一条特定的曲线或直线路径（即一个图形为线的函数）变化。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">对于一元函数，我们只需要考虑自变量沿着一条路径趋近于某一点。<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">角点是一个函数图像上的一种特殊点，也称为拐点；在这个点上，函数的图像突然改变了方向，类似于一条直线的转角处。<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">因为如果一个函数是光滑的，那么它的导数存在，而导数的存在保证了函数在该点的连续性。<a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
     
@@ -328,8 +350,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" rel="tag"># 经济学</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"># 高等数学</a>
+              <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 微积分</a>
           </div>
 
         
@@ -338,13 +361,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/2023/03/05/%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/" rel="prev" title="经济体系">
-      <i class="fa fa-chevron-left"></i> 经济体系
+    <a href="/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-4/" rel="prev" title="多元微分学-4">
+      <i class="fa fa-chevron-left"></i> 多元微分学-4
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-4/" rel="next" title="多元微分学-4">
-      多元微分学-4 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -631,6 +651,59 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
