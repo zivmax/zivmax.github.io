@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CS50X是我的计算机科学启蒙课，我向来不遗余力地向任何一位想打好基础的新人推荐这门课程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50X 讲座摘要 [1]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/07/CS50X%20%E8%AE%B2%E5%BA%A7%E6%91%98%E8%A6%81%20[1]/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="CS50X是我的计算机科学启蒙课，我向来不遗余力地向任何一位想打好基础的新人推荐这门课程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/BaGsej8MzE9tOxN.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/38NgDewUqnIrY1X.png">
+<meta property="article:published_time" content="2023-03-07T02:10:38.000Z">
+<meta property="article:modified_time" content="2023-03-07T05:28:24.705Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="CS50">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="精校翻译">
+<meta property="article:tag" content="翻译中">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/07/CS50X%20%E8%AE%B2%E5%BA%A7%E6%91%98%E8%A6%81%20[1]/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS50X 讲座摘要 [1] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/07/CS50X%20%E8%AE%B2%E5%BA%A7%E6%91%98%E8%A6%81%20[1]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在SHTU的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS50X 讲座摘要 [1]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2023-03-07 10:10:38 / 修改时间: 13:28:24" itemprop="dateCreated datePublished" datetime="2023-03-07T10:10:38+08:00">2023-03-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">CS50X是我的计算机科学启蒙课，我向来不遗余力地向任何一位想打好基础的新人推荐这门课程</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>翻译中…</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/">本篇在CS50X官网的英文原版</a></p>
+<h1 id="Lecture-1"><a href="#Lecture-1" class="headerlink" title="Lecture 1"></a>Lecture 1</h1><p><em>点击目录中的项目可直接跳转至原版的对应章节</em></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#welcome">Welcome!</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#hello-world">Hello World</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#functions">Functions</a> [函数]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#variables">Variables</a> [变量]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#conditionals">Conditionals</a> [条件]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#loops">Loops</a> [循环]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#linux-and-the-command-line">Linux and the Command Line</a> [Linux系统和命令行]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#mario">Mario</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#comments">Comments</a> [注释]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#abstraction">Abstraction</a> [抽象 | 封装]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#operators-and-types">Operators and Types</a> [运算符和类型]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#summing-up">Summing Up</a></li>
+</ul>
+<h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><ul>
+<li>在我们之前的课程中，我们学习了Scratch，一种可视化编程语言。</li>
+<li>实际上，当你学习任何编程语言时，Scratch中体现的所有基本编程概念都会被用上。</li>
+<li>请记住，计算机只能理解二进制代码（binary code）。在人类编写的<em>源代码  (source code)</em> 中，包含了计算机可以读懂的指令集，而计算机只能理解我们现在所称的<em>机器代码  (machine code)</em> 。机器代码是一串以特定模式组成的1和0；计算机通过执行它，可以产生我们在编写源代码时所想要的效果。</li>
+<li>事实证明，我们可以使用一种特殊的软件叫做<em>编译器  (compiler)</em> 来将源代码转换为<code>机器代码</code>。今天，我们将向你介绍一个编译器<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="实际上是介绍了一个自带编译器的IDE">[1]</span></a></sup>，它可以让你将用C语言写的源代码转换为机器代码。</li>
+<li>今天，除了学习如何编程外，你还将学习如何写出好的代码。</li>
+<li>代码可以从三个方面进行评估。首先，<em>正确</em> 指的是 “代码是否按照预期运行？” 其次，<em>设计</em> 指的是 “代码设计得有多好？” 最后，<em>风格</em> 指的是“代码的美观程度和一致性如何？”</li>
+</ul>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><ul>
+<li><p>本课程使用的IDE<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Integrated-Development-Environment [集成开发环境]
+">[2]</span></a></sup>是<em>Visual Studio Code</em> ，通常简称为<em>VS Code</em> 。</p>
+</li>
+<li><p>我们之所以使用<em>VS Code</em> ，其中一个最重要的原因是它已经预装了本课程所需的所有软件，包括之前提到的编译器。本课程和其中的命令行指令均是以<em>VS Code</em> 为基础设计的，因此最好始终使用<em>VS Code</em> 完成本课程的作业。</p>
+</li>
+<li><p>你可以通过<a target="_blank" rel="noopener" href="https://code.cs50.io/">code.cs50.io</a>打开<em>VS Code</em> 的在线版本。</p>
+</li>
+<li><p><em>VS Code</em> 可以被分为多个区域：</p>
+<p><img src="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png"><br> 请注意，左侧有一个<em>文件资源管理器</em> ，你可以在其中找到你的文件。此外，中间有一个称为<em>文本编辑器</em> 的区域，你可以在其中编辑你的程序。最后，有一个称为<code>命令行界面</code>的区域，也称为<em>CLI</em>，<em>命令行</em> 或<em>终端窗口</em>，我们可以在其中向云服务器上的计算机发送命令。</p>
+</li>
+<li><p>我们可以通过在终端窗口输入<code>code hello.c</code>来编写C语言的第一个程序。请注意，我们故意对文件只使用小写命名，包括<code>.c</code>扩展名。接下来，在出现的文本编辑器中编写以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，上述每一个字符都有其特定的作用。如果你输错了，程序将无法运行。</p>
+</li>
+<li><p>点击终端窗口来回到它之后，你可以通过执行<code>make hello</code>来编译你的代码。请注意，我们省略了<code>.c</code>。<code>make</code>是一个自动编译执行器，它会查找我们的<code>hello.c</code>文件并将其转换为一个名为<code>hello</code>的程序。如果执行此命令后没有任何错误，你可以继续。如果有错误，请仔细检查你的代码，确保其与上面的相匹配。</p>
+</li>
+<li><p>现在，请输入 <code>./hello</code> 命令，你的程序将会被执行，并打印出 <code>hello, world</code>。</p>
+</li>
+<li><p>现在，在左侧打开<em>文件资源管理器</em> 。你会注意到现在有一个名为<code>hello.c</code>的文件和另一个名为<code>hello</code>的文件。<code>hello.c</code>可以被编译器读取：它是保存你代码的文件。<code>hello</code>是一个可执行文件，你可以运行它，但编译器无法读取它。</p>
+</li>
+<li><p>让我们仔细地看一下我们的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，我们的代码被进行了语法高亮<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="不同意义的代码颜色不同">[3]</span></a></sup>。</p>
+</li>
+</ul>
+<h2 id="Functions-函数"><a href="#Functions-函数" class="headerlink" title="Functions [函数]"></a>Functions [函数]</h2><ul>
+<li><p>在Scratch中，我们使用 <code>say</code> 代码块在屏幕上显示文本。而在C语言中，我们有一个被称为 <code>printf</code> 的函数，可以做到同样的事情。</p>
+</li>
+<li><p>请注意，我们的代码中已经调用了这个函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意到 <code>printf</code> 函数被调用。传递给 <code>printf</code> 的参数（argument）是 <code>&#39;hello, world\n&#39;</code>。代码语句以 <code>;</code> 结尾。</p>
+</li>
+<li><p>在C语言编程中，常见的错误是漏写分号。按照以下方式修改你的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意分号现在已经不见了。</p>
+</li>
+<li><p>在你的终端窗口中，运行 <code>make hello</code> 命令。这时你将会看到许多错误信息！把分号放回正确的位置，然后再次运行 <code>make hello</code> 命令，错误信息便消失了。</p>
+</li>
+<li><p>请注意代码中的特殊符号<code>\n</code>。尝试一下删除它，并通过执行<code>make hello</code>生成你的程序。在终端窗口中输入<code>./hello</code>，你的程序有何变化？</p>
+</li>
+<li><p>如下恢复你的程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，分号和 <code>\n</code> 已经恢复。</p>
+</li>
+<li><p>代码开头的语句 <code>#include &lt;stdio.h&gt;</code> 是一个非常特殊的命令，它告诉编译器你想要使用名为 <code>stdio.h</code> 的库的功能。这样，你就可以使用 <code>printf</code> 函数等许多其他功能。你可以在<a target="_blank" rel="noopener" href="https://manual.cs50.io/">手册页面</a>上阅读这个库的所有功能介绍。</p>
+</li>
+<li><p>事实上，CS50有一个自己的库，叫做<code>cs50.h</code>。让我们在你的程序中使用这个库。</p>
+</li>
+</ul>
+<h2 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables [变量]"></a>Variables [变量]</h2><ul>
+<li><p>回想一下，在Scratch中，我们可以询问用户<code>&quot;What&#39;s your name? &quot;</code>并在其后说出带有名字的问候。</p>
+</li>
+<li><p>在C中，我们也可以这样做。按照以下方式修改你的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> answer = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, answer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，在你的代码顶部， <code>#include &lt;cs50.h&gt;</code>被加了进来。代码中 <code>get_string</code> 函数用于从用户获取字符串（string）。然后，变量 <code>answer</code> 被传递给 <code>printf</code> 函数。<code>%s</code> 告诉 <code>printf</code> 函数准备接收一个字符串。</p>
+</li>
+<li><p><code>answer</code>是一个特殊的数据收容处，我们称之为 <code>变量</code>。<code>answer</code> 的数据类型为 <code>string</code>，可以存储任何字符串。还有许多其他的<em>数据类型</em>，如 <code>int</code>、<code>bool</code>、<code>char</code> 等。</p>
+</li>
+<li><p>在终端窗口中再次运行 <code>make hello</code> ，你可以输入 <code>./hello</code> 来运行程序。程序现在会要求你输入姓名，然后附带你姓名地打印问候语。</p>
+</li>
+</ul>
+<h2 id="Conditionals-条件"><a href="#Conditionals-条件" class="headerlink" title="Conditionals [条件]"></a>Conditionals [条件]</h2><ul>
+<li><p>Another building block you utilized within Scratch was that of <em>conditionals</em>. For example, you might want to do one thing if x is greater than y. Further, you might want to do something else if that condition is not met.</p>
+</li>
+<li><p>In the terminal window, type <code>code compare.c</code> and write code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x = get_int(<span class="string">&quot;What&#x27;s x? &quot;</span>)</span><br><span class="line">    <span class="type">int</span> y = get_int(<span class="string">&quot;What&#x27;s y? &quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x &lt; y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x is less than y\n&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that we create two variables, an <code>int</code> or integer called <code>x</code> and another called <code>y</code>. The values of these are populated using the <code>get_int</code> function.</p>
+</li>
+<li><p>You can run your code by executing <code>make compare</code> in the terminal window, followed by <code>./compare</code>. If you get any error messages, check your code for errors.</p>
+</li>
+<li><p>We can improve your program by coding as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x = get_int(<span class="string">&quot;What&#x27;s x? &quot;</span>)</span><br><span class="line">    <span class="type">int</span> y = get_int(<span class="string">&quot;What&#x27;s y? &quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x &lt; y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x is less than y\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x is greater than y\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x is equal to y\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that all potential outcomes are now accounted for.</p>
+</li>
+<li><p>You can re-make and re-run your program and test it out.</p>
+</li>
+<li><p>Considering another data type called a <code>char</code> we can start a new program by typing <code>code agree.c</code> into the terminal window. In the text editor, write code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Prompt user to agree</span></span><br><span class="line">    <span class="type">char</span> c = get_char(<span class="string">&quot;Do you agree? &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Check whether agreed</span></span><br><span class="line">    <span class="keyword">if</span> (c == <span class="string">&#x27;Y&#x27;</span> || c == <span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Agreed.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;N&#x27;</span> || c == <span class="string">&#x27;n&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Not agreed.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that single quotes are utilized for single characters. Further, notice that <code>==</code> ensure that something <em>is equal</em> to something else, where a single equal sign would have a very different function in C. Finally, notice that <code>||</code> effectively means <em>or</em>.</p>
+</li>
+<li><p>You can test your code by typing <code>make agree</code> into the terminal window, followed by <code>./agree</code>.</p>
+</li>
+</ul>
+<h2 id="Loops-循环"><a href="#Loops-循环" class="headerlink" title="Loops [循环]"></a>Loops [循环]</h2><ul>
+<li><p>We can also utilize the loops building block from Scratch in our C programs.</p>
+</li>
+<li><p>In your terminal window, type <code>code meow.c</code> and write code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice this does as intended but has an opportunity for better design.</p>
+</li>
+<li><p>We can improve our program by modifying your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; <span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that we create an <code>int</code> called <code>i</code> and assign it the value <code>0</code>. Then, we create a <code>while</code> loop that will run as long as <code>i &lt; 3</code>. Then, the loop runs. Every time <code>1</code> is added to <code>i</code> using the <code>i++</code> statement.</p>
+</li>
+<li><p>Similarly, we can implement a count-down of sorts by modifying our code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">        i--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how our counter <code>i</code> is started at <code>3</code>. Each time the loop runs, it will reduce the counter by <code>1</code>. Once the counter is less than zero, it will stop the loop.</p>
+</li>
+<li><p>We can further improve the design using a <code>for</code> loop. Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that the <code>for</code> loop includes three arguments. The first argument <code>int i = 0</code> starts our counter at zero. The second argument <code>i &lt; 3</code> is the condition that is being checked. Finally, the argument <code>i++</code> tells the loop to increment by one each time the loop runs.</p>
+</li>
+<li><p>We can even loop forever using the following code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;meow\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that <code>true</code> will always be the case. Therefore, the code will always run. You will lose control of your terminal window by running this code. You can break from an infinite by hitting <code>control-C</code> on your keyboard.</p>
+</li>
+</ul>
+<h2 id="Linux-and-the-Command-Line-Linux系统和命令行"><a href="#Linux-and-the-Command-Line-Linux系统和命令行" class="headerlink" title="Linux and the Command Line [Linux系统和命令行]"></a>Linux and the Command Line [Linux系统和命令行]</h2><ul>
+<li><em>Linux</em> is an operating system that is accessible via the command line in the terminal window in VS Code.</li>
+<li>Some common command-line arguments we may use include:<ul>
+<li><code>cd</code>, for changing our current directory (folder)</li>
+<li><code>cp</code>, for copying files and directories</li>
+<li><code>ls</code>, for listing files in a directory</li>
+<li><code>mkdir</code>, for making a directory</li>
+<li><code>mv</code>, for moving (renaming) files and directories</li>
+<li><code>rm</code>, for removing (deleting) files</li>
+<li><code>rmdir</code>, for removing (deleting) directories</li>
+</ul>
+</li>
+<li>The most commonly used is <code>ls</code> which will list all the files in the current directory or directory. Go ahead and type <code>ls</code> into the terminal window and hit <code>enter</code>. You’ll see all the files in the current folder.</li>
+<li>Another useful command is <code>mv</code>, where you can move a file from one file to another. For example, you could use this command to rename <code>Hello.c</code> (notice the uppercase <code>H</code>) to <code>hello.c</code> by typing <code>mv Hello.c hello.c</code>.</li>
+<li>You can also create folders. You can type <code>mkdir pset1</code> to create a directory called <code>pset1</code>.</li>
+<li>You can then use <code>cd pset1</code> to change your current directory to <code>pset1</code>.</li>
+</ul>
+<h2 id="Mario"><a href="#Mario" class="headerlink" title="Mario"></a>Mario</h2><ul>
+<li><p>Everything we’ve discussed today has focused on various building-blocks of your work as a programmer.</p>
+</li>
+<li><p>The following will help you orient toward working on a problem set for this class in general: How does one approach a computer science related problem?</p>
+</li>
+<li><p>Imagine we wanted to emulate the visual of the game Super Mario Bros. Considering the four question-blocks pictured, how could we create code that roughly represents these four horizontal blocks?</p>
+<p><img src="https://s2.loli.net/2023/03/07/BaGsej8MzE9tOxN.png"></p>
+</li>
+<li><p>In the terminal window, type <code>code mario.c</code> and code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;?&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how four question marks are printed here using a loop.</p>
+</li>
+<li><p>Similarly, we can apply this same logic to be able to create three vertical blocks.</p>
+<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png"></p>
+</li>
+<li><p>To accomplish this, modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;#\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how three vertical bricks are printed using a loop.</p>
+</li>
+<li><p>What if we wanted to combine these ideas to create a three-by-three group of blocks?</p>
+<p><img src="https://s2.loli.net/2023/03/07/38NgDewUqnIrY1X.png"></p>
+</li>
+<li><p>We can follow the logic above, combining the same ideas. Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that one loop is inside another. The first loop defines what vertical row is being printed. For each row, three columns are printed. After each row, a new line is printed.</p>
+</li>
+<li><p>What if we wanted to ensure that the number of blocks to be <em>constant</em>, that is, unchangeable? Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> n = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how <code>n</code> is now a constant. It can never be changed.</p>
+</li>
+<li><p>As illustrated earlier in this lecture, we can make our code prompt the user for the size of the grid. Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that <code>get_int</code> is used to prompt the user.</p>
+</li>
+<li><p>A general piece of advice within programming is that you should never fully trust your user. They will likely misbehave, typing incorrect values where they should not. We can protect our program from bad behavior by checking to make sure the user’s input satisfies our needs. Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how the user is continuously prompted for the size until the user’s input is 1 or greater.</p>
+</li>
+</ul>
+<h2 id="Comments-注释"><a href="#Comments-注释" class="headerlink" title="Comments [注释]"></a>Comments [注释]</h2><ul>
+<li><p>Comments are fundamental parts of a computer program, where you leave explanatory remarks to yourself and others that may be collaborating with you regarding your code.</p>
+</li>
+<li><p>All code you create for this course must include robust comments.</p>
+</li>
+<li><p>Typically each comment is a few words or more, providing the reader an opportunity to understand what is happening in a specific block of code. Further, such comments serve as a reminder for you later when you need to revise your code.</p>
+</li>
+<li><p>Comments involve placing <code>//</code> into your code, followed by a comment. Modify your code as follows to integrate comments:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Get size of grid</span></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print grid of bricks</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how each comment begins with a <code>//</code>.</p>
+</li>
+</ul>
+<h2 id="Abstraction-抽象-封装"><a href="#Abstraction-抽象-封装" class="headerlink" title="Abstraction [抽象 | 封装]"></a>Abstraction [抽象 | 封装]</h2><ul>
+<li><p><em>Abstraction</em> is the art of simplifying our code such that it deals with smaller and smaller problems.</p>
+</li>
+<li><p>Looking at your code, you can see how two essential problems in our code are <em>get size of grid</em> and <em>print grid of bricks</em>.</p>
+</li>
+<li><p>We can abstract away these two problems into separate functions. Modify your code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_size</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">print_grid</span><span class="params">(<span class="type">int</span> n)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = get_size();</span><br><span class="line">    print_grid(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_size</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_grid</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that we have three functions now. First, we have the <code>main</code> function that calls two other functions called <code>get_size</code> and <code>print_grid</code>. Second, we have a second function called <code>get_size</code> which includes the exact code we had to accomplish this task prior. Third, we have another function called <code>print_grid</code> that prints the grid. Because we abstracted away the essential problems within our program, our <code>main</code> function is very short.</p>
+</li>
+</ul>
+<h2 id="Operators-and-Types-运算符和类型"><a href="#Operators-and-Types-运算符和类型" class="headerlink" title="Operators and Types [运算符和类型]"></a>Operators and Types [运算符和类型]</h2><ul>
+<li><p><em>Operators</em> refer to the mathematical operations that are supported by your compiler. In C, these mathematical operators include:</p>
+<ul>
+<li><code>+</code> for addition</li>
+<li><code>-</code> for subtraction</li>
+<li><code>*</code> for multiplication</li>
+<li><code>/</code> for division</li>
+<li><code>%</code> for remainder</li>
+</ul>
+</li>
+<li><p>Types refer to the possible data that can be stored within a variable. For example, a <code>char</code> is designed to accommodate a single character like <code>a</code> or <code>2</code>.</p>
+</li>
+<li><p>Types are very important because each type has specific limits. For example, because of the limits in memory, the highest value of an <code>int</code> can be <code>4294967296</code>.</p>
+</li>
+<li><p>Types with which you might interact during this course include:</p>
+<ul>
+<li><code>bool</code>, a Boolean expression of either true or false</li>
+<li><code>char</code>, a single character like a or 2</li>
+<li><code>double</code>, a floating-point value with more digits than a float</li>
+<li><code>float</code>, a floating-point value, or real number with a decimal value</li>
+<li><code>int</code>, integers up to a certain size, or number of bits</li>
+<li><code>long</code>, integers with more bits, so they can count higher than an int</li>
+<li><code>string</code>, a string of characters</li>
+</ul>
+</li>
+<li><p>You can implement a calculator in C. In your terminal, type <code>code calculator.c</code> and write code as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Prompt user for x</span></span><br><span class="line">    <span class="type">int</span> x = get_int(<span class="string">&quot;x: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Prompt user for y</span></span><br><span class="line">    <span class="type">int</span> y = get_int(<span class="string">&quot;y: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Perform addition</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, x + y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how the <code>get_int</code> function is utilized to obtain an integer from the user twice. One integer is stored in the <code>int</code> variable called <code>x</code>. Another is stored in the <code>int</code> variable called <code>y</code>. Then, the <code>printf</code> function prints the value of <code>x + y</code>, designated by the <code>%i</code> symbol.</p>
+</li>
+<li><p>As you are coding, pay special attention to the types of variables you are using to avoid problems within your code.</p>
+</li>
+</ul>
+<h2 id="Summing-Up"><a href="#Summing-Up" class="headerlink" title="Summing Up"></a>Summing Up</h2><p>In this lesson, you learned how to apply the building blocks you learned in Scratch to the C programming language. You learned…</p>
+<ul>
+<li>How to create your first program in C.</li>
+<li>Predefined functions that come natively with C and how to implement your own functions.</li>
+<li>How to use variables, conditionals, and loops.</li>
+<li>How to use the Linux command line.</li>
+<li>How to approach problem-solving for a computer science problem.</li>
+<li>How to integrate comments into your code.</li>
+<li>How to approach abstraction to simplify and improve your code.</li>
+<li>How to utilize types and operators.</li>
+</ul>
+<p>See you next time!<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">实际上是介绍了一个自带编译器的IDE<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Integrated-Development-Environment [集成开发环境]<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">不同意义的代码颜色不同<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS50/" rel="tag"># CS50</a>
+              <a href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
+              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
+              <a href="/tags/%E7%BF%BB%E8%AF%91%E4%B8%AD/" rel="tag"># 翻译中</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20%5B5%5D/" rel="prev" title="多元微分学 [5]">
+      <i class="fa fa-chevron-left"></i> 多元微分学 [5]
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-1"><span class="nav-text">Lecture 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Welcome"><span class="nav-text">Welcome!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-%E5%87%BD%E6%95%B0"><span class="nav-text">Functions [函数]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-%E5%8F%98%E9%87%8F"><span class="nav-text">Variables [变量]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditionals-%E6%9D%A1%E4%BB%B6"><span class="nav-text">Conditionals [条件]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops-%E5%BE%AA%E7%8E%AF"><span class="nav-text">Loops [循环]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-and-the-Command-Line-Linux%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-text">Linux and the Command Line [Linux系统和命令行]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mario"><span class="nav-text">Mario</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments-%E6%B3%A8%E9%87%8A"><span class="nav-text">Comments [注释]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstraction-%E6%8A%BD%E8%B1%A1-%E5%B0%81%E8%A3%85"><span class="nav-text">Abstraction [抽象 | 封装]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operators-and-Types-%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E7%B1%BB%E5%9E%8B"><span class="nav-text">Operators and Types [运算符和类型]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summing-Up"><span class="nav-text">Summing Up</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在SHTU的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:838816519@qq.com" title="E-Mail → mailto:838816519@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      	  <!-- require MetingJS -->
+	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "false"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

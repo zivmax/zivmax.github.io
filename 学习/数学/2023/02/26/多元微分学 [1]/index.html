@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="多元微积分的简介、$n$ 维点集、多元函数的定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多元微分学 [1]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="多元微积分的简介、$n$ 维点集、多元函数的定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-26T13:40:13.000Z">
+<meta property="article:modified_time" content="2023-03-07T05:16:40.291Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="微积分">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>多元微分学 [1] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在SHTU的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          多元微分学 [1]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2023-02-26 21:40:13" itemprop="dateCreated datePublished" datetime="2023-02-26T21:40:13+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2023-03-07 13:16:40" itemprop="dateModified" datetime="2023-03-07T13:16:40+08:00">2023-03-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">多元微积分的简介、$n$ 维点集、多元函数的定义</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。<br>简单来说，多元微积分是一元微积分的推广，但也有本质的不同：</p>
+<ul>
+<li><p>定义范围不同<br>  一元微积分是研究一个自变量的函数的导数和积分，而多元微积分则是研究多个自变量的函数的偏导数和积分。</p>
+</li>
+<li><p>研究对象不同<br>  在一元微积分中，研究的是<strong>实数集</strong>上的函数，我们只需要考虑一个自变量，因此计算对象只有一个变量。而在多元微积分中，研究的是<strong>欧氏空间</strong>上的函数，我们需要考虑多个自变量，因此计算对象就变成了多个变量。</p>
+</li>
+<li><p>关注性质不同<br>  一元微积分主要关注函数的极限、连续性、导数、积分等性质。<br>  多元微积分除了关注函数的这些性质外，还涉及到向量值函数、偏导数、方向导数、梯度、散度、旋度、曲线积分、曲面积分等概念。</p>
+</li>
+<li><p>计算方法不同<br>  一元微积分中的计算方法主要有<em>牛顿-莱布尼茨公式</em>、<em>分部积分法</em>、<em>换元积分法</em>等。而多元微积分中的计算方法包括偏导数的计算、重积分的计算、<em>格林公式</em>和<em>斯托克斯公式</em>等。</p>
+</li>
+<li><p>应用邻域不同<br>  一元微积分主要应用于物理、经济、生物学等邻域的分析问题，如速度、加速度、最优化、曲线拟合等。而多元微积分则更多应用于物理、工程、计算机科学、天文学等邻域，如流体力学、电磁场、最优控制、计算机图形学等。</p>
+</li>
+</ul>
+<p>总之，一元微积分和多元微积分都是微积分的重要部分，它们的定义、计算方法和应用邻域都有所不同，但它们都是处理实际问题和建模的有力工具。</p>
+<hr>
+<h1 id="n维点集"><a href="#n维点集" class="headerlink" title="n维点集"></a>n维点集</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>n维点集的定义是指由n维空间中的点组成的集合。n维空间是指由n个实数坐标确定的空间，比如二维空间就是平面，三维空间就是立体。</p>
+<blockquote>
+<p>举个例子，如果我们在二维平面上画一个圆，那么圆上的所有点就构成了一个二维点集。如果我们在三维空间中画一个球体，那么球体上的所有点就构成了一个三维点集。</p>
+</blockquote>
+<p>你可以想象一下，如果我们有更多的坐标轴，比如四个、五个或者更多，那么我们就可以定义出更高维度的空间和点集。但是这些高维度的空间和点集很难用直观的方式来表示和理解，所以我们通常用数学符号和公式来描述它们。</p>
+<p>在微积分的语境下，$n$维点集的定义和上面的定义是一致的，只是$n$维空间中的点通常被称为 $n$ 维向量, $n$ 维点集可以被定义为包含 $n$ 维向量的集合。具体来说，如果我们有一个实数域 $\mathbb{R}$ 上的向量空间 $V$ <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。">[1]</span></a></sup>，那么 $V$ 中的每一个元素都是 $n$ 维的，其中 $n$ 是正整数。$n$ 维点集就是 $V$ 中的一个子集，它包含了若干个 $n$ 维向量。</p>
+<p>在一些特定的情况下，$n$ 维点集可以被描述为一个函数的图像，例如在二维平面中，一条曲线可以被表示为 $y&#x3D;f(x)$，其中 $x$ 和 $y$ 是实数，$f(x)$ 是一个实数函数。这个曲线的点集可以被定义为所有满足 $y&#x3D;f(x)$ 的 $(x,y)$ 点的集合。在三维空间中，一个曲面可以被表示为 $z&#x3D;f(x,y)$，其中 $x$、$y$ 和 $z$ 都是实数，$f(x,y)$ 是一个实数函数。这个曲面的点集可以被定义为所有满足 $z&#x3D;f(x,y)$ 的 $(x,y,z)$ 点的集合。</p>
+<h2 id="2-邻域"><a href="#2-邻域" class="headerlink" title="2. 邻域"></a>2. 邻域</h2><p>和一维点集类似，多维邻域也通常表示为一个点周围的某个范围内的所有点的集合。</p>
+<p>更具体地说，对于二维或三维空间中的点 $P$，其邻域可以表示为一个开集或者一个开球。</p>
+<p><strong>在二维平面上</strong></p>
+<blockquote>
+<p>点 $(x_0, y_0)$ 的 $r$ 邻域可以定义为由 $(x_0, y_0)$ 为圆心，$r&gt;0$ 为半径的圆内的所有点的集合，即：</p>
+<p>$$N_r(x_0, y_0) &#x3D; {(x,y) \mid (x-x_0)^2+(y-y_0)^2&lt;r^2}$$</p>
+<p>其中 $r$ 表示圆的半径。</p>
+</blockquote>
+<p><strong>在三维空间中</strong></p>
+<blockquote>
+<p>点 $(x_0, y_0, z_0)$ 的 $r$ 邻域可以定义为由 $(x_0, y_0, z_0)$ 为球心，$r&gt;0$ 为半径的球内的所有点的集合，即：</p>
+<p>$$N_r(x_0, y_0, z_0) &#x3D; {(x,y,z) \mid (x-x_0)^2+(y-y_0)^2+(z-z_0)^2&lt;r^2}$$</p>
+<p>其中 $r$ 表示球的半径。</p>
+</blockquote>
+<p>邻域的大小取决于半径 $r$ 的大小，当 $r$ 越小时，邻域越小，当 $r$ 越大时，邻域越大。邻域的大小也决定了点 $P$ 的邻域内包含多少个其他点，因此邻域是研究点集局部性质的基本工具之一。</p>
+<p><strong>去心领域</strong>的概念就是把点 $P$ 的邻域去掉点 $P$ 自己后的点集。</p>
+<h2 id="3-内点，外点，边界点"><a href="#3-内点，外点，边界点" class="headerlink" title="3. 内点，外点，边界点"></a>3. 内点，外点，边界点</h2><p>给定点集 $S$，我们可以定义以下三种类型的点：</p>
+<ol>
+<li><p>内点：如果点 $P$ 在 $S$ 内部，那么 $P$ 是 $S$ 的内点。</p>
+</li>
+<li><p>外点：如果点 $P$ 不在 $S$ 内部，那么 $P$ 是 $S$ 的外点。</p>
+</li>
+<li><p>边界点：如果点 $P$ 既不是 $S$ 的内点也不是 $S$ 的外点，那么 $P$ 是 $S$ 的边界点。</p>
+</li>
+</ol>
+<p>以二维平面上的点集为例，如果 $S$ 是一个区域（比如一个圆），则 $S$ 的内部包括圆内部的所有点，而 $S$ 的外部则是圆外部的所有点。边界点则是圆周上的所有点。我们可以将内点、外点和边界点表示为：</p>
+<ol>
+<li><p>$P$ 是 $S$ 的内点：$\exists r &gt; 0, N_r(P) \subset S$</p>
+</li>
+<li><p>$P$ 是 $S$ 的外点：$\exists r &gt; 0, N_r(P) \cap S &#x3D; \varnothing$</p>
+</li>
+<li><p>$P$ 是 $S$ 的边界点：$\forall r &gt; 0, N_r(P) \cap S \neq \varnothing$ 且 $N_r(P) \cap (\mathbb{R}^2 \setminus S) \neq \varnothing$</p>
+</li>
+</ol>
+<p>其中 $N_r(P)$ 表示以点 $P$ 为中心，半径为 $r$ 的邻域，$\mathbb{R}^2$ 表示二维平面上所有的点构成的集合，$\varnothing$ 表示空集。</p>
+<h2 id="4-开集，闭集，和边界"><a href="#4-开集，闭集，和边界" class="headerlink" title="4. 开集，闭集，和边界"></a>4. 开集，闭集，和边界</h2><p>给定闭集 $D$，我们可以定义以下三种类型的集合：</p>
+<ol>
+<li><p>开集：如果点集 $S$ 中的每个点都是 $D$ 的内点，那么 $S$ 是一个开集。</p>
+</li>
+<li><p>闭集：如果点集 $S$ 包括了 $D$ 的所有内点和边界点，那么 $S$ 是一个闭集。</p>
+</li>
+<li><p>边界：$D$ 的边界是指 $D$ 所有的边界点所构成的集合。</p>
+</li>
+</ol>
+<p>以二维平面上的点集为例，如果 $S$ 是一个区域（比如一个圆），则 $S$ 是一个开集，因为圆内部的每个点都是圆的内点。但是如果我们把圆周上的所有点也包括进去，那么 $S$ 就成为了一个闭集。$S$ 的边界则是圆周上的所有点。更一般地，我们可以将开集、闭集和边界表示为：</p>
+<ol>
+<li><p>$S$ 是一个开集：$\forall P \in S, \exists r &gt; 0, N_r(P) \subset S$</p>
+</li>
+<li><p>$S$ 是一个闭集：$S$ 的补集 $\mathbb{R}^n - S$ 是一个开集</p>
+</li>
+<li><p>$S$ 的边界：边界是 $S$ 的闭包（即 $S$ 加上它的所有边界点）减去 $S$ 的内部</p>
+</li>
+</ol>
+<p>其中 $N_r(P)$ 表示以点 $P$ 为中心，半径为 $r$ 的邻域，$\mathbb{R}^n$ 表示 $n$ 维空间中所有的点构成的集合，$S$ 的补集表示所有不属于 $S$ 的点构成的集合，$S$ 的闭包表示包含 $S$ 及其边界点的最小闭集。</p>
+<h2 id="5-联通的点集"><a href="#5-联通的点集" class="headerlink" title="5. 联通的点集"></a>5. 联通的点集</h2><p>一个点集 $S$ 被称为联通的，当且仅当该点集内的任意两点都可以通过一条位于 $S$ 中的连续曲线相互连接。这里的“连续曲线”可以简单地理解为线段、折线、曲线等等，而“相互连接”则意味着在这条曲线的两端点处，可以在点集 $S$ 中找到两个点与这两个端点相对应。</p>
+<p>更形式化地说，如果对于任意的 $a,b\in S$，都可以找到一条连续的函数 $\gamma:[0,1]\to S$，满足 $\gamma(0) &#x3D; a$ 且 $\gamma(1) &#x3D; b$，那么称 $S$ 是一个联通的点集。</p>
+<p>联通的开集称为<strong>开区域</strong>，也可以直接称作<strong>区域</strong>，区域连同其边界称为<strong>闭区域</strong>。</p>
+<h2 id="6-基础性质-（optional）"><a href="#6-基础性质-（optional）" class="headerlink" title="6. 基础性质 （optional）"></a>6. 基础性质 <em>（optional）</em></h2><ul>
+<li><p>闭合性：</p>
+<blockquote>
+<p>如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，则该点集具有闭合性。</p>
+</blockquote>
+</li>
+<li><p>开放性：</p>
+<blockquote>
+<p>如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，并且该操作不包括点集的边界，则该点集具有开放性。</p>
+</blockquote>
+</li>
+<li><p>连通性：</p>
+<blockquote>
+<p>如果点集中的任何两个点都可以通过该点集中的其他点相连通，则该点集具有连通性。</p>
+</blockquote>
+</li>
+<li><p>路径连通性：</p>
+<blockquote>
+<p>如果点集中的任何两个点都可以通过一条路径相连通，则该点集具有路径连通性。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-基础定理-（optional）"><a href="#7-基础定理-（optional）" class="headerlink" title="7. 基础定理 （optional）"></a>7. 基础定理 <em>（optional）</em></h2><ul>
+<li><p><em>Bolzano-Weierstrass定理</em>：<br>  任何有界的无限点集中必定存在至少一个收敛于某个点的子序列。</p>
+</li>
+<li><p><em>Heine-Borel定理</em>：<br>  在N维向量空间中，任何有界的闭合点集都是紧致的。</p>
+</li>
+<li><p><em>Arzela-Ascoli定理</em>：<br>  如果一个函数序列在某点处局部有界且等度连续，则存在一个收敛于该函数序列的子序列。</p>
+</li>
+<li><p><em>Weierstrass逼近定理</em>：<br>  任何连续函数都可以用多项式逼近，即在一个给定的区间内，可以找到一个多项式函数，使得该函数与原函数的差趋近于零。</p>
+</li>
+</ul>
+<hr>
+<h1 id="多元函数的概念"><a href="#多元函数的概念" class="headerlink" title="多元函数的概念"></a>多元函数的概念</h1><p>多元函数是指有多个自变量的函数，也称为向量值<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="因为n维点集的点通常也被称为n维向量。">[2]</span></a></sup>函数。如果一个函数 $f$ 有 $n$ 个自变量，那么可以表示为：</p>
+<p>$$f: D \subset \mathbb{R}^n \rightarrow \mathbb{R}$$</p>
+<p>其中 $D$ 表示自变量的取值范围，通常称为<strong>定义域</strong>。$\mathbb{R}$ 表示函数值的范围，即函数的<strong>值域</strong>。</p>
+<p>函数的值域对应的点集被称为<strong>图形</strong></p>
+<p>举个例子，$z &#x3D; f(x, y)$ 表示一个二元函数，它的定义域为 $D \subset \mathbb{R}^2$，表示平面上的一个区域。函数值 $z &#x3D; f(x, y)$ 表示该区域内每个点 $(x,y)$ 的函数值，其图形通常为一个三维曲面。</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">因为n维点集的点通常也被称为n维向量。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"># 高等数学</a>
+              <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 微积分</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E6%8A%80%E6%9C%AF/2023/02/07/%E6%B5%8B%E8%AF%95/" rel="prev" title="测试">
+      <i class="fa fa-chevron-left"></i> 测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20%5B2%5D/" rel="next" title="多元微分学 [2]">
+      多元微分学 [2] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n%E7%BB%B4%E7%82%B9%E9%9B%86"><span class="nav-text">n维点集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%82%BB%E5%9F%9F"><span class="nav-text">2. 邻域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%86%85%E7%82%B9%EF%BC%8C%E5%A4%96%E7%82%B9%EF%BC%8C%E8%BE%B9%E7%95%8C%E7%82%B9"><span class="nav-text">3. 内点，外点，边界点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%80%E9%9B%86%EF%BC%8C%E9%97%AD%E9%9B%86%EF%BC%8C%E5%92%8C%E8%BE%B9%E7%95%8C"><span class="nav-text">4. 开集，闭集，和边界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%81%94%E9%80%9A%E7%9A%84%E7%82%B9%E9%9B%86"><span class="nav-text">5. 联通的点集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9F%BA%E7%A1%80%E6%80%A7%E8%B4%A8-%EF%BC%88optional%EF%BC%89"><span class="nav-text">6. 基础性质 （optional）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%9F%BA%E7%A1%80%E5%AE%9A%E7%90%86-%EF%BC%88optional%EF%BC%89"><span class="nav-text">7. 基础定理 （optional）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">多元函数的概念</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在SHTU的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:838816519@qq.com" title="E-Mail → mailto:838816519@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      	  <!-- require MetingJS -->
+	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "false"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

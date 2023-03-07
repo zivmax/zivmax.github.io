@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="全增量、全微分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多元微分学 [4]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[4]/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="全增量、全微分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-06T08:17:34.000Z">
+<meta property="article:modified_time" content="2023-03-07T05:16:48.955Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="微积分">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[4]/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>多元微分学 [4] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[4]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在SHTU的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          多元微分学 [4]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2023-03-06 16:17:34" itemprop="dateCreated datePublished" datetime="2023-03-06T16:17:34+08:00">2023-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2023-03-07 13:16:48" itemprop="dateModified" datetime="2023-03-07T13:16:48+08:00">2023-03-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">全增量、全微分</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="全增量"><a href="#全增量" class="headerlink" title="全增量"></a>全增量</h1><p>全增量是指一个多元函数在一定范围内所有自变量的增量之和，它可以表示为一个微分形式的积分。</p>
+<blockquote>
+<p>具体地说，设 $z&#x3D;f(x_1,x_2,\dots,x_n)$ 是一个 $n$ 元函数，如果 $\Delta x_1,\Delta x_2,\dots,\Delta x_n$ 分别表示 $x_1,x_2,\dots,x_n$ 的一组增量，那么 $z$ 的全增量可以表示为：</p>
+<p>$$\Delta z &#x3D; f(x_1+\Delta x_1,\ x_2+\Delta x_2,\ \dots,\ x_n+\Delta x_n) - f(x_1,x_2,\dots,x_n)$$</p>
+<p>全增量可以看作是函数在一定范围内所有自变量增量之和，它可以用微分形式来表示为：</p>
+<p>$$\Delta z &#x3D; \Delta f &#x3D; \frac{\partial f}{\partial x_1} \Delta x_1 + \frac{\partial f}{\partial x_2} \Delta x_2 + \dots + \frac{\partial f}{\partial x_n} \Delta x_n$$</p>
+<p>这里的 $df$ 表示函数 $f$ 的微分形式，也称全微分。全增量的计算可以看作是对微分形式的积分，即：</p>
+<p>$$\Delta z &#x3D; \int_{P}^{Q} df$$</p>
+<p>其中 $P$ 和 $Q$ 是自变量从 $(x_1,x_2,\dots,x_n)$ 变化到 $(x_1+\Delta x_1, x_2+\Delta x_2, \dots, x_n+\Delta x_n)$ 的过程中经过的路径，称为<strong>积分路径</strong>。</p>
+</blockquote>
+<hr>
+<h1 id="全微分"><a href="#全微分" class="headerlink" title="全微分"></a>全微分</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>其实全微分就是给多元函数的微分的特殊称谓<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="对于一元函数的微分我们直接称为微分">[1]</span></a></sup>。</p>
+<p>全微分是指一个函数的函数值在某一点处的微小变化，可以用该点的偏导数来计算出来的微分形式。</p>
+<blockquote>
+<p>具体地说，设一个二元函数 $f(x,\ y)$，那么它的全微分可以被表示为：<br>$$df &#x3D; \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy$$<br>其中 $dx$ 和 $dy$ 分别表示 $x$ 和 $y$ 的微小变化量。</p>
+</blockquote>
+<p>这个式子可以理解为，全微分是由函数在 $x$ 方向和 $y$ 方向上的微小变化量加权得到的。</p>
+<p>稍加观察我们能发现函数 $f$ 在点 $(x_0,\ y_0)$ 的全微分就是 $\Delta f$ 对于 $\Delta x$ 和 $\Delta y$ 的线性近似<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="线性近似是指通过对一个函数在某一点处进行一阶泰勒展开，得到该点附近的线性函数，以此来近似原函数在该点附近的行为。">[2]</span></a></sup></p>
+<p>需要注意的是，只有所有偏导数都连续的函数（函数在该区间内连续可微）才能有全微分，否则全微分不存在。这其实就是多元函数可微，可导和可偏导的关系，我们在接下来更有条理的叙述这点。</p>
+<h2 id="2-可微，可导和可偏导的关系"><a href="#2-可微，可导和可偏导的关系" class="headerlink" title="2. 可微，可导和可偏导的关系"></a>2. 可微，可导和可偏导的关系</h2><p><strong>针对点</strong></p>
+<ul>
+<li><p>可微 $\longleftrightarrow$ 可导</p>
+<blockquote>
+<p>因为导数就是增量除以微分；增量必定能存在，所以只要微分存在，导数就存在</p>
+</blockquote>
+</li>
+<li><p>可偏导 $\longleftrightarrow$ 可微</p>
+<blockquote>
+<p>对于每个变量都是可偏导的，那么根据全微分的定义，此时全微分存在</p>
+</blockquote>
+</li>
+<li><p>总结：<strong>可偏导 $\longleftrightarrow$ 可微 $\longleftrightarrow$ 可导</strong></p>
+</li>
+</ul>
+<p><strong>针对域</strong></p>
+<ul>
+<li><p>均可微 $\longrightarrow$ 函数连续</p>
+<blockquote>
+<p>只有连续的函数才能做到均可微</p>
+</blockquote>
+</li>
+<li><p>导数连续 $\longleftrightarrow$ 均可微</p>
+<blockquote>
+<p>均连续就意味着在这个域中每个点都是可导的，那么每个点都是可微分的</p>
+</blockquote>
+</li>
+<li><p>偏导数均连续 $\longleftrightarrow$ 均可微</p>
+<blockquote>
+<p>均连续就意味着在这个域中每个点都是可偏导的，那么每个点都是可微分的</p>
+</blockquote>
+</li>
+<li><p>总结： <strong>偏导数均连续 $\longleftrightarrow$ 导数连续 $\longleftrightarrow$ 均可微 $\longrightarrow$ 函数连续</strong></p>
+</li>
+</ul>
+<h2 id="3-全微分的几何意义"><a href="#3-全微分的几何意义" class="headerlink" title="3. 全微分的几何意义"></a>3. 全微分的几何意义</h2><p>正如前文所说，全微分是全增量关于两个自变量的线性近似，所以我们可以得到全微分的近似计算公式。</p>
+<blockquote>
+<p>假设有一个二元函数 $f(x,\ y)$，并且 $f(x,\ y)$ 在某一点 $(x_0,\ y_0)$ 处连续可微，那么它在该点的全微分可以近似表示为：</p>
+<p>$$df &#x3D; \frac{\partial f}{\partial x}(x_0,\ y_0) \Delta x + \frac{\partial f}{\partial y}(x_0,\ y_0) \Delta y$$</p>
+<p>需要注意的是，这个公式只是一个近似值，并且只在 $(x_0,\ y_0)$ 点附近有效。当增量 $\Delta x$ 和 $\Delta y$ 很小的时候，这个公式的误差可以忽略不计；因此要比较准确地计算全微分，需要令 $\Delta x$ 和 $\Delta y$ 趋近于零。</p>
+</blockquote>
+<p>根据这个公式，我们可以窥见全微分的几何意义：<em><strong>全微分的几何意义是微小的平面区域，即微元。</strong></em></p>
+<p>我们来推演一下其由来：</p>
+<blockquote>
+<p>对于二元函数 $f(x,\ y)$，全微分 $df$ 的向量$(dx,\ dy)$在点 $(x,\ y)$ 附近可以看做是一个平面的法向量，该平面是通过点 $(x,\ y,f(x,y))$ 的函数曲面的切平面。这个切平面描述了函数在该点的局部变化率。</p>
+<p>对于微小增量 $(dx,\ dy)$，$df$ 等于切平面的法向量与增量的点积，即：</p>
+<p>$$df &#x3D; \nabla f \cdot d\mathbf{r} &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$$</p>
+<p>其中，$\nabla f$ 是函数 $f$ 的梯度，即 $(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y})$，$d\mathbf{r}$ 是微小增量 $(dx,\ dy)$ 的向量形式。这个式子可以解释为：当 $(dx,\ dy)$ 增加时，函数值的变化率等于切平面法向量与增量向量的点积。</p>
+<p>从几何上来看，全微分可以看做是函数 $f(x,\ y)$  在 $(x,\ y)$ 点附近的一个微小平面区域的切平面的法向量乘以微小增量的内积。也就是说，全微分 $df(x,\ y)$  表示的是函数 $f(x,\ y)$ 在点 $(x,\ y)$  处沿着微小平面区域的方向的微小变化率。</p>
+</blockquote>
+ <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">对于一元函数的微分我们直接称为微分<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">线性近似是指通过对一个函数在某一点处进行一阶泰勒展开，得到该点附近的线性函数，以此来近似原函数在该点附近的行为。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"># 高等数学</a>
+              <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 微积分</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC%5B4%5D%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/" rel="prev" title="经导[4]：供给和需求">
+      <i class="fa fa-chevron-left"></i> 经导[4]：供给和需求
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20%5B5%5D/" rel="next" title="多元微分学 [5]">
+      多元微分学 [5] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E5%A2%9E%E9%87%8F"><span class="nav-text">全增量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E5%BE%AE%E5%88%86"><span class="nav-text">全微分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%AF%E5%BE%AE%EF%BC%8C%E5%8F%AF%E5%AF%BC%E5%92%8C%E5%8F%AF%E5%81%8F%E5%AF%BC%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">2. 可微，可导和可偏导的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="nav-text">3. 全微分的几何意义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在SHTU的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:838816519@qq.com" title="E-Mail → mailto:838816519@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      	  <!-- require MetingJS -->
+	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "false"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+
+
+</body>
+</html>
+
