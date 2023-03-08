@@ -6,7 +6,7 @@
   <link href="https://zivmax.top/atom.xml" rel="self"/>
   
   <link href="https://zivmax.top/"/>
-  <updated>2023-03-08T07:11:23.064Z</updated>
+  <updated>2023-03-08T07:37:57.764Z</updated>
   <id>https://zivmax.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多元微分学 [6]</title>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/08/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-6/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/08/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-6/</id>
+    <published>2023-03-08T07:33:36.000Z</published>
+    <updated>2023-03-08T07:37:57.764Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>本篇内容</strong></p><ul><li>方向导数</li></ul><span id="more"></span><hr><h1 id="方向导数"><a href="#方向导数" class="headerlink" title="方向导数"></a>方向导数</h1><h2 id="1-使用向量定义"><a href="#1-使用向量定义" class="headerlink" title="1. 使用向量定义"></a>1. 使用向量定义</h2><p>方向导数是描述一个函数沿着某个给定方向的<strong>变化速率</strong>的概念。</p><blockquote><p>具体来说，假设 $z&#x3D;f(x,y)$ 是定义在平面上的一个函数，$P_0(x_0,y_0)$ 是平面上的一个点，$\vec{v}&#x3D;(a,b)$ 是一个非零向量。那么，函数 $f(x,y)$ 在点 $P_0$ 沿着方向 $\vec{v}$ 的方向导数 $D_{\vec{v}}f(x_0,y_0)$ 定义为：</p><p>$$D_{\vec{v}}f(x_0,y_0)&#x3D;\lim_{h\to 0}\frac{f(x_0+ha,y_0+hb)-f(x_0,y_0)}{h}$$</p><p>其中，$h$ 是一个实数，表示沿着方向 $\vec{v}$ 前进的距离。方向导数也可以表示为函数 $f(x,y)$ 在点 $P_0$ 处沿着单位向量 $\vec{u}$ 的导数，其中 $\vec{u}$ 与 $\vec{v}$ 方向相同。</p></blockquote><p>以上是通过一个方向向量来定义，我们还能引入 <em>方向余弦</em> 来更加清晰地描述</p><h2 id="2-使用方向余弦定义"><a href="#2-使用方向余弦定义" class="headerlink" title="2. 使用方向余弦定义"></a>2. 使用方向余弦定义</h2><p>首先我们要先明白什么是方向余弦</p><p><strong>方向余弦:</strong></p><blockquote><p>方向余弦是描述一个向量在各个坐标轴上的投影分量与向量长度之比的概念。具体来说，假设有一个 $n$ 维向量 $\vec{v}&#x3D;(v_1,v_2,\ldots,v_n)$，则向量 $\vec{v}$ 在第 $i$ 个坐标轴上的投影分量可以表示为 $v_i\cos\theta_i$，其中 $\theta_i$ 是向量 $\vec{v}$ 与第 $i$ 个坐标轴之间的夹角。</p><p>因此，向量 $\vec{v}$ 在第 $i$ 个坐标轴上的方向余弦 $\cos\theta_i$ 定义为：</p><p>$$\cos\theta_i&#x3D;\frac{v_i}{|\vec{v}|}&#x3D;\frac{v_i}{\sqrt{v_1^2+v_2^2+\cdots+v_n^2}}$$</p><p>其中 $|\vec{v}|$ 表示向量 $\vec{v}$ 的长度，也可以表示为 $|\vec{v}|&#x3D;\sqrt{v_1^2+v_2^2+\cdots+v_n^2}$。</p></blockquote><p>接下来，我们便可以借用方向余弦来定义方向函数</p><blockquote><p>具体来说，假设 $z&#x3D;f(x,y)$ 是定义在平面上的一个函数，$P_0(x_0,y_0)$ 是平面上的一个点，$\vec{v}&#x3D;(a,b)$ 是一个非零向量。那么，函数 $f(x,y)$ 在点 $P_0$ 沿着方向 $\vec{v}$ 的方向导数 $D_{\vec{v}}f(x_0,y_0)$ 可以表示为：</p><p>$$D_{\vec{v}}f(x_0,y_0)&#x3D;\frac{\partial f}{\partial x}(x_0,y_0)\cos\alpha+\frac{\partial f}{\partial y}(x_0,y_0)\cos\beta$$</p><p>其中，$\alpha$ 和 $\beta$ 是向量 $\vec{v}$ 的方向余弦。</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;本篇内容&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;方向导数&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="学习" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="数学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/"/>
+    
+    
+    <category term="高等数学" scheme="https://zivmax.top/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="微积分" scheme="https://zivmax.top/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
+    
+    <category term="笔记" scheme="https://zivmax.top/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>CS50X Note [1]</title>
@@ -47,8 +77,8 @@
   
   <entry>
     <title>多元微分学 [5]</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[5]/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[5]/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-5/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-5/</id>
     <published>2023-03-06T13:57:16.000Z</published>
     <updated>2023-03-08T07:01:48.656Z</updated>
     
@@ -79,8 +109,8 @@
   
   <entry>
     <title>多元微分学 [4]</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[4]/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[4]/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-4/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-4/</id>
     <published>2023-03-06T08:17:34.000Z</published>
     <updated>2023-03-08T03:04:54.302Z</updated>
     
@@ -110,10 +140,10 @@
   
   <entry>
     <title>经导[4]：供给和需求</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[4]%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[4]%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-4-%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-4-%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/</id>
     <published>2023-03-05T14:15:55.000Z</published>
-    <updated>2023-03-07T05:17:30.459Z</updated>
+    <updated>2023-03-08T07:36:19.951Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="市场"><a href="#市场" class="headerlink" title="市场"></a>市场</h1><p>任何一个可以让买卖双方交换商品和服务的地方都可以称作市场。</p><h2 id="核心：自愿交换"><a href="#核心：自愿交换" class="headerlink" title="核心：自愿交换"></a><strong>核心：自愿交换</strong></h2><blockquote><p>例如 买草莓的人认为草莓比10元更有价值，而卖草莓的人认为10元比草莓更有价值，此时构成自愿交换。</p></blockquote><p>自愿交换的不断进行和连锁，形成了商品生产链；而自愿交换能够不断进行和连锁则体现一个思想：市场是无处不在的，并且大部分都基于自愿交换。</p><h2 id="高效性"><a href="#高效性" class="headerlink" title="高效性"></a>高效性</h2><p>一般而言，市场非常擅长高效地分配使用稀缺资源。通过价格信号<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="正式地表述：市场产生的指导资源分配的信息。">[1]</span></a></sup>，生产者会对其产量不断调整</p><h2 id="激励性"><a href="#激励性" class="headerlink" title="激励性"></a>激励性</h2><p>通过市场竞争，市场能够激励高质量产品的产出。自愿交换时的一个理想情况是如果卖方不考虑让买方满意，那么卖方自己一定不会对结果满意。</p><h2 id="市场失灵"><a href="#市场失灵" class="headerlink" title="市场失灵"></a>市场失灵</h2><p>市场通常是组织经济活动的一种好方法，但市场也 会失灵。在某些情况下，市场本身不能有效配置资源，即市场失灵（market failure）。</p><p>市场失灵的可能原因包括：</p><ul><li>外部性（externality）<blockquote><p>一个人的行为对其他人福利的影响 <em>e.g.污染</em></p></blockquote></li><li>市场势力（market power）<blockquote><p>某个经济活动者（或某个经济活动小团体）对市场价格有显著影响的能力 <em>e.g.垄断</em></p></blockquote></li></ul><hr><h1 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h1><p>价格来自供需关系.</p><h2 id="供需关系"><a href="#供需关系" class="headerlink" title="供需关系"></a>供需关系</h2><ul><li><p>需求定律</p><blockquote><p>价格和需求成反比</p></blockquote></li><li><p>供给定律</p><blockquote><p>价格和生产成正比</p></blockquote></li><li><p>盈余（surplus）</p><blockquote><p>生产大于需求时，两者的差值叫盈余</p></blockquote></li><li><p>短缺（shortage）</p><blockquote><p>需求大于生产时，两者的差值叫短缺</p></blockquote></li><li><p>均衡价格，均衡数量</p><blockquote><p>生产等于需求时的商品价格叫均衡价格，生产的商品数量叫均衡数量</p></blockquote></li></ul><h2 id="价格变动"><a href="#价格变动" class="headerlink" title="价格变动"></a>价格变动</h2><p>由于外力的因素，供给和需求的曲线会变形，导致均衡价格和均衡数量发生变化，进而让价格开始波动</p><p>在市场中唯四发生的事情就是：</p><ul><li>供给增加</li><li>供给减少</li><li>需求增加</li><li>需求减少</li></ul><hr><h1 id="市场监管"><a href="#市场监管" class="headerlink" title="市场监管"></a>市场监管</h1><p>一些市场满足自愿交换的条件，但是出于伦理道德，这些市场必须收到监管或者被消灭</p><p>例如：人体器官交易，国防，公共安全，电力……</p><p>根据供给定律，这些市场的需求量很大，价格非常高，而此时生产会被大大刺激，导致犯罪增加等。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>经济定律并不像物理定律那样保持不变，毕竟在市场中交易的双方都是人类，人类的行为受相当多因素的影响。人们的行为能改变供给和需求，但是永远无法改变物理定律，不管人们的愿望多么强烈。</p><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">正式地表述：市场产生的指导资源分配的信息。<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
     
@@ -135,8 +165,8 @@
   
   <entry>
     <title>经导[3]：经济体系</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[3]%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[3]%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-3-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-3-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/</id>
     <published>2023-03-05T13:15:55.000Z</published>
     <updated>2023-03-07T05:17:27.618Z</updated>
     
@@ -160,8 +190,8 @@
   
   <entry>
     <title>经导[2]：专业化和贸易</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[2]%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%8C%96%E5%92%8C%E8%B4%B8%E6%98%93/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[2]%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%8C%96%E5%92%8C%E8%B4%B8%E6%98%93/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-2-%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%8C%96%E5%92%8C%E8%B4%B8%E6%98%93/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-2-%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%8C%96%E5%92%8C%E8%B4%B8%E6%98%93/</id>
     <published>2023-03-05T11:15:55.000Z</published>
     <updated>2023-03-07T05:17:24.631Z</updated>
     
@@ -185,8 +215,8 @@
   
   <entry>
     <title>经导[1]：经济学总览</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[1]%EF%BC%9A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%80%BB%E8%A7%88/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC[1]%EF%BC%9A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%80%BB%E8%A7%88/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-1-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%80%BB%E8%A7%88/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-1-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%80%BB%E8%A7%88/</id>
     <published>2023-03-05T10:15:55.000Z</published>
     <updated>2023-03-07T05:17:34.431Z</updated>
     
@@ -210,8 +240,8 @@
   
   <entry>
     <title>多元微分学 [2]</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[2]/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[2]/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-2/</id>
     <published>2023-03-01T11:54:37.000Z</published>
     <updated>2023-03-08T03:04:45.245Z</updated>
     
@@ -237,8 +267,8 @@
   
   <entry>
     <title>多元微分学 [1]</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/</id>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-1/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-1/</id>
     <published>2023-02-26T13:40:13.000Z</published>
     <updated>2023-03-08T03:03:58.981Z</updated>
     

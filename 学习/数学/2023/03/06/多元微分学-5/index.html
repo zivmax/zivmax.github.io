@@ -23,22 +23,22 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本篇内容:  多元微积分的简介 $n$ 维点集 多元函数的概念">
+  <meta name="description" content="本篇内容:  多元复合函数的偏导数 一阶全微分的不变性 隐函数的偏导数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多元微分学 [1]">
-<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/index.html">
+<meta property="og:title" content="多元微分学 [5]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-5/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="本篇内容:  多元微积分的简介 $n$ 维点集 多元函数的概念">
+<meta property="og:description" content="本篇内容:  多元复合函数的偏导数 一阶全微分的不变性 隐函数的偏导数">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-26T13:40:13.000Z">
-<meta property="article:modified_time" content="2023-03-08T03:03:58.981Z">
+<meta property="article:published_time" content="2023-03-06T13:57:16.000Z">
+<meta property="article:modified_time" content="2023-03-08T07:01:48.656Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="高等数学">
 <meta property="article:tag" content="微积分">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/">
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-5/">
 
 
 <script id="page-configurations">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>多元微分学 [1] | 青山后小塘</title>
+  <title>多元微分学 [5] | 青山后小塘</title>
   
 
 
@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -211,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/02/26/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20[1]/">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          多元微分学 [1]
+          多元微分学 [5]
         </h1>
 
         <div class="post-meta">
@@ -234,14 +234,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间: 2023-02-26 21:40:13" itemprop="dateCreated datePublished" datetime="2023-02-26T21:40:13+08:00">2023-02-26</time>
+              <time title="创建时间: 2023-03-06 21:57:16" itemprop="dateCreated datePublished" datetime="2023-03-06T21:57:16+08:00">2023-03-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-08 11:03:58" itemprop="dateModified" datetime="2023-03-08T11:03:58+08:00">2023-03-08</time>
+                <time title="修改时间: 2023-03-08 15:01:48" itemprop="dateModified" datetime="2023-03-08T15:01:48+08:00">2023-03-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,14 +263,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>4k</span>
+              <span>6.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>40 分钟</span>
+              <span>1:02</span>
             </span>
 
         </div>
@@ -284,131 +284,102 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>本篇内容:</strong></p>
 <ul>
-<li>多元微积分的简介</li>
-<li>$n$ 维点集</li>
-<li>多元函数的概念</li>
+<li>多元复合函数的偏导数</li>
+<li>一阶全微分的不变性</li>
+<li>隐函数的偏导数</li>
 </ul>
 <span id="more"></span>
 
 <hr>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>微积分是数学中一个非常重要的分支，主要研究函数的导数和积分，分为一元微积分和多元微积分两个部分。<br>简单来说，多元微积分是一元微积分的推广，但也有本质的不同：</p>
-<ul>
-<li><p>定义范围不同<br>  一元微积分是研究一个自变量的函数的导数和积分，而多元微积分则是研究多个自变量的函数的偏导数和积分。</p>
-</li>
-<li><p>研究对象不同<br>  在一元微积分中，研究的是<strong>实数集</strong>上的函数，我们只需要考虑一个自变量，因此计算对象只有一个变量。而在多元微积分中，研究的是<strong>欧氏空间</strong>上的函数，我们需要考虑多个自变量，因此计算对象就变成了多个变量。</p>
-</li>
-<li><p>关注性质不同<br>  一元微积分主要关注函数的极限、连续性、导数、积分等性质。<br>  多元微积分除了关注函数的这些性质外，还涉及到向量值函数、偏导数、方向导数、梯度、散度、旋度、曲线积分、曲面积分等概念。</p>
-</li>
-<li><p>计算方法不同<br>  一元微积分中的计算方法主要有<em>牛顿-莱布尼茨公式</em>、<em>分部积分法</em>、<em>换元积分法</em>等。而多元微积分中的计算方法包括偏导数的计算、重积分的计算、<em>格林公式</em>和<em>斯托克斯公式</em>等。</p>
-</li>
-<li><p>应用邻域不同<br>  一元微积分主要应用于物理、经济、生物学等邻域的分析问题，如速度、加速度、最优化、曲线拟合等。而多元微积分则更多应用于物理、工程、计算机科学、天文学等邻域，如流体力学、电磁场、最优控制、计算机图形学等。</p>
-</li>
-</ul>
-<p>总之，一元微积分和多元微积分都是微积分的重要部分，它们的定义、计算方法和应用邻域都有所不同，但它们都是处理实际问题和建模的有力工具。</p>
+<h1 id="复合函数的偏导数"><a href="#复合函数的偏导数" class="headerlink" title="复合函数的偏导数"></a>复合函数的偏导数</h1><h2 id="1-链式法则"><a href="#1-链式法则" class="headerlink" title="1. 链式法则"></a>1. 链式法则</h2><p>链式法则是用来求复合函数的导数的一个基本法则。它告诉我们，如果一个函数是由另外两个函数复合而成，那么它的导数可以通过这两个函数的导数来计算。</p>
+<p><strong>对于一元函数</strong></p>
+<blockquote>
+<p>设函数 $f(x)$ 和 $g(x)$ 都可导，且 $y&#x3D;f(g(x))$，则 $y$ 对 $x$ 的导数为：<br>$$\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; \frac{\mathrm{d}f}{\mathrm{d}g} \cdot \frac{\mathrm{d}g}{\mathrm{d}x}$$</p>
+</blockquote>
+<p><strong>对于多元函数</strong></p>
+<blockquote>
+<p>基本思想是，如果一个多元函数是由其他多元函数复合而成的，那么它的导数可以通过复合函数的各个部分的偏导数相乘并相加得到。</p>
+<p>假设 $z &#x3D; f(x, y)$，其中 $x &#x3D; g(u, v)$，$y &#x3D; h(u, v)$，那么有：<br>$$\frac{\partial z}{\partial u} &#x3D; \frac{\partial z}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial u}$$<br>$$\frac{\partial z}{\partial v} &#x3D; \frac{\partial z}{\partial x}\frac{\partial x}{\partial v} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial v}$$<br>其中 $\frac{\partial z}{\partial x}$ 和 $\frac{\partial z}{\partial y}$ 是 $f$ 对 $x$ 和 $y$ 的偏导数，$\frac{\partial x}{\partial u}$、$\frac{\partial x}{\partial v}$、$\frac{\partial y}{\partial u}$、$\frac{\partial y}{\partial v}$ 是 $x$ 和 $y$ 对 $u$ 和 $v$ 的偏导数。</p>
+<p>这个公式可以<strong>循环套用</strong>，如果中间变量还是一个函数，则继续使用链式法则即可。</p>
+</blockquote>
+<h2 id="2-全导数"><a href="#2-全导数" class="headerlink" title="2. 全导数"></a>2. 全导数</h2><p>全导数是一种用来求多元复合函数的导数的方法，它是一元函数的导数的推广。</p>
+<p>设一个多元函数 $z &#x3D; f(x, y)$，其中 $x$ 和 $y$ 又是另外两个一元函数的复合，即 $x &#x3D; g(t)$ 和 $y &#x3D; h(t)$，那么套用链式法则 $z$ 对 $t$ 的全导数可以用下面的公式计算：</p>
+<p>$$\frac{dz}{dt} &#x3D; \frac{\partial f}{\partial x}\frac{dg}{dt} + \frac{\partial f}{\partial y}\frac{dh}{dt}$$</p>
+<h2 id="3-链式结构"><a href="#3-链式结构" class="headerlink" title="3. 链式结构"></a>3. 链式结构</h2><p>函数复合的链式结构指的是一个函数可以由多个函数按照一定的顺序复合而成的形式。</p>
+<p><strong>对于一元函数</strong></p>
+<blockquote>
+<p>如果有多个函数 $f_1(x), f_2(x), \dots, f_n(x)$，那么它们可以按照一定的顺序进行复合，得到一个新的函数：<br>$$f(x) &#x3D; f_n(f_{n-1}(\cdots f_2(f_1(x)) \cdots))$$<br>这个函数 $f(x)$ 就是一个由多个函数按照顺序复合而成的复合函数。</p>
+</blockquote>
+<p>它的链式结构体现在每个函数的输入都是上一个函数的输出，因此它们形成了一个由多个环节组成的链式结构。在求这个函数的导数时，可以使用链式法则来计算。链式法则告诉我们，如果 $y$ 是由多个函数复合而成的函数，那么 $y$ 对 $x$ 的导数可以表示为每个函数对其输入的导数的乘积，即：</p>
+<p>$$\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; \frac{\mathrm{d}f_n}{\mathrm{d}f_{n-1}} \cdot \frac{\mathrm{d}f_{n-1}}{\mathrm{d}f_{n-2}} \cdots \frac{\mathrm{d}f_2}{\mathrm{d}f_1} \cdot \frac{\mathrm{d}f_1}{\mathrm{d}x}$$</p>
+<p>这个公式可以通过反复应用链式法则来推导得出。</p>
+<p><strong>对于多元函数</strong></p>
+<blockquote>
+<p>多元复合函数的链式结构，是在一元函数链式结构的基础上的一张链式结构网，具体样例可见《大学数学：微积分 下》的76~77页。</p>
+</blockquote>
 <hr>
-<h1 id="n维点集"><a href="#n维点集" class="headerlink" title="n维点集"></a>n维点集</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>n维点集的定义是指由n维空间中的点组成的集合。n维空间是指由n个实数坐标确定的空间，比如二维空间就是平面，三维空间就是立体。</p>
+<h1 id="一阶全微分的不变性"><a href="#一阶全微分的不变性" class="headerlink" title="一阶全微分的不变性"></a>一阶全微分的不变性</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><p>在多元函数中，如果存在两个自变量 $x$ 和 $y$，使得它们之间存在一条关系式 $\varphi(x,y)&#x3D;0$，那么在这个关系式成立的条件下，函数 $z&#x3D;f(x,y)$ 的一阶全微分 $\mathrm{d}z$ 在不改变自变量 $x$ 和 $y$ 的取值的情况下，仍然保持不变。</p>
 <blockquote>
-<p>举个例子，如果我们在二维平面上画一个圆，那么圆上的所有点就构成了一个二维点集。如果我们在三维空间中画一个球体，那么球体上的所有点就构成了一个三维点集。</p>
+<p>其数学形式如下：<br>$$df &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy &#x3D; \frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv$$</p>
 </blockquote>
-<p>你可以想象一下，如果我们有更多的坐标轴，比如四个、五个或者更多，那么我们就可以定义出更高维度的空间和点集。但是这些高维度的空间和点集很难用直观的方式来表示和理解，所以我们通常用数学符号和公式来描述它们。</p>
-<p>在微积分的语境下，$n$维点集的定义和上面的定义是一致的，只是$n$维空间中的点通常被称为 $n$ 维向量, $n$ 维点集可以被定义为包含 $n$ 维向量的集合。具体来说，如果我们有一个实数域 $\mathbb{R}$ 上的向量空间 $V$ <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。">[1]</span></a></sup>，那么 $V$ 中的每一个元素都是 $n$ 维的，其中 $n$ 是正整数。$n$ 维点集就是 $V$ 中的一个子集，它包含了若干个 $n$ 维向量。</p>
-<p>在一些特定的情况下，$n$ 维点集可以被描述为一个函数的图像，例如在二维平面中，一条曲线可以被表示为 $y&#x3D;f(x)$，其中 $x$ 和 $y$ 是实数，$f(x)$ 是一个实数函数。这个曲线的点集可以被定义为所有满足 $y&#x3D;f(x)$ 的 $(x,y)$ 点的集合。在三维空间中，一个曲面可以被表示为 $z&#x3D;f(x,y)$，其中 $x$、$y$ 和 $z$ 都是实数，$f(x,y)$ 是一个实数函数。这个曲面的点集可以被定义为所有满足 $z&#x3D;f(x,y)$ 的 $(x,y,z)$ 点的集合。</p>
-<h2 id="2-邻域"><a href="#2-邻域" class="headerlink" title="2. 邻域"></a>2. 邻域</h2><p>和一维点集类似，多维邻域也通常表示为一个点周围的某个范围内的所有点的集合。</p>
-<p>更具体地说，对于二维或三维空间中的点 $P$，其邻域可以表示为一个开集或者一个开球。</p>
-<p><strong>在二维平面上</strong></p>
+<h2 id="2-推导过程"><a href="#2-推导过程" class="headerlink" title="2. 推导过程"></a>2. 推导过程</h2><p>设 $f(x,y)$ 是二元函数，$dx$ 和 $dy$ 分别是自变量 $x$ 和 $y$ 的微小变化，$df$ 是函数 $f(x,y)$ 的全微分，则有：</p>
+<p>$$df &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$$</p>
+<p>现在考虑另一个二元函数 $f(u,v)$，其中 $u$ 和 $v$ 与 $x$ 和 $y$ 之间存在一定的关系，即 $u &#x3D; u(x,y)$，$v &#x3D; v(x,y)$。则有：<br>$$df &#x3D; \frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv$$</p>
+<p>我们接下来用链式法则对其进行一系列推导：</p>
+<p>$$\frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv \ &#x3D; \frac{\partial f}{\partial u}\left(\frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy\right) + \frac{\partial f}{\partial v}\left(\frac{\partial v}{\partial x}dx + \frac{\partial v}{\partial y}dy\right)$$<br>$$\frac{\partial f}{\partial u}\left(\frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy\right) + \frac{\partial f}{\partial v}\left(\frac{\partial v}{\partial x}dx + \frac{\partial v}{\partial y}dy\right) \ &#x3D; \left(\frac{\partial f}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial x}\right)dx + \left(\frac{\partial f}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial y}\right)dy$$<br>$$\left(\frac{\partial f}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial x}\right)dx + \left(\frac{\partial f}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial y}\right)dy &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$$</p>
+<p>通过这个推导得到的最终结果，我们便能发现<em>一阶全微分的不变性</em>：<br>$$df &#x3D; \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy &#x3D; \frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv$$</p>
+<h1 id="隐函数的偏导数"><a href="#隐函数的偏导数" class="headerlink" title="隐函数的偏导数"></a>隐函数的偏导数</h1><h2 id="1-隐函数"><a href="#1-隐函数" class="headerlink" title="1. 隐函数"></a>1. 隐函数</h2><p>隐函数的概念是指将自变量和因变量放在同一个式子中，隐藏了二者之间的函数关系的函数</p>
 <blockquote>
-<p>点 $(x_0, y_0)$ 的 $r$ 邻域可以定义为由 $(x_0, y_0)$ 为圆心，$r&gt;0$ 为半径的圆内的所有点的集合，即：</p>
-<p>$$N_r(x_0, y_0) &#x3D; {(x,y) \mid (x-x_0)^2+(y-y_0)^2&lt;r^2}$$</p>
-<p>其中 $r$ 表示圆的半径。</p>
+<p>具体来说，假设有一个方程或者函数 $F(x, y)&#x3D;0$，如果存在一个区间 $I$ 内的 $x_0$，使得方程 $F(x_0,y)&#x3D;0$ 有一个解 $y_0$，那么可以将 $y$ 表示为 $x$ 的函数形式：$y&#x3D;f(x)$，其中 $f(x_0)&#x3D;y_0$，这个函数就是隐函数。</p>
 </blockquote>
-<p><strong>在三维空间中</strong></p>
+<p>举一个最简单的例子:  $x-y&#x3D;0$ 就是一个隐函数，它对应的显函数是 $y &#x3D; x$</p>
+<h2 id="2-隐函数存在定理"><a href="#2-隐函数存在定理" class="headerlink" title="2. 隐函数存在定理"></a>2. 隐函数存在定理</h2><p>隐函数存在定理是一个描述关系以隐函数表示的某些变量之间是否存在显式关系的定理，也就是判断一个隐函数有没有其对应的显函数。</p>
+<p>简单来说，就是如果一个方程 $F(x, y)&#x3D;0$ 在某一点附近的微分满足某些条件，那么在这点附近，y可以表示成关于x的函数</p>
+<p><strong>双变量</strong></p>
 <blockquote>
-<p>点 $(x_0, y_0, z_0)$ 的 $r$ 邻域可以定义为由 $(x_0, y_0, z_0)$ 为球心，$r&gt;0$ 为半径的球内的所有点的集合，即：</p>
-<p>$$N_r(x_0, y_0, z_0) &#x3D; {(x,y,z) \mid (x-x_0)^2+(y-y_0)^2+(z-z_0)^2&lt;r^2}$$</p>
-<p>其中 $r$ 表示球的半径。</p>
-</blockquote>
-<p>邻域的大小取决于半径 $r$ 的大小，当 $r$ 越小时，邻域越小，当 $r$ 越大时，邻域越大。邻域的大小也决定了点 $P$ 的邻域内包含多少个其他点，因此邻域是研究点集局部性质的基本工具之一。</p>
-<p><strong>去心领域</strong>的概念就是把点 $P$ 的邻域去掉点 $P$ 自己后的点集。</p>
-<h2 id="3-内点，外点，边界点"><a href="#3-内点，外点，边界点" class="headerlink" title="3. 内点，外点，边界点"></a>3. 内点，外点，边界点</h2><p>给定点集 $S$，我们可以定义以下三种类型的点：</p>
+<p>具体来说，对于一个实数域上的 $C^1$ <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="在某个区域内处处一阶可导的函数">[1]</span></a></sup>函数 $F(x,y)$，如果它在某个点 $(x_0,y_0)$ 处满足以下条件：</p>
 <ol>
-<li><p>内点：如果点 $P$ 在 $S$ 内部，那么 $P$ 是 $S$ 的内点。</p>
-</li>
-<li><p>外点：如果点 $P$ 不在 $S$ 内部，那么 $P$ 是 $S$ 的外点。</p>
-</li>
-<li><p>边界点：如果点 $P$ 既不是 $S$ 的内点也不是 $S$ 的外点，那么 $P$ 是 $S$ 的边界点。</p>
-</li>
+<li>$$F(x_0,y_0)&#x3D;0$$</li>
+<li>$$\frac{\partial F}{\partial y}(x_0,y_0) \neq 0$$</li>
 </ol>
-<p>以二维平面上的点集为例，如果 $S$ 是一个区域（比如一个圆），则 $S$ 的内部包括圆内部的所有点，而 $S$ 的外部则是圆外部的所有点。边界点则是圆周上的所有点。我们可以将内点、外点和边界点表示为：</p>
+<p>那么就存在一个以 $(x_0,y_0)$ 为中心的邻域 $U$ 和一个 $C^1$ 函数 $f(x)$，使得 $x\in U$ 时，$F(x,f(x))&#x3D;0$，且在 $U$ 内 $y&#x3D;f(x)$ 是唯一确定的。</p>
+</blockquote>
+<p>这个定理可以利用隐函数的导数公式进行推导。</p>
+<p>以上是对于两个变量的函数，自然，我们是能对这个定理进行对多个变量的延伸：</p>
+<p><strong>三变量</strong></p>
+<blockquote>
+<p>具体来说，对于一个实数域上的 $C^1$ <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="在某个区域内处处一阶可导的函数">[1]</span></a></sup>函数 $F(x,y)$，如果它在某个点 $(x_0,y_0)$ 处满足以下条件：</p>
 <ol>
-<li><p>$P$ 是 $S$ 的内点：$\exists r &gt; 0, N_r(P) \subset S$</p>
-</li>
-<li><p>$P$ 是 $S$ 的外点：$\exists r &gt; 0, N_r(P) \cap S &#x3D; \varnothing$</p>
-</li>
-<li><p>$P$ 是 $S$ 的边界点：$\forall r &gt; 0, N_r(P) \cap S \neq \varnothing$ 且 $N_r(P) \cap (\mathbb{R}^2 \setminus S) \neq \varnothing$</p>
-</li>
+<li>$$F(x,y,z)&#x3D;0$$</li>
+<li>$$\frac{\partial F}{\partial z}(x_0,y_0,z_0)\neq 0$$</li>
 </ol>
-<p>其中 $N_r(P)$ 表示以点 $P$ 为中心，半径为 $r$ 的邻域，$\mathbb{R}^2$ 表示二维平面上所有的点构成的集合，$\varnothing$ 表示空集。</p>
-<h2 id="4-开集，闭集，和边界"><a href="#4-开集，闭集，和边界" class="headerlink" title="4. 开集，闭集，和边界"></a>4. 开集，闭集，和边界</h2><p>给定闭集 $D$，我们可以定义以下三种类型的集合：</p>
-<ol>
-<li><p>开集：如果点集 $S$ 中的每个点都是 $D$ 的内点，那么 $S$ 是一个开集。</p>
-</li>
-<li><p>闭集：如果点集 $S$ 包括了 $D$ 的所有内点和边界点，那么 $S$ 是一个闭集。</p>
-</li>
-<li><p>边界：$D$ 的边界是指 $D$ 所有的边界点所构成的集合。</p>
-</li>
-</ol>
-<p>以二维平面上的点集为例，如果 $S$ 是一个区域（比如一个圆），则 $S$ 是一个开集，因为圆内部的每个点都是圆的内点。但是如果我们把圆周上的所有点也包括进去，那么 $S$ 就成为了一个闭集。$S$ 的边界则是圆周上的所有点。更一般地，我们可以将开集、闭集和边界表示为：</p>
-<ol>
-<li><p>$S$ 是一个开集：$\forall P \in S, \exists r &gt; 0, N_r(P) \subset S$</p>
-</li>
-<li><p>$S$ 是一个闭集：$S$ 的补集 $\mathbb{R}^n - S$ 是一个开集</p>
-</li>
-<li><p>$S$ 的边界：边界是 $S$ 的闭包（即 $S$ 加上它的所有边界点）减去 $S$ 的内部</p>
-</li>
-</ol>
-<p>其中 $N_r(P)$ 表示以点 $P$ 为中心，半径为 $r$ 的邻域，$\mathbb{R}^n$ 表示 $n$ 维空间中所有的点构成的集合，$S$ 的补集表示所有不属于 $S$ 的点构成的集合，$S$ 的闭包表示包含 $S$ 及其边界点的最小闭集。</p>
-<h2 id="5-联通的点集"><a href="#5-联通的点集" class="headerlink" title="5. 联通的点集"></a>5. 联通的点集</h2><p>一个点集 $S$ 被称为联通的，当且仅当该点集内的任意两点都可以通过一条位于 $S$ 中的连续曲线相互连接。这里的“连续曲线”可以简单地理解为线段、折线、曲线等等，而“相互连接”则意味着在这条曲线的两端点处，可以在点集 $S$ 中找到两个点与这两个端点相对应。</p>
-<p>更形式化地说，如果对于任意的 $a,b\in S$，都可以找到一条连续的函数 $\gamma:[0,1]\to S$，满足 $\gamma(0) &#x3D; a$ 且 $\gamma(1) &#x3D; b$，那么称 $S$ 是一个联通的点集。</p>
-<p>联通的开集称为<strong>开区域</strong>，也可以直接称作<strong>区域</strong>，区域连同其边界称为<strong>闭区域</strong>。</p>
-<h2 id="6-基础性质-（optional）"><a href="#6-基础性质-（optional）" class="headerlink" title="6. 基础性质 （optional）"></a>6. 基础性质 <em>（optional）</em></h2><ul>
-<li><p>闭合性：</p>
-<blockquote>
-<p>如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，则该点集具有闭合性。</p>
+<p>那么就存在一个以 $(x_0,y_0)$ 为中心的邻域 $U$ 和一个 $C^1$ 函数 $z&#x3D;z(x,y)$，使得 $(x,y)\in U$ 时，$F(x,y,z)&#x3D;0$，且在 $U$ 内  $z&#x3D;z(x,y)$ 是唯一确定的。</p>
 </blockquote>
-</li>
-<li><p>开放性：</p>
+<p>也就是说，在某些条件下，可以将三元方程 $F(x,y,z)&#x3D;0$ 看作是以 $(x,y)$ 为自变量，$z$ 为因变量的函数 $z&#x3D;z(x,y)$ 的形式，并且该函数在一定的邻域内具有连续的偏导数。这个定理的证明和二元版本的证明相似，也是利用隐函数的导数公式进行推导。</p>
+<h2 id="3-对隐函数的求导"><a href="#3-对隐函数的求导" class="headerlink" title="3. 对隐函数的求导"></a>3. 对隐函数的求导</h2><p>对隐函数的求导过程中我们主要运用链式法则。</p>
+<p>我们首先关注双变量的隐函数</p>
+<p><strong>双变量</strong></p>
 <blockquote>
-<p>如果点集中的任何一个点都可以由该点集中的其他点通过某种操作得到，并且该操作不包括点集的边界，则该点集具有开放性。</p>
+<p>假设 $F(x,y)&#x3D;0$ 可以表示出 $y$ 为 $x$ 的函数 $y&#x3D;f(x)$，则有：</p>
+<p>$$\frac{d}{dx}F(x,f(x))&#x3D;\frac{\partial F}{\partial x}+\frac{\partial F}{\partial y}\frac{dy}{dx}&#x3D;0$$</p>
+<p>解出 $\frac{dy}{dx}$ 可得：</p>
+<p>$$\frac{dy}{dx}&#x3D;-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}} &#x3D; -\frac{F_x}{F_y}$$</p>
 </blockquote>
-</li>
-<li><p>连通性：</p>
+<p>这个公式告诉我们，如果可以将 $F(x,y)&#x3D;0$ 看作是以 $y$ 为 $x$ 的函数的形式，那么我们可以通过对 $F(x,y)$ 的偏导数来求出这个函数的导数。</p>
+<p>需要注意的是，这个方法只适用于满足隐函数存在定理条件的隐函数，所以并不是所有的隐函数都可以用这个公式求导。在实际应用中，需要根据具体的问题来判断是否可以使用这个公式进行求导。</p>
+<p>对于三变量，过程极其相似，不过是多套用了一层链式法则</p>
+<p><strong>三变量</strong></p>
 <blockquote>
-<p>如果点集中的任何两个点都可以通过该点集中的其他点相连通，则该点集具有连通性。</p>
+<p>对于三元隐函数 $F(x,y,z)&#x3D;0$，我们可以使用类似的方法求偏导数。</p>
+<p>假设 $F(x,y,z)&#x3D;0$ 可以表示出 $z$ 为 $x$ 和 $y$ 的函数 $z&#x3D;z(x,y)$，则有：</p>
+<p>$$\frac{\partial}{\partial x}F(x,y,g(x,y))&#x3D;\frac{\partial F}{\partial x}+\frac{\partial F}{\partial z}\frac{\partial g}{\partial x}&#x3D;0$$</p>
+<p>$$\frac{\partial}{\partial y}F(x,y,g(x,y))&#x3D;\frac{\partial F}{\partial y}+\frac{\partial F}{\partial z}\frac{\partial g}{\partial y}&#x3D;0$$</p>
+<p>解出 $\frac{\partial z}{\partial x}$ 和 $\frac{\partial z}{\partial y}$ 可得：</p>
+<p>$$\frac{\partial z}{\partial x}&#x3D;-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial z}} &#x3D; -\frac{F_x}{F_z}$$<br>$$ \frac{\partial z}{\partial y}&#x3D;-\frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial z}} &#x3D; -\frac{F_y}{F_z}$$</p>
 </blockquote>
-</li>
-<li><p>路径连通性：</p>
-<blockquote>
-<p>如果点集中的任何两个点都可以通过一条路径相连通，则该点集具有路径连通性。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="7-基础定理-（optional）"><a href="#7-基础定理-（optional）" class="headerlink" title="7. 基础定理 （optional）"></a>7. 基础定理 <em>（optional）</em></h2><ul>
-<li><p><em>Bolzano-Weierstrass定理</em>：<br>  任何有界的无限点集中必定存在至少一个收敛于某个点的子序列。</p>
-</li>
-<li><p><em>Heine-Borel定理</em>：<br>  在N维向量空间中，任何有界的闭合点集都是紧致的。</p>
-</li>
-<li><p><em>Arzela-Ascoli定理</em>：<br>  如果一个函数序列在某点处局部有界且等度连续，则存在一个收敛于该函数序列的子序列。</p>
-</li>
-<li><p><em>Weierstrass逼近定理</em>：<br>  任何连续函数都可以用多项式逼近，即在一个给定的区间内，可以找到一个多项式函数，使得该函数与原函数的差趋近于零。</p>
-</li>
-</ul>
-<hr>
-<h1 id="多元函数的概念"><a href="#多元函数的概念" class="headerlink" title="多元函数的概念"></a>多元函数的概念</h1><p>多元函数是指有多个自变量的函数，也称为向量值<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="因为n维点集的点通常也被称为n维向量。">[2]</span></a></sup>函数。如果一个函数 $f$ 有 $n$ 个自变量，那么可以表示为：</p>
-<p>$$f: D \subset \mathbb{R}^n \rightarrow \mathbb{R}$$</p>
-<p>其中 $D$ 表示自变量的取值范围，通常称为<strong>定义域</strong>。$\mathbb{R}$ 表示函数值的范围，即函数的<strong>值域</strong>。</p>
-<p>函数的值域对应的点集被称为<strong>图形</strong></p>
-<p>举个例子，$z &#x3D; f(x, y)$ 表示一个二元函数，它的定义域为 $D \subset \mathbb{R}^2$，表示平面上的一个区域。函数值 $z &#x3D; f(x, y)$ 表示该区域内每个点 $(x,y)$ 的函数值，其图形通常为一个三维曲面。</p>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">通俗来讲，实数域上的向量空间就是一组向量构成的集合，这些向量可以进行加法和数乘运算，并且这些运算满足一定的性质。例如，在三维空间中，所有的三维向量就构成了一个实数域上的向量空间。我们可以对这些向量进行加法和数乘运算，满足向量的加法和数乘运算法则，并且满足向量空间的定义中所列出的性质。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">因为n维点集的点通常也被称为n维向量。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+<p>这个公式告诉我们，如果可以将 $F(x,y,z)&#x3D;0$ 看作是以 $z$ 为 $x$ 和 $y$ 的二元函数的形式，那么我们可以通过对 $F(x,y,z)$ 的偏导数来求出这个函数的偏导数。</p>
+<p>需要注意的是，与二元隐函数不同的是，对于三元隐函数，需要同时解出 $\frac{\partial z}{\partial x}$ 和 $\frac{\partial z}{\partial y}$，才能求得 $z&#x3D;z(x,y)$ 的偏导数。此外，这个公式也只适用于满足隐函数存在定理条件的隐函数。<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">在某个区域内处处一阶可导的函数<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div></p>
+
     </div>
 
     
@@ -428,12 +399,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E6%8A%80%E6%9C%AF/2023/02/07/%E6%B5%8B%E8%AF%95/" rel="prev" title="测试">
-      <i class="fa fa-chevron-left"></i> 测试
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/06/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6-4/" rel="prev" title="多元微分学 [4]">
+      <i class="fa fa-chevron-left"></i> 多元微分学 [4]
     </a></div>
       <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/01/%E5%A4%9A%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6%20%5B2%5D/" rel="next" title="多元微分学 [2]">
-      多元微分学 [2] <i class="fa fa-chevron-right"></i>
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/07/CS50X%20Note%20%5B1%5D/" rel="next" title="CS50X Note [1]">
+      CS50X Note [1] <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -493,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n%E7%BB%B4%E7%82%B9%E9%9B%86"><span class="nav-text">n维点集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%82%BB%E5%9F%9F"><span class="nav-text">2. 邻域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%86%85%E7%82%B9%EF%BC%8C%E5%A4%96%E7%82%B9%EF%BC%8C%E8%BE%B9%E7%95%8C%E7%82%B9"><span class="nav-text">3. 内点，外点，边界点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%80%E9%9B%86%EF%BC%8C%E9%97%AD%E9%9B%86%EF%BC%8C%E5%92%8C%E8%BE%B9%E7%95%8C"><span class="nav-text">4. 开集，闭集，和边界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%81%94%E9%80%9A%E7%9A%84%E7%82%B9%E9%9B%86"><span class="nav-text">5. 联通的点集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9F%BA%E7%A1%80%E6%80%A7%E8%B4%A8-%EF%BC%88optional%EF%BC%89"><span class="nav-text">6. 基础性质 （optional）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%9F%BA%E7%A1%80%E5%AE%9A%E7%90%86-%EF%BC%88optional%EF%BC%89"><span class="nav-text">7. 基础定理 （optional）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">多元函数的概念</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E7%9A%84%E5%81%8F%E5%AF%BC%E6%95%B0"><span class="nav-text">复合函数的偏导数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-text">1. 链式法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%A8%E5%AF%BC%E6%95%B0"><span class="nav-text">2. 全导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%93%BE%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="nav-text">3. 链式结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="nav-text">一阶全微分的不变性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="nav-text">1. 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="nav-text">2. 推导过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%81%8F%E5%AF%BC%E6%95%B0"><span class="nav-text">隐函数的偏导数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%9A%90%E5%87%BD%E6%95%B0"><span class="nav-text">1. 隐函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86"><span class="nav-text">2. 隐函数存在定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AF%B9%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E6%B1%82%E5%AF%BC"><span class="nav-text">3. 对隐函数的求导</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -509,7 +480,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
