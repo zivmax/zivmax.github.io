@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Problems:  Chihiro Fujisaki and Caesar Cipher Chihiro Fujisaki and Keyworded Caesar Cipher Nagito Komaeda and lucky days Chiaki Nanami Wants to Play Games Gundham Tanaka and the Dark Devas of Destruct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS100 Homework [3]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/09/CS100-Homework-3/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Problems:  Chihiro Fujisaki and Caesar Cipher Chihiro Fujisaki and Keyworded Caesar Cipher Nagito Komaeda and lucky days Chiaki Nanami Wants to Play Games Gundham Tanaka and the Dark Devas of Destruct">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-09T01:44:53.000Z">
+<meta property="article:modified_time" content="2023-03-09T02:58:30.590Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="C 语言">
+<meta property="article:tag" content="CS100">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/09/CS100-Homework-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS100 Homework [3] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/09/CS100-Homework-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在SHTU的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS100 Homework [3]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2023-03-09 09:44:53 / 修改时间: 10:58:30" itemprop="dateCreated datePublished" datetime="2023-03-09T09:44:53+08:00">2023-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:26</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Problems</strong>:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/P301?tid=6408b595836fd4c1b898bd0a">Chihiro Fujisaki and Caesar Cipher</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/16?tid=6408b595836fd4c1b898bd0a">Chihiro Fujisaki and Keyworded Caesar Cipher</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/20?tid=6408b595836fd4c1b898bd0a">Nagito Komaeda and lucky days</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/19?tid=6408b595836fd4c1b898bd0a">Chiaki Nanami Wants to Play Games</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/21?tid=6408b595836fd4c1b898bd0a">Gundham Tanaka and the Dark Devas of Destruction</a></li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h1 id="Important-message-on-plagiarism"><a href="#Important-message-on-plagiarism" class="headerlink" title="Important message on plagiarism"></a>Important message on plagiarism</h1><p>The single most important point for you to realize before the beginning of your studies at ShanghaiTech is the meaning of “plagiarism”:</p>
+<blockquote>
+<p>Plagiarism is the practice of taking someone else’s work or ideas and passing them off as one’s own. It is the misrepresentation of the work of another as your own. It is academic theft; a serious infraction of a University honor code, and the latter is your responsibility to uphold. Instances of plagiarism or any other cheating will be reported to the university leadership, and will have serious consequences. Avoiding any form of plagiarism is in your own interest. If you plagiarize and it is unveiled at a later stage only, it will not only reflect badly on the university, but also on your image&#x2F;career opportunities.</p>
+</blockquote>
+<p>Plagiarism is academic misconduct, and we take it very serious at ShanghaiTech. In the past we have had lots of problems related to plagiarism especially with newly arriving students, so it is important to get this right upfront:</p>
+<p><strong>You may</strong> …</p>
+<ul>
+<li>… discuss with your peers about course material.</li>
+<li>… discuss generally about the programming language, some features, or abstract lines of code. As long as it is not directly related to any homework, but formulated in a general, abstract way, such discussion is acceptable.</li>
+<li>… share test cases with each other.</li>
+<li>… help each other with setting up the development environment, etc.</li>
+</ul>
+<p><strong>You may not</strong> …</p>
+<ul>
+<li>… read, possess, copy or submit the solution code of anyone else (including people outside this course or university)!</li>
+<li>… receive direct help from someone else (i.e. a direct communication of some lines of code, no matter if it is visual, verbal, or written)!</li>
+<li>… give direct help to someone else. Helping one of your peers by letting him read your code or communicating even just part of the solution in written or in verbal form will have equal consequences.</li>
+<li>… gain access to another one’s account, no matter if with or without permission.</li>
+<li>… give your account access to another student. It is your responsibility to keep your account safe, always log out, and choose a safe password. Do not just share access to your computer with other students without prior lock‐out and disabling of automatic login functionality. Do not just leave your computer on without a lock even if it is just for the sake of a 5‐minute break.</li>
+<li>… work in teams. You may meet to discuss generally about the material, but any work on the homework is to be done individually and in privacy. Remember, you may not allow anyone to even just read your source code.</li>
+</ul>
+<p>With the Internet, “paste”, and “share” are easy operations. Don’t think that it is easy to hide and that we will not find you. We have just as easy to use, fully automatic and intelligent tools that will identify any potential cases of plagiarism. And do not think that being the original author will make any difference. Sharing an original solution with others is just as unethical as using someone else’s work.</p>
+<hr>
+<h1 id="CS100-Homework-3-Spring-2023"><a href="#CS100-Homework-3-Spring-2023" class="headerlink" title="CS100 Homework 3 (Spring 2023)"></a>CS100 Homework 3 (Spring 2023)</h1><p>Deadline: 2023-03-15 (Wed) 23:59:59</p>
+<p>Late submission will open for 24 hours after the deadline, with 50% point deduction.</p>
+<p>If you get full marks in this assignment by no more than 40 submission attempts and <strong>also solve the challenge in problem 4</strong>, you can earn special OJ displays and a “1-case protection” that can be used in further assignments to cancel one testcase failure. See Piazza or OJ dashboard for more information.</p>
+<hr>
+<h2 id="Chihiro-Fujisaki-and-Caesar-Cipher"><a href="#Chihiro-Fujisaki-and-Caesar-Cipher" class="headerlink" title="Chihiro Fujisaki and Caesar Cipher"></a>Chihiro Fujisaki and Caesar Cipher</h2><p><em>“If I don’t do something, nothing’s ever going to change.&quot;</em></p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><p>Chihiro Fujisaki, the Ultimate Programmer, is developing a new kind of artificial intelligence called Alter Ego. Now he is training the artificial intelligence secretly in order to prevent Monokuma spotting it. </p>
+<p>Fujisaki is training Alter Ego with <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a>, an ancient encryption algorithm. With a fixed number as <code>key</code>, for example, $3$, Caesar cipher replaces each letter in the plaintext a letter $3$ positions down the alphabet. In this case, the message <code>box</code> becomes <code>era</code>, because going down $3$ letters turns <code>b</code> into <code>e</code> and turns <code>x</code>, going through the alphabet, into <code>a</code>.</p>
+<p>Fujisaki’s messages contain uppercase letters, lowercase letters, digits, and other characters like spaces and punctuations. He doesn’t want to scramble his messages, so he <u>keeps the cases and encrypts uppercase letters, lowercase letters and digits respectively</u> (so that <code>Z</code> encodes to <code>C</code> and <code>9</code> to <code>2</code>). All other characters, including spaces and punctuations, are not encoded. </p>
+<p>Monokuma has discovered this secret, and has obtained the secret <code>key</code>. Please help Monokuma to decrypt Fujisaki’s messages. </p>
+<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format:"></a>Input Format:</h3><p>The input contains two lines: </p>
+<p>The first line contains a number $n$, the <code>key</code> for Caesar cipher. $n&gt;0$ shifts the message right (going down the alphabet), and $n&lt;0$ shifts it left (going up the alphabet).</p>
+<p>The second line contains a non-empty string <code>ciphertext</code>, the encoded text, ending with a line break character (<code>&#39;\n&#39;</code>). Only <u>uppercase letters, lowercase letters, and digits</u> have been encoded.</p>
+<p>It is guaranteed that $|n|\leq 10^6, |ciphertext|\leq 10^6$.</p>
+<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format:"></a>Output Format:</h3><p>You need to print the decoded message in one line. </p>
+<h4 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line"></span><br><span class="line">Qv KA988, xtioqizqau qa bismv dmzg amzqwca! Mdmzg gmiz, uivg abclmvba omb kicopb ivl omb xcvqapml!</span><br></pre></td></tr></table></figure>
+
+<h4 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2"></a>Sample Input 2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-30  </span><br><span class="line"></span><br><span class="line">Zk JKP odwna ukqn ykza sepd kpdano, zk JKP yklu ykza bnki Ejpanjap kn kxpwej ykza bnki opqzajpo ej lwop uawno, wjz zk JKP qoa YdwpCLP ej dkiaskngo! Sa ydayg whh ukqn oqxieooekjo wjz sa SEHH gjks!</span><br></pre></td></tr></table></figure>
+
+<h4 id="Sample-Outputs…"><a href="#Sample-Outputs…" class="headerlink" title="Sample Outputs…?"></a>Sample Outputs…?</h4><p>Whoops, ciphers are no more secret if we tell you the answers! Why not figure out yourself? Hints: the above samples all decode to proper English sentences. </p>
+<hr>
+<h2 id="Chihiro-Fujisaki-and-Keyworded-Caesar-Cipher"><a href="#Chihiro-Fujisaki-and-Keyworded-Caesar-Cipher" class="headerlink" title="Chihiro Fujisaki and Keyworded Caesar Cipher"></a>Chihiro Fujisaki and Keyworded Caesar Cipher</h2><p><em>“I’m scared, but…I can handle it. I…don’t really understand why, but…</em></p>
+<p><em>When I think about everyone else, my courage starts to grow…!”</em></p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description:"></a>Description:</h3><p>Monokuma has cracked Chihiro Fujisaki’s Caesar Cipher. The Ultimate Programmer Fujisaki is working on a more secure code called <strong>“Keyworded Caesar Cipher”</strong>. Let Fujisaki explain his genius ideas to you:</p>
+<p>“My keyworded Caesar cipher no longer has a numerical <code>key</code>, but a <code>keyword</code>, for example, <code>&quot;Wednesday&quot;</code>. Just as the original Caesar cipher creates a shifted alphabet for encoding letters, so too does my keyworded Caesar cipher have one, and this encoding alphabet is created by the <code>keyword</code> <code>&quot;Wednesday&quot;</code>.</p>
+<p>“I first turn all letters into lowercase, and remove duplicate letters in the keyword, keeping only their first occurences. Now <code>&quot;Wednesday&quot;</code> has become <code>&quot;wednsay&quot;</code>.</p>
+<p>“Then I write the alphabet <code>a</code> through <code>z</code> in one line, and my new keyword <code>&quot;wednsay&quot;</code> beneath it.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a b c d e f g h i j k l m n o p q r s t u v w x y z</span><br><span class="line">w e d n s a y</span><br></pre></td></tr></table></figure>
+
+<p>“And finally, I fill the rest of my encoding alphabet starting from the last letter <code>y</code>. However, <strong>letters in the keyword are already used</strong>. I should <u>skip these letters when filling the rest</u>, because I cannot let two letters encode to a same value.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a b c d e f g h i j k l m n o p q r s t u v w x y z</span><br><span class="line">w e d n s a y z b c f g h i j k l m o p q r t u v x</span><br></pre></td></tr></table></figure>
+
+<p>“Alright. I can use it to encode <code>a</code> to <code>w</code>, <code>z</code> to <code>x</code>, and my name <code>Chihiro</code> to <code>Dzbzbmj</code>! For uppercase letters I can do the same, but not for digits any more. It’s no big deal. I know in homework 1 you turned numbers into English words, right? (laughs)”</p>
+<p>How nice would it be, if only you and he know the secret! Monokuma has heared all your conversation and learned his new method. More importantly, Monokuma has obtained the <code>keyword</code>! Please help Monokuma again to decrypt Fujisaki’s messages. </p>
+<h3 id="Input-Format-1"><a href="#Input-Format-1" class="headerlink" title="Input Format:"></a>Input Format:</h3><p>The input contains two lines: </p>
+<p>The first line contains a non-empty string <code>keyword</code>, containing only uppercase and lowercase letters.</p>
+<p>The second line contains a non-empty string <code>ciphertext</code>, the encoded text, ending with a line break character (<code>&#39;\n&#39;</code>). Only <u>uppercase and lowercase letters</u> have been encoded.</p>
+<p>It is guaranteed that $1 \leq |keyword|\leq 100,|ciphertext|\leq 10^6$.</p>
+<h3 id="Output-Format-1"><a href="#Output-Format-1" class="headerlink" title="Output Format:"></a>Output Format:</h3><p>You need to print the decoded message in one line. </p>
+<h4 id="Sample-Input-1-1"><a href="#Sample-Input-1-1" class="headerlink" title="Sample Input 1"></a>Sample Input 1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CPPistheBESTlanguage  </span><br></pre></td></tr></table></figure>
+
+<p>(1) Ewws mcq wh btgxlve: sldijdd qwjz lstcd mlfb qwjz hzltvsd. (2) Pcs mcq wh btgxlve: elkt qwjz iwst fw dwutwvt.</p>
+<h4 id="Sample-Input-2-1"><a href="#Sample-Input-2-1" class="headerlink" title="Sample Input 2"></a>Sample Input 2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ProgrammingIsFun  </span><br></pre></td></tr></table></figure>
+
+<p>Qyhc oyga pxg qyhc pooyhxed pca qyhc daocae. Qyh npja ena cadzyxdsrsvseq ey zcyeaoe enaw. Gy XYE vae pxqyxa pooadd qyhc pooyhxe, hda qyhc oywzheac, yc vyyu pe qyhc oyga!</p>
+<h4 id="Sample-Outputs…-1"><a href="#Sample-Outputs…-1" class="headerlink" title="Sample Outputs…?"></a>Sample Outputs…?</h4><p>Secret, of course! Again, they all decode to proper English sentences. </p>
+<h4 id="Hints"><a href="#Hints" class="headerlink" title="Hints"></a>Hints</h4><p>You may find some functions in <code>&lt;string.h&gt;</code> useful, for example, <code>strlen</code>, <code>strchr</code>, <code>strcmp</code>. Here is <a target="_blank" rel="noopener" href="https://en.cppreference.com/w/c/string/byte">a full list of standard library support for string and char manipulations</a>.</p>
+<hr>
+<h2 id="Nagito-Komaeda-and-lucky-days"><a href="#Nagito-Komaeda-and-lucky-days" class="headerlink" title="Nagito Komaeda and lucky days"></a>Nagito Komaeda and lucky days</h2><p><em>“I believe my actions will become the foundation of this world’s hope. And…if that really happens… Praise me.”</em></p>
+<h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p>Some people believe numbers with certain properties, like palindromes, are special, so does Nagito Komaeda. Komaeda wants to choose a date for himself to do some important things. As the Ultimate Lucky Student, he finds the dates he chooses are all palindrome dates. He is very interested in this kind of special dates. </p>
+<p>We define a date <code>YYYYMMDD</code> (<code>Y</code>, <code>M</code>, <code>D</code> are digits for year, month, and date) to be a <strong>palindrome date</strong> if it is palindrome, that is, its digits remain the same after being reversed. For example, we can write Apr. 4th, 2022 as <code>20220404</code> and write Dec. 30th, 321 as <code>03211230</code> (We also zero-fill the year to make it exactly $8$ digits). The date <code>03211230</code> is a palindrome date.</p>
+<p>However, Komaeda has a special calendar, in which there are a total of $m$ months in a year, and the $i$-th month will have $d_i$ days. Luckily, there is no leap year(闰年) in his calendar, so there is no need to calculate whether a year is a leap year. </p>
+<p>Nagito Komaeda wants to know the total number of palindrome dates in a certain time interval. He is so lucky that he can randomly guess out the correct answer, but you cannot. You want to write a program to calculate the number of palindrome dates. </p>
+<h3 id="Input-Format-2"><a href="#Input-Format-2" class="headerlink" title="Input Format:"></a>Input Format:</h3><p>The input contains 4 lines.</p>
+<p>In the first line is a number $m$, indicating the number of months each year in the special calendar. </p>
+<p>In the second line are $m$ numbers separated by spaces. The $i$-th number $d_i$ indicates that the $i$-th month has $d_i$ days. </p>
+<p>In the next two lines, you will get two dates $start$ and $end$ respectively, representing the start date and the end date, in the form of <code>YYYYMMDD</code>.</p>
+<p>It is guaranteed that:</p>
+<ul>
+<li>$1\leq m\leq99,1\leq d_i\leq 99$ </li>
+<li>$00010101 \leq start &lt; end \leq 99999999$.</li>
+</ul>
+<h3 id="Output-Format-2"><a href="#Output-Format-2" class="headerlink" title="Output Format:"></a>Output Format:</h3><p>You only need to output one integer, the number of palindrome dates in the range $[start, end]$ (both ends inclusive). </p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">12  </span><br><span class="line">31 28 31 30 31 30 31 31 30 31 30 31 </span><br><span class="line">20000101  </span><br><span class="line">20101231  </span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 </span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Explanation"><a href="#Sample-Explanation" class="headerlink" title="Sample Explanation:"></a>Sample Explanation:</h3><p>There are two palindrome dates between the two dates: $20011002$ and $20100102$. </p>
+<p>(In this sample, the calendar is exactly “our” calendar!)</p>
+<hr>
+<h2 id="Chiaki-Nanami-Wants-to-Play-Games"><a href="#Chiaki-Nanami-Wants-to-Play-Games" class="headerlink" title="Chiaki Nanami Wants to Play Games"></a>Chiaki Nanami Wants to Play Games</h2><p><em>“If you want to believe in someone...you need to overcome doubt first. Belief without doubt...is simply a lie.”</em></p>
+<h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description:"></a>Description:</h3><p>Chiaki Nanami, the Ultimate Gamer, now wants to play games. She has a lot of games in her game console and wants to play some of them. Nanami has marked every game with its game type (like FPS or Rogue-like), represented by an integer. If two game types are marked by the same integer, the two games have the same type and vice versa. Nanami also records the price of each game. </p>
+<p>The Ultimate Game Player, Nanami Chiaki, also has her favorite type of games. However, she forgot which type of games is her favorite. She only knows that She loves those games so much that <u>the money she spent on her favorite type of games is over half of the total cost of all games</u>.</p>
+<p>Please help Nanami to find her favorite game type. </p>
+<h3 id="Input-Format-3"><a href="#Input-Format-3" class="headerlink" title="Input Format:"></a>Input Format:</h3><p>You will first recieve a number $n$, which indicates the number of games Nanami has. Then in each of the next $n$ lines you will recieve a tuple. The tuple$(s_i,p_i,t_i)$ in $i$-th line represents the <strong>name</strong>, <strong>price</strong> and <strong>type</strong> of the $i$-th game. </p>
+<p>It’s guaranteed that there will be no comma in $s_i$, the game names. The game types may not be consecutive (i.e. the $t_i$s may not simply be $1, 2, 3…$). </p>
+<p>For $100%$ input, </p>
+<ul>
+<li>$1\leq n\leq10^6$ </li>
+<li>$1 \leq p_i\leq 2\times10^6$</li>
+<li>$1\leq t_i\leq 10^6$ </li>
+<li>$\sum_{i&#x3D;1}^{n}|s_i|\leq 10^7$</li>
+</ul>
+<h3 id="Output-Format-3"><a href="#Output-Format-3" class="headerlink" title="Output Format:"></a>Output Format:</h3><p>You only need to print one integer, Nanami’s favorite type of games. </p>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3  </span><br><span class="line">(Goose Goose Duck,2,1) </span><br><span class="line">(CSGO,4,2)  </span><br><span class="line">(Among us,3,1)  </span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Explanation-1"><a href="#Sample-Explanation-1" class="headerlink" title="Sample Explanation:"></a>Sample Explanation:</h3><p>In the sample given, there are $3$ games in Nanami’s game console. The cost of game type $1$ is $2+3&#x3D;5$ and the cost of game type $2$ is $4$. The cost of game type $1$ is over the half of the total cost $4+5&#x3D;9$, so her favorite type is $1$. </p>
+<h3 id="Challenge-Golden-Strawberry"><a href="#Challenge-Golden-Strawberry" class="headerlink" title="Challenge (Golden Strawberry):"></a>Challenge (Golden Strawberry):</h3><p><strong>This problem can be solved in a clever way! You don’t need to record all games’ types and costs into arrays, and in fact you only need very few variables! Can you solve the problem by declaring at most 10 variables (without using arrays or pointers)? Submit your solution to the additional problem 6 to win the golden strawberry award!</strong> </p>
+<p>Hint: Use the property of the favorite games. </p>
+<hr>
+<h2 id="Gundham-Tanaka-and-the-Dark-Devas-of-Destruction"><a href="#Gundham-Tanaka-and-the-Dark-Devas-of-Destruction" class="headerlink" title="Gundham Tanaka and the Dark Devas of Destruction"></a>Gundham Tanaka and the Dark Devas of Destruction</h2><p><em>&quot;Pitiful humans...they refuse to lift their heads up for fear of doubting the authenticity of the blue sky...&quot;</em></p>
+<h3 id="Description-4"><a href="#Description-4" class="headerlink" title="Description:"></a>Description:</h3><p>Gundham Tanaka, the Ultimate Breeder, kept a lot of animals, such as hamsters and eagles. He named all his animals respectively (like his four favourite hamsters, &quot;the Four Dark Devas of Destruction&quot;). One day, the &quot;Dark Devas of Destruction&quot; (his hamsters, actually) wanted to play a game with him.</p>
+<p>These hamsters form a matrix of $r$ rows and $c$ columns, but facing to different directions <code>L</code> (left), <code>R</code> (right), <code>U</code> (up), or <code>D</code> (down). Among them are some special hamsters which Tanaka needs to find out.</p>
+<p>At first, a leading hamster will hint where the first special hamster is. Whenever he finds a special hamster, it will also hint the position of the next special hamster to him. All hints are in forms like &quot;The next special hamster is the $p_i$-th one in front&#x2F;back&#x2F;left&#x2F;right of me&quot;.</p>
+<p>The hamsters make mistake sometimes. When a hamster gives a position, if it is <u>out of bound </u>, or if <u>the hamster at that position has already been identified as a special hamster previously </u>, Tanaka will stop the game and tell his hamsters that they have made a mistake.</p>
+<p>Now Tanaka is playing the game, please help him find all special hamsters.</p>
+<h3 id="Input-Format-4"><a href="#Input-Format-4" class="headerlink" title="Input Format:"></a>Input Format:</h3><p>In the first line, you will receive $3$ numbers $r,c,q$, separated by spaces, indicating the number of rows and columns of the hamster matrix, and the number of hints given by hamsters.</p>
+<p>In the next $r$ lines, you will receive a $r$-row $c$-column word matrix$\{d_{ij}\}(d_{ij} \in \{$ <code>L</code>, <code>R</code>, <code>U</code>, <code>D</code>$\})$. $d_{ij}$ represents the direction of the hamster in the $i$-th row and $j$-th column, facing <code>L</code> (left), <code>R</code> (right), <code>U</code> (up), or <code>D</code> (down).</p>
+<p>In the next line, you will receive $2$ numbers $r_{leading},c_{leading}$, indicating the row and column of the leading hamster.</p>
+<p>In the next $q$ lines, each line you will receive a word $w_i(w_{i} \in \{$ Left, Right, Front, Back $\})$ and an integer $p_i$, meaning that the hint is &quot;The next hamster is the $p_i$-th in $w_i$ of me&quot;.</p>
+<p>Another thing you need to know: Hamsters are not computers, they count from $1$ rather than $0$.</p>
+<p>It is guaranteed that:</p>
+<ul>
+<li>$2 \leq r,c\leq500$</li>
+<li>$1 \leq q \leq 100000$</li>
+</ul>
+<h3 id="Output-Format-4"><a href="#Output-Format-4" class="headerlink" title="Output Format:"></a>Output Format:</h3><p>In each line, you should print <code>(r, c)</code>, the row and column of a special hamster, in their order of being found, until the game ends or the last one is found. If the hamsters made mistake in one hint, you should print <code>Mistake!</code> in the corresponding line and end the game.</p>
+<h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2 2 4</span><br><span class="line">U L</span><br><span class="line">D D</span><br><span class="line">1 1</span><br><span class="line">Back 1</span><br><span class="line">Left 1</span><br><span class="line">Left 10</span><br><span class="line">Right 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(2, 1)</span><br><span class="line">(2, 2)</span><br><span class="line">Mistake!</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sample-Explanation-2"><a href="#Sample-Explanation-2" class="headerlink" title="Sample Explanation:"></a>Sample Explanation:</h3><p>Their directions:</p>
+<p>↑ ←<br>↓ ↓</p>
+<p>The leading hamster is at $(1,1)$. It says that the first special hamster is the $1$st hamster in its back, at $(2,1)$.</p>
+<p>Notice that the hamster at $(2,1)$ is facing down, and it says the next special hamster is in <u><strong>its</strong> </u> left, which actually means to the right (back’s left) of the matrix, which is $(2,2)$.</p>
+<p>The next special hamster is obviously unable to find, so there is a mistake. The game ends, ignoring any more hints from hamsters.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
+              <a href="/tags/CS100/" rel="tag"># CS100</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/09/CS100-Homework-2/" rel="prev" title="CS100 Homework [2]">
+      <i class="fa fa-chevron-left"></i> CS100 Homework [2]
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Important-message-on-plagiarism"><span class="nav-text">Important message on plagiarism</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CS100-Homework-3-Spring-2023"><span class="nav-text">CS100 Homework 3 (Spring 2023)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chihiro-Fujisaki-and-Caesar-Cipher"><span class="nav-text">Chihiro Fujisaki and Caesar Cipher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-text">Description:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Format"><span class="nav-text">Input Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Format"><span class="nav-text">Output Format:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-1"><span class="nav-text">Sample Input 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-2"><span class="nav-text">Sample Input 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Outputs%E2%80%A6"><span class="nav-text">Sample Outputs…?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chihiro-Fujisaki-and-Keyworded-Caesar-Cipher"><span class="nav-text">Chihiro Fujisaki and Keyworded Caesar Cipher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-1"><span class="nav-text">Description:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Format-1"><span class="nav-text">Input Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Format-1"><span class="nav-text">Output Format:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-1-1"><span class="nav-text">Sample Input 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Input-2-1"><span class="nav-text">Sample Input 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample-Outputs%E2%80%A6-1"><span class="nav-text">Sample Outputs…?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hints"><span class="nav-text">Hints</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nagito-Komaeda-and-lucky-days"><span class="nav-text">Nagito Komaeda and lucky days</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-2"><span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Format-2"><span class="nav-text">Input Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Format-2"><span class="nav-text">Output Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-text">Sample Input:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-text">Sample Output:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Explanation"><span class="nav-text">Sample Explanation:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chiaki-Nanami-Wants-to-Play-Games"><span class="nav-text">Chiaki Nanami Wants to Play Games</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-3"><span class="nav-text">Description:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Format-3"><span class="nav-text">Input Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Format-3"><span class="nav-text">Output Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input-1"><span class="nav-text">Sample Input:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output-1"><span class="nav-text">Sample Output:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Explanation-1"><span class="nav-text">Sample Explanation:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-Golden-Strawberry"><span class="nav-text">Challenge (Golden Strawberry):</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gundham-Tanaka-and-the-Dark-Devas-of-Destruction"><span class="nav-text">Gundham Tanaka and the Dark Devas of Destruction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-4"><span class="nav-text">Description:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Format-4"><span class="nav-text">Input Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Format-4"><span class="nav-text">Output Format:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input-2"><span class="nav-text">Sample Input:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output-2"><span class="nav-text">Sample Output:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Explanation-2"><span class="nav-text">Sample Explanation:</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在SHTU的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:838816519@qq.com" title="E-Mail → mailto:838816519@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      	  <!-- require MetingJS -->
+	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "false"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+
+
+</body>
+</html>
+
