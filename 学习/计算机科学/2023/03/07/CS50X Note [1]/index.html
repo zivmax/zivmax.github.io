@@ -35,12 +35,11 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/07/38NgDewUqnIrY1X.png">
 <meta property="article:published_time" content="2023-03-07T02:10:38.000Z">
-<meta property="article:modified_time" content="2023-03-09T05:59:02.806Z">
+<meta property="article:modified_time" content="2023-03-14T02:28:30.162Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="C 语言">
 <meta property="article:tag" content="CS50">
 <meta property="article:tag" content="精校翻译">
-<meta property="article:tag" content="翻译中">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png">
 
@@ -148,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">18</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -247,7 +246,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-09 13:59:02" itemprop="dateModified" datetime="2023-03-09T13:59:02+08:00">2023-03-09</time>
+                <time title="修改时间: 2023-03-14 10:28:30" itemprop="dateModified" datetime="2023-03-14T10:28:30+08:00">2023-03-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,14 +268,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>12k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:13</span>
+              <span>1:03</span>
             </span>
             <div class="post-description">CS50X是我的计算机科学启蒙课，我向来不遗余力地向任何一位想打好基础的新人推荐这门课程</div>
 
@@ -289,8 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>翻译中...</strong></p>
-<p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/">本篇在CS50X官网的英文原版</a></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/">本篇在CS50X官网的英文原版</a></p>
 <h1 id="Lecture-1">Lecture 1</h1>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/1/#welcome">Welcome!</a></li>
@@ -329,8 +327,8 @@
 </li>
 <li>
 <p><em>VS Code</em> 可以被分为多个区域：</p>
-<p><img src="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png" alt><br>
- 请注意，左侧有一个<em>文件资源管理器</em> ，你可以在其中找到你的文件。此外，中间有一个称为<em>文本编辑器</em> 的区域，你可以在其中编辑你的程序。最后，有一个称为 <code>命令行界面</code> 的区域，也称为<em>CLI</em>，<em>命令行</em> 或<em>终端窗口</em>，我们可以在其中向云服务器上的计算机发送命令。</p>
+<p><img src="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png" alt></p>
+<p>请注意，左侧有一个<em>文件资源管理器</em> ，你可以在其中找到你的文件。此外，中间有一个称为<em>文本编辑器</em> 的区域，你可以在其中编辑你的程序。最后，有一个称为 <code>命令行界面</code> 的区域，也称为<em>CLI</em>，<em>命令行</em> 或<em>终端窗口</em>，我们可以在其中向云服务器上的计算机发送命令。</p>
 </li>
 <li>
 <p>我们可以通过在终端窗口输入 <code>code hello.c</code> 来编写 C 语言的第一个程序。请注意，我们故意对文件只使用小写命名，包括 <code>.c</code> 扩展名。接下来，在出现的文本编辑器中编写以下代码：</p>
@@ -396,7 +394,7 @@
 <p>请注意，在你的代码顶部， <code>#include &lt;cs50.h&gt;</code> 被加了进来。代码中 <code>get_string</code> 函数用于从用户获取字符串（string）。然后，变量 <code>answer</code> 被传递给 <code>printf</code> 函数。<code>%s</code> 告诉 <code>printf</code> 函数准备接收一个字符串。</p>
 </li>
 <li>
-<p><code>answer</code> 是一个特殊的数据收容处，我们称之为 <code>变量</code> 。<code>answer</code> 的数据类型为 <code>string</code> ，可以存储任何字符串。还有许多其他的 <em>数据类型</em>，如 <code>int</code>、<code>bool</code>、<code>char</code> 等。</p>
+<p><code>answer</code> 是一个特殊的数据收容处，我们称之为 <em>变量</em> 。<code>answer</code> 的数据类型为 <code>string</code> ，可以存储任何字符串。还有许多其他的 <em>数据类型</em>，如 <code>int</code>、<code>bool</code>、<code>char</code> 等。</p>
 </li>
 <li>
 <p>在终端窗口中再次运行 <code>make hello</code> ，你可以输入 <code>./hello</code> 来运行程序。程序现在会要求你输入姓名，然后附带你姓名地打印问候语。</p>
@@ -536,86 +534,86 @@
 <h2 id="Comments-注释">Comments [注释]</h2>
 <ul>
 <li>
-<p>Comments are fundamental parts of a computer program, where you leave explanatory remarks to yourself and others that may be collaborating with you regarding your code.</p>
+<p>注释是计算机代码的基本部分，你可以在注释中留下解释性的备注，以便自己和其他可能与你合作的人理解你的代码。</p>
 </li>
 <li>
-<p>All code you create for this course must include robust comments.</p>
+<p>你为本课程编写的所有代码都必须包含清晰明确的注释。</p>
 </li>
 <li>
-<p>Typically each comment is a few words or more, providing the reader an opportunity to understand what is happening in a specific block of code. Further, such comments serve as a reminder for you later when you need to revise your code.</p>
+<p>通常每个注释都是几个单词或更多单词，以帮助读者理解特定的代码块正在发生什么。此外，这些注释还可以在你需要修改代码时为你提供提醒。</p>
 </li>
 <li>
-<p>Comments involve placing <code>//</code> into your code, followed by a comment. Modify your code as follows to integrate comments:</p>
+<p>添加注释的一种方法是在代码中放置 <code>//</code>，然后加上注释。请按照以下方式修改你的代码以集成注释：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Get size of grid</span></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print grid of bricks</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Notice how each comment begins with a <code>//</code>.</p>
+<p>注意，每个注释都以 <code>//</code> 开头。</p>
 </li>
 </ul>
 <h2 id="Abstraction-抽象-封装">Abstraction [抽象 | 封装]</h2>
 <ul>
 <li>
-<p><em>Abstraction</em> is the art of simplifying our code such that it deals with smaller and smaller problems.</p>
+<p><em>抽象化</em> 是简化代码的艺术；通过抽象化，我们可以把一个问题分解为更小的问题来逐步解决。</p>
 </li>
 <li>
-<p>Looking at your code, you can see how two essential problems in our code are <em>get size of grid</em> and <em>print grid of bricks</em>.</p>
+<p>现在回过头来看我们的代码，可以看出代码中有两个关键问题：<em>获取网格的大小</em> 和 <em>打印砖块的网格</em> 。</p>
 </li>
 <li>
-<p>We can abstract away these two problems into separate functions. Modify your code as follows:</p>
+<p>我们可以将这两个问题抽象成单独的函数。将你的代码修改如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_size</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">print_grid</span><span class="params">(<span class="type">int</span> n)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = get_size();</span><br><span class="line">    print_grid(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_size</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Size: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_grid</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Notice that we have three functions now. First, we have the <code>main</code> function that calls two other functions called <code>get_size</code> and <code>print_grid</code>. Second, we have a second function called <code>get_size</code> which includes the exact code we had to accomplish this task prior. Third, we have another function called <code>print_grid</code> that prints the grid. Because we abstracted away the essential problems within our program, our <code>main</code> function is very short.</p>
+<p>注意到现在我们有三个函数。首先，我们有一个名为 <code>main</code> 的函数，它调用了另外两个名为 <code>get_size</code> 和 <code>print_grid</code> 的函数。其次，我们有第二个函数 <code>get_size</code>，其中包含了我们之前用来完成获取 <code>size</code> 输入的完整代码。第三，我们还有另一个名为 <code>print_grid</code> 的函数，用于打印出网格。因为我们在程序中抽象出了基本问题，所以我们的 <code>main</code> 函数非常短。</p>
 </li>
 </ul>
 <h2 id="Operators-and-Types-运算符和类型">Operators and Types [运算符和类型]</h2>
 <ul>
 <li>
-<p><em>Operators</em> refer to the mathematical operations that are supported by your compiler. In C, these mathematical operators include:</p>
+<p><em>运算符</em> 指的是编译器支持的数学运算操作。在 C 语言中，这些数学运算符包括：</p>
 <ul>
-<li><code>+</code> for addition</li>
-<li><code>-</code> for subtraction</li>
-<li><code>*</code> for multiplication</li>
-<li><code>/</code> for division</li>
-<li><code>%</code> for remainder</li>
+<li><code>+</code> 表示加法</li>
+<li><code>-</code> 表示减法</li>
+<li><code>*</code> 表示乘法</li>
+<li><code>/</code> 表示除法</li>
+<li><code>%</code> 表示取余数</li>
 </ul>
 </li>
 <li>
-<p>Types refer to the possible data that can be stored within a variable. For example, a <code>char</code> is designed to accommodate a single character like <code>a</code> or <code>2</code>.</p>
+<p>类型是指可以存储在变量中的数据类型。例如，<code>char</code> 类型用于存储单个字符，如 <code>a</code> 或 <code>2</code> 。</p>
 </li>
 <li>
-<p>Types are very important because each type has specific limits. For example, because of the limits in memory, the highest value of an <code>int</code> can be <code>4294967296</code>.</p>
+<p>类型非常重要，因为每种类型都有特定的限制。例如，由于内存的限制，<code>int</code> 类型的最大值为 <code>4294967296</code>。</p>
 </li>
 <li>
-<p>Types with which you might interact during this course include:</p>
+<p>你在本课程中可能会与以下类型打交道：</p>
 <ul>
-<li><code>bool</code> ， a Boolean expression of either true or false</li>
-<li><code>char</code> ， a single character like a or 2</li>
-<li><code>double</code> ， a floating-point value with more digits than a float</li>
-<li><code>float</code> ， a floating-point value, or real number with a decimal value</li>
-<li><code>int</code> ， integers up to a certain size, or number of bits</li>
-<li><code>long</code> ， integers with more bits, so they can count higher than an int</li>
-<li><code>string</code> ， a string of characters</li>
+<li><code>bool</code>，一个只有 true（真）或 false（假）的布尔表达式</li>
+<li><code>char</code>，一个单个字符，比如 a 或 2</li>
+<li><code>double</code>，一个浮点数，比 float 类型有更多位数</li>
+<li><code>float</code>，一个浮点数，或者是带有小数点的实数</li>
+<li><code>int</code>，整数类型，能够表示一定范围内的整数，具体范围由所占用的二进制位数决定</li>
+<li><code>long</code>，长整数类型，比 int 类型能够表示更大的整数</li>
+<li><code>string</code>，一个由字符组成的字符串</li>
 </ul>
 </li>
 <li>
-<p>You can implement a calculator in C. In your terminal, type <code>code calculator.c</code> and write code as follows:</p>
+<p>你可以在 C 语言中实现一个简单的计算器。在终端中输入 <code>code calculator.c</code> ，并编写以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Prompt user for x</span></span><br><span class="line">    <span class="type">int</span> x = get_int(<span class="string">&quot;x: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Prompt user for y</span></span><br><span class="line">    <span class="type">int</span> y = get_int(<span class="string">&quot;y: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Perform addition</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, x + y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Notice how the <code>get_int</code> function is utilized to obtain an integer from the user twice. One integer is stored in the <code>int</code> variable called <code>x</code>. Another is stored in the <code>int</code> variable called <code>y</code>. Then, the <code>printf</code> function prints the value of <code>x + y</code> ， designated by the <code>%i</code> symbol.</p>
+<p>注意观察如何利用 <code>get_int</code> 函数两次从用户获取整数。一个整数存储在名为 <code>x</code> 的 <code>int</code> 变量中，另一个整数存储在名为 <code>y</code> 的 <code>int</code> 变量中。然后， <code>printf</code> 函数打印了 <code>x + y</code> 的值，该值由符号 <code>%i</code> 指定。</p>
 </li>
 <li>
-<p>As you are coding, pay special attention to the types of variables you are using to avoid problems within your code.</p>
+<p>在你编写代码时，要特别注意你使用的变量类型，以避免代码中出现未料及的问题。</p>
 </li>
 </ul>
 <h2 id="Summing-Up">Summing Up</h2>
-<p>In this lesson, you learned how to apply the building blocks you learned in Scratch to the C programming language. You learned…</p>
+<p>在本课中，你学习了如何将Scratch中学到的构建块应用于C编程语言。你学到了：</p>
 <ul>
-<li>How to create your first program in C.</li>
-<li>Predefined functions that come natively with C and how to implement your own functions.</li>
-<li>How to use variables, conditionals, and loops.</li>
-<li>How to use the Linux command line.</li>
-<li>How to approach problem-solving for a computer science problem.</li>
-<li>How to integrate comments into your code.</li>
-<li>How to approach abstraction to simplify and improve your code.</li>
-<li>How to utilize types and operators.</li>
+<li>如何在C中创建第一个程序。</li>
+<li>C本地附带的预定义函数以及如何实现自己的函数。</li>
+<li>如何使用变量、条件和循环。</li>
+<li>如何使用Linux命令行。</li>
+<li>如何不断接近一个计算机科学问题的解决方法。</li>
+<li>如何将注释添加到你的代码中。</li>
+<li>如何使用抽象来简化和改进你的代码。</li>
+<li>如何利用类型和运算符。</li>
 </ul>
-<p>See you next time!</p>
+<p><em><strong>下次见！</strong></em></p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">实际上是介绍了一个自带编译器的IDE<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Integrated Development Environment [集成开发环境]<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">不同意义的代码颜色不同<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">这里的true是一个值，而不是变量，它是不可变的<a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">目录就相当于我们常说的文件夹<a href="#fnref:5" rev="footnote"> ↩</a></span></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">6.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">problem set，就是指这门课程的作业<a href="#fnref:6" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
@@ -628,7 +626,6 @@
               <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
               <a href="/tags/CS50/" rel="tag"># CS50</a>
               <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
-              <a href="/tags/%E7%BF%BB%E8%AF%91%E4%B8%AD/" rel="tag"># 翻译中</a>
           </div>
 
         
@@ -732,7 +729,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
