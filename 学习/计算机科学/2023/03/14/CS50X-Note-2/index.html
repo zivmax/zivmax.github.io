@@ -23,18 +23,18 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="翻译中... 本篇在CS50X官网的英文原版 Lecture 2 点击列表中任意项目可跳转到原版对应部分  Welcome! Compiling Debugging Arrays Strings Command-Line Arguments Exit Status Cryptography Summing Up  Welcome!  In our previous session, we lear">
+  <meta name="description" content="翻译中... 本篇在CS50X官网的英文原版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS50X Note [2]">
 <meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/14/CS50X-Note-2/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="翻译中... 本篇在CS50X官网的英文原版 Lecture 2 点击列表中任意项目可跳转到原版对应部分  Welcome! Compiling Debugging Arrays Strings Command-Line Arguments Exit Status Cryptography Summing Up  Welcome!  In our previous session, we lear">
+<meta property="og:description" content="翻译中... 本篇在CS50X官网的英文原版">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide008.png">
-<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide012.png">
-<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide033.png">
-<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide038.png">
-<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide049.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png">
 <meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide061.png">
 <meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Debugging.png">
 <meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide070.png">
@@ -48,14 +48,14 @@
 <meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide120.png">
 <meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide153.png">
 <meta property="article:published_time" content="2023-03-14T02:45:34.000Z">
-<meta property="article:modified_time" content="2023-03-14T02:57:57.855Z">
+<meta property="article:modified_time" content="2023-03-15T02:15:58.352Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="C 语言">
 <meta property="article:tag" content="CS50">
 <meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="翻译中">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide008.png">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png">
 
 <link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/14/CS50X-Note-2/">
 
@@ -252,10 +252,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间: 2023-03-14 10:45:34 / 修改时间: 10:57:57" itemprop="dateCreated datePublished" datetime="2023-03-14T10:45:34+08:00">2023-03-14</time>
+              <time title="创建时间: 2023-03-14 10:45:34" itemprop="dateCreated datePublished" datetime="2023-03-14T10:45:34+08:00">2023-03-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2023-03-15 10:15:58" itemprop="dateModified" datetime="2023-03-15T10:15:58+08:00">2023-03-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -276,14 +282,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>17k</span>
+              <span>16k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:45</span>
+              <span>1:38</span>
             </span>
 
         </div>
@@ -297,88 +303,89 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>翻译中...</strong></p>
 <p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/">本篇在CS50X官网的英文原版</a></p>
+<span id="more"></span>
 <h1 id="Lecture-2"><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#lecture-2">Lecture 2</a></h1>
-<p><em>点击列表中任意项目可跳转到原版对应部分</em></p>
+<p><em>点击列表中任意的项目可跳转到原版对应部分</em></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#welcome">Welcome!</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#compiling">Compiling</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#debugging">Debugging</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#arrays">Arrays</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#strings">Strings</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#command-line-arguments">Command-Line Arguments</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#exit-status">Exit Status</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#cryptography">Cryptography</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#compiling">Compiling</a> [编译]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#debugging">Debugging</a> [调试]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#arrays">Arrays</a> [数组]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#strings">Strings</a> [字符串]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#command-line-arguments">Command-Line Arguments</a> [命令行参数]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#exit-status">Exit Status</a> [退出状态]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#cryptography">Cryptography</a> [密码学]</li>
 <li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#summing-up">Summing Up</a></li>
 </ul>
-<h2 id="Welcome"><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#welcome">Welcome!</a></h2>
+<h2 id="Welcome">Welcome!</h2>
 <ul>
-<li>In our previous session, we learned about C, a text-based programming language.</li>
-<li>This week, we are going to take a deeper look at additional building-blocks that will support our goals of learning more about programming from the bottom up.</li>
-<li>Fundamentally, in addition to the essentials of programming, this course is about problem-solving. Accordingly, we will also focus further on how to approach computer science problems.</li>
+<li>在上一节课中，我们学习了一种名为 C 的文本编程语言。</li>
+<li>本周，我们将更深入地探讨一些额外的代码构建块，以支持我们从底层向上学习编程的目标。</li>
+<li>本质上来说，除了编程的基础知识外，本课程还涉及到如何解决问题。因此，我们还将进一步专注于如何处理计算机科学问题。</li>
 </ul>
-<h2 id="Compiling"><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#compiling">Compiling</a></h2>
+<h2 id="Compiling">Compiling</h2>
 <ul>
 <li>
-<p><em>Encryption</em> is the act of hiding plain text from prying eyes. <em>decrypting</em>, then, is the act of taking an encrypted piece of text and returning it to a human-readable form.</p>
+<p><em>加密</em> 是将明文隐藏起来，防止被他人窥探。<em>解密</em> 是将一段加密的文本还原为可读的人类语言。</p>
 </li>
 <li>
-<p>An encrypted piece of text may look like the following:</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide008.png" alt title="encryption"></p>
+<p>一段加密的文本可能长成这样：</p>
+<p><img src="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png" alt></p>
 </li>
 <li>
-<p>Recall that last week you learned about a <em>compiler</em>, a specialized computer program that converts <em>source code</em> into <em>machine code</em> that can be understood by a computer.</p>
+<p>回顾一下上周你学习的有关编译器的知识，编译器是一种专门的计算机程序，可以将源代码转换为机器代码，以便计算机能够理解。</p>
 </li>
 <li>
-<p>For example, you might have a computer program that looks like this:</p>
+<p>例如，你可能有一个计算机程序看起来像这样：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>A compiler will take the above code and turn it into the following machine code:</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide012.png" alt title="machine code"></p>
+<p>编译器将读取上面的代码，并将其转换为机器代码,  如下：</p>
+<p><img src="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png" alt></p>
 </li>
 <li>
-<p><em>VS Code</em>, the programming environment provided to you as a CS50 student, utilizes a compiler called <code>clang</code> or <em>c language</em>.</p>
+<p>提供给你的编程环境 <em>VS Code</em>，使用了一个名为 <code>clang</code> 或 <em>c language</em> 的编译器。</p>
 </li>
 <li>
-<p>If you were to type <code>make hello</code>, it runs a command that executes clang to create an output file that you can run as a user.</p>
+<p>如果你输入 <code>make hello</code> ，它会执行一个命令，运行 clang 创建一个输出文件.  你可以作为用户运行这个文件。</p>
 </li>
 <li>
-<p>VS Code has been pre-programmed such that <code>make</code> will run numerous command line arguments along with clang for your convenience as a user.</p>
+<p>VS Code 已经被预先配置，使得 <code>make</code> 将把 clang 与众多的命令行参数一起运行，以方便作为用户的你使用。</p>
 </li>
 <li>
-<p>Consider the following code:</p>
+<p>考虑以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>You can attempt to enter into the terminal window: <code>clang -o hello hello.c</code>. You will be met by an error that indicates that clang does not know where to find the <code>cs50.h</code> library.</p>
+<p>你可以尝试在终端窗口中输入：<code>clang -o hello hello.c</code> 。你会遇到一个错误，指出clang不知道在哪里找到 <code>cs50.h</code> 库。</p>
 </li>
 <li>
-<p>Attempting again to compile this code, run the following command in the terminal window: <code>clang -o hello hello.c -lcs50</code>. This will enable the compiler to access the <code>cs50.h</code> library.</p>
+<p>再次尝试编译此代码，请在终端窗口中运行以下命令：<code>clang -o hello hello.c -lcs50</code> <sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;&quot;lcs50&quot; 中的 'l' 代表 &quot;link&quot;&quot;&gt;[1]</a></sup> 。这将使编译器能够访问 <code>cs50.h</code> 库。</p>
 </li>
 <li>
-<p>Running in the terminal window <code>./hello</code>, your program will run as intended.</p>
+<p>在终端窗口中运行 <code>./hello</code> ，你的程序将正常运行。</p>
 </li>
 <li>
-<p>While the above is offered as an illustration, such that you can understand more deeply the process and concept of compiling code, using <code>make</code> in CS50 is perfectly fine and the expectation!</p>
+<p>上面的内容是为了说明编译代码的过程和概念，在CS50中直接使用 <code>make</code> 来进行编译是完全可以的，并且是我们所期望你做的事情！</p>
 </li>
 <li>
-<p>Compiling involves major steps, including the following:</p>
+<p>编译涉及主要步骤，包括以下内容：</p>
 <ul>
-<li>First, <em>preprocessing</em> is where the header files in your code, designated by a <code>#</code> (such as <code>#include \&lt;cs50.h\&gt;</code>) are effectively copied and pasted into your file. During this step, the code from <code>cs50.h</code> is copied into your program. Similarly, just as your code contains <code>#include \&lt;stdio.h\&gt;</code>, code contained within <code>stdio.h</code> somewhere on your computer is copied to your program. This step can be visualized as follows:</li>
+<li>首先，<em>预处理</em>（preprocessing）是指将你的代码中由 <code>#</code>（例如 <code>#include &lt;cs50.h&gt;</code> ）指定的头文件有效地复制粘贴到你的文件中。在这个步骤中，<code>cs50.h</code> 中的代码会被复制到你的程序中。同样地，正如你的代码包含 <code>#include &lt;stdio.h&gt;</code> 一样，存储在你的电脑上的 <code>stdio.h</code> 中的代码也会被复制到你的程序中。这个步骤的结果可以被视为下面的形式：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">string</span> <span class="title function_">get_string</span><span class="params">(<span class="built_in">string</span> prompt)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">printf</span><span class="params">(<span class="built_in">string</span> format, ...)</span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>
-<p>Second, <em>compiling</em> is where your program is converted into assembly code. This step can be visualized as follows:</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide033.png" alt title="compiling"></p>
+<p>第二， <em>编译（compiling）</em> 是将你的程序转换为汇编代码的过程。这个步骤的结果可以被视为下面的形式：</p>
+<p><img src="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png" alt></p>
 </li>
 <li>
-<p>Third, <em>assembling</em> involves the compiler converting your assembly code into machine code. This step can be visualized as follows:</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide038.png" alt title="assembling"></p>
+<p>第三， <em>汇编（assembling）</em> 是编译器将你的汇编代码转换为机器代码的过程。这个步骤的结果可以被视为下面的形式：</p>
+<p><img src="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png" alt></p>
 </li>
 <li>
-<p>Finally, during the <em>linking</em> step, code from your included libraries are converted also into machine code and combined with your code. The final executable file is then outputted.</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide049.png" alt title="linking"></p>
+<p>最后，在 <em>链接（linking）</em> 步骤中，来自包含库（included libraries）的代码也将被转换为机器代码并与你的代码组合；然后输出最终的可执行文件。</p>
+<p><img src="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png" alt></p>
 </li>
 </ul>
 </li>
@@ -649,7 +656,7 @@
 <li>The basic building-blocks of cryptography.</li>
 </ul>
 <p>See you next time!</p>
-
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">&quot;lcs50&quot; 中的 'l' 代表 &quot;link&quot;<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
     
