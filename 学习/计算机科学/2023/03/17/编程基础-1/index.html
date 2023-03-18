@@ -31,10 +31,11 @@
 <meta property="og:description" content="有关编程的基本原则, 推荐给每一位同行者。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/03/17/fbsA1Ur4LMNOt7D.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/dF1Uy8WrEcCRbiH.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/17/RJkSaFO7ETXvYq2.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/17/RJkSaFO7ETXvYq2.png">
 <meta property="article:published_time" content="2023-03-17T15:46:12.000Z">
-<meta property="article:modified_time" content="2023-03-17T16:04:21.827Z">
+<meta property="article:modified_time" content="2023-03-18T04:57:32.209Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="编程技术">
@@ -244,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-18 00:04:21" itemprop="dateModified" datetime="2023-03-18T00:04:21+08:00">2023-03-18</time>
+                <time title="修改时间: 2023-03-18 12:57:32" itemprop="dateModified" datetime="2023-03-18T12:57:32+08:00">2023-03-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -311,6 +312,7 @@
 <p>这个练习强调了一个重要的观点：你必须准确地指定你想让计算机做什么。当你写一些模糊的东西时，计算机不会“知道你的意思”，也不会想出“等等”中还可能有什么东西。相反，你必须能够以一步一步的方式精确地描述你想要做的事情。精确地描述执行特定任务的确切步骤有些棘手，因为我们习惯于人们隐含地理解我们省略的细节。计算机不会为你做这件事（在任何编程语言中都是如此）。</p>
 <p>虽然“三明治算法”练习强调了精确描述你想要计算机执行什么的重要性，但它在说明算法设计中真正最难的部分这方面还存在缺陷。这个算法没有参数，所以它只描述了如何解决一个特定的问题（制作花生酱和果酱三明治）。真正的编程问题（通常）涉及需要参数的算法。一个更适合的练习可能是“编写一个算法，该算法接受一个你想要的三明治的材料列表，并描述如何制作三明治”。</p>
 <p>这是一个更为复杂的问题，但真正涉及到算法设计的许多概念。首先，我们的算法不能将任何东西都放入三明治中：它只能使用特定类型的东西，也就是食物。我们不会期望我们的算法能够制作出“汽车、摩天大楼、飞机”三明治，因为它们都是错误的类型（types）。</p>
+<p><img src="https://s2.loli.net/2023/03/18/dF1Uy8WrEcCRbiH.png" alt title="正如这个段子一样"></p>
 <p>我们的算法也可能需要处理错误情况。即使我们指定了正确类型的输入，但拥有正确类型的某些特定值可能依然无法被正确处理。例如，“鸡胸肉”是食物，但如果鸡胸肉尚未煮熟，我们就不应该试图将其做成三明治。在制作三明治的算法中，另一个错误情况可能是我们指定了太多的食物放入三明治中（怎么做出含有一整只火鸡、40磅胡萝卜和3加仑冰淇淋的三明治呢？）。当然，如果我们为人类编写这个三明治算法，我们可以忽略这种荒谬的情况，因为人类具有“常识”，然而，计算机没有。</p>
 <p>即使我们忽略所有错误情况，我们的一般算法也不是简单地将所有配料按照输入中出现的顺序堆叠在面包上。例如，我们可能会得到一个输入“鸡肉、芥末、菠菜、番茄”。在这种情况下，我们可能希望先将芥末涂在面包上，然后再将其他配料放在上面（希望它们的顺序使三明治最为稳定）。</p>
 <p>似乎从任意食材列表中编写一个制作三明治的正确算法是一个相当复杂的任务。哪怕我们不想将该算法实现为代码，而是希望让一个没有常识的人（或一个对常识漫不经心的教授）能够正确执行，这项任务也是非常具有挑战性的。那么我们该如何着手完成这个任务并期望得到一个好的算法呢？</p>
