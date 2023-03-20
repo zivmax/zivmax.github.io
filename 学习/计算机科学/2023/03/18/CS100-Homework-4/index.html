@@ -23,15 +23,15 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Problems:  String and Character Manipulation Memory Leak Checker">
+  <meta name="description" content="Problems:  String and Character Manipulation Memory Leak Checker Interactive Brainfuck (Part. A) Interactive Brainfuck (Part. B)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS100 Homework [4]">
 <meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/18/CS100-Homework-4/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="Problems:  String and Character Manipulation Memory Leak Checker">
+<meta property="og:description" content="Problems:  String and Character Manipulation Memory Leak Checker Interactive Brainfuck (Part. A) Interactive Brainfuck (Part. B)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-18T13:43:56.000Z">
-<meta property="article:modified_time" content="2023-03-19T08:16:32.959Z">
+<meta property="article:modified_time" content="2023-03-20T03:54:47.137Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="CS100">
 <meta property="article:tag" content="作业">
@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">24</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -153,7 +153,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-19 16:16:32" itemprop="dateModified" datetime="2023-03-19T16:16:32+08:00">2023-03-19</time>
+                <time title="修改时间: 2023-03-20 11:54:47" itemprop="dateModified" datetime="2023-03-20T11:54:47+08:00">2023-03-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,14 +264,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>15k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:32</span>
+              <span>2:01</span>
             </span>
 
         </div>
@@ -287,6 +287,8 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/P401?tid=641599c647556d5d171f0718">String and Character Manipulation</a></li>
 <li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/23?tid=641599c647556d5d171f0718">Memory Leak Checker</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/25?tid=641599c647556d5d171f0718">Interactive Brainfuck (Part. A)</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/26?tid=641599c647556d5d171f0718">Interactive Brainfuck (Part. B)</a></li>
 </ul>
 <span id="more"></span>
 <hr>
@@ -455,6 +457,138 @@
 <p>There are some language constructs in C++ that allow user-declared replacements for memory allocation and deallocation functions ( <code>operator new</code> and <code>operator delete</code> ), so that you don't have to do it in a &quot;hacky&quot; manner. See <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17N4y1u7Cn/?spm_id_from=333.999.0.0">my video</a> for details.</p>
 <h2 id="Attachments">Attachments:</h2>
 <p><a target="_blank" rel="noopener" href="https://github.com/zivmax/CS100-homework-attachments/tree/main/hw_4_pro_2_attachments">👉 Go to GitHub</a></p>
+<hr>
+<h1 id="Interactive-Brainfuck">Interactive Brainfuck</h1>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Brainfuck">Brainfuck</a> 是一种只由 8 种符号构成的，极小化，深奥 (esoteric) 的程序语言，由 Urban Müller 在 1993 年创造。Müller 的目标是创建一种简单的、可以用最小的编译器来实现的、符合图灵完全思想的编程语言。Brainfuck 这个名字已经暗示了它的代码很难读懂。在这次作业中，你将一步步编写一个能运行任意 Brainfuck 代码的程序，或者说，一个解释器。</p>
+<h2 id="程序-状态机？">程序 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo></mrow><annotation encoding="application/x-tex">=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span></span></span></span> 状态机？</h2>
+<p>“<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Finite-state_machine">状态机</a>”是一种表示有限个状态以及在这些状态之间的转移和动作等行为的数学计算模型。这个概念远远没有听起来那么抽象：你的电脑就可以是一个具有“开机”“关机”两个状态，可以通过开机按钮来在这两个状态之间转移的状态机；你也可以是一个具有“睡觉”、“吃饭”、“学习”、“娱乐”等状态，可以根据时间、心情等条件在这些状态间转移的状态机。</p>
+<p>根据这种思想，任何计算机程序也能被看作是一个状态机：状态是计算机的内存（中的所有变量，这些变量变化的值就对应着不同的状态），而执行任意一条简单语句（任意一行最简单的代码）都会转移到一个新的状态。想象一下，你的 <code>main</code> 函数的第一行代码决定了程序的初始状态，之后执行的每一句代码都在转移到下一个状态，直到这个程序运行结束。</p>
+<h2 id="Brainfuck-就是在模拟状态机">Brainfuck 就是在模拟状态机</h2>
+<p>根据这个思想，如果能模拟出一个进行运算过程的状态机（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Turing_machine">图灵机</a>），就相当于具有了模拟出任何计算机程序的能力。人用纸和笔就能进行任何简单的运算：</p>
+<ul>
+<li>在纸上写上或擦除某个符号；</li>
+<li>把注意力从纸的一处移动到另一处；</li>
+</ul>
+<p>而 Brainfuck 语言所做的也正是如此：</p>
+<p>Brainfuck 为每个程序创建了一个长度为 30000 字节，已初始化为零的数组。此外，它还具有一个初始指向数组第一个字节（即下标为 0 的元素）的指针（假设它叫 <code>ptr</code>）。它的 8 种运算符分别对应以下 8 种操作：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">C语言的等价表达</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>&gt;</code></td>
+<td style="text-align:center">指针前进到下一格（自增1）</td>
+<td style="text-align:center"><code>ptr++</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;</code></td>
+<td style="text-align:center">指针回退到上一格（自减1）</td>
+<td style="text-align:center"><code>ptr--</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">指针所指字节的值加一</td>
+<td style="text-align:center"><code>(*ptr)++</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>-</code></td>
+<td style="text-align:center">指针所指字节的值减一</td>
+<td style="text-align:center"><code>(*ptr)--</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">输出所指字节的内容</td>
+<td style="text-align:center"><code>putchar(*ptr)</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>,</code></td>
+<td style="text-align:center">向指针所指的字节输入内容</td>
+<td style="text-align:center"><code>*ptr = getchar()</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[</code></td>
+<td style="text-align:center"><strong>(Part B内容)</strong> 若指针所指字节的值为零，则向后跳转，跳转到其对应的 <code>]</code> 的下一个指令处</td>
+<td style="text-align:center"><code>while (*ptr != 0) &#123;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>]</code></td>
+<td style="text-align:center"><strong>(Part B内容)</strong> 若指针所指字节的值不为零，则向前跳转，跳转到其对应的 <code>[</code> 的下一个指令处</td>
+<td style="text-align:center"><code>&#125;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Brainfuck 这种极端简化的深奥语言 (esolang) 被称为图灵焦油坑 (Turing Tarpit)。虽然理论上可以写出任何程序（图灵完备），但是即使只是写简单的程序也不现实。例如下面是 Brainfuck 的“Hello world”（<code>tests/A/hello_world.bf</code>）：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"><span class="literal">++++++++++</span><span class="string">.</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="我们的代码框架，以及，你需要做什么？">我们的代码框架，以及，你需要做什么？</h2>
+<p>我们为你提供了两个文件：<code>ibf.h</code> 与 <code>ibf.c</code> 。所有你需要理解的部分和需要完成的工作都在 <code>ibf.c</code> 文件中。头文件 <code>ibf.h</code> 中包含了我们提供的魔法 (magic!)，如交互输入输出、命令行参数读取等，尝试阅读或读懂这个文件都不是必要的。</p>
+<p>我们已经为你设计好了代码的框架：用一个结构体 <code>struct brainfuck_state</code> 来储存上述的 Brainfuck 状态模型：里面包括一个字节数组 <code>memory_buffer</code> 和一个储存当前指针位置的数值 <code>memory_pointer_offset</code> 。这个简单的结构体足以完成 part A 中的所有工作：实现除了 <code>[</code> 与 <code>]</code> 两个循环运算符以外的其余六种运算符操作。也就意味着，这时你就可以运行任何不包含 <code>[</code> 与 <code>]</code> 的 Brainfuck 程序！</p>
+<p>简单地说，在本次作业中，你需要填写我们为你在 <code>ibf.c</code> 文件中留出的几个函数，实现相应的功能。在实现的过程中，你可能会需要定义新的函数或为结构体添加新的成员，你都可以自由地去做。</p>
+<h2 id="Part-A">Part A</h2>
+<p>在这一部分里，你需要实现：</p>
+<ul>
+<li>Brainfuck 状态 <code>struct brainfuck_state</code> 的创建与删除
+<ul>
+<li><code>brainfuck_state_new()</code></li>
+<li><code>brainfuck_state_free()</code></li>
+</ul>
+</li>
+<li>除 <code>[</code> 与 <code>]</code> 两个循环运算符以外的六种运算符
+<ul>
+<li><code>brainfuck_execute_plus()</code></li>
+<li><code>brainfuck_execute_minus()</code></li>
+<li><code>brainfuck_execute_previous()</code></li>
+<li><code>brainfuck_execute_next()</code></li>
+<li><code>brainfuck_execute_input()</code></li>
+<li><code>brainfuck_execute_output()</code></li>
+</ul>
+</li>
+<li>执行一段仅含这六种运算符的 Brainfuck 程序
+<ul>
+<li><code>brainfuck_main()</code></li>
+</ul>
+</li>
+</ul>
+<p>关于这些函数的具体说明及注意事项，请阅读代码中对应函数前的注释。</p>
+<h2 id="如何使用">如何使用</h2>
+<p>我们为你提供的代码是一个交互式的程序，也就是它的名字（Interactive BrainFuck, IBF）的由来。你可以如同在命令行使用 <code>python</code> 指令交互式运行 Python 一样交互式地运行 Brainfuck 代码。我们提供了样例程序，在终端中进入当前目录并输入 <code>.\ibf_std</code> (Windows) 或 <code>./ibf_std</code> (MacOS/Linux) 即可运行。建议你在开始写之前先试用以下以大致了解它在做什么。你也同样可以对比你自己写完的程序与样例程序在相同输入时的表现来检查你的程序中可能的问题。</p>
+<p>若你直接运行程序而不传入任何命令行参数（例如，由 VSCode 的 code runner），你将会看到两行说明信息，以及一行以 <code>&gt;&gt;&gt;</code> 开头的交互式输入框。</p>
+<p>试着输入这个简单的程序：<code>,+++.</code></p>
+<p>对照上面的运算符含义，可以看出，这段程序先输入一个字符，再将它的值加 3（ASCII 码向前移 3 位），最后输出。输入这个程序后回车确认，此时程序会等待 <code>,</code>（输入运算符）的输入。再向它输入 <code>a</code> 你就会看到它给出的输出 <code>d</code> 。</p>
+<p>此时程序的状态仍然保留，你可以通过 <code>&gt;&gt;&gt;</code> 交互式输入框输入代码并继续运行。试着再输入 <code>....</code>，将当前字节打印 4 次，你会得到 <code>dddd</code> 。</p>
+<p>我们还提供了很多（很厉害的）示例程序。IBF 也可以运行文件中的 Brainfuck 程序。你需要在命令行中运行你生成的可执行文件，为它提供 Brainfuck 程序文件的路径作为参数。</p>
+<ul>
+<li>Windows下，指令将类似 <code>.\ibf .\tests\hello_world.bf</code> 。</li>
+<li>MacOS/Linux下，指令将类似 <code>./ibf ./tests/hello_world.bf</code> 。</li>
+</ul>
+<p>相同主名的文件为一组示例。程序、输入（部分程序无）、输出的扩展名分别为 <code>.bf</code>，<code>.in</code> 和 <code>.out</code> 。</p>
+<p>当提交至 OJ 时，你只需要提交 <code>ibf.c</code> 文件中的代码。</p>
+<h2 id="Part-B">Part B</h2>
+<p>在这一部分里，你将需要实现最后两个运算符 <code>[</code> 与 <code>]</code> 。</p>
+<p>只靠一个字节数组与一个指针是做不到运行循环的。（想想为什么？）因此，你需要给结构体添加额外的成员以实现 <code>[</code> 与 <code>]</code> 两个循环运算符。</p>
+<p>那么，需要添加哪些额外成员，用来做什么呢？我们鼓励你思考写出你自己的方案，但你也可以直接采用我们为你提供的一种方案。它被以注释的形式藏在了代码里，解除注释即可使用。我们添加的额外成员有：</p>
+<ul>
+<li><code>char* loop_buffer;</code>            一个可以存放循环体的字符串。</li>
+<li><code>size_t loop_buffer_size;</code>      一个可以保存循环体长度的变量。</li>
+<li><code>size_t unmatched_depth;</code>       一个可以保存当前未匹配的嵌套循环层数的变量。</li>
+</ul>
+<p>基于你的实现，你可能不会用到全部这些新成员，也可能会需要自己定义其他的成员变量或为需要的功能添加新的函数。这都是你的自由。</p>
+<h3 id="Part-B-注意事项">Part B 注意事项</h3>
+<ul>
+<li>循环可能嵌套，请确保你能够处理这样的情况。</li>
+<li>每个 <code>[</code> 与 <code>]</code> 判断是否为零的字节与当前指针所指位置有关。</li>
+<li>我们已经帮你处理了括号不匹配时的报错情况。换言之，你可以相信 <code>brainfuck_main()</code> 需要运行的代码中，括号是匹配的。
+<ul>
+<li>有意思的小测试：当你运行交互式终端形式的 ibf 时，若你输入的一行代码并不完整而有未被匹配的 <code>[</code>，此时代码并不会被运行，而是等待你继续向终端中输入代码，直到括号匹配。这与命令行运行 Python 时可以将循环体分行输入类似。试着先输入一行 <code>,&gt;++++[</code>，再输入 <code>&lt;.&gt;-]</code>，最后给里面的逗号 <code>,</code> 输入一个字符看看它会怎样运行！</li>
+</ul>
+</li>
+</ul>
+<h2 id="Attachments-2">Attachments:</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/zivmax/CS100-homework-attachments/tree/main/hw_4_pro_3_attachments">👉 Go to GitHub</a></p>
 
     </div>
 
@@ -479,7 +613,10 @@
     <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/17/C%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-1/" rel="prev" title="编程基础：编程的工作流">
       <i class="fa fa-chevron-left"></i> 编程基础：编程的工作流
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/20/%E7%BB%84%E5%90%88%E5%AD%A6-1/" rel="next" title="组合学 [1]">
+      组合学 [1] <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -538,7 +675,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String-and-Character-Manipulation"><span class="nav-text">String and Character Manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Submission-and-grading"><span class="nav-text">Submission and grading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Samples"><span class="nav-text">Samples</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-Leak-Checker"><span class="nav-text">Memory Leak Checker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-You-d-better-not-skip-this-There-is-some-useful-information-here"><span class="nav-text">Background (You&#39;d better not skip this. There is some useful information here.)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-ideas"><span class="nav-text">Main ideas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obtaining-additional-information"><span class="nav-text">Obtaining additional information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leak-checking"><span class="nav-text">Leak checking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-requirements"><span class="nav-text">Detailed requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Special-things-you-should-know"><span class="nav-text">Special things you should know</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Samples-2"><span class="nav-text">Samples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-program-1"><span class="nav-text">Sample program 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-program-2"><span class="nav-text">Sample program 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Submission"><span class="nav-text">Submission</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Going-further"><span class="nav-text">Going further</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attachments"><span class="nav-text">Attachments:</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String-and-Character-Manipulation"><span class="nav-text">String and Character Manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Submission-and-grading"><span class="nav-text">Submission and grading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Samples"><span class="nav-text">Samples</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-Leak-Checker"><span class="nav-text">Memory Leak Checker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-You-d-better-not-skip-this-There-is-some-useful-information-here"><span class="nav-text">Background (You&#39;d better not skip this. There is some useful information here.)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-ideas"><span class="nav-text">Main ideas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obtaining-additional-information"><span class="nav-text">Obtaining additional information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leak-checking"><span class="nav-text">Leak checking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-requirements"><span class="nav-text">Detailed requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Special-things-you-should-know"><span class="nav-text">Special things you should know</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Samples-2"><span class="nav-text">Samples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-program-1"><span class="nav-text">Sample program 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-program-2"><span class="nav-text">Sample program 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Submission"><span class="nav-text">Submission</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Going-further"><span class="nav-text">Going further</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attachments"><span class="nav-text">Attachments:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interactive-Brainfuck"><span class="nav-text">Interactive Brainfuck</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F-%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%9F"><span class="nav-text">程序 &#x3D;&#x3D;&#x3D; 状态机？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brainfuck-%E5%B0%B1%E6%98%AF%E5%9C%A8%E6%A8%A1%E6%8B%9F%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-text">Brainfuck 就是在模拟状态机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%BB%A5%E5%8F%8A%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">我们的代码框架，以及，你需要做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-A"><span class="nav-text">Part A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-B"><span class="nav-text">Part B</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-B-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">Part B 注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attachments-2"><span class="nav-text">Attachments:</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -554,7 +691,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -568,7 +705,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
