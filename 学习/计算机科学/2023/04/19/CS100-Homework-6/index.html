@@ -37,12 +37,12 @@
 <meta property="og:image" content="https://s2.loli.net/2023/04/19/fBWjYpiuwk9dnPG.png">
 <meta property="og:image" content="https://s2.loli.net/2023/04/19/So4k9IGL3WMtNja.png">
 <meta property="article:published_time" content="2023-04-19T02:36:14.000Z">
-<meta property="article:modified_time" content="2023-04-19T04:11:37.654Z">
+<meta property="article:modified_time" content="2023-04-19T04:43:03.465Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="C 语言">
 <meta property="article:tag" content="CS100">
 <meta property="article:tag" content="作业">
 <meta property="article:tag" content="上科大">
+<meta property="article:tag" content="C 语言">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/04/19/59TcFkKqbNpIBfv.gif">
 
@@ -243,7 +243,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间: 2023-04-19 10:36:14 / 修改时间: 12:11:37" itemprop="dateCreated datePublished" datetime="2023-04-19T10:36:14+08:00">2023-04-19</time>
+              <time title="创建时间: 2023-04-19 10:36:14 / 修改时间: 12:43:03" itemprop="dateCreated datePublished" datetime="2023-04-19T10:36:14+08:00">2023-04-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,8 +305,8 @@
 <p>This problem is based on the <code>Dynarray</code> you wrote in Homework 5 Problem 3. Before adding anything new to it, your <code>Dynarray</code> should meet all the requirements in that problem first.</p>
 <p>In this task, your <code>Dynarray</code> should support the following new things.</p>
 <h3 id="1-Type-alias-members">1. Type alias members</h3>
-<p>The standard library containers have many type alias members for the purpose of supporting generic types. For example, <code>std::vector&lt;T&gt;::value_type</code> is <code>T</code> , <code>std::vector&lt;T&gt;::size_type</code> is <code>std::size_t</code> , <code>std::vector&lt;T&gt;::pointer</code> is <code>T *</code> .</p>
-<p>As an exercise, do the same thing in your <code>Dynarray</code> . You need to define the following type alias members:</p>
+<p>The standard library containers have many type alias members for the purpose of supporting generic types. For example, <code>std::vector&lt;T&gt;::value_type</code> is <code>T</code>, <code>std::vector&lt;T&gt;::size_type</code> is <code>std::size_t</code>, <code>std::vector&lt;T&gt;::pointer</code> is <code>T *</code>.</p>
+<p>As an exercise, do the same thing in your <code>Dynarray</code>. You need to define the following type alias members:</p>
 <table>
 <thead>
 <tr>
@@ -341,28 +341,28 @@
 </tr>
 </tbody>
 </table>
-<p>All of them should be <code>public</code> .</p>
-<p>Moreover, we will eventually make this <code>Dynarray</code> a class template <code>Dynarray&lt;T&gt;</code> that can store any types of data, not only <code>int</code>s. This will be in Homework 7 or 8, depending on the lecture schedule. To make your work easier by then, you'd better make full use of the type alias members you have defined. For example, change <code>new int[n]</code> to <code>new value_type[n]</code> , change <code>int &amp;</code> to <code>reference</code> , and change <code>(const int *begin, const int *end)</code> to <code>(const_pointer begin, const_pointer end)</code> , etc. By the time we make this a class template, you will just have to modify very few things.</p>
+<p>All of them should be <code>public</code>.</p>
+<p>Moreover, we will eventually make this <code>Dynarray</code> a class template <code>Dynarray&lt;T&gt;</code> that can store any types of data, not only ints. This will be in Homework 7 or 8, depending on the lecture schedule. To make your work easier by then, you'd better make full use of the type alias members you have defined. For example, change <code>new int[n]</code> to <code>new value_type[n]</code>, change <code>int &amp;</code> to <code>reference</code>, and change <code>(const int *begin, const int *end)</code> to <code>(const_pointer begin, const_pointer end)</code>, etc. By the time we make this a class template, you will just have to modify very few things.</p>
 <h3 id="2-Move-operations">2. Move operations</h3>
-<p>Add a move constructor and a move assignment operator for your <code>Dynarray</code> . The move operations of <code>Dynarray</code> have the semantics of transferring the ownership of the data. For example, suppose <code>a</code> is a <code>Dynarray</code> , and the move-initialization of <code>b</code></p>
+<p>Add a move constructor and a move assignment operator for your <code>Dynarray</code>. The move operations of <code>Dynarray</code> have the semantics of transferring the ownership of the data. For example, suppose <code>a</code> is a <code>Dynarray</code>, and the move-initialization of <code>b</code></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dynarray <span class="title">b</span><span class="params">(std::move(a))</span></span>;</span><br></pre></td></tr></table></figure>
-<p>makes the ownership of <code>a</code>'s data transferred to <code>b</code> . After that, <code>a</code> should be an empty dynamic array that can be safely destroyed or assigned to. The move assignment operator has similar semantics.</p>
-<p>Both the move constructor and the move assignment operator should be <code>noexcept</code> , and they should not involve any operations that might throw exceptions (e.g. <code>new</code>/<code>new[]</code> expressions).</p>
+<p>makes the ownership of <code>a</code>'s data transferred to <code>b</code>. After that, <code>a</code> should be an empty dynamic array that can be safely destroyed or assigned to. The move assignment operator has similar semantics.</p>
+<p>Both the move constructor and the move assignment operator should be <code>noexcept</code>, and they should not involve any operations that might throw exceptions (e.g. <code>new</code>/<code>new[]</code> expressions).</p>
 <h3 id="3-Find">3. Find</h3>
-<p>Let <code>a</code> be a <code>Dynarray</code> and <code>x</code> be an <code>int</code> . <code>a.find(x)</code> should return the position (index) where <code>x</code> first appears. For example:</p>
+<p>Let <code>a</code> be a <code>Dynarray</code> and <code>x</code> be an <code>int</code>. <code>a.find(x)</code> should return the position (index) where <code>x</code> first appears. For example:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">42</span>, <span class="number">43</span>, <span class="number">45</span>, <span class="number">43</span>, <span class="number">45</span>, <span class="number">47</span>, <span class="number">42</span>&#125;;</span><br><span class="line"><span class="function">Dynarray <span class="title">a</span><span class="params">(arr, arr + <span class="number">7</span>)</span></span>;</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">45</span>) == <span class="number">2</span>);</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">43</span>) == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">47</span>) == <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-<p>If <code>x</code> is not found, return <code>Dynarray::npos</code> , which should be of type <code>const std::size_t</code> and has the value equal to <code>static_cast&lt;std::size_t&gt;(-1)</code> .</p>
-<p>Moreover, one can also specify where to start searching by passing the second argument <code>pos</code> of type <code>std::size_t</code> . For example:</p>
+<p>If <code>x</code> is not found, return <code>Dynarray::npos</code>, which should be of type <code>const std::size_t</code> and has the value equal to <code>static_cast&lt;std::size_t&gt;(-1)</code>.</p>
+<p>Moreover, one can also specify where to start searching by passing the second argument <code>pos</code> of type <code>std::size_t</code>. For example:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">43</span>, <span class="number">2</span>) == <span class="number">3</span>);</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">42</span>, <span class="number">1</span>) == <span class="number">6</span>);</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">43</span>, <span class="number">4</span>) == Dynarray::npos);</span><br><span class="line"><span class="built_in">assert</span>(a.<span class="built_in">find</span>(<span class="number">42</span>, <span class="number">19260817</span>) == Dynarray::npos);</span><br></pre></td></tr></table></figure>
-<p><code>a.find(x)</code> is equivalent to <code>a.find(x, 0)</code> . If <code>x</code> is not found in the index range <code>[pos, size())</code> , or if <code>pos &gt;= size()</code> , <code>Dynarray::npos</code> should be returned.</p>
+<p><code>a.find(x)</code> is equivalent to <code>a.find(x, 0)</code>. If <code>x</code> is not found in the index range <code>[pos, size())</code>, or if <code>pos &gt;= size()</code>, <code>Dynarray::npos</code> should be returned.</p>
 <p>Notes:</p>
 <ul>
-<li>The return type of <code>find</code> should be <code>std::size_t</code> .</li>
+<li>The return type of <code>find</code> should be <code>std::size_t</code>.</li>
 <li>C++ allows functions to have default arguments.</li>
 <li><code>const</code> static members can have an in-class initializer.</li>
 </ul>
 <h3 id="Submission">Submission</h3>
-<p>We have provided you with three files: <code>dynarray.hpp</code> , <code>example.cpp</code> and <code>compile_test.cpp</code> . You can run <code>example.cpp</code> and <code>compile_test.cpp</code> on your own. Submit the content of <code>dynarray.hpp</code> to OJ.</p>
+<p>We have provided you with three files: <code>dynarray.hpp</code>, <code>example.cpp</code> and <code>compile_test.cpp</code>. You can run <code>example.cpp</code> and <code>compile_test.cpp</code> on your own. Submit the content of <code>dynarray.hpp</code> to OJ.</p>
 <h3 id="Grading">Grading</h3>
 <p>The grading of this problem contains three subtasks.</p>
 <p>The first subtask contains only compile-time checks. This subtask accounts for 5 points.</p>
@@ -426,9 +426,9 @@
 <img src="https://s2.loli.net/2023/04/19/fBWjYpiuwk9dnPG.png" alt></p>
 <h3 id="Your-Task">Your Task</h3>
 <p>The Game of Life is a very simple game, but it has been shown to be capable of producing complex and interesting patterns. In fact, there are entire websites and books dedicated to the study of the Game of Life.</p>
-<p>Your task is to complete the implementation of our C++ version of the Game of Life with multiple rules. We have provided you a framework to help you get started. You need to design the variant game rules in <code>LifeRule.h</code> and <code>LifeRule.cpp</code> . You can refer to <a href="#how-to-run">How-to-Run</a> to play with the game.</p>
-<p>Different rules are represented by different classes that inherit on the common base rule <code>class LifeRuleBase</code> . You need to think about how to design these class structures, and the inheritance relationship between different rules.</p>
-<p>We have already provided the base rule, <code>class LifeRuleBase</code> . Left you to finish are four variant rules listed above: <code>LifeRuleColorised</code> , <code>LifeRuleExtended</code> , <code>LifeRuleWeighted</code> , and <code>LifeRuleGenerations</code> .</p>
+<p>Your task is to complete the implementation of our C++ version of the Game of Life with multiple rules. We have provided you a framework to help you get started. You need to design the variant game rules in <code>LifeRule.h</code> and <code>LifeRule.cpp</code>. You can refer to <a href="#how-to-run">How-to-Run</a> to play with the game.</p>
+<p>Different rules are represented by different classes that inherit on the common base rule <code>class LifeRuleBase</code>. You need to think about how to design these class structures, and the inheritance relationship between different rules.</p>
+<p>We have already provided the base rule, <code>class LifeRuleBase</code>. Left you to finish are four variant rules listed above: <code>LifeRuleColorised</code>, <code>LifeRuleExtended</code>, <code>LifeRuleWeighted</code>, and <code>LifeRuleGenerations</code>.</p>
 <p>Here is the description:</p>
 <ul>
 <li><code>LifeRuleBase</code>: We have provided it for you. This is the original Game of Life, containing the basic code for implementing a rule in the Game of Life.</li>
@@ -437,8 +437,8 @@
 <li><code>LifeRuleWeighted</code>: <strong>You need to complete it</strong>. In this variant, neighbors are weighted.</li>
 <li><code>LifeRuleGenerations</code>: <strong>You need to complete it</strong>. In this variant, the cells &quot;get older&quot; before eventually dying.</li>
 </ul>
-<p>To make sure the homework compiles, every rule must be a subclass of <code>LifeRuleBase</code> .</p>
-<p>You will be working only on two files, <code>LifeRule.h</code> and <code>LifeRule.cpp</code> . Other files are not submitted.</p>
+<p>To make sure the homework compiles, every rule must be a subclass of <code>LifeRuleBase</code>.</p>
+<p>You will be working only on two files, <code>LifeRule.h</code> and <code>LifeRule.cpp</code>. Other files are not submitted.</p>
 <h4 id="Framework">Framework</h4>
 <p>In real life, the game is often played on infinite number of grids. However, to simplify this homework, our game has fixed 25 * 25 grids. The cells out of the grids will always be regarded as dead, and will never come to life.</p>
 <p>For the original rules, a cell in grid can be described by three parameters: <strong>x</strong>, <strong>y</strong> and <strong>state</strong>:</p>
@@ -446,28 +446,28 @@
 <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> represents the coordinate of this cell. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>∈</mo><msup><mi>Z</mi><mo>+</mo></msup><mo separator="true">,</mo><mn>0</mn><mo>≤</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>≤</mo><mn>24</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y \in Z^+, 0 \leq x, y \leq 24)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9658em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">24</span><span class="mclose">)</span></span></span></span></li>
 <li>State describes whether the cell is alive or dead.</li>
 </ul>
-<p>A cell is defined in <code>LifeCell.cpp</code> , called <code>class LifeCell</code> , with a smart pointer <code>CellPointer</code> .</p>
-<p>A class of any rules have two key functions <code>DetermineNextState</code> , <code>GetNeighbors</code> . You may want to reuse some of them, and rewrite others.</p>
+<p>A cell is defined in <code>LifeCell.cpp</code>, called <code>class LifeCell</code>, with a smart pointer <code>CellPointer</code>.</p>
+<p>A class of any rules have two key functions <code>DetermineNextState</code>, <code>GetNeighbors</code>. You may want to reuse some of them, and rewrite others.</p>
 <p>Here is the definition of the two functions:</p>
 <p><strong>DetermineNextState</strong></p>
 <blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="type">void</span> <span class="title">DetermineNextState</span><span class="params">(<span class="type">const</span> CellPointer current, <span class="type">const</span> CellNeighbors &amp;neighbors)</span> <span class="type">const</span></span></span><br></pre></td></tr></table></figure>
-<p>This function will determine the next state of a cell, based on its current state and the number of lived <code>neighbors</code> .</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">DetermineNextState</span><span class="params">(<span class="type">const</span> CellPointer current, <span class="type">const</span> CellNeighbors &amp;neighbors)</span> <span class="type">const</span></span></span><br></pre></td></tr></table></figure>
+<p>This function will determine the next state of a cell, based on its current state and the number of lived <code>neighbors</code>.</p>
 <ul>
 <li><strong><em>Parameters:</em></strong></li>
 </ul>
-<p><code>current</code>: A <code>CellPointer</code> , pointing to a cell to be updated</p>
-<p><code>neighbors</code>: an <code>std::vector</code> of <code>CellPointer</code> , containing all the neighbors of the cell we working on. You need to count the number of living cells in neighbors to determine the next state.</p>
+<p><code>current</code>: A <code>CellPointer</code>, pointing to a cell to be updated</p>
+<p><code>neighbors</code>: an <code>std::vector</code> of <code>CellPointer</code>, containing all the neighbors of the cell we working on. You need to count the number of living cells in neighbors to determine the next state.</p>
 </blockquote>
 <p><strong>GetNeighbors</strong></p>
 <blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function">CellNeighbors <span class="title">GetNeighbors</span><span class="params">(<span class="type">const</span> GameWorld *<span class="type">const</span> game_world, <span class="type">const</span> <span class="type">int</span> x, <span class="type">const</span> <span class="type">int</span> y)</span> <span class="type">const</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CellNeighbors <span class="title">GetNeighbors</span><span class="params">(<span class="type">const</span> GameWorld *<span class="type">const</span> game_world, <span class="type">const</span> <span class="type">int</span> x, <span class="type">const</span> <span class="type">int</span> y)</span> <span class="type">const</span></span></span><br></pre></td></tr></table></figure>
 <p>It returns a vector containing all of the neighbors of the cell at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> .</p>
 <ul>
 <li><strong><em>Parameters:</em></strong></li>
 </ul>
 <p><code>game_world</code>: The current world we are working in (You can imagine this as the grid paper we play the game on).</p>
-<p><code>x</code> , <code>y</code> : The coordinate of the cell.</p>
+<p><code>x</code>, <code>y</code> : The coordinate of the cell.</p>
 <ul>
 <li><strong><em>Returns:</em></strong></li>
 </ul>
@@ -479,22 +479,22 @@
 <p>The colorised rule is a variant of the original game. Now the living cells are all colored with one of the two different colors, red and blue. When a cell is born, its color will be decided by the majority color of its three lived neighbors.</p>
 <p>Since the birth of a cell only happens when it has 3 living neighbors, and we only have 2 colors here, a majority color is guaranteed.</p>
 <ul>
-<li>Please note that it should be implemented as <code>class LifeRuleColorised</code> .</li>
+<li>Please note that it should be implemented as <code>class LifeRuleColorised</code>.</li>
 </ul>
 <p><strong>Hint</strong></p>
 <ul>
-<li>You may want to inherit <code>LifeRuleBase</code> and override its <code>DetermineNextState</code> .</li>
+<li>You may want to inherit <code>LifeRuleBase</code> and override its <code>DetermineNextState</code>.</li>
 </ul>
 </blockquote>
 <p><strong>Extended Rule</strong></p>
 <blockquote>
 <p>The extended rule is a variant of the original game, where a cell's neighborhood is extended to 2. (i.e. All other 24 cells in a square of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>∗</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">5 * 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> are now neighbors of the centering cell).</p>
 <ul>
-<li>Please note that it should be implemented as <code>class LifeRuleExtended</code> .</li>
+<li>Please note that it should be implemented as <code>class LifeRuleExtended</code>.</li>
 </ul>
 <p><strong>Hint</strong></p>
 <ul>
-<li>This can be done by overriding <code>GetNeighbors</code> .</li>
+<li>This can be done by overriding <code>GetNeighbors</code>.</li>
 </ul>
 </blockquote>
 <p><strong>Weighted Rule</strong></p>
@@ -517,7 +517,7 @@
 <p>For example, the cell in the center of the following grid has a <em>total influence</em> of 6, so it will survive in the next generation.</p>
 <p><img src="https://s2.loli.net/2023/04/19/So4k9IGL3WMtNja.png" alt></p>
 <p><strong>Hint</strong></p>
-<p>This can be done by overriding <code>DetermineNextState</code> in <code>LifeRuleExtended</code> .</p>
+<p>This can be done by overriding <code>DetermineNextState</code> in <code>LifeRuleExtended</code>.</p>
 </blockquote>
 <p><strong>Generations Rule</strong></p>
 <blockquote>
@@ -536,15 +536,15 @@
 </ol>
 <p>In this homework, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">N = 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span> .</p>
 <ul>
-<li>Please note that it should be implemented as <code>class LifeRuleGenerations</code> .</li>
+<li>Please note that it should be implemented as <code>class LifeRuleGenerations</code>.</li>
 </ul>
 <p><strong>Hint</strong></p>
-<p>You may want to inherit <code>LifeRuleBase</code> and override its <code>DetermineNextState</code> .</p>
+<p>You may want to inherit <code>LifeRuleBase</code> and override its <code>DetermineNextState</code>.</p>
 </blockquote>
 <h4 id="Cell-state-and-map-representation">Cell state and map representation</h4>
 <p><strong>Cell State</strong></p>
 <blockquote>
-<p>The cell class <code>LifeCell</code> is defined in <code>LifeCell.cpp</code> . It has three attributes: <strong>x</strong>, <strong>y</strong> and <strong>state</strong>. However, to support different rules, the state is <strong>not</strong> binary (just 'dead' or 'alive'), but an integer state. The state of a cell can be one of the following:</p>
+<p>The cell class <code>LifeCell</code> is defined in <code>LifeCell.cpp</code>. It has three attributes: <strong>x</strong>, <strong>y</strong> and <strong>state</strong>. However, to support different rules, the state is <strong>not</strong> binary (just 'dead' or 'alive'), but an integer state. The state of a cell can be one of the following:</p>
 <ul>
 <li>0: dead</li>
 <li>1: alive</li>
@@ -580,18 +580,18 @@
 <p><strong>Compile the project</strong></p>
 <blockquote>
 <p>In Windows, you can compile with:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;g++ -Wall -Wextra -o gol.exe GameWorld.cpp GameManager.cpp LifeCell.cpp main.cpp LifeRule.cpp</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -Wall -Wextra -o gol.exe GameWorld.cpp GameManager.cpp LifeCell.cpp main.cpp LifeRule.cpp</span><br></pre></td></tr></table></figure>
 <p>In Linux or MacOS, you can compile with:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;g++ -Wall -Wextra -o gol GameWorld.cpp GameManager.cpp LifeCell.cpp main.cpp LifeRule.cpp</span><br></pre></td></tr></table></figure>
-<p>The framework we provide does not compile right off-hand, because the four classes of life rules for you to write haven't inherited from <code>LifeRuleBase</code> yet. Try to make these classes inherit from <code>LifeRuleBase</code> , and you can compile your code to run the already implemented base game.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -Wall -Wextra -o gol GameWorld.cpp GameManager.cpp LifeCell.cpp main.cpp LifeRule.cpp</span><br></pre></td></tr></table></figure>
+<p>The framework we provide does not compile right off-hand, because the four classes of life rules for you to write haven't inherited from <code>LifeRuleBase</code> yet. Try to make these classes inherit from <code>LifeRuleBase</code>, and you can compile your code to run the already implemented base game.</p>
 </blockquote>
 <p><strong>Run the project</strong></p>
 <blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;./gol &lt;rule&gt;</span><br></pre></td></tr></table></figure>
-<p>The program takes one argument, which is the rule you want to use. The rule can be <code>Base</code> , <code>Colorised</code> , <code>Extended</code> , <code>Weighted</code> , <code>Generations</code> .</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gol &lt;rule&gt;</span><br></pre></td></tr></table></figure>
+<p>The program takes one argument, which is the rule you want to use. The rule can be <code>Base</code>, <code>Colorised</code>, <code>Extended</code>, <code>Weighted</code>, <code>Generations</code>.</p>
 <p>Try to run with <code>./gol base</code> and you can play with the original Game of Life.</p>
 <p>Then, you can select a map from <code>map/</code> and play with it. We have provided different maps for different rules.</p>
-<p>For example, after you have implemented <code>LifeRuleColorised</code> , you can run with <code>./gol colorised</code> , then load the map 'map/colorised.cells'.</p>
+<p>For example, after you have implemented <code>LifeRuleColorised</code>, you can run with <code>./gol colorised</code>, then load the map 'map/colorised.cells'.</p>
 <p>You can find more maps at the <a target="_blank" rel="noopener" href="https://conwaylife.com/wiki/">wiki</a> and play with them at <a target="_blank" rel="noopener" href="https://golly.sourceforge.net/webapp/golly.html">golly</a>.</p>
 </blockquote>
 <h4 id="File-Structure">File Structure</h4>
@@ -606,7 +606,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>LifeRule.h</code> , <code>LifeRule.cpp</code></td>
+<td><code>LifeRule.h</code>, <code>LifeRule.cpp</code></td>
 <td>Where all of your rules will reside. You need to implement the rules in these files. You only need to submit these files.</td>
 </tr>
 </tbody>
@@ -621,11 +621,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>LifeCell.h</code> , <code>LifeCell.cpp</code></td>
+<td><code>LifeCell.h</code>, <code>LifeCell.cpp</code></td>
 <td>The cell class, representing a cell in a grid in the game world.</td>
 </tr>
 <tr>
-<td><code>GameWorld.h</code> , <code>GameWorld.cpp</code></td>
+<td><code>GameWorld.h</code>, <code>GameWorld.cpp</code></td>
 <td>It contains the game world class, which maintains all the cells in the game world.</td>
 </tr>
 <tr>
@@ -637,7 +637,7 @@
 <td>The file that defines some basic game settings as described above. You may want to use these settings in your implementation.</td>
 </tr>
 <tr>
-<td><code>map/base.cells</code> , <code>map/colorised.cells</code> ...</td>
+<td><code>map/base.cells</code>, <code>map/colorised.cells</code>...</td>
 <td>The map files for different rules. You can load them in the game.</td>
 </tr>
 </tbody>
@@ -656,14 +656,14 @@
 <td>Useful functions for implementing the interface.</td>
 </tr>
 <tr>
-<td><code>GameManager.cpp</code> , <code>GameManager.h</code></td>
+<td><code>GameManager.cpp</code>, <code>GameManager.h</code></td>
 <td>Simple ASCII graphics for the game</td>
 </tr>
 </tbody>
 </table>
 <h3 id="Submission-2">Submission</h3>
 <p>You need to pack <code>LifeRule.h</code> and <code>LifeRule.cpp</code> into a zip file and submit it to OJ.</p>
-<p>The zip file can have an arbitrary name, but should only contain these two files. For MacOS users, it is fine to have one additional system-generated file named <code>.DS_Store</code> .</p>
+<p>The zip file can have an arbitrary name, but should only contain these two files. For MacOS users, it is fine to have one additional system-generated file named <code>.DS_Store</code>.</p>
 <p>In Linux or MacOS, you can run the following command to pack the files:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -r submit.zip LifeRule.h LifeRule.cpp</span><br></pre></td></tr></table></figure>
 <p>In Windows, you can use <a target="_blank" rel="noopener" href="https://www.7-zip.org/">7-zip</a> or <a target="_blank" rel="noopener" href="http://www.bandisoft.com/">BandiZip</a> to pack the files, or use the following command:</p>
@@ -672,12 +672,12 @@
 <p>If you are not familiar with terminal, please refer to <a target="_blank" rel="noopener" href="https://sp18.datastructur.es/materials/lab/lab1setup/lab1setup#b-learn-to-use-the-terminal">Learn how to use terminal</a>.</p>
 <p>It is hard to maintain a large project within a single file. Splitting your program into multiple small files makes it easier to understand and work with. Each file can focus on one specific task. This is less overwhelming than putting everything in one huge file.</p>
 <p>In this homework, you will practice how to write multiple files and how to use them together.</p>
-<p>In previous homeworks, you have written C++ programs in a single source file ( <code>*.c</code> , <code>*.cpp</code> ). Some homework contain header files ( <code>*.h</code> , <code>*.hpp</code> ), which are included in source files and not passed directly to the compiling command. Recall that, to compile a single-file C++ program, we run:</p>
+<p>In previous homeworks, you have written C++ programs in a single source file ( <code>*.c</code>, <code>*.cpp</code> ). Some homework contain header files ( <code>*.h</code>, <code>*.hpp</code> ), which are included in source files and not passed directly to the compiling command. Recall that, to compile a single-file C++ program, we run:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ homework.cpp -o homework -Wall -Wextra </span><br></pre></td></tr></table></figure>
 <p><code>g++</code> is the GNU C++ compiler. The <code>-Wall</code> and <code>-Wextra</code> flags enable additional warning messages to catch issues in your code. <code>homework.cpp</code> is the file you are compiling. The <code>-o</code> flag specifies the name of the executable file, <code>homework</code> in this case,</p>
 <p>To compile multiple <code>.cpp</code> files into a program, you can run with:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ circle.cpp square.cpp triangle.cpp -o shapes</span><br></pre></td></tr></table></figure>
-<p>This will compile <code>circle.cpp</code> , <code>square.cpp</code> and <code>triangle.cpp</code> into into an executable named <code>shapes</code> . If there are header files such as <code>circle.h</code> or <code>square.h</code> , as long as they are properly included, the code in them are also compiled.</p>
+<p>This will compile <code>circle.cpp</code>, <code>square.cpp</code> and <code>triangle.cpp</code> into into an executable named <code>shapes</code>. If there are header files such as <code>circle.h</code> or <code>square.h</code>, as long as they are properly included, the code in them are also compiled.</p>
 <p>When compiling multiple files, make sure to:</p>
 <ol>
 <li>Include the proper header files in each <code>.cpp</code> file, for example:</li>
@@ -706,10 +706,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
               <a href="/tags/CS100/" rel="tag"># CS100</a>
               <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
               <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
           </div>
 
         
