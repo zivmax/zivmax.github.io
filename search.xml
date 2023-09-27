@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>CS100-Project(HW8)</title>
+      <link href="//%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/09/27/CS100-Project-HW8/"/>
+      <url>//%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/09/27/CS100-Project-HW8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><hr><p><strong>Project</strong>:</p><ul><li><a href>PvZ</a></li></ul><p>This is the final project of CS100 in 2023 Spring.</p><p>We are going to implement a simplified version of &quot;Plants vs Zombies&quot;.</p><span id="more"></span><h1 id="Plants-vs-Zombies">Plants vs Zombies</h1><h2 id="Demo">Demo</h2><p>Here's the <strong>demo</strong> of the game:</p><p><a href="https://github.com/zivmax/CS100-2023-Spring-homework-resources/tree/main/hw8_demo/">👉 Go to GitHub for the demo</a></p><p>Your project should eventually be able to run exactly same as this demo.</p><hr><h2 id="Specification">Specification</h2><p>All details can be found in the <code>spec.pdf</code>.</p><p><em><strong>Please read and follow it carefully.</strong></em></p><p><a href="https://github.com/zivmax/CS100-2023-Spring-homework-resources/tree/main/hw8_attachments/">👉 Go to GitHub for the attachments</a></p><p>Personally, I recommend you to use Visual Studio 2022 in CMake mode to develop this project.</p><p>If you don't understand how to use CMake or what it is, you can refer to the following links:</p><ul><li><p><a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a></p></li><li><p><a href="https://learn.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170">CMake projects in Visual Studio</a></p></li><li><p><a href="https://cliutils.gitlab.io/modern-cmake/">An Introduction to Modern CMake</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/534439206">全网最细的CMake教程！(强烈建议收藏)</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+          <category> 计算机科学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C 语言 </tag>
+            
+            <tag> CS100 </tag>
+            
+            <tag> 作业 </tag>
+            
+            <tag> 上科大 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS100 Homework [7]</title>
       <link href="//%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/05/09/CS100-Homework-7/"/>
       <url>//%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/05/09/CS100-Homework-7/</url>
@@ -22,13 +55,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -57,11 +90,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -88,13 +121,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -123,11 +156,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -154,13 +187,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -189,11 +222,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -255,11 +288,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -416,11 +449,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -478,11 +511,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -511,11 +544,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -641,13 +674,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -856,13 +889,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -889,13 +922,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -957,11 +990,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -1021,11 +1054,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -1054,11 +1087,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -1209,13 +1242,13 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
+            <tag> C 语言 </tag>
             
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
             
-            <tag> C 语言 </tag>
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -1242,11 +1275,11 @@
       
         <tags>
             
-            <tag> 上科大 </tag>
-            
             <tag> CS100 </tag>
             
             <tag> 作业 </tag>
+            
+            <tag> 上科大 </tag>
             
         </tags>
       
@@ -1275,11 +1308,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
@@ -1308,11 +1341,11 @@
             
             <tag> 上科大 </tag>
             
-            <tag> 笔记 </tag>
-            
             <tag> 高等数学 </tag>
             
             <tag> 微积分 </tag>
+            
+            <tag> 笔记 </tag>
             
         </tags>
       
