@@ -199,22 +199,22 @@ h6 {
   margin: 20px 0 15px;
 }
 h1 {
-  font-size: 1.8em;
+  font-size: 1.77em;
 }
 h2 {
-  font-size: 1.6em;
+  font-size: 1.54em;
 }
 h3 {
-  font-size: 1.4em;
+  font-size: 1.31em;
 }
 h4 {
-  font-size: 1.2em;
+  font-size: 1.08em;
 }
 h5 {
-  font-size: 1em;
+  font-size: 0.85em;
 }
 h6 {
-  font-size: 0.8em;
+  font-size: 0.62em;
 }
 p {
   margin: 0 0 20px 0;
@@ -1213,7 +1213,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #494940;
+  background: #66fcff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1456,7 +1456,7 @@ pre .javascript .function {
   width: 100%;
 }
 .with-love {
-  color: #FF0000;
+  color: #000000;
   display: inline-block;
   margin: 0 5px;
 }
