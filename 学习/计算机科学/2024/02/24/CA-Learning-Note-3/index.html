@@ -23,25 +23,24 @@
     var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="经济体系的作用是回答三个问题： 我们生产什么？ 我们如何生产？ 谁来获得产品？">
+  <meta name="description" content="RISC-V edition.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经导[3]：经济体系">
-<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-3-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/index.html">
+<meta property="og:title" content="CA Learning Note 3 [Unfinished]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CA-Learning-Note-3/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="经济体系的作用是回答三个问题： 我们生产什么？ 我们如何生产？ 谁来获得产品？">
+<meta property="og:description" content="RISC-V edition.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2023/03/05/ZEg1KM57CNlcmWH.png">
-<meta property="og:image" content="https://s2.loli.net/2023/03/05/bc3QYJmwAnuviWf.png">
-<meta property="article:published_time" content="2023-03-05T13:15:55.000Z">
-<meta property="article:modified_time" content="2023-03-16T10:11:22.595Z">
+<meta property="article:published_time" content="2024-02-24T08:32:40.000Z">
+<meta property="article:modified_time" content="2024-02-24T13:04:37.059Z">
 <meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="CS61C">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
 <meta property="article:tag" content="笔记">
-<meta property="article:tag" content="上科大">
-<meta property="article:tag" content="经济学导论">
+<meta property="article:tag" content="Unfinished">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2023/03/05/ZEg1KM57CNlcmWH.png">
 
-<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-3-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/">
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CA-Learning-Note-3/">
 
 
 <script id="page-configurations">
@@ -54,7 +53,7 @@
   };
 </script>
 
-  <title>经导[3]：经济体系 | 青山后小塘</title>
+  <title>CA Learning Note 3 [Unfinished] | 青山后小塘</title>
   
 
 
@@ -214,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-3-%EF%BC%9A%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB/">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CA-Learning-Note-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -227,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          经导[3]：经济体系
+          CA Learning Note 3 [Unfinished]
         </h1>
 
         <div class="post-meta">
@@ -236,16 +235,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间: 2023-03-05 21:15:55" itemprop="dateCreated datePublished" datetime="2023-03-05T21:15:55+08:00">2023-03-05</time>
+              <time title="创建时间: 2024-02-24 16:32:40 / 修改时间: 21:04:37" itemprop="dateCreated datePublished" datetime="2024-02-24T16:32:40+08:00">2024-02-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2023-03-16 18:11:22" itemprop="dateModified" datetime="2023-03-16T18:11:22+08:00">2023-03-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -256,7 +249,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">经济学</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
                 </span>
             </span>
 
@@ -266,16 +259,15 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>502</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>31 分钟</span>
             </span>
-            <div class="post-description">经济体系的作用是回答三个问题： 我们生产什么？ 我们如何生产？ 谁来获得产品？</div>
 
         </div>
       </header>
@@ -286,66 +278,129 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>经济体系的作用是回答三个问题：</p>
-<ol>
-<li>我们生产什么？</li>
-<li>我们如何生产？</li>
-<li>谁来获得产品？</li>
-</ol>
-<hr>
-<h1 id="常见的经济体系">常见的经济体系</h1>
-<p>不同的经济体系的本质区别是 <em><strong>谁，拥有和控制生产要素</strong></em></p>
-<h2 id="I-计划经济（指令型经济）">I. 计划经济（指令型经济）</h2>
-<p>政府拥有和控制生产要素。<br>
-由政府来决定</p>
-<ol>
-<li>生产什么？</li>
-<li>如何生产？</li>
-<li>谁获得产品？</li>
-</ol>
-<p>政府甚至可能会决定生产商品的具体数目</p>
-<h2 id="II-市场经济（自由经济）">II. 市场经济（自由经济）</h2>
-<p>个体拥有和控制生产要素。</p>
-<p>政府对生产，商务和贸易采取自由放任的态度，因为市场有 <em><strong>看不见的手</strong></em> 。</p>
-<h2 id="III-混合经济">III. 混合经济</h2>
-<p>大部分现代经济的类型，在接下来细讲。</p>
-<hr>
-<h1 id="现代经济体系">现代经济体系</h1>
-<h2 id="I-简介">I. 简介</h2>
-<p>绝大多数现代经济体系都是混合经济，介于计划经济和市场经济之间，因为纯粹的计划经济过于迟钝，而存粹的市场经济难逃市场失灵<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="市场失灵的概念将在之后有独立的笔记。">[1]</span></a></sup>。</p>
-<p>例如：</p>
-<ul>
-<li>生产要素部分由个体控制，部分由政府控制</li>
-</ul>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RISC-V edition.</p>
+<span id="more"></span>
+<h1 id="Operations-of-the-Computer-Hardware">Operations of the Computer Hardware</h1>
+<h2 id="Instruction-set">Instruction set</h2>
+<p>In the introduction, we have learned that the CPU have the basic instructions to perform, like <code>add</code>, <code>subtract</code>, <code>load</code>, <code>store</code>, <code>branch</code>, <code>jump</code>, etc. These instructions are the basic operations of the computer hardware.</p>
+<p>By combining these basic operations, we can perform more complex operations, like <code>multiplication</code>, <code>division</code>, <code>array access</code>, <code>function call</code>, etc.</p>
+<p>However, how to define the most basic operations of the computer hardware? Actually there's no standard answer to this question. We have many different designs which all ahiceve the same goal: using the basic operations to perform complex operations.</p>
+<p>Different CPU using different instruction set have different basic operations could be performed. In my notes, I will always use the RISC-V instruction set as the example.</p>
+<h2 id="Assembly-Language">Assembly Language</h2>
+<p>In the introduction, we also learned that the programming language to directly describe these operations is called <em>assembly language</em>.</p>
 <blockquote>
-<p>盐，电力，水资源的开发</p>
+<p>Here's a example of the RISC-V assembly language:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;add x1, x2, x3</span><br></pre></td></tr></table></figure>
+<p>This instruction means that the value of <code>x2</code> and <code>x3</code> will be added together, and the result will be stored in <code>x1</code>.</p>
 </blockquote>
-<ul>
-<li>生产要素虽然由个体控制，但是政府监管如何生产，或者禁止某些产品的生产。</li>
-</ul>
-<blockquote>
-<p>汽车的排气标准</p>
-</blockquote>
-<h2 id="II-循环流动图">II. 循环流动图</h2>
-<p>通过循环流动图，我们能快速一窥现代经济是如何运行的。</p>
-<p><em><strong>用两个简单模型结合起来理解：</strong></em></p>
-<ul>
-<li>极致简化的模型</li>
-</ul>
-<blockquote>
-<p><img src="https://s2.loli.net/2023/03/05/ZEg1KM57CNlcmWH.png" alt></p>
-</blockquote>
-<ul>
-<li>忽略政府参与的模型</li>
-</ul>
-<blockquote>
-<p><img src="https://s2.loli.net/2023/03/05/bc3QYJmwAnuviWf.png" alt></p>
-</blockquote>
-<p>政府在循环中的作用</p>
-<blockquote>
-<p>政府同样会购买产品和资源，为公共服务，基础建设，个体补贴付钱，而通过税收和贷款来获得收入。</p>
-</blockquote>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">市场失灵的概念将在之后有独立的笔记。<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+<p>Each instruction set have its own assembly language. Below is the little more detailed introduction of the RISC-V instruction set.</p>
+<p>The table shows the <strong>basic operations</strong> of the RISC-V assembly language:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation</th>
+<th style="text-align:center">Name</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>add</code></td>
+<td style="text-align:center">Add</td>
+<td><code>add x1, x2, x3</code></td>
+<td><code>x1 = x2 + x3</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sub</code></td>
+<td style="text-align:center">Subtract</td>
+<td><code>sub x1, x2, x3</code></td>
+<td><code>x1 = x2 - x3</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>addi</code></td>
+<td style="text-align:center">Add immediate</td>
+<td><code>addi x1, x2, 100</code></td>
+<td><code>x1 = x2 + 100</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ld</code></td>
+<td style="text-align:center">Load doubleword</td>
+<td><code>lw x1, 100(x2)</code></td>
+<td><code>x1 = Memory[x2+100]</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sd</code></td>
+<td style="text-align:center">Store doubleword</td>
+<td><code>sw x1, 100(x2)</code></td>
+<td><code>Memory[x2+100] = x1</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>beq</code></td>
+<td style="text-align:center">Branch if equal</td>
+<td><code>beq x1, x2, 100</code></td>
+<td><code>if (x1 == x2) go to PC += 100</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>jal</code></td>
+<td style="text-align:center">Jump and link</td>
+<td><code>jal x1, 100</code></td>
+<td><code>x1 = PC+4; go to PC += 100</code></td>
+</tr>
+</tbody>
+</table>
+<p>Clearly the tables are not complete, for the full list of the RISC-V assembly language, go check the <a target="_blank" rel="noopener" href="https://msyksphinz-self.github.io/riscv-isadoc/html/">RISC-V is a Doc</a>.</p>
+<h1 id="Operands-of-the-Computer-Hardware">Operands of the Computer Hardware</h1>
+<p>The table shows the <strong>operands</strong> of the RISC-V instruction set:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operand</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>x1</code> to <code>x31</code></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn></mrow><annotation encoding="application/x-tex">32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">32</span></span></span></span> Registers</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(0)</code> to <code>(2^61)</code></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>61</mn></msup></mrow><annotation encoding="application/x-tex">2^{61}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">61</span></span></span></span></span></span></span></span></span></span></span></span> Memory words</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Register-Operands">Register Operands</h2>
+<p>Registers are the smallest and fastest memory, and they are used to store the intermediate results of the computation or the most frequent accessed data. Because registers are embeded in the CPU, so the CPU can access the registers directly. Thus the access time is very short (faster than 0.25ns). Each register can store 64 bits of data. Since 64 bits is so often used, this size is called a <em>doubleword</em>. (while 32 bits is called a <em>word</em>.)</p>
+<p>As the CPU can directly access the registers, we can surely use the registers in out assmebly code. The RISC-V instruction set have 32 registers, and they are named from <code>x1</code> to <code>x31</code>. So when we use those variables in the assembly code, we are using the register.</p>
+<p>The follwing C code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br></pre></td></tr></table></figure>
+<p>should be compiled to the following RISC-V assembly code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add x1, x2, x3</span><br><span class="line">add x4, x5, x6</span><br><span class="line">sub x7, x1, x4</span><br></pre></td></tr></table></figure>
+<p>If <code>f</code>, <code>g</code>, <code>h</code>, <code>i</code>, <code>j</code> are assigned to <code>x7</code>, <code>x2</code>, <code>x3</code>, <code>x5</code>, <code>x6</code> respectively. And <code>x1</code>, <code>x4</code> are used as the temporary registers.</p>
+<p>The most important thing to notice is that, only on registers can arithmetic operations be performed.</p>
+<h2 id="Memory-Operands">Memory Operands</h2>
+<p>Limited amount of registers can not be used to construct the essential data structure, which sotres most of the data that programmer handles. But computer's main memory contains billions of <em>bytes</em>. Hence data structures are kept in the main memory.</p>
+<p>Since 8 bits is so often used, this size is called a <em>byte</em>. And the memory is organized as a sequence of bytes. Each byte has a unique address, and the address is used to locate the data in the memory.</p>
+<p>As we mentioned before, only registers can be used to perform arithmetic operations. So when we want to perform arithmetic operations on the data in the memory, we have to load the data from the memory to the registers, perform the operations, and then store the result back to the memory. Such instructions are called <em>data transfer instructions.</em></p>
+<p>To access the memory, we have to use the memory address. The memory address is a 64-bit number, and it is used to locate the data in the memory. The memory address is also called <em>pointer</em>. We can abstractly think of the memory as an one dimensional array, and the memory address is the index of the array. (Under the hood, the memory is actually a 2D matrix, the address contains the row and column info.)</p>
+<p>The following C code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>];</span><br></pre></td></tr></table></figure>
+<p>should be compiled to the following RISC-V assembly code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ld x1, 64(x2)  // Temporarily store A[8] in reg x1</span><br><span class="line">add x1, x1, x3  // Temporarily store h + A[8] in reg x1</span><br><span class="line">sd x1, 96(x2)  // Store the result in A[12]</span><br></pre></td></tr></table></figure>
+<p>If variable <code>h</code> is assigned to <code>x3</code>, and the <em>base address</em> of the array <code>A</code> is assigned to <code>x2</code>.</p>
+<p>The register <code>x2</code> is used to store the base address of an array, so it is called the <em>base register</em>. And the number <code>64</code> is called the <em>offset</em>. The offset is used to locate the specific element in the array.</p>
+<p>The offset in the assembly code of <code>A[8]</code> is <code>64</code> because the size of a doubleword is 8 bytes and one unique address corresponds to one byte, so the offset is <code>8 * 8 = 64</code>. The offset of <code>A[12]</code> is <code>12 * 8 = 96</code>.</p>
+<h2 id="Constant-or-Imemdiate-Operands">Constant or Imemdiate Operands</h2>
+<p>Many times we need to perform arithmetic operations with a constant. To utilize the constant in the assembly code, a primitive way is to load the constant to a register, and then perform the operations.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ld x1, Addr4(x3) // Load the constant 4 to x1</span><br><span class="line">add x2, x1, x4 // x2 = x1 + x4 (where x1 == 4)</span><br></pre></td></tr></table></figure>
+<p>However, the RISC-V instruction set provides a more convenient way to perform the operations with a constant. The <code>addi</code> instruction can be used to add a constant to a register directly.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addi x2, x3, 4 // x2 = x3 + 4</span><br></pre></td></tr></table></figure>
+<p>The constant <code>0</code> plays a special role in RISC-V. We can negate the value of a register by using the <code>x0</code> register and the <code>sub</code> instruction.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sub x2, x0, x3 // x2 = 0 - x3 = -x3</span><br></pre></td></tr></table></figure>
+<p>We could use the <code>x0</code> register as the constant <code>0</code> because the <code>x0</code> is hardwired to the value <code>0</code> in the RISC-V instruction set.</p>
+<h1 id="Representing-Instructions-in-the-Computer">Representing Instructions in the Computer</h1>
+
     </div>
 
     
@@ -354,9 +409,11 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/CS61C/" rel="tag"># CS61C</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
-              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
-              <a href="/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%AF%BC%E8%AE%BA/" rel="tag"># 经济学导论</a>
+              <a href="/tags/Unfinished/" rel="tag"># Unfinished</a>
           </div>
 
         
@@ -365,13 +422,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-2-%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%8C%96%E5%92%8C%E8%B4%B8%E6%98%93/" rel="prev" title="经导[2]：专业化和贸易">
-      <i class="fa fa-chevron-left"></i> 经导[2]：专业化和贸易
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CA-Learning-Note-2/" rel="prev" title="CA Learning Note 2">
+      <i class="fa fa-chevron-left"></i> CA Learning Note 2
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E6%B5%8E%E5%AD%A6/2023/03/05/%E7%BB%8F%E5%AF%BC-4-%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%92%8C%E9%9C%80%E6%B1%82/" rel="next" title="经导[4]：供给和需求">
-      经导[4]：供给和需求 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -430,7 +484,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB"><span class="nav-text">常见的经济体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-%E8%AE%A1%E5%88%92%E7%BB%8F%E6%B5%8E%EF%BC%88%E6%8C%87%E4%BB%A4%E5%9E%8B%E7%BB%8F%E6%B5%8E%EF%BC%89"><span class="nav-text">I. 计划经济（指令型经济）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-%E5%B8%82%E5%9C%BA%E7%BB%8F%E6%B5%8E%EF%BC%88%E8%87%AA%E7%94%B1%E7%BB%8F%E6%B5%8E%EF%BC%89"><span class="nav-text">II. 市场经济（自由经济）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-%E6%B7%B7%E5%90%88%E7%BB%8F%E6%B5%8E"><span class="nav-text">III. 混合经济</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E7%BB%8F%E6%B5%8E%E4%BD%93%E7%B3%BB"><span class="nav-text">现代经济体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-%E7%AE%80%E4%BB%8B"><span class="nav-text">I. 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-%E5%BE%AA%E7%8E%AF%E6%B5%81%E5%8A%A8%E5%9B%BE"><span class="nav-text">II. 循环流动图</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -655,6 +709,11 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
 
   
 
