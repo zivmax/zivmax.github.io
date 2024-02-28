@@ -25,13 +25,13 @@
 
   <meta name="description" content="RISC-V edition.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CA Learning Note 3 [Unfinished]">
+<meta property="og:title" content="CA Learning Note [3]">
 <meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CA-Learning-Note-3/index.html">
 <meta property="og:site_name" content="青山后小塘">
 <meta property="og:description" content="RISC-V edition.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-24T08:32:40.000Z">
-<meta property="article:modified_time" content="2024-02-24T13:04:37.059Z">
+<meta property="article:modified_time" content="2024-02-26T07:24:02.745Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="CS61C">
 <meta property="article:tag" content="CS110">
@@ -53,7 +53,7 @@
   };
 </script>
 
-  <title>CA Learning Note 3 [Unfinished] | 青山后小塘</title>
+  <title>CA Learning Note [3] | 青山后小塘</title>
   
 
 
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CA Learning Note 3 [Unfinished]
+          CA Learning Note [3]
         </h1>
 
         <div class="post-meta">
@@ -235,10 +235,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间: 2024-02-24 16:32:40 / 修改时间: 21:04:37" itemprop="dateCreated datePublished" datetime="2024-02-24T16:32:40+08:00">2024-02-24</time>
+              <time title="创建时间: 2024-02-24 16:32:40" itemprop="dateCreated datePublished" datetime="2024-02-24T16:32:40+08:00">2024-02-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-02-26 15:24:02" itemprop="dateModified" datetime="2024-02-26T15:24:02+08:00">2024-02-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -259,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>4.9k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>31 分钟</span>
+              <span>1:21</span>
             </span>
 
         </div>
@@ -400,6 +406,331 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sub x2, x0, x3 // x2 = 0 - x3 = -x3</span><br></pre></td></tr></table></figure>
 <p>We could use the <code>x0</code> register as the constant <code>0</code> because the <code>x0</code> is hardwired to the value <code>0</code> in the RISC-V instruction set.</p>
 <h1 id="Representing-Instructions-in-the-Computer">Representing Instructions in the Computer</h1>
+<h2 id="Machine-Language">Machine Language</h2>
+<p>Although assembly language is already the lowest level of the programming language, but computer still can not understand the assembly language directly. The computer can only understand the binary code. So the assembly language has to be translated to the binary code before the computer can execute it.</p>
+<p>These numeric version of instruction is called the <em>machine language</em>. And the sequence of the machine language is called the <em>machine code</em>.</p>
+<p>Infact the assembly language is close to a human readable form of the binary code, so it is easy to translate the assembly language to the binary code. The following is the translation of the <code>add x1, x2, x3</code> instruction to the binary code:</p>
+<ul>
+<li>
+<p>Assembly language:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add x1, x2, x3</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Binary code:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0000000 00011 00010 000 00001 0110011</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Writing the binary code in the decimal form:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 3 2 0 1 51</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Each of the segments of the binary code has a specific meaning. We call those segments of the binary code the <em>fields</em> of the instruction. The fields of the instruction are used to specify the operation to be performed, the operands of the operation, and the result of the operation.</p>
+<p>Here a table shows the fields layout of <code>add</code> instruction:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">funct7</th>
+<th style="text-align:center">rs2</th>
+<th style="text-align:center">rs1</th>
+<th style="text-align:center">funct3</th>
+<th style="text-align:center">rd</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">3bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">7bit</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>opcode</code> field is used to specify the operation to be performed. The <code>rd</code>, <code>rs1</code>, <code>rs2</code> fields are used to specify the operands of the operation. The <code>funct3</code> and <code>funct7</code> fields are used to specify the result of the operation.</p>
+<p>And the layout of the fields of the instruction is called the <em>instruction format</em>. The RISC-V instruction set have three instruction formats: <em>R-type</em>, <em>I-type</em>, and <em>S-type</em>. The <code>add</code> instruction is a R-type instruction.</p>
+<h2 id="Instruction-Formats">Instruction Formats</h2>
+<p><code>addi</code> instruction is a I-type instruction example, and <code>ld</code> instruction is a S-type instruction example. The following table shows the fields layout of I-type and S-typeinstruction:</p>
+<ul>
+<li>
+<p>I-type instruction format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">imm[11:0]</th>
+<th style="text-align:center">rs1</th>
+<th style="text-align:center">funct3</th>
+<th style="text-align:center">rd</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">12bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">3bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">7bit</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>S-type instruction format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">imm[11:5]</th>
+<th style="text-align:center">rs2</th>
+<th style="text-align:center">rs1</th>
+<th style="text-align:center">funct3</th>
+<th style="text-align:center">imm[4:0]</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">3bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">7bit</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>And then we repeat the layout of R-type for a clear view:</p>
+<ul>
+<li>R-type instruction format:
+<table>
+<thead>
+<tr>
+<th style="text-align:center">funct7</th>
+<th style="text-align:center">rs2</th>
+<th style="text-align:center">rs1</th>
+<th style="text-align:center">funct3</th>
+<th style="text-align:center">rd</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">3bit</td>
+<td style="text-align:center">5bit</td>
+<td style="text-align:center">7bit</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>There are different instruction formats because different instructions have different number of operands. And the operands of the different instructions have different size. We have to choose whether to use longer and more uniform length or shorter and more varied length of instructions. The RISC-V instruction set choose the latter.</p>
+<p>One thing to notice is that the <code>opcode</code> field is <strong>the first field</strong> of the instruction format, we read the instruction from left to right. This is called the <em>big-endian</em> format. The RISC-V instruction set uses the big-endian format.</p>
+<h2 id="The-Big-Picture">The Big Picture</h2>
+<p>Today’s computers are built on two key principles:</p>
+<ol>
+<li>Instructions are represented as numbers.</li>
+<li>Programs are stored in memory to be read or written, just like data.</li>
+</ol>
+<p>These principles lead to the stored-program concept; its invention let<br>
+the computing genie out of its bottle. Figure 2.7 shows the power of the<br>
+concept; specifically, memory can contain the source code for an editor<br>
+program, the corresponding compiled machine code, the text that the<br>
+compiled program is using, and even the compiler that generated the<br>
+machine code.</p>
+<p>One consequence of instructions as numbers is that programs are often<br>
+shipped as files of binary numbers. The commercial implication is that<br>
+computers can inherit ready-made software provided they are compatible<br>
+with an existing instruction set. Such “binary compatibility” often leads<br>
+industry to align around a small number of instruction set architectures.</p>
+<h1 id="Logical-Operations">Logical Operations</h1>
+<h2 id="Bitwise-Operations">Bitwise Operations</h2>
+<p>During the development of the computer, it soon became clear that it was useful to perform operations on the individual bits of the data instead of a bundle of bits at once. The operations that perform on the individual bits of the data are called the <em>bitwise operations</em>.</p>
+<p>Here's a table shows the bitwise operations of the RISC-V instruction set:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation</th>
+<th style="text-align:center">Instruction</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Shift left logical</td>
+<td style="text-align:center"><code>sll</code>, <code>srli</code></td>
+<td><code>slli x1, x2, 3</code></td>
+<td><code>x1 = x2 &lt;&lt; 3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Shift right logical</td>
+<td style="text-align:center"><code>srl</code>, <code>srli</code></td>
+<td><code>srli x1, x2, 3</code></td>
+<td><code>x1 = x2 &gt;&gt; 3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Shift right arithmetic</td>
+<td style="text-align:center"><code>sra</code>, <code>srai</code></td>
+<td><code>srai x1, x2, 3</code></td>
+<td><code>x1 = x2 &gt;&gt; 3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Bitwise AND</td>
+<td style="text-align:center"><code>and</code>, <code>andi</code></td>
+<td><code>and x1, x2, x3</code></td>
+<td><code>x1 = x2 &amp; x3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Bitwise OR</td>
+<td style="text-align:center"><code>or</code>, <code>ori</code></td>
+<td><code>or x1, x2, x3</code></td>
+<td><code>x1 = x2 | x3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Bitwise XOR</td>
+<td style="text-align:center"><code>xor</code>, <code>xori</code></td>
+<td><code>xor x1, x2, x3</code></td>
+<td><code>x1 = x2 ^ x3</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Bitwise NOT</td>
+<td style="text-align:center"><code>xori</code></td>
+<td><code>not x1, x2</code></td>
+<td><code>x1 = ~x2</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Shift-Operations">Shift Operations</h2>
+<p>The shift operations are used to move the bits of the data to the left or to the right. The <code>sll</code> instruction is used to shift the bits of the data to the left, and the <code>srl</code> instruction is used to shift the bits of the data to the right. The <code>sra</code> instruction is used to shift the bits of the data to the right, and the most sign bit of the old data will be filled with the original value of the sign bit.</p>
+<p>If we use constant to determine the number of bits to be shifted, we can use the <code>slli</code>, <code>srli</code>, and <code>srai</code> instructions, where the <code>i</code> in the instruction name stands for <em>immediate</em>.</p>
+<p>Here's some examples of the shift operations:</p>
+<ul>
+<li>
+<p>Shift left 3 bits:</p>
+<p><code>00000101</code> to <code>00101000</code></p>
+</li>
+<li>
+<p>Shift right 3 bits:</p>
+<p><code>10100000</code> to <code>00010100</code></p>
+</li>
+<li>
+<p>Shift right arithmetic 3 bits:</p>
+<p><code>10100000</code> to <code>11110100</code></p>
+<p><code>01100000</code> to <code>00001100</code></p>
+</li>
+</ul>
+<h2 id="AND-OR-NOT-XOR">AND, OR, NOT, XOR</h2>
+<p>The previous operations are more like a whole operation on all the bits of the data. The AND, OR, NOT, XOR operations are more like the operations on the individual bits of the data. Because each result bit is determined by the corresponding bits of the operands, won't affect the bits on the other positions.</p>
+<p>Here's some examples of the bitwise operations:</p>
+<ul>
+<li>
+<p>Bitwise AND:</p>
+<p><code>10101010</code> and <code>11001100</code> to <code>10001000</code></p>
+</li>
+<li>
+<p>Bitwise OR:</p>
+<p><code>10101010</code> and <code>11001100</code> to <code>11101110</code></p>
+</li>
+<li>
+<p>Bitwise XOR:</p>
+<p><code>10101010</code> and <code>11001100</code> to <code>01100110</code></p>
+</li>
+<li>
+<p>Bitwise NOT:</p>
+<p><code>10101010</code> to <code>01010101</code></p>
+</li>
+</ul>
+<p>Here's the truth table of the bitwise operations:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a AND b</th>
+<th style="text-align:center">a OR b</th>
+<th style="text-align:center">a XOR b</th>
+<th style="text-align:center">NOT a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Instructions-of-Making-Decisions">Instructions of Making Decisions</h1>
+<h2 id="Conditional">Conditional</h2>
+<p>What distinguishes a computer from a simple calculator is its ability to make decisions according to the result of the computation.</p>
+<p>RISC-V instruction set provides two instructions to make decisions: <code>beq</code> and <code>bne</code>, which represent the <em>branch if equal</em> and <em>branch if not equal</em> respectively. These two instructions are traditionally called the <em>conditional branches</em>.</p>
+<p>The first instruction <code>beq</code> used like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beq x1, x2, L1</span><br></pre></td></tr></table></figure>
+<p>This instruction means that if the value of <code>x1</code> is equal to the value of <code>x2</code>, then the program will jump to the statement labeled <code>L1</code>.</p>
+<p><code>bne</code> instruction simply means jump when not equal.</p>
+<p>Here's a compiling example of the C code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i == j)</span><br><span class="line">    f = g + h;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    f = g - h;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beq x1, x2, Else       // If i == j, go to Else</span><br><span class="line">add x3, x4, x5         // f = g + h</span><br><span class="line">beq x0, x0, Exit       // Go to Exit</span><br><span class="line">Else: sub x3, x4, x5   // f = g - h</span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
+<h2 id="Loops">Loops</h2>
+<p>RISC-V instruction set don't have a specific instruction to perform the loops. But we can use the conditional branches to perform the loops, since loop is just keep jumping back to the same statement.</p>
+<p>Here's two compiling example of the C code:</p>
+<ul>
+<li>
+<p>While loop:</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (i &lt; j)</span><br><span class="line">    f = f + g;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Loop: blt x1, x2, Exit   // If i &lt; j, go to Exit</span><br><span class="line">add x3, x3, x4           // f = f + g</span><br><span class="line">beq x0, x0, Loop         // Go to Loop</span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>For loop:</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    f = f + g;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">li x1, 0                  // i = 0</span><br><span class="line">Loop: bge x1, 10, Exit    // If i &gt;= 10, go to Exit</span><br><span class="line">add x3, x3, x4            // f = f + g</span><br><span class="line">addi x1, x1, 1            // i = i + 1</span><br><span class="line">beq x0, x0, Loop          // Go to Loop</span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Such sequences of instructions that end in a conditional branch are called <em>basic blocks</em>. The basic blocks are the building blocks of the control flow of the program. One of the first early phases of compilation is to identify the basic blocks of the program.</p>
+<h2 id="Boundary-Checking-Shortcut">Boundary Checking Shortcut</h2>
+<p>The RISC-V instruction set also provides more conditional branches to make decisions. The <code>blt</code>, <code>bge</code>, <code>bltu</code>, <code>bgeu</code> instructions represent the <em>branch if less than</em>, <em>branch if greater than or equal</em>, <em>branch if less than unsigned</em>, and <em>branch if greater than or equal unsigned</em> respectively.</p>
+<p>Since we already know the number representaion of the signed and unsigned numbers, we can image tha the way to compare the signed and unsigned numbers are different. However, this dosen't means that we can not use unsigned comparison to compare the signed numbers. And this actually offers a shortcut for boundary checking.</p>
+<p>For a unsigned comparison, it's clear that we just need to compare the two numbers' binary code directly, like whose leftmost <code>1</code> is more left. As the signed number use the leftmost bit to represent the sign, which means negative numbers will always lager than any non-negative numbers if we use the unsigned comparison. And for a Boundary checking, we happens to need to check if a number is non-negative and less than a specific positive number. So we can use the unsigned comparison to perform the boundary checking.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bgeu x20, x11, IndexOutOfBounds // If x20 &gt;= x11 or x20 &lt; 0, go to IndexOutOfBounds</span><br></pre></td></tr></table></figure>
+<h2 id="Case-Switch-Statement">Case/Switch Statement</h2>
+<p>Most programming languages provide a <code>case</code> or <code>switch</code> statement that allows the programmer to select one of many branches based on the value of an expression. A simple way to implement this feature in is to turn the <code>case</code> statement into a series of <code>if</code> statements.</p>
+<p>But the alternative way may be more efficient. The RISC-V instruction set provides the <code>jalr</code> instruction (<em>jump and link register</em>), which is used to jump to a specific statement with no condition. By encoding the selectable branches' addresses into a table and load the address we want into a register, we can use the <code>jalr</code> instruction to jump to that specific address. The table is called a <em>branch address table</em> or <em>branch table</em>.</p>
+<h1 id="Supporting-Procedures-in-Computer-Hardware">Supporting Procedures in Computer Hardware</h1>
+<hr>
+<h1 id="Unfinished-yet">Unfinished yet...</h1>
 
     </div>
 
@@ -422,8 +753,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CA-Learning-Note-2/" rel="prev" title="CA Learning Note 2">
-      <i class="fa fa-chevron-left"></i> CA Learning Note 2
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CA-Learning-Note-2/" rel="prev" title="CA Learning Note [2]">
+      <i class="fa fa-chevron-left"></i> CA Learning Note [2]
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -484,7 +815,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
