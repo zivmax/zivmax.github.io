@@ -31,7 +31,7 @@
 <meta property="og:description" content="RISC-V edition.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-24T08:32:40.000Z">
-<meta property="article:modified_time" content="2024-02-26T07:24:02.745Z">
+<meta property="article:modified_time" content="2024-03-05T04:49:35.421Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="CS61C">
 <meta property="article:tag" content="CS110">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2024-02-26 15:24:02" itemprop="dateModified" datetime="2024-02-26T15:24:02+08:00">2024-02-26</time>
+                <time title="修改时间: 2024-03-05 12:49:35" itemprop="dateModified" datetime="2024-03-05T12:49:35+08:00">2024-03-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>13k</span>
+              <span>15k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:21</span>
+              <span>1:33</span>
             </span>
 
         </div>
@@ -377,14 +377,16 @@
 </tbody>
 </table>
 <h2 id="Register-Operands">Register Operands</h2>
-<p>Registers are the smallest and fastest memory, and they are used to store the intermediate results of the computation or the most frequent accessed data. Because registers are embeded in the CPU, so the CPU can access the registers directly. Thus the access time is very short (faster than 0.25ns). Each register can store 64 bits of data. Since 64 bits is so often used, this size is called a <em>doubleword</em>. (while 32 bits is called a <em>word</em>.)</p>
+<p>Registers are the smallest and fastest memory, and they are used to store the intermediate results of the computation or the most frequent accessed data.</p>
+<p>Programs often have more variables than a computer's registers can hold. To manage this, compilers prioritize keeping frequently used variables in registers, relegating others to memory. This involves transferring variables between registers and memory as needed. The act of moving less frequently used variables to memory is known as <em>spilling registers</em>.</p>
+<p>Because registers are embeded in the CPU, so the CPU can access the registers directly. Thus the access time is very short (faster than 0.25ns). Each register can store 64 bits of data. Since 64 bits is so often used, this size is called a <em>doubleword</em>. (while 32 bits is called a <em>word</em>.)</p>
 <p>As the CPU can directly access the registers, we can surely use the registers in out assmebly code. The RISC-V instruction set have 32 registers, and they are named from <code>x1</code> to <code>x31</code>. So when we use those variables in the assembly code, we are using the register.</p>
 <p>The follwing C code:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br></pre></td></tr></table></figure>
 <p>should be compiled to the following RISC-V assembly code:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add x1, x2, x3</span><br><span class="line">add x4, x5, x6</span><br><span class="line">sub x7, x1, x4</span><br></pre></td></tr></table></figure>
 <p>If <code>f</code>, <code>g</code>, <code>h</code>, <code>i</code>, <code>j</code> are assigned to <code>x7</code>, <code>x2</code>, <code>x3</code>, <code>x5</code>, <code>x6</code> respectively. And <code>x1</code>, <code>x4</code> are used as the temporary registers.</p>
-<p>The most important thing to notice is that, only on registers can arithmetic operations be performed.</p>
+<p>An important thing to notice is that, <strong>only on registers can arithmetic operations be performed</strong>.</p>
 <h2 id="Memory-Operands">Memory Operands</h2>
 <p>Limited amount of registers can not be used to construct the essential data structure, which sotres most of the data that programmer handles. But computer's main memory contains billions of <em>bytes</em>. Hence data structures are kept in the main memory.</p>
 <p>Since 8 bits is so often used, this size is called a <em>byte</em>. And the memory is organized as a sequence of bytes. Each byte has a unique address, and the address is used to locate the data in the memory.</p>
@@ -729,6 +731,49 @@ industry to align around a small number of instruction set architectures.</p>
 <p>Most programming languages provide a <code>case</code> or <code>switch</code> statement that allows the programmer to select one of many branches based on the value of an expression. A simple way to implement this feature in is to turn the <code>case</code> statement into a series of <code>if</code> statements.</p>
 <p>But the alternative way may be more efficient. The RISC-V instruction set provides the <code>jalr</code> instruction (<em>jump and link register</em>), which is used to jump to a specific statement with no condition. By encoding the selectable branches' addresses into a table and load the address we want into a register, we can use the <code>jalr</code> instruction to jump to that specific address. The table is called a <em>branch address table</em> or <em>branch table</em>.</p>
 <h1 id="Supporting-Procedures-in-Computer-Hardware">Supporting Procedures in Computer Hardware</h1>
+<p>A <em>procedure</em> is a sequence of instructions that can solve a specific problem, which is suitable for reuse. In programming languages, a procedure has a more familiar name: <em>function</em>.</p>
+<h2 id="What-will-a-Procedure-Do">What will a Procedure Do?</h2>
+<p>RISC-V don't have specific instructions to support the procedures, but the reason it doesn't have is that the procedures are supported by the combination of the basic operations and the conditional branches. <strong>We can implement the concept of procedure abstractly</strong>.</p>
+<p>All of us are very skilled at high-level programming using functions. Since procedure are just an alias of the function, we can directly describe some features of the procedure:</p>
+<ul>
+<li>
+<p>Taking parameters as input.</p>
+</li>
+<li>
+<p>Returning a result as output.</p>
+</li>
+<li>
+<p>The procedure can be called in the main program.</p>
+</li>
+<li>
+<p>The procedure can call other procedures.</p>
+</li>
+</ul>
+<p>Now, as we've known the basics of assembly language, how we exactly do to implement the procedures using the assembly language? Well, in the execution of a procedure, the assembly program must follow these six steps:</p>
+<ol>
+<li>
+<p>Put parameters in a place where the procedure can access them.</p>
+</li>
+<li>
+<p>Transfer control to the procedure.</p>
+</li>
+<li>
+<p>Acquire the storage resources needed for the procedure.</p>
+</li>
+<li>
+<p>Perform the desired task.</p>
+</li>
+<li>
+<p>Put the result value in a place where the calling program can access it.</p>
+</li>
+<li>
+<p>Return control to the point of origin, since a procedure can be called from several points in a program.</p>
+</li>
+</ol>
+<h2 id="How-procedure-abstractly-implemented">How procedure abstractly implemented?</h2>
+<p>Recall that, we implement procedures in an abstract way. Why we call it abstract?</p>
+<p>In the high-level programming, we consider the procedure has its own memory space.  When we call functions in high-level programming, except we passed pointers as the parameters, we won't worry about the function changes the things &quot;outside&quot; the function. This is because the main memory is big enough to sperate the memory spaces.</p>
+<p>But in RISC-V, we are persuing using registers to perform the operations, and the registers are very limited, just exactly 32 registers in totaland 64bits large per register.</p>
 <hr>
 <h1 id="Unfinished-yet">Unfinished yet...</h1>
 
@@ -815,7 +860,7 @@ industry to align around a small number of instruction set architectures.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-will-a-Procedure-Do"><span class="nav-text">What will a Procedure Do?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-procedure-abstractly-implemented"><span class="nav-text">How procedure abstractly implemented?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
