@@ -31,7 +31,7 @@
 <meta property="og:description" content="RISC-V edition.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-24T08:32:40.000Z">
-<meta property="article:modified_time" content="2024-03-24T11:20:24.670Z">
+<meta property="article:modified_time" content="2024-03-24T13:30:41.960Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="CS61C">
 <meta property="article:tag" content="CS110">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2024-03-24 19:20:24" itemprop="dateModified" datetime="2024-03-24T19:20:24+08:00">2024-03-24</time>
+                <time title="修改时间: 2024-03-24 21:30:41" itemprop="dateModified" datetime="2024-03-24T21:30:41+08:00">2024-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>24k</span>
+              <span>26k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2:29</span>
+              <span>2:40</span>
             </span>
 
         </div>
@@ -854,6 +854,116 @@
 <p>Up to now, all we stored in the main memory are static data, which means the size of the data is determined when we write the program. But in the real world, we often need to store the data whose size is determined when the program is running. This kind of data is called the <em>dynamic data</em>. The dynamic data is stored in the heap.</p>
 <p>When using stack pointer, the original stack pointer stores the address of the top address table of the main memory. When we want to allocate space for a new frame, we need to move down the stack pointer, i.e. subtract the stack pointer.</p>
 <p>In the contrary, the address allocated for the dynamic data in the heap is always increasing.</p>
+<h2 id="Global">Global</h2>
+<p>A C variable is generally a location in storage, and its interpretation depends both on its type and storage class. C has two storage classes: automatic and static. Automatic variables are local to a procedure and are discarded when the procedure exits. Static variables exist across exits from and entries to procedures. C variables declared outside all procedures are considered static, as are any variables declared using the keyword static. The rest are automatic. To simplify access to static data, some RISC-V compilers reserve a register <code>x3</code> for use as the* global pointer*, or <code>gp</code>.</p>
+<h2 id="Full-Calling-Convention">Full Calling Convention</h2>
+<p>Finally, we've introduced all the key concepts when we implement the procedures in the assembly language. Now we can summarize the full calling convention of the RISC-V instruction set:</p>
+<ol>
+<li>
+<p><strong>Parameter Passing</strong>: Parameters are passed in registers <code>x10</code> to <code>x17</code>. If there are more than 8 parameters, the remaining parameters are passed on the stack.</p>
+</li>
+<li>
+<p><strong>Return Value</strong>: The return value is passed in register <code>x10</code>.</p>
+</li>
+<li>
+<p><strong>Saved Registers</strong>: Registers <code>x8</code> to <code>x9</code> and <code>x18</code> to <code>x27</code> must be saved by the callee if they are used.</p>
+</li>
+<li>
+<p><strong>Temporary Registers</strong>: Registers <code>x5</code> to <code>x7</code> and <code>x28</code> to <code>x31</code> can be used by the callee without saving their states.</p>
+</li>
+<li>
+<p><strong>Stack Pointer</strong>: Register <code>x2</code> is used as the stack pointer.</p>
+</li>
+<li>
+<p><strong>Frame Pointer</strong>: Register <code>x8</code> is used as the frame pointer, but it is optional.</p>
+</li>
+<li>
+<p><strong>Return Address</strong>: The return address is stored in register <code>x1</code>.</p>
+</li>
+<li>
+<p><strong>Zero</strong>: Register <code>x0</code> is hardwired to the value <code>0</code>.</p>
+</li>
+</ol>
+<p>But if we always need to remember these rules, it will be very hard to write the assembly code. Thus, like the pseudo-instructions that assembler can translate to the real instructions, <strong>we can also use the <em>nick name</em> (formally <em>ABI Name</em>) of those registers to represent the registers.</strong> Here's a table shows the nick names of the registers:</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>ABI Name</th>
+<th>Description</th>
+<th>Saver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x0</td>
+<td>zero</td>
+<td>Hard-wired zero</td>
+<td></td>
+</tr>
+<tr>
+<td>x1</td>
+<td>ra</td>
+<td>Return address</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x2</td>
+<td>sp</td>
+<td>Stack pointer</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x3</td>
+<td>gp</td>
+<td>Global pointer</td>
+<td></td>
+</tr>
+<tr>
+<td>x4</td>
+<td>tp</td>
+<td>Thread pointer</td>
+<td></td>
+</tr>
+<tr>
+<td>x5-x7</td>
+<td>t0-t2</td>
+<td>Temporaries</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x8</td>
+<td>s0/fp</td>
+<td>Saved register/frame pointer</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x9</td>
+<td>s1</td>
+<td>Saved register</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x10-x17</td>
+<td>a0-a7</td>
+<td>Function arguments/return values</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x18-x27</td>
+<td>s2-s11</td>
+<td>Saved registers</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x28-x31</td>
+<td>t3-t6</td>
+<td>Temporaries</td>
+<td>Caller</td>
+</tr>
+</tbody>
+</table>
+<h1 id="RISC-V-Addressing-for-Wide-Immediates-and-Addresses">RISC-V Addressing for Wide Immediates and Addresses</h1>
 <hr>
 <h1 id="Unfinished-yet">Unfinished yet...</h1>
 
@@ -943,7 +1053,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-will-a-Procedure-Do"><span class="nav-text">What will a Procedure Do?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-procedure-abstractly-implemented"><span class="nav-text">How procedure abstractly implemented?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharing-the-Registers"><span class="nav-text">Sharing the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communicating-between-the-Caller-and-the-Callee"><span class="nav-text">Communicating between the Caller and the Callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saving-and-Restoring-the-States-of-the-Registers"><span class="nav-text">Saving and Restoring the States of the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datas-in-the-main-memory"><span class="nav-text">Datas in the main memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Stack"><span class="nav-text">The Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Frame"><span class="nav-text">The Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-the-Stack-and-Frame"><span class="nav-text">Managing the Stack and Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap"><span class="nav-text">Heap</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-will-a-Procedure-Do"><span class="nav-text">What will a Procedure Do?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-procedure-abstractly-implemented"><span class="nav-text">How procedure abstractly implemented?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharing-the-Registers"><span class="nav-text">Sharing the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communicating-between-the-Caller-and-the-Callee"><span class="nav-text">Communicating between the Caller and the Callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saving-and-Restoring-the-States-of-the-Registers"><span class="nav-text">Saving and Restoring the States of the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datas-in-the-main-memory"><span class="nav-text">Datas in the main memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Stack"><span class="nav-text">The Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Frame"><span class="nav-text">The Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-the-Stack-and-Frame"><span class="nav-text">Managing the Stack and Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap"><span class="nav-text">Heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global"><span class="nav-text">Global</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-Calling-Convention"><span class="nav-text">Full Calling Convention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RISC-V-Addressing-for-Wide-Immediates-and-Addresses"><span class="nav-text">RISC-V Addressing for Wide Immediates and Addresses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
