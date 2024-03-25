@@ -39,8 +39,8 @@
 <meta property="article:published_time" content="2023-04-19T02:36:14.000Z">
 <meta property="article:modified_time" content="2023-04-19T10:57:35.502Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="C 语言">
 <meta property="article:tag" content="上科大">
+<meta property="article:tag" content="C 语言">
 <meta property="article:tag" content="CS100">
 <meta property="article:tag" content="作业">
 <meta name="twitter:card" content="summary">
@@ -378,7 +378,7 @@
 <p>Have fun!</p>
 <h3 id="Background">Background</h3>
 <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"><strong>The Game of Life</strong></a> is a simple but profound game, created by one of the world greatest mathematician John Horton Conway. This game does not require player participation because all evolutionary processes are determined by the initial state and will proceed spontaneously. A common way to play with the Game of Life is to give it an initial state and watch how it evolves.</p>
-<p><img src="https://s2.loli.net/2023/04/19/59TcFkKqbNpIBfv.gif" alt loading="lazy"></p>
+<p><img src="https://s2.loli.net/2023/04/19/59TcFkKqbNpIBfv.gif" alt></p>
 <h3 id="Rules">Rules</h3>
 <p>The universe of the Game of Life can be simply considered as an infinite sheet of grid paper, in which each grid (or cell) is either alive or dead. The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life#Rules">original rules for the Game of Life</a> are reprinted below:</p>
 <ul>
@@ -395,7 +395,7 @@
 <p><strong>Reborn:</strong> Any dead cell with exactly 3 living neighbors comes to life.</p>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2023/04/19/8u7mdbTGxKEfIWB.png" alt loading="lazy"></p>
+<p><img src="https://s2.loli.net/2023/04/19/8u7mdbTGxKEfIWB.png" alt></p>
 <p>There are many <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Variations">variants of the Game of Life</a> , each with its own rules. Here are four of the most popular variants:</p>
 <ul>
 <li>
@@ -406,7 +406,7 @@
 <li>
 <p><strong>Extended</strong></p>
 <p>It follows the basic rules as described above with one change: the size of a cell's neighborhood is extended. Consider any square with size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2k+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, the centering cell will have all other cells in this square as its neighbors. For example, extended to a 5 * 5 square, (i.e all 24 cells around a cell are now its neighbors, but the cell itself is not included in its neighborhood).</p>
-<p><img src="https://s2.loli.net/2023/04/19/W4A79TcDFkEinRS.png" alt loading="lazy"></p>
+<p><img src="https://s2.loli.net/2023/04/19/W4A79TcDFkEinRS.png" alt></p>
 <p>The formal definition will be described later. More on <a target="_blank" rel="noopener" href="https://conwaylife.com/wiki/Gallery_of_neighbourhoods/Images">wiki</a>.</p>
 </li>
 <li>
@@ -422,8 +422,8 @@
 <h3 id="Try-it-Out">Try it Out!</h3>
 <p>The Game of Life has been studied extensively, and many interesting patterns have been discovered. Before starting your work, we strongly recommend you to first try this game out! You can play with it at <a target="_blank" rel="noopener" href="https://golly.sourceforge.net/webapp/golly.html">golly</a>, and there are many amazing patterns you can find online. Here is a video in <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=C2vgICfQawE">YouTube</a> and <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PE411d7aR">BiliBili</a> about the Game of Life for your reference.</p>
 <p>You will notice that some of the patterns are stable, meaning that they will continue to exist indefinitely, and some of them are even periodic, meaning that they will repeat themselves after a certain number of steps. Other patterns are unstable, meaning that they will eventually die out. Here are some basic patterns:</p>
-<p><img src="https://s2.loli.net/2023/04/19/mQXJ8lYf3IEHxVC.png" alt loading="lazy"><br>
-<img src="https://s2.loli.net/2023/04/19/fBWjYpiuwk9dnPG.png" alt loading="lazy"></p>
+<p><img src="https://s2.loli.net/2023/04/19/mQXJ8lYf3IEHxVC.png" alt><br>
+<img src="https://s2.loli.net/2023/04/19/fBWjYpiuwk9dnPG.png" alt></p>
 <h3 id="Your-Task">Your Task</h3>
 <p>The Game of Life is a very simple game, but it has been shown to be capable of producing complex and interesting patterns. In fact, there are entire websites and books dedicated to the study of the Game of Life.</p>
 <p>Your task is to complete the implementation of our C++ version of the Game of Life with multiple rules. We have provided you a framework to help you get started. You need to design the variant game rules in <code>LifeRule.h</code> and <code>LifeRule.cpp</code>. You can refer to <a href="#how-to-run">How-to-Run</a> to play with the game.</p>
@@ -515,7 +515,7 @@
 <li><strong>Reborn:</strong> Any dead cell with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>≤</mo></mrow><annotation encoding="application/x-tex">5 \leq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span></span></span></span> <em>total influence</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">\leq 6 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span> becomes alive.</li>
 </ol>
 <p>For example, the cell in the center of the following grid has a <em>total influence</em> of 6, so it will survive in the next generation.</p>
-<p><img src="https://s2.loli.net/2023/04/19/So4k9IGL3WMtNja.png" alt loading="lazy"></p>
+<p><img src="https://s2.loli.net/2023/04/19/So4k9IGL3WMtNja.png" alt></p>
 <p><strong>Hint</strong></p>
 <p>This can be done by overriding <code>DetermineNextState</code> in <code>LifeRuleExtended</code>.</p>
 </blockquote>
@@ -706,8 +706,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
               <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
               <a href="/tags/CS100/" rel="tag"># CS100</a>
               <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
           </div>
