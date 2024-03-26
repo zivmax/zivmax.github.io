@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="A RISC-V Assembler (Individual Project)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Project 1.1">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/03/26/CS110-Project-1-1/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="A RISC-V Assembler (Individual Project)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-26T03:26:20.000Z">
+<meta property="article:modified_time" content="2024-03-26T03:29:22.648Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/03/26/CS110-Project-1-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Project 1.1 | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/03/26/CS110-Project-1-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Project 1.1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2024-03-26 11:26:20 / 修改时间: 11:29:22" itemprop="dateCreated datePublished" datetime="2024-03-26T11:26:20+08:00">2024-03-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:03</span>
+            </span>
+            <div class="post-description">A RISC-V Assembler (Individual Project)</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Project-1-1-A-RISC-V-Assembler-Individual-Project">Project 1.1: A RISC-V Assembler (Individual Project)</h1>
+<p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/index.html">Computer Architecture I</a> <a target="_blank" rel="noopener" href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p>
+<p><em><strong>IMPORTANT INFO - PLEASE READ</strong></em><br>
+The projects are part of your design project worth 2 credit points. As such they run in parallel to the actual course. So be aware that the due date for project and homework might be very close to each other! Start early and do not procrastinate.</p>
+<hr>
+<h2 id="Introduction-to-Project-1-1">Introduction to Project 1.1</h2>
+<p>In Project 1.1, you are going to make a simple one-pass RISC-V assembler. The assembler takes RISC-V codes which contain no labels and symbols as input and outputs corresponding machine codes. You also need to implement basic error handling to detect invaild instructions. You can fetch the framework for Project 1.1 <a target="_blank" rel="noopener" href="https://classroom.github.com/a/ga24pVYj">here</a> on Github classroom, try to use git and Github for version control.</p>
+<h2 id="Background-of-The-Instruction-Set">Background of The Instruction Set</h2>
+<h3 id="Registers">Registers</h3>
+<p>Please consult the <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2023/lecture_notes/riscvcard.pdf">RISC-V Green Sheet (PDF)</a> for register numbers, instruction opcodes, and bitwise formats. Our asembler will support all 32 registers: <strong>zero</strong>, <strong>ra</strong>, <strong>sp</strong>, <strong>gp</strong>, <strong>tp</strong>, <strong>t0-t6</strong>, <strong>s0 - s11</strong>, <strong>a0 - a7</strong>. Other register numbers (eg. x0, x1, x2 etc.) shall be also supported. Note that floating point registers are not included in this project.</p>
+<h3 id="Instructions">Instructions</h3>
+<p>We will have 42 instructions and 6 pseudo-instructions to assemble. The instructions are:</p>
+<table>
+<thead>
+<tr>
+<th>INSTRUCTION</th>
+<th>TYPE</th>
+<th>OPCODE</th>
+<th>FUNCT3</th>
+<th>FUNCT7/IMM</th>
+<th>OPERATION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add rd, rs1, rs2</td>
+<td>R</td>
+<td>0x33</td>
+<td>0x0</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] + R[rs2]</td>
+</tr>
+<tr>
+<td>mul rd, rs1, rs2</td>
+<td>0x0</td>
+<td>0x01</td>
+<td>R[rd] ← (R[rs1] * R[rs2])[31:0]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sub rd, rs1, rs2</td>
+<td>0x0</td>
+<td>0x20</td>
+<td>R[rd] ← R[rs1] - R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sll rd, rs1, rs2</td>
+<td>0x1</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] &lt;&lt; R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mulh rd, rs1, rs2</td>
+<td>0x1</td>
+<td>0x01</td>
+<td>R[rd] ← (R[rs1] * R[rs2])[63:32]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>slt rd, rs1, rs2</td>
+<td>0x2</td>
+<td>0x00</td>
+<td>R[rd] ← (R[rs1] &lt; R[rs2]) ? 1 : 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sltu rd, rs1, rs2</td>
+<td>0x3</td>
+<td>0x00</td>
+<td>R[rd] ← (U(R[rs1]) &lt; U(R[rs2])) ? 1 : 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>xor rd, rs1, rs2</td>
+<td>0x4</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] ^ R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>div rd, rs1, rs2</td>
+<td>0x4</td>
+<td>0x01</td>
+<td>R[rd] ← R[rs1] / R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>srl rd, rs1, rs2</td>
+<td>0x5</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] &gt;&gt; R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sra rd, rs1, rs2</td>
+<td>0x5</td>
+<td>0x20</td>
+<td>R[rd] ← R[rs1] &gt;&gt; R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>or rd, rs1, rs2</td>
+<td>0x6</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] | R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rem rd, rs1, rs2</td>
+<td>0x6</td>
+<td>0x01</td>
+<td>R[rd] ← (R[rs1] % R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>and rd, rs1, rs2</td>
+<td>0x7</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] &amp; R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lb rd, offset(rs1)</td>
+<td>I</td>
+<td>0x03</td>
+<td>0x0</td>
+<td></td>
+<td>R[rd] ← SignExt(Mem(R[rs1] + offset, byte))</td>
+</tr>
+<tr>
+<td>lh rd, offset(rs1)</td>
+<td>0x1</td>
+<td></td>
+<td>R[rd] ← SignExt(Mem(R[rs1] + offset, half))</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lw rd, offset(rs1)</td>
+<td>0x2</td>
+<td></td>
+<td>R[rd] ← Mem(R[rs1] + offset, word)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lbu rd, offset(rs1)</td>
+<td>0x4</td>
+<td></td>
+<td>R[rd] ← U(Mem(R[rs1] + offset, byte))</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lhu rd, offset(rs1)</td>
+<td>0x5</td>
+<td></td>
+<td>R[rd] ← U(Mem(R[rs1] + offset, half))</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>addi rd, rs1, imm</td>
+<td>0x13</td>
+<td>0x0</td>
+<td></td>
+<td>R[rd] ← R[rs1] + imm</td>
+<td></td>
+</tr>
+<tr>
+<td>slli rd, rs1, imm</td>
+<td>0x1</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] &lt;&lt; imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>slti rd, rs1, imm</td>
+<td>0x2</td>
+<td></td>
+<td>R[rd] ← (R[rs1] &lt; imm) ? 1 : 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sltiu rd, rs1, imm</td>
+<td>0x3</td>
+<td></td>
+<td>R[rd] ← (U(R[rs1]) &lt; U(imm)) ? 1 : 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>xori rd, rs1, imm</td>
+<td>0x4</td>
+<td></td>
+<td>R[rd] ← R[rs1] ^ imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>srli rd, rs1, imm</td>
+<td>0x5</td>
+<td>0x00</td>
+<td>R[rd] ← R[rs1] &gt;&gt; imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>srai rd, rs1, imm</td>
+<td>0x5</td>
+<td>0x20</td>
+<td>R[rd] ← R[rs1] &gt;&gt; imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ori rd, rs1, imm</td>
+<td>0x6</td>
+<td></td>
+<td>R[rd] ← R[rs1] | imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>andi rd, rs1, imm</td>
+<td>0x7</td>
+<td></td>
+<td>R[rd] ← R[rs1] &amp; imm</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jalr rd, rs1, imm</td>
+<td>0x67</td>
+<td>0x0</td>
+<td></td>
+<td>R[rd] ← PC + 4  <br>PC ← R[rs1] + imm</td>
+<td></td>
+</tr>
+<tr>
+<td>ecall</td>
+<td>0x73</td>
+<td>0x0</td>
+<td>0x000</td>
+<td>(Transfers control to operating system)  <br>a0 = 1 is print value of a1 as an integer.  <br>a0 = 4 is print the string at address a1.  <br>a0 = 10 is exit or end of code indicator.  <br>a0 = 11 is print value of a1 as a character.</td>
+<td></td>
+</tr>
+<tr>
+<td>sb rs2, offset(rs1)</td>
+<td>S</td>
+<td>0x23</td>
+<td>0x0</td>
+<td></td>
+<td>Mem(R[rs1] + offset) ← R[rs2][7:0]</td>
+</tr>
+<tr>
+<td>sh rs2, offset(rs1)</td>
+<td>0x1</td>
+<td></td>
+<td>Mem(R[rs1] + offset) ← R[rs2][15:0]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sw rs2, offset(rs1)</td>
+<td>0x2</td>
+<td></td>
+<td>Mem(R[rs1] + offset) ← R[rs2]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>beq rs1, rs2, offset</td>
+<td>SB</td>
+<td>0x63</td>
+<td>0x0</td>
+<td></td>
+<td>if(R[rs1] == R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
+</tr>
+<tr>
+<td>bne rs1, rs2, offset</td>
+<td>0x1</td>
+<td></td>
+<td>if(R[rs1] != R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>blt rs1, rs2, offset</td>
+<td>0x4</td>
+<td></td>
+<td>if(R[rs1] &lt; R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bge rs1, rs2, offset</td>
+<td>0x5</td>
+<td></td>
+<td>if(R[rs1] &gt;= R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bltu rs1, rs2, offset</td>
+<td>0x6</td>
+<td></td>
+<td>if(U(R[rs1]) &lt; U(R[rs2]))  <br> PC ← PC + {offset, 1b'0}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bgeu rs1, rs2, offset</td>
+<td>0x7</td>
+<td></td>
+<td>if(U(R[rs1]) &gt;= U(R[rs2]))  <br> PC ← PC + {offset, 1b'0}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>auipc rd, offset</td>
+<td>U</td>
+<td>0x17</td>
+<td></td>
+<td></td>
+<td>R[rd] ← PC + {offset, 12b'0}</td>
+</tr>
+<tr>
+<td>lui rd, offset</td>
+<td>0x37</td>
+<td></td>
+<td></td>
+<td>R[rd] ← {offset, 12b'0}</td>
+<td></td>
+</tr>
+<tr>
+<td>jal rd, imm</td>
+<td>UJ</td>
+<td>0x6f</td>
+<td></td>
+<td></td>
+<td>R[rd] ← PC + 4  <br>PC ← PC + {imm, 1b'0}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> Since our assembler is a one-pass assembler, the <strong>offset</strong> in <strong>SB</strong> and <strong>U</strong> type and <strong>imm</strong> in <strong>UJ</strong> type will be integers.</p>
+<p>The pseudo-instructions are:</p>
+<table>
+<thead>
+<tr>
+<th>PSEUDO-INSTRUCTION</th>
+<th>FORMAT</th>
+<th>USES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Branch on Equal to Zero</td>
+<td>beqz rs1, label</td>
+<td>beq</td>
+</tr>
+<tr>
+<td>Branch on not Equal to Zero</td>
+<td>bnez rs1, label</td>
+<td>bne</td>
+</tr>
+<tr>
+<td>Jump</td>
+<td>j label</td>
+<td>jal</td>
+</tr>
+<tr>
+<td>Jump Register</td>
+<td>jr rs1</td>
+<td>jalr</td>
+</tr>
+<tr>
+<td>Load Immediate</td>
+<td>li rd, immediate</td>
+<td>lui, addi</td>
+</tr>
+<tr>
+<td>Move</td>
+<td>mv rd, rs1</td>
+<td>addi</td>
+</tr>
+</tbody>
+</table>
+<p>For further reference, here are the bit lengths of the instruction components.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-TYPE</td>
+<td>funct7</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>7</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I-TYPE</td>
+<td>imm[11:0]</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>12</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S-TYPE</td>
+<td>imm[11:5]</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>imm[4:0]</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>7</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SB-TYPE</td>
+<td>imm[12]</td>
+<td>imm[10:5]</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>imm[4:1]</td>
+<td>imm[11]</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U-TYPE</td>
+<td>imm[31:12]</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>20</td>
+<td>5</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UJ-TYPE</td>
+<td>imm[20]</td>
+<td>imm[10:1]</td>
+<td>imm[11]</td>
+<td>imm[19:12]</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>1</td>
+<td>10</td>
+<td>1</td>
+<td>8</td>
+<td>5</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Getting-Started">Getting Started</h2>
+<h3 id="File-Structure-and-Usage">File Structure and Usage</h3>
+<p>The directory tree of the framework should like the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.</span><br><span class="line">├── inc</span><br><span class="line">│   ├── assembler.h</span><br><span class="line">│   └── util.h</span><br><span class="line">├── Makefile</span><br><span class="line">├── main.c</span><br><span class="line">├── src</span><br><span class="line">│   ├── assembler.c</span><br><span class="line">│   └── util.c</span><br><span class="line">└── test</span><br><span class="line">    ├── test.ref</span><br><span class="line">    └── test.S</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>main.c is the entry of the whole assembler. You should not modify this file.</p>
+<p>assembler.c and assembler.h are where you implement the assembler function.</p>
+<p>util.c and util.h contain some helper functions. You can also add useful functions there.</p>
+<p>test directory contains a basic test and the correspoding result.</p>
+<h3 id="Build-Execute">Build &amp; Execute</h3>
+<ol>
+<li>Run make to compile the code and assembler executable file will be main</li>
+<li>Or you can build the code with CMake. First make a directory build. Then run cmake .. &amp;&amp; make under build. The executable file will be build/main</li>
+<li>To run the assembler, type main input_file output_file . input_file contains RISC-V instructions (see below for detailed description). output_file is where you output your results to.</li>
+<li>Run make test to test your codes with test/test.S and your output file will be test/test.out</li>
+</ol>
+<h3 id="Input-Output">Input &amp; Output</h3>
+<h4 id="Input">Input</h4>
+<p>Input will be a file containing RISC-V instructins. You can assume there are no empty rows and comments and each line ends with a \n. We will use <strong>space</strong> as delimiter instead of comma, e.g. <strong>add x1 x2 x3</strong>.</p>
+<h4 id="Output">Output</h4>
+<p>Output shoud be RISC-V machine codes. You should use function dump_code in src/util.c when outputing machine codes. This function will requrie a file handler and a uint32_t variable as parameters, which should be the output file and code to be dumped. Do not use your own output function, otherwise, there may be format problems. Also, do no change the output format in dump_code since we will use your util.c when grading.</p>
+<h3 id="Error-Handling">Error Handling</h3>
+<p>If the input file contains some illegal instructions, you should find it and output error information to the output file. You should use function dump_error_information in src/util.c for outputing error information. Once an error occurs, you should continue to assemble the rest instructions and keep outputing results and errors. Also, you should not directly finish the whole program using exit. Quiting unexpectedly will be viewed as run time error.</p>
+<p>To simplify the error handling part, we promise that there will only be one space between each string. Also, you do not need to handle cases where there are more or less parameters in an instruction, like addi a0 a1 or addi a0 a0 a0 1. Load/Store instructions will always be the correct format, e.g. lw a0 0(a1). But the correctness of registers and offset is not guaranteed.</p>
+<p>Here are situations you need to consider in this project:</p>
+<ol>
+<li>Non-existent instruction: All supported instructions are listed above and any other instrcutions should be viewed as illegal.</li>
+<li>Bad registers: Wrong names of register or registers which are out of scope should be detected, e.g. rp, x32. You don't need to handle situations like x01 and a-1</li>
+<li>Bad immediate or offset: The imm or offset in instructions may not be a number, e.g. addi a0 a1 a0.</li>
+<li>Immediate out of range: The immediate in some instructions should be limited into some scope, since the number of bits to represent imm is limited. For example, imm in addi should be between -2048 and 2047. You can refer to <a target="_blank" rel="noopener" href="https://venus.cs61c.org/">Venus</a> and the <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.1/Project%201.1%20-%20Computer%20Architecture%20I%20-%20ShanghaiTech%20University_files/riscv-spec-20191213.pdf">RISC-V manual</a> for more information about the limitation.</li>
+</ol>
+<h2 id="Testing">Testing</h2>
+<h3 id="Diff">Diff</h3>
+<p>Use diff file1 file2 to compare your output with the reference answer. Note that we will use diff to check your answer. To see how to interpret diff results, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diff#Usage">click here</a></p>
+<h3 id="Valgrind">Valgrind</h3>
+<p>To check memory leak, you can use Valgrind by running valgrind --tool=memcheck --leak-check=full --track-origin=yes main input_file output_file</p>
+<h3 id="Venus">Venus</h3>
+<p>Venus is a powerful assembler and you can use Venus to test the correctness of your code.</p>
+<p>First type RISC-V instructions at the editor page. Then at the simulator page, you can see the machine code of each instruction. You can also use Dump button to collect all machine codes as a reference.</p>
+<h2 id="Tips">Tips</h2>
+<ol>
+<li>Immediate in auipc and lui should be between 0 and 1048575. Venus views this immediate as an unsigned integer by defulat, while the official manual does not mention this. We choose to follow Venus. For auipc, since the starting address of text is smaller than that of data, PC-relative addresses are always larger than current PC, causing non-negative offset. For lui, it will load upper part of the immediate into the register, which does not care about the sign.</li>
+<li>Immediate in jal should be between -1048576 and 1048575. Venus does not limit this immediate for some reasons, even if immediates out of this range can not be represented. However, we are going to follow the hardware limitation.</li>
+<li>This project needs a lot of spliting operations. You may find strtok useful.</li>
+<li>You need to check whether the immediate in li instruction is between -2048 and 2047. If so, li should be translated into only one addi instruction. Otherwise, it will be translated into lui and addi</li>
+<li>Try to generate your own test cases. Codes need testing.</li>
+<li>Don't forget writing comments frequently.</li>
+</ol>
+<h2 id="Submission">Submission</h2>
+<p>You should submit your code via Github. Please follow the guidance in Gradescope to submit your codes on Github. Note that we will not use your main.c or Makefile for grading. The compilation flag will be -Wpedantic -Wall -Wextra -Wvla -Werror -std=c11.</p>
+<hr>
+<p>In Project 1 are,</p>
+<p>Chundong Wang &lt;<code>wangchd</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>
+Siting Liu &lt;<code>liust</code> AT <code>shanghaitech.edu.cn</code>&gt;</p>
+<p>and,</p>
+<p>Linjie Ma &lt;<code>malj</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>
+Suting Chen &lt;<code>chenst</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>
+Luojia Hu &lt;<code>hulj</code> AT <code>shanghaitech.edu.cn</code>&gt;</p>
+<p>Last modified: 2024-03-19</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/03/26/CS110-Homework-2/" rel="prev" title="CS110 Homework [2]">
+      <i class="fa fa-chevron-left"></i> CS110 Homework [2]
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Project-1-1-A-RISC-V-Assembler-Individual-Project"><span class="nav-text">Project 1.1: A RISC-V Assembler (Individual Project)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-to-Project-1-1"><span class="nav-text">Introduction to Project 1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-of-The-Instruction-Set"><span class="nav-text">Background of The Instruction Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Registers"><span class="nav-text">Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions"><span class="nav-text">Instructions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-text">Getting Started</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Structure-and-Usage"><span class="nav-text">File Structure and Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-Execute"><span class="nav-text">Build &amp; Execute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Output"><span class="nav-text">Input &amp; Output</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-Handling"><span class="nav-text">Error Handling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing"><span class="nav-text">Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Diff"><span class="nav-text">Diff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valgrind"><span class="nav-text">Valgrind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Venus"><span class="nav-text">Venus</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Submission"><span class="nav-text">Submission</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:838816519@qq.com" title="E-Mail → mailto:838816519@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      	  <!-- require MetingJS -->
+	      <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+        <meting-js
+        server = "netease"
+        id = "7585293889"
+        type = "playlist" 
+        mini = "true"
+        fixed = "true"
+        list-folded = "true"
+        autoplay = "false"
+        volume = "0.4"
+        theme = "#FADFA3"
+        order = "random"
+        loop = "all"
+        lrc-type = -1
+        preload = "auto"
+        mutex = "true">
+        </meting-js>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

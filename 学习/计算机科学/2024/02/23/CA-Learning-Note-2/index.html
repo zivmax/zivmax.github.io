@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.0.0">
+<meta name="generator" content="Hexo 7.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
@@ -31,12 +31,12 @@
 <meta property="og:description" content="RISC-V edition.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-23T01:37:52.000Z">
-<meta property="article:modified_time" content="2024-03-24T13:42:35.071Z">
+<meta property="article:modified_time" content="2024-03-26T03:19:11.548Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="CS61C">
 <meta property="article:tag" content="CS110">
 <meta property="article:tag" content="计算机体系架构">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="上科大">
 <meta property="article:tag" content="Unfinished">
 <meta name="twitter:card" content="summary">
 
@@ -144,7 +144,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -154,7 +154,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2024-03-24 21:42:35" itemprop="dateModified" datetime="2024-03-24T21:42:35+08:00">2024-03-24</time>
+                <time title="修改时间: 2024-03-26 11:19:11" itemprop="dateModified" datetime="2024-03-26T11:19:11+08:00">2024-03-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>10k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:03</span>
+              <span>1:19</span>
             </span>
 
         </div>
@@ -710,11 +710,23 @@
 </table>
 <h1 id="Arithmetic-for-Computers">Arithmetic for Computers</h1>
 <h2 id="Addition-and-Subtraction">Addition and Subtraction</h2>
+<h3 id="Everything-is-Addition">Everything is Addition</h3>
 <p>Thanks to the &quot;strange&quot; way we represent the integers we learn above, for any addition and substraction, so long as we consider them as two signed integers' addtion, we just need to add their binary representation directly, then we get the answer.</p>
 <p>For example, let's consider <code>3 - 4</code>, which should be condsidered as <code>3 + -4</code>:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    00000000 00000000 00000000 00000110 (3)</span><br><span class="line">+   11111111 11111111 11111111 11111001 (-4) </span><br><span class="line">--------------------------------------</span><br><span class="line">    11111111 11111111 11111111 11111111 (-1)</span><br></pre></td></tr></table></figure>
 <p>If you're unfamiliar with binary addition and can not understand the above arithmetic, go check <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EW411u7th?p=4&amp;vd_source=fdfd8451279302b7750ea2a395a2fe38">this video</a>.</p>
 <p>As for other types of addtion and subtraction, they are the same.</p>
+<h3 id="Overflow-and-Underflow">Overflow and Underflow</h3>
+<p>What will happen if we do calculation like this?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    01111111 11111111 11111111 11111111 (2^31 - 1)</span><br><span class="line">+   00000000 00000000 00000000 00000001 (1)</span><br></pre></td></tr></table></figure>
+<p>By arithmetic in binary, the result should be:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10000000 00000000 00000000 00000000 (-2^31)</span><br></pre></td></tr></table></figure>
+<p>Notice the intepretation of the result is not <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn><mo>−</mo><mn>1</mn><mo>=</mo><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn></mrow><annotation encoding="application/x-tex">2^31 - 1 = 2^31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span></span></span></span>, but <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn></mrow><annotation encoding="application/x-tex">-2^31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span></span></span></span>. This is called <em>overflow</em>. And it's due to the limitation of the bits'amount we use to represent the integer. <strong>We try to represent a number that is larger than the largest number we can represent.</strong></p>
+<p>Correspondingly, if we do calculation like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    10000000 00000000 00000000 00000000 (-2^31)</span><br><span class="line">-   00000000 00000000 00000000 00000001 (1)</span><br></pre></td></tr></table></figure>
+<p>The result should be:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01111111 11111111 11111111 11111111 (2^31 - 1)</span><br></pre></td></tr></table></figure>
+<p>This is called <em>underflow</em>. The reason is the same as overflow. <strong>We try to represent a number that is smaller than the smallest number we can represent.</strong></p>
 <hr>
 <h1 id="Unfinished">Unfinished</h1>
 
@@ -726,10 +738,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CS61C/" rel="tag"># CS61C</a>
               <a href="/tags/CS110/" rel="tag"># CS110</a>
               <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
               <a href="/tags/Unfinished/" rel="tag"># Unfinished</a>
           </div>
 
@@ -804,7 +816,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Bits-to-represent-everything"><span class="nav-text">Using Bits to represent everything</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hex-Decimal-and-Binary"><span class="nav-text">Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexadecimal"><span class="nav-text">Hexadecimal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary"><span class="nav-text">Binary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Converting-between-Hex-Decimal-and-Binary"><span class="nav-text">Converting between Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decimal-to-Hex-and-Binary"><span class="nav-text">Decimal to Hex and Binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-to-Decimal"><span class="nav-text">Hex and Binary to Decimal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-Conversion"><span class="nav-text">Hex and Binary Conversion</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Number-Representation-in-Computer"><span class="nav-text">Number Representation in Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-Representation"><span class="nav-text">Integer Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-Point-Representation"><span class="nav-text">Floating Point Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed-Point"><span class="nav-text">Fixed Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Floating-Point"><span class="nav-text">Basic Floating Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE-754-Floating-Point-Standard"><span class="nav-text">IEEE 754 Floating Point Standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Special-Values"><span class="nav-text">Special Values</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arithmetic-for-Computers"><span class="nav-text">Arithmetic for Computers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addition-and-Subtraction"><span class="nav-text">Addition and Subtraction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished"><span class="nav-text">Unfinished</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Bits-to-represent-everything"><span class="nav-text">Using Bits to represent everything</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hex-Decimal-and-Binary"><span class="nav-text">Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexadecimal"><span class="nav-text">Hexadecimal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary"><span class="nav-text">Binary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Converting-between-Hex-Decimal-and-Binary"><span class="nav-text">Converting between Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decimal-to-Hex-and-Binary"><span class="nav-text">Decimal to Hex and Binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-to-Decimal"><span class="nav-text">Hex and Binary to Decimal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-Conversion"><span class="nav-text">Hex and Binary Conversion</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Number-Representation-in-Computer"><span class="nav-text">Number Representation in Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-Representation"><span class="nav-text">Integer Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-Point-Representation"><span class="nav-text">Floating Point Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed-Point"><span class="nav-text">Fixed Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Floating-Point"><span class="nav-text">Basic Floating Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE-754-Floating-Point-Standard"><span class="nav-text">IEEE 754 Floating Point Standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Special-Values"><span class="nav-text">Special Values</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arithmetic-for-Computers"><span class="nav-text">Arithmetic for Computers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addition-and-Subtraction"><span class="nav-text">Addition and Subtraction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Everything-is-Addition"><span class="nav-text">Everything is Addition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overflow-and-Underflow"><span class="nav-text">Overflow and Underflow</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished"><span class="nav-text">Unfinished</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -820,7 +832,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -834,7 +846,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
