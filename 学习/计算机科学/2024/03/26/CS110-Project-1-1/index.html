@@ -31,7 +31,7 @@
 <meta property="og:description" content="A RISC-V Assembler (Individual Project)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-26T03:26:20.000Z">
-<meta property="article:modified_time" content="2024-03-26T08:34:24.641Z">
+<meta property="article:modified_time" content="2024-03-27T03:10:35.888Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="CS110">
 <meta property="article:tag" content="计算机体系架构">
@@ -235,10 +235,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间: 2024-03-26 11:26:20 / 修改时间: 16:34:24" itemprop="dateCreated datePublished" datetime="2024-03-26T11:26:20+08:00">2024-03-26</time>
+              <time title="创建时间: 2024-03-26 11:26:20" itemprop="dateCreated datePublished" datetime="2024-03-26T11:26:20+08:00">2024-03-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-03-27 11:10:35" itemprop="dateModified" datetime="2024-03-27T11:10:35+08:00">2024-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -259,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>10k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:03</span>
+              <span>1:22</span>
             </span>
             <div class="post-description">A RISC-V Assembler (Individual Project)</div>
 
@@ -292,354 +298,328 @@ The projects are part of your design project worth 2 credit points. As such they
 <h3 id="Instructions">Instructions</h3>
 <p>We will have 42 instructions and 6 pseudo-instructions to assemble. The instructions are:</p>
 <table>
-<thead>
-<tr>
-<th>INSTRUCTION</th>
-<th>TYPE</th>
-<th>OPCODE</th>
-<th>FUNCT3</th>
-<th>FUNCT7/IMM</th>
-<th>OPERATION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>add rd, rs1, rs2</td>
-<td>R</td>
-<td>0x33</td>
-<td>0x0</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] + R[rs2]</td>
-</tr>
-<tr>
-<td>mul rd, rs1, rs2</td>
-<td>0x0</td>
-<td>0x01</td>
-<td>R[rd] ← (R[rs1] * R[rs2])[31:0]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sub rd, rs1, rs2</td>
-<td>0x0</td>
-<td>0x20</td>
-<td>R[rd] ← R[rs1] - R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sll rd, rs1, rs2</td>
-<td>0x1</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] &lt;&lt; R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mulh rd, rs1, rs2</td>
-<td>0x1</td>
-<td>0x01</td>
-<td>R[rd] ← (R[rs1] * R[rs2])[63:32]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>slt rd, rs1, rs2</td>
-<td>0x2</td>
-<td>0x00</td>
-<td>R[rd] ← (R[rs1] &lt; R[rs2]) ? 1 : 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sltu rd, rs1, rs2</td>
-<td>0x3</td>
-<td>0x00</td>
-<td>R[rd] ← (U(R[rs1]) &lt; U(R[rs2])) ? 1 : 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>xor rd, rs1, rs2</td>
-<td>0x4</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] ^ R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>div rd, rs1, rs2</td>
-<td>0x4</td>
-<td>0x01</td>
-<td>R[rd] ← R[rs1] / R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>srl rd, rs1, rs2</td>
-<td>0x5</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] &gt;&gt; R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sra rd, rs1, rs2</td>
-<td>0x5</td>
-<td>0x20</td>
-<td>R[rd] ← R[rs1] &gt;&gt; R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>or rd, rs1, rs2</td>
-<td>0x6</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] | R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rem rd, rs1, rs2</td>
-<td>0x6</td>
-<td>0x01</td>
-<td>R[rd] ← R[rs1] % R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>and rd, rs1, rs2</td>
-<td>0x7</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] &amp; R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lb rd, offset(rs1)</td>
-<td>I</td>
-<td>0x03</td>
-<td>0x0</td>
-<td></td>
-<td>R[rd] ← SignExt(Mem(R[rs1] + offset, byte))</td>
-</tr>
-<tr>
-<td>lh rd, offset(rs1)</td>
-<td>0x1</td>
-<td></td>
-<td>R[rd] ← SignExt(Mem(R[rs1] + offset, half))</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw rd, offset(rs1)</td>
-<td>0x2</td>
-<td></td>
-<td>R[rd] ← Mem(R[rs1] + offset, word)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lbu rd, offset(rs1)</td>
-<td>0x4</td>
-<td></td>
-<td>R[rd] ← U(Mem(R[rs1] + offset, byte))</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lhu rd, offset(rs1)</td>
-<td>0x5</td>
-<td></td>
-<td>R[rd] ← U(Mem(R[rs1] + offset, half))</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>addi rd, rs1, imm</td>
-<td>0x13</td>
-<td>0x0</td>
-<td></td>
-<td>R[rd] ← R[rs1] + imm</td>
-<td></td>
-</tr>
-<tr>
-<td>slli rd, rs1, imm</td>
-<td>0x1</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] &lt;&lt; imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>slti rd, rs1, imm</td>
-<td>0x2</td>
-<td></td>
-<td>R[rd] ← (R[rs1] &lt; imm) ? 1 : 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sltiu rd, rs1, imm</td>
-<td>0x3</td>
-<td></td>
-<td>R[rd] ← (U(R[rs1]) &lt; U(imm)) ? 1 : 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>xori rd, rs1, imm</td>
-<td>0x4</td>
-<td></td>
-<td>R[rd] ← R[rs1] ^ imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>srli rd, rs1, imm</td>
-<td>0x5</td>
-<td>0x00</td>
-<td>R[rd] ← R[rs1] &gt;&gt; imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>srai rd, rs1, imm</td>
-<td>0x5</td>
-<td>0x20</td>
-<td>R[rd] ← R[rs1] &gt;&gt; imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ori rd, rs1, imm</td>
-<td>0x6</td>
-<td></td>
-<td>R[rd] ← R[rs1] | imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>andi rd, rs1, imm</td>
-<td>0x7</td>
-<td></td>
-<td>R[rd] ← R[rs1] &amp; imm</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>jalr rd, rs1, imm</td>
-<td>0x67</td>
-<td>0x0</td>
-<td></td>
-<td>R[rd] ← PC + 4  <br>PC ← R[rs1] + imm</td>
-<td></td>
-</tr>
-<tr>
-<td>ecall</td>
-<td>0x73</td>
-<td>0x0</td>
-<td>0x000</td>
-<td>(Transfers control to operating system)  <br>a0 = 1 is print value of a1 as an integer.  <br>a0 = 4 is print the string at address a1.  <br>a0 = 10 is exit or end of code indicator.  <br>a0 = 11 is print value of a1 as a character.</td>
-<td></td>
-</tr>
-<tr>
-<td>sb rs2, offset(rs1)</td>
-<td>S</td>
-<td>0x23</td>
-<td>0x0</td>
-<td></td>
-<td>Mem(R[rs1] + offset) ← R[rs2][7:0]</td>
-</tr>
-<tr>
-<td>sh rs2, offset(rs1)</td>
-<td>0x1</td>
-<td></td>
-<td>Mem(R[rs1] + offset) ← R[rs2][15:0]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sw rs2, offset(rs1)</td>
-<td>0x2</td>
-<td></td>
-<td>Mem(R[rs1] + offset) ← R[rs2]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>beq rs1, rs2, offset</td>
-<td>SB</td>
-<td>0x63</td>
-<td>0x0</td>
-<td></td>
-<td>if(R[rs1] == R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
-</tr>
-<tr>
-<td>bne rs1, rs2, offset</td>
-<td>0x1</td>
-<td></td>
-<td>if(R[rs1] != R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>blt rs1, rs2, offset</td>
-<td>0x4</td>
-<td></td>
-<td>if(R[rs1] &lt; R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bge rs1, rs2, offset</td>
-<td>0x5</td>
-<td></td>
-<td>if(R[rs1] &gt;= R[rs2])  <br> PC ← PC + {offset, 1b'0}</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bltu rs1, rs2, offset</td>
-<td>0x6</td>
-<td></td>
-<td>if(U(R[rs1]) &lt; U(R[rs2]))  <br> PC ← PC + {offset, 1b'0}</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bgeu rs1, rs2, offset</td>
-<td>0x7</td>
-<td></td>
-<td>if(U(R[rs1]) &gt;= U(R[rs2]))  <br> PC ← PC + {offset, 1b'0}</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>auipc rd, offset</td>
-<td>U</td>
-<td>0x17</td>
-<td></td>
-<td></td>
-<td>R[rd] ← PC + {offset, 12b'0}</td>
-</tr>
-<tr>
-<td>lui rd, offset</td>
-<td>0x37</td>
-<td></td>
-<td></td>
-<td>R[rd] ← {offset, 12b'0}</td>
-<td></td>
-</tr>
-<tr>
-<td>jal rd, imm</td>
-<td>UJ</td>
-<td>0x6f</td>
-<td></td>
-<td></td>
-<td>R[rd] ← PC + 4  <br>PC ← PC + {imm, 1b'0}</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <td>Instruction</td>
+          <td>Type</td>
+          <td>Opcode</td>
+          <td>Funct3</td>
+          <td>Funct7/IMM</td>
+          <td>Operation</td>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="inst">add</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td rowspan="14">R</td>
+          <td rowspan="14"><span>0x33</span></td>
+          <td>0x0</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">mul</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x0</td>
+          <td>0x01</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="vars">R</span>[<span class="rgtr">rs1</span>] * <span class="vars">R</span>[<span class="rgtr">rs2</span>])[31:0]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sub</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x0</td>
+          <td>0x20</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] - <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sll</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x1</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &lt;&lt; <span class="vars">R</span>[<span>rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">mulh</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x1</td>
+          <td>0x01</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="vars">R</span>[<span class="rgtr">rs1</span>] * <span class="vars">R</span>[<span class="rgtr">rs2</span>])[63:32]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">slt</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x2</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="vars">R</span>[<span class="rgtr">rs1</span>] &lt; <span class="vars">R</span>[<span class="rgtr">rs2</span>]) ? 1 : 0</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sltu</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x3</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>]) &lt; <span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs2</span>])) ? 1 : 0</td>
+      </tr>
+      <tr>
+          <td><span class="inst">xor</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x4</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] ^ <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">div</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x4</td>
+          <td>0x01</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] / <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">srl</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x5</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &gt;&gt; <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sra</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x5</td>
+          <td>0x20</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &gt;&gt; <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">or</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x6</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] | <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">rem</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x6</td>
+          <td>0x01</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="vars">R</span>[<span class="rgtr">rs1</span>] % <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">and</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span></td>
+          <td>0x7</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &amp; <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lb</span> <span class="rgtr">rd</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td rowspan="16">I</td>
+          <td rowspan="5"><span>0x03</span></td>
+          <td>0x0</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="func">SignExt</span>(<span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>, <span class="lite">byte</span>))</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lh</span> <span class="rgtr">rd</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x1</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="func">SignExt</span>(<span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>, <span class="lite">half</span>))</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lw</span> <span class="rgtr">rd</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x2</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>, <span class="lite">word</span>)</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lbu</span> <span class="rgtr">rd</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x4</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="func">U</span>(<span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>, <span class="lite">byte</span>))</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lhu</span> <span class="rgtr">rd</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x5</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="func">U</span>(<span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>, <span class="lite">half</span>))</td>
+      </tr>
+      <tr>
+          <td><span class="inst">addi</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td rowspan="9">0x13</td>
+          <td>0x0</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">slli</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x1</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &lt;&lt; <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">slti</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x2</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="vars">R</span>[<span class="rgtr">rs1</span>] &lt; <span class="immd">imm</span>) ? 1 : 0</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sltiu</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x3</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← (<span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>]) &lt; <span class="func">U</span>(<span class="immd">imm</span>)) ? 1 : 0 </td>
+      </tr>
+      <tr>
+          <td><span class="inst">xori</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x4</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] ^ <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">srli</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x5</td>
+          <td>0x00</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &gt;&gt; <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">srai</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x5</td>
+          <td>0x20</td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &gt;&gt; <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">ori</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x6</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] | <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">andi</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x7</td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] &amp; <span class="immd">imm</span></td>
+      </tr>
+      <tr>
+          <td><span class="inst">jalr</span> <span class="rgtr">rd</span>, <span class="rgtr">rs1</span>, <span class="immd">imm</span></td>
+          <td>0x67</td>
+          <td>0x0</td>
+          <td></td>
+          <td class="c8">
+              <span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">PC</span>  +  <span class="lite">4</span>
+              <br>
+              <span class="vars">PC</span> ← <span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">imm</span>
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">ecall</span>
+          </td><td>0x73</td>
+          <td>0x0</td>
+          <td>0x000</td>
+          <td class="c8">
+              <span>(Transfers control to operating system)</span>
+              <br>
+              <span class="rgtr">a0</span> = <span class="immd">1</span> is print value of <span class="rgtr">a1</span> as an integer.
+              <br>
+              <span class="rgtr">a0</span> = <span class="immd">4</span> is print the string at address <span class="rgtr">a1</span>.
+              <br>
+              <span class="rgtr">a0</span> = <span class="immd">10</span> is exit or end of code indicator.
+              <br>
+              <span class="rgtr">a0</span> = <span class="immd">11</span> is print value of <span class="rgtr">a1</span> as a character.
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">sb</span> <span class="rgtr">rs2</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td rowspan="3">S</td>
+          <td rowspan="3">0x23</td>
+          <td>0x0</td>
+          <td></td>
+          <td><span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>) ← <span class="vars">R</span>[<span class="rgtr">rs2</span>][7:0]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sh</span> <span class="rgtr">rs2</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x1</td>
+          <td></td>
+          <td><span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>) ← <span class="vars">R</span>[<span class="rgtr">rs2</span>][15:0]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">sw</span> <span class="rgtr">rs2</span>, <span class="immd">offset</span>(<span class="rgtr">rs1</span>)</td>
+          <td>0x2</td>
+          <td></td>
+          <td><span class="func">Mem</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>] + <span class="immd">offset</span>) ← <span class="vars">R</span>[<span class="rgtr">rs2</span>]</td>
+      </tr>
+      <tr>
+          <td><span class="inst">beq</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td rowspan="6">SB</td>
+          <td rowspan="6">0x63</td>
+          <td>0x0</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="vars">R</span>[<span class="rgtr">rs1</span>] == <span class="vars">R</span>[<span class="rgtr">rs2</span>]) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">bne</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td>0x1</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="vars">R</span>[<span class="rgtr">rs1</span>] != <span class="vars">R</span>[<span class="rgtr">rs2</span>]) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">blt</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td>0x4</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="vars">R</span>[<span class="rgtr">rs1</span>] &lt; <span class="vars">R</span>[<span class="rgtr">rs2</span>]) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">bge</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td>0x5</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="vars">R</span>[<span class="rgtr">rs1</span>] &gt;= <span class="vars">R</span>[<span class="rgtr">rs2</span>]) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">bltu</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td>0x6</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>]) &lt; <span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs2</span>])) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">bgeu</span> <span class="rgtr">rs1</span>, <span class="rgtr">rs2</span>, <span class="immd">offset</span></td>
+          <td>0x7</td>
+          <td></td>
+          <td class="c8">
+              if(<span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs1</span>]) &gt;= <span class="func">U</span>(<span class="vars">R</span>[<span class="rgtr">rs2</span>])) 
+              <br>
+              &nbsp;<span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">offset</span>, 1b'0}
+          </td>
+      </tr>
+      <tr>
+          <td><span class="inst">auipc</span> <span class="rgtr">rd</span>, <span class="immd">offset</span></td>
+          <td rowspan="2">U</td>
+          <td>0x17</td>
+          <td></td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← PC + {<span class="immd">offset</span>, 12b'0}</td>
+      </tr>
+      <tr>
+          <td><span class="inst">lui</span> <span class="rgtr">rd</span>, <span class="immd">offset</span></td>
+          <td>0x37</td>
+          <td></td>
+          <td></td>
+          <td><span class="vars">R</span>[<span class="rgtr">rd</span>] ← {<span class="immd">offset</span>, 12b'0}</td>
+      </tr>
+      <tr>
+          <td><span class="inst">jal</span> <span class="rgtr">rd</span>, <span class="immd">imm</span></td>
+          <td>UJ</td>
+          <td>0x6f</td>
+          <td></td>
+          <td></td>
+          <td class="c8">
+              <span class="vars">R</span>[<span class="rgtr">rd</span>] ← <span class="vars">PC</span>  +  <span class="lite">4</span>
+              <br>
+              <span class="vars">PC</span> ← <span class="vars">PC</span> + {<span class="immd">imm</span>, 1b'0}
+          </td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>NOTE:</strong> Since our assembler is a one-pass assembler, the <strong>offset</strong> in <strong>SB</strong> and <strong>U</strong> type and <strong>imm</strong> in <strong>UJ</strong> type will be integers.</p>
 <p>The pseudo-instructions are:</p>
@@ -925,7 +905,7 @@ The projects are part of your design project worth 2 credit points. As such they
 <li>Don't forget writing comments frequently.</li>
 </ol>
 <h2 id="Submission">Submission</h2>
-<p>You should submit your code via Github. Please follow the guidance in Gradescope to submit your codes on Github. Note that we will not use your main.c or Makefile for grading. The compilation flag will be -Wpedantic -Wall -Wextra -Wvla -Werror -std=c11.</p>
+<p>You should submit your code via Github. Please follow the guidance in Gradescope to submit your codes on Github. Note that we will not use your main.c or Makefile for grading. The compilation flag will be <code>-Wpedantic -Wall -Wextra -Wvla -Werror -std=c11</code>.</p>
 <hr>
 <p>In Project 1 are,</p>
 <p>Chundong Wang &lt;<code>wangchd</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>
