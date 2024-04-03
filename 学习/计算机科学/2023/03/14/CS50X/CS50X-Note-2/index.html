@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇在CS50X官网的英文原版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50X Note [2]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/14/CS50X/CS50X-Note-2/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="本篇在CS50X官网的英文原版">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/17/13SBFrdKEo5L9Qs.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/17/Cqco1aErQx8Znpe.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide084.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide087.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide088.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide098.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide116.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide117.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide126.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide120.png">
+<meta property="og:image" content="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide153.png">
+<meta property="article:published_time" content="2023-03-14T02:45:34.000Z">
+<meta property="article:modified_time" content="2024-02-23T01:51:14.132Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="精校翻译">
+<meta property="article:tag" content="C 语言">
+<meta property="article:tag" content="CS50X">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/14/CS50X/CS50X-Note-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS50X Note [2] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/03/14/CS50X/CS50X-Note-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS50X Note [2]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2023-03-14 10:45:34" itemprop="dateCreated datePublished" datetime="2023-03-14T10:45:34+08:00">2023-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-02-23 09:51:14" itemprop="dateModified" datetime="2024-02-23T09:51:14+08:00">2024-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:19</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/">本篇在CS50X官网的英文原版</a></p>
+<span id="more"></span>
+<h1 id="Lecture-2">Lecture 2</h1>
+<p><em>点击列表中任意的项目可跳转到原版对应部分</em></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#welcome">Welcome!</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#compiling">Compiling</a> [编译]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#debugging">Debugging</a> [调试]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#arrays">Arrays</a> [数组]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#strings">Strings</a> [字符串]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#command-line-arguments">Command-Line Arguments</a> [命令行参数]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#exit-status">Exit Status</a> [退出状态]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#cryptography">Cryptography</a> [密码学]</li>
+<li><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2023/notes/2/#summing-up">Summing Up</a></li>
+</ul>
+<h2 id="Welcome">Welcome!</h2>
+<ul>
+<li>在上一节课中，我们学习了一种名为 C 的文本编程语言。</li>
+<li>本周，我们将更深入地探讨一些额外的代码构建块，以支持我们从底层向上学习编程的目标。</li>
+<li>本质上来说，除了编程的基础知识外，本课程还涉及到如何解决问题。因此，我们还将进一步专注于如何处理计算机科学问题。</li>
+</ul>
+<h2 id="Compiling-编译">Compiling [编译]</h2>
+<ul>
+<li>
+<p><em>加密</em> 是将明文隐藏起来，防止被他人窥探。<em>解密</em> 是将一段加密的文本还原为可读的人类语言。</p>
+</li>
+<li>
+<p>一段加密的文本可能长成这样：</p>
+<p><img src="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png" alt></p>
+</li>
+<li>
+<p>回顾一下上周你学习的有关编译器的知识，编译器是一种专门的计算机程序，可以将源代码转换为机器代码，以便计算机能够理解。</p>
+</li>
+<li>
+<p>例如，你可能有一个计算机程序看起来像这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编译器将读取上面的代码，并将其转换为机器代码,  如下：</p>
+<p><img src="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png" alt></p>
+</li>
+<li>
+<p>提供给你的编程环境 <em>VS Code</em>，使用了一个名为 <code>clang</code> 或 <em>c language</em> 的编译器。</p>
+</li>
+<li>
+<p>如果你输入 <code>make hello</code> ，它会执行一个命令，运行 clang 创建一个输出文件.  你可以作为用户运行这个文件。</p>
+</li>
+<li>
+<p>VS Code 已经被预先配置，使得 <code>make</code> 将把 clang 与众多的命令行参数一起运行，以方便作为用户的你使用。</p>
+</li>
+<li>
+<p>考虑以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>你可以尝试在终端<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="即终端窗口，在接下来的所有 Note 中我们都简称终端
+">[1]</span></a></sup>中输入：<code>clang -o hello hello.c</code> 。你会遇到一个错误，指出clang不知道在哪里找到 <code>cs50.h</code> 库。</p>
+</li>
+<li>
+<p>再次尝试编译此代码，请在终端中运行以下命令：<code>clang -o hello hello.c -lcs50</code> <sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="`-lcs50` 中的 `l` 代表 link">[2]</span></a></sup> 。这将使编译器能够访问 <code>cs50.h</code> 库。</p>
+</li>
+<li>
+<p>在终端中运行 <code>./hello</code> ，你的程序将正常运行。</p>
+</li>
+<li>
+<p>上面的内容是为了说明编译代码的过程和概念，在CS50中直接使用 <code>make</code> 来进行编译是完全可以的，并且是我们所期望你做的事情！</p>
+</li>
+<li>
+<p>编译涉及主要步骤，包括以下内容：</p>
+<ul>
+<li>
+<p>首先，<em>预处理</em>（preprocessing）是指将你的代码中由 <code>#</code>（例如 <code>#include &lt;cs50.h&gt;</code> ）指定的头文件有效地复制粘贴到你的文件中。在这个步骤中，<code>cs50.h</code> 中的代码会被复制到你的程序中。同样地，正如你的代码包含 <code>#include &lt;stdio.h&gt;</code> 一样，存储在你的电脑上的 <code>stdio.h</code> 中的代码也会被复制到你的程序中。这个步骤的结果可以被视为下面的形式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">string</span> <span class="title function_">get_string</span><span class="params">(<span class="built_in">string</span> prompt)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">printf</span><span class="params">(<span class="built_in">string</span> format, ...)</span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第二， <em>编译（compiling）</em> 是将你的程序转换为汇编代码的过程。这个步骤的结果可以被视为下面的形式：</p>
+<p><img src="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png" alt></p>
+</li>
+<li>
+<p>第三， <em>汇编（assembling）</em> 是编译器将你的汇编代码转换为机器代码的过程。这个步骤的结果可以被视为下面的形式：</p>
+<p><img src="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png" alt></p>
+</li>
+<li>
+<p>最后，在 <em>链接（linking）</em> 步骤中，来自包含库（included libraries）的代码也将被转换为机器代码并与你的代码组合；然后输出最终的可执行文件。</p>
+<p><img src="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png" alt></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Debugging-调试">Debugging [调试]</h2>
+<ul>
+<li>
+<p>每个人在编程时都会犯错误。</p>
+</li>
+<li>
+<p>回过头来看一张上次课上的图片：</p>
+<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png" alt="[cs50Week2Slide061.png]"></p>
+</li>
+<li>
+<p>接着，请注意以下代码，其中有一个故意留下的 bug：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;#\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在终端中输入 <code>code buggy0.c</code> ，并编写上述代码。</p>
+</li>
+<li>
+<p>运行此代码，将出现四个砖块，而不是预期的三个。</p>
+</li>
+<li>
+<p><code>printf</code> 是调试代码时非常有用的一个函数。您可以修改代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i is %i\n&quot;</span>, i);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;#\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在运行这段代码时，你会看到很多语句，包括 <code>i is 0</code> ， <code>i is 1</code> ，<code>i is 2</code> 和 <code>i is 3</code> 。当看到这些，你可能就会意识到代码需要进行修正，具体如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;#\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 <code>&lt;=</code> 被 <code>&lt;</code> 替换了。</p>
+</li>
+<li>
+<p>第二个调试工具被称为 <em>调试器（debugger）</em> ，是程序员们创建的软件工具，用来跟踪代码中的错误。</p>
+</li>
+<li>
+<p>在 VS Code 中，已经为您提供了一个预配置的调试器。</p>
+</li>
+<li>
+<p>要使用此调试器，首先，我们要通过单击代码行左侧（行号的左侧）设置一个 <em>断点（breakpoint）</em> 。当您单击此处时，将看到一个红点出现。将其想象为一个停止标志，要求编译器在这里暂停，以便您可以考虑在代码的这部分中发生了什么。</p>
+<p><img src="https://s2.loli.net/2023/03/17/13SBFrdKEo5L9Qs.png" alt="[cs50Week2Debugging.png]"></p>
+</li>
+<li>
+<p>其次，运行 <code>debug50 ./buggy0</code> 。您会注意到，在调试器启动后，您的代码中的一行将以接近金色的颜色高亮显示。字面意思上，代码已经在这一行代码处 <em>暂停</em> 了。注意在窗口左上角，显示有所有的局部变量，包括 <code>i</code> ，它当前的值为 <code>0</code> 。在窗口顶部，您可以点击击 <code>step over</code> 按钮，它将让您的代码继续向下执行。注意 <code>i</code> 的值增加随着代码的执行不断增加。</p>
+</li>
+<li>
+<p>虽然这个工具不会告诉您错误在哪里，但它会帮助您放慢速度，并逐步查看代码运行情况。</p>
+</li>
+<li>
+<p>为了说明第三种调试方法，请在终端中运行 <code>code buggy1.c</code> 来创建一个新文件。按照以下方式编写代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_negative_int</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = get_negative_int();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prompt user for positive integer</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_negative_int</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Negative Integer: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 <code>get_negative_int</code> 的目的是为了从用户那里获取负整数。</p>
+</li>
+<li>
+<p>在运行 <code>make buggy1</code> 和 <code>./buggy1</code> 后，您会发现它并没有按预期执行。它似乎只接受正整数，而忽略了负整数。</p>
+</li>
+<li>
+<p>与之前一样，在代码的某一行设置断点。最好在 <code>int i = get_negative_int</code> 处设置断点。现在，运行 <code>debug50 buggy1</code> 。</p>
+</li>
+<li>
+<p>不同于之前在窗口顶部使用 <code>step over</code> 按钮，这次我们使用 <code>step into</code> 按钮。这将把调试器带入您的 <code>get_negative_int</code> 函数。注意这样做是如何帮助你发现代码被困在了 <code>do while</code> 循环中。</p>
+</li>
+<li>
+<p>在了解这个死循环的事实后，您可能会考虑为什么会被困在这个循环中，从而导致您按如下方式编辑代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_negative_int</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = get_negative_int();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prompt user for positive integer</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_negative_int</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n = get_int(<span class="string">&quot;Negative Integer: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (n &gt;= <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到 <code>n &lt; 0</code> 已经被修改了。</p>
+</li>
+<li>
+<p>最后一种调试的方式被称为 <em>橡皮鸭调试</em> 。当您在代码中遇到困难时，可以考虑大声对一个橡皮鸭（字面意义上）喊出代码问题。如果您不想和一个小塑料鸭子说话，欢迎您告诉身边的人！他们不需要了解如何编程：与他们交谈是您谈论代码的机会。</p>
+<p><em>（这段可能看起来有点奇怪，但是原文的确如此。简单地解释一下就是：你可以对别人或小鸭子逐步讲述你这个代码是如何解决问题的，你为什么要这么写，而这其实就相当于在逐步复盘代码的运行逻辑是什么，在你复盘的过程中，你很可能就发现了逻辑上的谬误或者漏洞，进而成功修复 bug）</em></p>
+<p><img src="https://s2.loli.net/2023/03/17/Cqco1aErQx8Znpe.png" alt="[cs50Week2Slide070.png]"></p>
+</li>
+</ul>
+<h2 id="Arrays-数组">Arrays [数组]</h2>
+<ul>
+<li>
+<p>在第0周，我们讨论了<code>bool</code>、<code>int</code>、<code>char</code>、<code>string</code>等 <em>数据类型</em> 。</p>
+</li>
+<li>
+<p>每种数据类型需要一定数量的系统资源：</p>
+<ul>
+<li><code>bool</code> ：1 byte<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="byte 的中文为字节，1 byte = 8 bits">[3]</span></a></sup></li>
+<li><code>int</code> ：4 bytes</li>
+<li><code>long</code> ：8 bytes</li>
+<li><code>float</code> ：4 bytes</li>
+<li><code>double</code> ：8 bytes</li>
+<li><code>char</code> ：1 byte</li>
+<li><code>string</code> ：? bytes</li>
+</ul>
+</li>
+<li>
+<p>在计算机内部，你的内存是有限的。</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide084.png" alt="[cs50Week2Slide084.png]"></p>
+</li>
+<li>
+<p>从物理意义上来看，在计算机内存中，你可以想象特定类型的数据是如何存储在计算机中的。你可以想象一个只需要 1 byte 内存的 <code>char</code> 类型变量，可能如下所示：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide087.png" alt="[cs50Week2Slide087.png]"></p>
+</li>
+<li>
+<p>同样地，一个需要 4 bytes 的 <code>int</code> 可能如下所示：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide088.png" alt="[cs50Week2Slide088.png]"></p>
+</li>
+<li>
+<p>我们可以创建一个程序来探索这些概念。在您的终端内输入 <code>code scores.c</code> 并编写以下代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Scores</span></span><br><span class="line">    <span class="type">int</span> score1 = <span class="number">72</span>;</span><br><span class="line">    <span class="type">int</span> score2 = <span class="number">73</span>;</span><br><span class="line">    <span class="type">int</span> score3 = <span class="number">33</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print average</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Average: %f\n&quot;</span>, (score1 + score2 + score3) / <span class="number">3.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意右边的数字是一个浮点值 <code>3.0</code>，这样计算的结果最终会被呈现为浮点值。</p>
+</li>
+<li>
+<p>运行 <code>make scores</code>，执行程序。</p>
+</li>
+<li>
+<p>你可以想象这些变量是如何存储在内存中的：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide098.png" alt="[cs50Week2Slide098.png]"></p>
+</li>
+<li>
+<p><em>数组（Arrays）</em> 是一种将数据依次存储在内存中的方式，以便该数据可以轻松访问。</p>
+</li>
+<li>
+<p><code>int scores[3]</code> 是告诉编译器为你提供三个连续的大小为 <code>int</code> 的内存空间，用于存储三个 <code>scores</code>。顺着我们之前的程序，你可以按照以下方式修改你的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Scores</span></span><br><span class="line">    <span class="type">int</span> scores[<span class="number">3</span>];</span><br><span class="line">    scores[<span class="number">0</span>] = <span class="number">72</span>;</span><br><span class="line">    scores[<span class="number">1</span>] = <span class="number">73</span>;</span><br><span class="line">    scores[<span class="number">2</span>] = <span class="number">33</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print average</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Average: %f\n&quot;</span>, (scores[<span class="number">0</span>] + scores[<span class="number">1</span>] + scores[<span class="number">2</span>]) / <span class="number">3.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，<code>score[0]</code> 通过在数组 <code>scores</code> 中索引到位置 <code>0</code>，来查看该内存位置上存储的值。</p>
+</li>
+<li>
+<p>你可以从上面的代码可以看出，它确实可以工作，但仍有改进的空间。请按照以下方式修改您的代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Get scores</span></span><br><span class="line">    <span class="type">int</span> scores[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        scores[i] = get_int(<span class="string">&quot;Score: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print average</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Average: %f\n&quot;</span>, (scores[<span class="number">0</span>] + scores[<span class="number">1</span>] + scores[<span class="number">2</span>]) / <span class="number">3.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，我们通过使用 <code>for</code> 循环中提供的 <code>i</code>，来索引访问数组 <code>scores</code> 中的元素，即 <code>scores[i]</code> 。</p>
+</li>
+<li>
+<p>我们可以简化或“抽象掉”对平均值的计算。将你的代码修改如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Constant</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prototype</span></span><br><span class="line"><span class="type">float</span> <span class="title function_">average</span><span class="params">(<span class="type">int</span> length, <span class="type">int</span> <span class="built_in">array</span>[])</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Get scores</span></span><br><span class="line">    <span class="type">int</span> scores[N];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        scores[i] = get_int(<span class="string">&quot;Score: &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print average</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Average: %f\n&quot;</span>, average(N, scores));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">float</span> <span class="title function_">average</span><span class="params">(<span class="type">int</span> length, <span class="type">int</span> <span class="built_in">array</span>[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Calculate average</span></span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += <span class="built_in">array</span>[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum / (<span class="type">float</span>) length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这里声明了一个名为 <code>average</code> 的新函数。此外，还声明了一个常量值 <code>N</code> 。最重要的是，要注意 <code>average</code> 函数接受的参数是 <code>int array[]</code> ，这意味着编译器会将一个数组传递给该函数。</p>
+</li>
+<li>
+<p>数组不仅可以作为容器，还可以在函数之间传递。</p>
+</li>
+</ul>
+<h2 id="Strings-字符串">Strings [字符串]</h2>
+<ul>
+<li>
+<p>一个 <code>string</code> 简单来说就是一个 <code>char</code> 类型的数组：也就是一个字符数组。</p>
+</li>
+<li>
+<p>从下面的图片中可以看出，一个字符串就是一个由字符组成的数组，以一个特殊的字符作为结尾，这个特殊字符称为 <code>NUL character</code>（空字符）：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide116.png" alt="[cs50Week2Slide116.png]"></p>
+</li>
+<li>
+<p>如果用十进制来想象这个数组，它将如下所示：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide117.png" alt="[cs50Week2Slide117.png]"></p>
+</li>
+<li>
+<p>在你自己的代码中实现这一点，可以在终端窗口中键入 <code>code hi.c</code> ，然后编写以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> c1 = <span class="string">&#x27;H&#x27;</span>;</span><br><span class="line">    <span class="type">char</span> c2 = <span class="string">&#x27;I&#x27;</span>;</span><br><span class="line">    <span class="type">char</span> c3 = <span class="string">&#x27;!&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i %i %i\n&quot;</span>, c1, c2, c3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这将输出每个字符对应的十进制值。</p>
+</li>
+<li>
+<p>为了进一步理解 <code>string</code> 的工作原理，请按如下方式修改你的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s = <span class="string">&quot;HI!&quot;</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i %i %i\n&quot;</span>, s[<span class="number">0</span>], s[<span class="number">1</span>], s[<span class="number">2</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意 <code>printf</code> 语句如何从名为 <code>s</code> 的数组中提取并输出三个值。</p>
+</li>
+<li>
+<p>假设我们想要同时输出 <code>HI!</code> 和 <code>BYE!</code> 。请按以下方式修改您的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s = <span class="string">&quot;HI!&quot;</span>;</span><br><span class="line">    <span class="built_in">string</span> t = <span class="string">&quot;BYE!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，在这个例子中声明并使用了两个字符串。</p>
+</li>
+<li>
+<p>你可以将其可视化如下：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide126.png" alt="[cs50Week2Slide126.png]"></p>
+</li>
+<li>
+<p>我们可以进一步改进这段代码。请按照以下方式修改您的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> words[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    words[<span class="number">0</span>] = <span class="string">&quot;HI!&quot;</span>;</span><br><span class="line">    words[<span class="number">1</span>] = <span class="string">&quot;BYE!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, words[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, words[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这两个字符串都存储在类型为 <code>string</code> 的单个数组中。</p>
+</li>
+<li>
+<p>编程中常见的一个问题，尤其在 C 语言中更为常见，就是要确定数组的长度。我们可以如何用代码来实现这一点呢？在终端窗口中键入 <code>code length.c</code> 并编写如下代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Prompt for user&#x27;s name</span></span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;Name: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Count number of characters up until &#x27;\0&#x27; (aka NUL)</span></span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (name[n] != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，此代码循环直到找到 <code>NUL</code> （空字符）为止。</p>
+</li>
+<li>
+<p>因为这在编程中是一个如此常见的问题，其他程序员已经在 <code>string.h</code> 库中创建了代码来找到字符串的长度。你可以通过修改你的代码如下来方便地找到字符串的长度：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Prompt for user&#x27;s name</span></span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;Name: &quot;</span>);</span><br><span class="line">    <span class="type">int</span> length = <span class="built_in">strlen</span>(name);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%i\n&quot;</span>, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这段代码使用了在文件顶部声明的 <code>string.h</code> 库。此外，它使用了该库中的一个名为 <code>strlen</code> 的函数，该函数用于计算传递给它的字符串的长度。</p>
+</li>
+<li>
+<p><code>ctype.h</code> 是另一个非常有用的库。想象一下，我们想要创建一个程序，将所有小写字符转换为大写字符。在终端窗口中键入 <code>code uppercase.c</code> 并编写以下代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s = get_string(<span class="string">&quot;Before: &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;After:  &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, n = <span class="built_in">strlen</span>(s); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i] - <span class="number">32</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这段代码通过字符串中的每个值进行迭代<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="迭代地意思通俗来讲就是挨个处理
+">[4]</span></a></sup>。程序检查每个字符。如果字符是小写的，它会从字符的值中减去 32 <sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="所有英文字母的大写和小写形式的 ASCII 码的差值都是 32">[5]</span></a></sup>，以将其转换为大写。</p>
+</li>
+<li>
+<p>回顾我们上周的学习内容，你可能还记得这个 ASCII 值表：</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide120.png" alt="[cs50Week2Slide120.png]"></p>
+</li>
+<li>
+<p>当从小写字符中减去<code>32</code>时，会得到相应大写版本的字符。</p>
+</li>
+<li>
+<p>虽然之前的程序实现了我们的目的，但使用<code>ctype.h</code>库有一种更简单的方法。按以下方式修改你的程序：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s = get_string(<span class="string">&quot;Before: &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;After:  &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, n = <span class="built_in">strlen</span>(s); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">islower</span>(s[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="built_in">toupper</span>(s[i]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，该程序使用 <code>islower</code> 函数来检测每个字符是大写还是小写。然后，<code>toupper</code> 函数将 <code>s[i]</code> 作为参数传递。每个字符（如果是小写）将被转换为大写。</p>
+</li>
+<li>
+<p>又和上次一样，虽然这个程序实现了预期的功能，但仍有改进的空间。正如 <code>ctype.h</code> 的文档所述，<code>toupper</code> 非常智能，如果传递的字符已经是大写字母，它会直接忽略。因此，我们不再需要 <code>if</code> 语句。你可以将代码简化如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s = get_string(<span class="string">&quot;Before: &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;After:  &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, n = <span class="built_in">strlen</span>(s); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="built_in">toupper</span>(s[i]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这段代码相当简化，去掉了不必要的<code>if</code>语句。</p>
+</li>
+<li>
+<p>您可以在<a target="_blank" rel="noopener" href="https://manual.cs50.io/#ctype.h">手册页面</a>上阅读有关 <code>ctype</code> 库的所有功能。</p>
+</li>
+</ul>
+<h2 id="Command-Line-Arguments-命令行参数">Command-Line Arguments [命令行参数]</h2>
+<ul>
+<li>
+<p><code>Command-line arguments</code>（命令行参数）是指在命令行中传递给你的程序的参数。例如，你在<code>clang</code> 后面输入的所有语句都被视为命令行参数。你可以在自己的程序中使用这些参数！</p>
+</li>
+<li>
+<p>在你的终端窗口中，输入 <code>code greet.c</code> ，并编写如下代码：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> name = get_string(<span class="string">&quot;What&#x27;s your name? &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，这里我们向用户输出了 <code>hello</code> 。</p>
+</li>
+<li>
+<p>不过，在程序运行之前就提前接受参数不是更好吗？请按照以下方式修改你的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="built_in">string</span> argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;hello, world\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p>请注意，该程序同时使用了 <code>argc</code> （命令行参数的数量）和 <code>argv</code> （作为命令行参数传递的字符数组）这两个变量。</p>
+</li>
+<li>
+<p>因此，使用该程序的语法，执行 <code>./greet David</code> 将导致程序输出 <code>hello, David</code>。</p>
+</li>
+</ul>
+<h2 id="Exit-Status-退出状态">Exit Status [退出状态]</h2>
+<ul>
+<li>
+<p>当程序结束时，会向计算机提供一个特殊的退出代码。</p>
+</li>
+<li>
+<p>当程序无错误退出时，计算机会返回状态码 <code>0</code> 。通常情况下，当程序因发生错误而结束时，计算机会返回状态码 <code>1</code> 。</p>
+</li>
+<li>
+<p>你可以编写下面的程序来说明这一点，输入 <code>code status.c</code> 并编写如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cs50.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="built_in">string</span> argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Missing command-line argument\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello, %s\n&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>请注意，如果你未能提供 <code>./status David</code> ，你将会得到一个退出状态码为<code>1</code>。然而，如果你提供了 <code>./status David</code> ，你将会得到一个退出状态码 <code>0</code> 。</p>
+<ul>
+<li>你可以想象一下，你可以如何使用上述程序的一部分来检查用户是否提供了正确数量的命令行参数。</li>
+</ul>
+<h2 id="Cryptography-密码学">Cryptography [密码学]</h2>
+<ul>
+<li>
+<p>密码学是加密和解密消息的艺术。</p>
+</li>
+<li>
+<p>通过向 <code>cipher</code> （加密器）提供 <code>plaintext</code>（明文）和<code>key</code>（密钥），得到 ciphered text（加密文本）。</p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide153.png" alt="[cs50Week2Slide153.png]"></p>
+</li>
+<li>
+<p><strong>密钥（Key）</strong> 是一个特殊的参数，与明文一起传递给 <strong>密码（cipher）</strong> 。密码使用密钥来做出关于如何实现其密码算法的决策。</p>
+</li>
+</ul>
+<h2 id="Summing-Up">Summing Up</h2>
+<p>在这节课中，你学到了有关编译的更多细节，以及数据是如何储存在计算机上的相关知识。具体而言，你学到了：</p>
+<ul>
+<li>通常情况下，编译器的工作原理。</li>
+<li>如何使用四种方法调试你的代码。</li>
+<li>如何在你的代码中使用数组。</li>
+<li>数组如何将数据存储在内存中相邻的位置。</li>
+<li><code>string</code> 其实就是 <code>char</code> 的数组。</li>
+<li>如何在你的代码中与数组进行交互。</li>
+<li>如何将命令行参数传递给你的程序。</li>
+<li>密码学的基本构建块。</li>
+</ul>
+<p><em><strong>下次见！</strong></em><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">即终端窗口，在接下来的所有 Note 中我们都简称终端<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><code>-lcs50</code> 中的 <code>l</code> 代表 link<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">byte 的中文为字节，1 byte = 8 bits<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">迭代地意思通俗来讲就是挨个处理<a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">所有英文字母的大写和小写形式的 ASCII 码的差值都是 32<a href="#fnref:5" rev="footnote"> ↩</a></span></li></ol></div></div></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
+              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
+              <a href="/tags/CS50X/" rel="tag"># CS50X</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/03/10/DiscreteMath/%E6%95%B0%E8%AE%BA%E4%B8%8E%E5%8A%A0%E5%AF%86%E5%AD%A6-8/" rel="prev" title="数论与加密学 [8]">
+      <i class="fa fa-chevron-left"></i> 数论与加密学 [8]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E7%94%9F%E6%B4%BB/%E8%AF%BB%E4%B9%A6/2023/03/15/Daily/%E3%80%8A%E5%8E%9F%E5%88%99%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="《原则》读书笔记">
+      《原则》读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-2"><span class="nav-number">1.</span> <span class="nav-text">Lecture 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Welcome"><span class="nav-number">1.1.</span> <span class="nav-text">Welcome!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compiling-%E7%BC%96%E8%AF%91"><span class="nav-number">1.2.</span> <span class="nav-text">Compiling [编译]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debugging-%E8%B0%83%E8%AF%95"><span class="nav-number">1.3.</span> <span class="nav-text">Debugging [调试]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays-%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.</span> <span class="nav-text">Arrays [数组]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strings-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.5.</span> <span class="nav-text">Strings [字符串]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Line-Arguments-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">Command-Line Arguments [命令行参数]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exit-Status-%E9%80%80%E5%87%BA%E7%8A%B6%E6%80%81"><span class="nav-number">1.7.</span> <span class="nav-text">Exit Status [退出状态]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cryptography-%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="nav-number">1.8.</span> <span class="nav-text">Cryptography [密码学]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summing-Up"><span class="nav-number">1.9.</span> <span class="nav-text">Summing Up</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

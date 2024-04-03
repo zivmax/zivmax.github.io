@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="RISC-V edition.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Note [2]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-2/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="RISC-V edition.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-23T01:37:52.000Z">
+<meta property="article:modified_time" content="2024-04-01T06:14:59.490Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="计算机体系架构">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Note [2] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Note [2]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-02-23 09:37:52" itemprop="dateCreated datePublished" datetime="2024-02-23T09:37:52+08:00">2024-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-04-01 14:14:59" itemprop="dateModified" datetime="2024-04-01T14:14:59+08:00">2024-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>19k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2:01</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RISC-V edition.</p>
+<span id="more"></span>
+<h1 id="Using-Bits-to-represent-everything">Using Bits to represent everything</h1>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> bits <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↔</mo></mrow><annotation encoding="application/x-tex">\leftrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↔</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">2^N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span></span></span></span> different values, which could be used to abstractly represent a set of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">2^N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span></span></span></span> different things in real world.</p>
+<h1 id="Hex-Decimal-and-Binary">Hex, Decimal and Binary</h1>
+<h2 id="Hexadecimal">Hexadecimal</h2>
+<p>Hexadecimal, or &quot;hex&quot; for short, is a way of counting that uses 16 symbols instead of the usual 10 symbols (0-9) we use in everyday life. In hex, we use the numbers 0-9 and the letters A-F to represent values from 0 to 15.</p>
+<p>Here's a quick comparison of decimal (base-10) and hexadecimal (base-16) counting:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decimal</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">17</td>
+</tr>
+<tr>
+<td>Hex</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Binary">Binary</h2>
+<p>Binary is also a way of counting, but it only uses two symbols: 0 and 1. This is because computers are made up of tiny switches that can only be in one of two states: on or off. We can use these switches to represent the binary numbers 0 and 1.</p>
+<p>Here's a quick comparison of decimal (base-10) and binary (base-2) counting:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decimal</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">1001</td>
+<td style="text-align:center">1010</td>
+<td style="text-align:center">1011</td>
+<td style="text-align:center">1100</td>
+<td style="text-align:center">1101</td>
+<td style="text-align:center">1110</td>
+<td style="text-align:center">1111</td>
+<td style="text-align:center">10000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Converting-between-Hex-Decimal-and-Binary">Converting between Hex, Decimal and Binary</h2>
+<h3 id="Decimal-to-Hex-and-Binary"><strong>Decimal to Hex and Binary</strong></h3>
+<p>Converting hex and binary to decimal is easy. You just need to use the order of the digits and multiply each digit by the base of the system raised to the power of its position. For example, the hex number 2A3F can be converted to decimal like this:</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>A</mi><mn>3</mn><msub><mi>F</mi><mn>16</mn></msub><mo>=</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>6</mn><mn>3</mn></msup><mo>+</mo><mn>10</mn><mo>×</mo><mn>1</mn><msup><mn>6</mn><mn>2</mn></msup><mo>+</mo><mn>3</mn><mo>×</mo><mn>1</mn><msup><mn>6</mn><mn>1</mn></msup><mo>+</mo><mn>15</mn><mo>×</mo><mn>1</mn><msup><mn>6</mn><mn>0</mn></msup><mo>=</mo><mn>1078</mn><msub><mn>3</mn><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">2A3F_{16} = 2 \times 16^3 + 10 \times 16^2 + 3 \times 16^1 + 15 \times 16^0 = 10783_{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">2</span><span class="mord mathnormal">A</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">15</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1078</span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="Hex-and-Binary-to-Decimal"><strong>Hex and Binary to Decimal</strong></h3>
+<p>Converting decimal to hex and binary needs a little more complicated algorithm.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decimal_to_base</span>(<span class="params">base</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">n</span>):</span><br><span class="line">        <span class="keyword">if</span> n &lt; base:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">str</span>(n)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> convert(n // base) + <span class="built_in">str</span>(n % base)</span><br><span class="line">    <span class="keyword">return</span> convert</span><br><span class="line"></span><br><span class="line">decimal_to_hex = decimal_to_base(<span class="number">16</span>)</span><br><span class="line">decimal_to_binary = decimal_to_base(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Hex-and-Binary-Conversion"><strong>Hex and Binary Conversion</strong></h3>
+<p>Converting between hex and binary is quite easy. Why?</p>
+<p>By observing the table below, we can see that each hex digit corresponds to a 4-bit binary number:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hex</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">F</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">1001</td>
+<td style="text-align:center">1010</td>
+<td style="text-align:center">1011</td>
+<td style="text-align:center">1100</td>
+<td style="text-align:center">1101</td>
+<td style="text-align:center">1110</td>
+<td style="text-align:center">1111</td>
+</tr>
+</tbody>
+</table>
+<p>So to convert a hex number to binary, we just need to convert each hex digit to its corresponding 4-bit binary number. For example, the hex number 2A3F can be converted to binary like this:</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>A</mi><mn>3</mn><msub><mi>F</mi><mn>16</mn></msub><mo>=</mo><mn>001010100011111</mn><msub><mn>1</mn><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">2A3F_{16} = 0010 1010 0011 1111_{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">2</span><span class="mord mathnormal">A</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">001010100011111</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>Since <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> corresponds to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0010</mn></mrow><annotation encoding="application/x-tex">0010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0010</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> corresponds to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1010</mn></mrow><annotation encoding="application/x-tex">1010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1010</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> corresponds to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0011</mn></mrow><annotation encoding="application/x-tex">0011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0011</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> corresponds to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1111</span></span></span></span>.</p>
+<h1 id="Number-Representation-in-Computer">Number Representation in Computer</h1>
+<h2 id="Integer-Representation">Integer Representation</h2>
+<p>Under the hood, the computer represents the an integer using bits, with binary. Since the convinience of converting between hex and binary, we usually use hex to represent the bits when we acutally view a binary number because the binary representaion is quite too long.</p>
+<p>If the integer is unsigned, we can use all the bits to represent the numeral. The direct conversion from binary to decimal is the correspongding number. When we need to represent a signed integer, things are getting more complex.</p>
+<p>Typically, there are three ways to represent the sign of a integer in computer:</p>
+<ol>
+<li><strong>Sign-Magnitude</strong>: The leftmost bit is used to represent the sign of the integer. 0 for positive and 1 for negative.
+<blockquote>
+<p>For example, the 8-bit sign-magnitude representation of the integer 5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn></mrow><annotation encoding="application/x-tex">00000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00000101</span></span></span></span>, and the representation of -5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000101</mn></mrow><annotation encoding="application/x-tex">10000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000101</span></span></span></span>.</p>
+</blockquote>
+</li>
+<li><strong>One's Complement</strong>: The leftmost bit is used to represent the sign of the integer. 0 for positive and 1 for negative. The negative integer is represented by flipping all the bits of the positive integer.
+<blockquote>
+<p>For example, the 8-bit one's complement representation of the integer 5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn></mrow><annotation encoding="application/x-tex">00000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00000101</span></span></span></span>, and the representation of -5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111010</mn></mrow><annotation encoding="application/x-tex">11111010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11111010</span></span></span></span>.</p>
+</blockquote>
+</li>
+<li><strong>Two's Complement</strong>: The leftmost bit is used to represent the sign of the integer. 0 for positive and 1 for negative. The negative integer is represented by flipping all the bits of the positive integer and then adding 1 to the result.
+<blockquote>
+<p>For example, the 8-bit two's complement representation of the integer 5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn></mrow><annotation encoding="application/x-tex">00000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00000101</span></span></span></span>, and the representation of -5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111010</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>11111011</mn></mrow><annotation encoding="application/x-tex">11111010 + 1 = 11111011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">11111010</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11111011</span></span></span></span>.</p>
+</blockquote>
+</li>
+</ol>
+<p>There are obvious shortcomings of first two methods.</p>
+<p>For <strong>sign-magnitude</strong>:</p>
+<ul>
+<li>There are two representations for zero: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000000</mn></mrow><annotation encoding="application/x-tex">00000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00000000</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000000</mn></mrow><annotation encoding="application/x-tex">10000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000000</span></span></span></span>. This makes the arithmetic operations more complicated.</li>
+<li>When we add number, we need to check the sign bit and then perform the operation. Otherwise, this will happen:
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn><mo stretchy="false">(</mo><mn>5</mn><mo stretchy="false">)</mo><mo>+</mo><mn>10000101</mn><mo stretchy="false">(</mo><mo>−</mo><mn>5</mn><mo stretchy="false">)</mo><mo>=</mo><mn>10001010</mn><mo stretchy="false">(</mo><mo>−</mo><mn>10</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">00000101(5) + 10000101(-5) = 10001010(-10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">00000101</span><span class="mopen">(</span><span class="mord">5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">10000101</span><span class="mopen">(</span><span class="mord">−</span><span class="mord">5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">10001010</span><span class="mopen">(</span><span class="mord">−</span><span class="mord">10</span><span class="mclose">)</span></span></span></span>.</p>
+</blockquote>
+</li>
+</ul>
+<p>For <strong>one's complement</strong>:</p>
+<ul>
+<li>Still, there are two representations for zero: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000000</mn></mrow><annotation encoding="application/x-tex">00000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00000000</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111111</mn></mrow><annotation encoding="application/x-tex">11111111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11111111</span></span></span></span>.</li>
+</ul>
+<p>So, in the end, the <em>two's complement</em> is the most widely used method to represent the sign of a integer in computer.</p>
+<h2 id="Integer-Extension">Integer Extension</h2>
+<p>Inside the computer, there's chance that we need to extend the bits of an integer. Such as convert a 8-bit integer to a 16-bit integer. There are two ways to do this:</p>
+<ol>
+<li>
+<p><strong>Zero Extension</strong>: The leftmost bit is used to represent the sign of the integer. 0 for positive and 1 for negative. The new bits are filled with 0.</p>
+</li>
+<li>
+<p><strong>Sign Extension</strong>: The leftmost bit is used to represent the sign of the integer. 0 for positive and 1 for negative. The leftmost bit is copied to the new bits.</p>
+<blockquote>
+<p>For example, the 8-bit sign-magnitude representation of the integer -5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000101</mn></mrow><annotation encoding="application/x-tex">10000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10000101</span></span></span></span>, and the 16-bit sign-magnitude representation of -5 is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1111111110000101</mn></mrow><annotation encoding="application/x-tex">11111111 10000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1111111110000101</span></span></span></span>.</p>
+</blockquote>
+</li>
+</ol>
+<p>Obviously, if we choose to use <em>two's complement</em> to represent the sign of a integer, the sign extension will be the only way to extend the bits of an integer.</p>
+<h2 id="Floating-Point-Representation">Floating Point Representation</h2>
+<p><em>Floating point</em> is used to represent the real number, compared to integer, real number sometime have the point.</p>
+<p>The term floating point is more like a relative name come from the idea of <em>fixed point</em>, which is used to represent real number too.</p>
+<h3 id="Fixed-Point">Fixed Point</h3>
+<p>Like we represent sign and the numeral of a integer by using different specific bits, we can also represent the sign, the integer part and the fractional part of a real number by using different specific bits.</p>
+<p>For example, we can use the first bit to represent the sign of the real number, the next 4 bits to represent the integer part and the last 3 bits to represent the fractional part.</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10.101</mn><msub><mn>0</mn><mn>2</mn></msub><mo>=</mo><mn>1</mn><mo>×</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><mn>1</mn><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>+</mo><mn>1</mn><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup><mo>=</mo><mn>2.62</mn><msub><mn>5</mn><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">10.1010_{2} = 1 \times 2^1 + 1 \times 2^{-1}  + 1 \times 2^{-3}  = 2.625_{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">10.101</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">2.62</span><span class="mord"><span class="mord">5</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+<p>We can see that the number of bits used to represent the fractional part is fixed, which is determined by how many bits we use to represent the fractional part. This is why it is called <em>fixed point</em>.</p>
+<h3 id="Basic-Floating-Point">Basic Floating Point</h3>
+<p>To understand the idea of <em>floating point</em>, we need to understand the idea of <em>scientific notation</em>.</p>
+<p>In decimal scientific notation, a number is represented as a product of a mantissa and a power of 10.</p>
+<blockquote>
+<p>For example, the number 1234 can be represented as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.234</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">1.234 \times 10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.234</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>.</p>
+</blockquote>
+<p>In binary scientific notation, a number is represented as a product of a mantissa and a power of 2.</p>
+<blockquote>
+<p>For example, the number 10 can be represented as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><msub><mn>1</mn><mn>2</mn></msub><mo>×</mo><msubsup><mn>2</mn><mn>10</mn><mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex">1.01_2 \times 2_{10}^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.0</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0622em;vertical-align:-0.2481em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4519em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2481em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+</blockquote>
+<p>The idea of <em>floating point</em> is similar to the idea of <em>scientific notation</em>. We can represent a real number as a product of a mantissa and a power of 2.</p>
+<p>The normalized format of scientific notation in binary is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1.</mn><msub><mi>x</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msup><mn>2</mn><msub><mi>y</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">1.x_{bin} \times 2^{y_{bin}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7144em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>Only <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> on the left side of the point is needed for normalization. Just like in decimal scientific notation, we can represent the number <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.001</mn></mrow><annotation encoding="application/x-tex">0.001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.001</span></span></span></span> as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.0 \times 2^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span> to make sure on the left side of the point there is only one nonzero digit.</p>
+<p>For a 32 bits floating point, the structure of the representation is:</p>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>exponent (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>)</th>
+<th>significand (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 bit</td>
+<td>8 bits</td>
+<td>23 bits</td>
+</tr>
+</tbody>
+</table>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mtext>sign</mtext></msup><mo>×</mo><msub><mi>x</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msup><mn>2</mn><msub><mi>y</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">(-1)^\text{sign} \times x_{bin} \times 2^{y_{bin}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1305em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8805em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">sign</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7144em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>For this naive implementaion of floating point, the range of representation is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>3.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>38</mn></msup><mo separator="true">,</mo><mtext>  </mtext><mo>−</mo><mn>1.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>38</mn></mrow></msup><mo stretchy="false">]</mo><mo>∪</mo><mo stretchy="false">[</mo><mn>1.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>38</mn></mrow></msup><mo separator="true">,</mo><mtext>  </mtext><mn>3.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>38</mn></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-3.4 \times 10^{38},\;-1.2 \times 10^{-38}] \cup [1.2 \times 10^{-38},\;3.4 \times 10^{38}]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">3.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">1.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
+<p>which does not include the vital <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+<h3 id="IEEE-754-Floating-Point-Standard">IEEE 754 Floating Point Standard</h3>
+<p>Compared to the naive implementaion of floating point, the IEEE 754 Floating Point Standard majorly differs by using bias to represent the exponent part and implict leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> in significand part.</p>
+<p>For a 32 bits floating point, the structure of the representation is:</p>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>exponent (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>)</th>
+<th>significand (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 bit</td>
+<td>8 bits</td>
+<td>23 bits</td>
+</tr>
+</tbody>
+</table>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mtext>sign</mtext></msup><mo>×</mo><mo stretchy="false">(</mo><mn>1.</mn><msub><mi>x</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mrow><msub><mi>y</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>−</mo><mn>127</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-1)^\text{sign} \times (1.x_{bin}) \times 2^{y_{bin} - 127}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1305em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8805em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">sign</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1.</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">127</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>The range of representation is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>3.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>38</mn></msup><mo separator="true">,</mo><mtext>  </mtext><mo>−</mo><mn>1.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>38</mn></mrow></msup><mo stretchy="false">]</mo><mo>∪</mo><mo stretchy="false">[</mo><mn>1.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>38</mn></mrow></msup><mo separator="true">,</mo><mtext>  </mtext><mn>3.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>38</mn></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-3.4 \times 10^{38},\;-1.2 \times 10^{-38}] \cup [1.2 \times 10^{-38},\;3.4 \times 10^{38}]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">3.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">1.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
+<p>which does still not include the vital <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+<p>The bias helps using unsigned integer to represent the exponent part, which makes the comparison between two floating point numbers easier and simplifies the hardware design.</p>
+<p>The implict leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> makes the numeral part from 23 bits to 24 bits, which makes the representation more accurate. We can make the leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> implict is because <strong>any normlized floating point number's significand has a leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></strong>. So if we always maintain the floating point number in normalized form, we assume the leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> is always there.</p>
+<p>Also to notice that after hiding the leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, the left part of the significand is usually called <em>mantissa</em>.</p>
+<p>For a 64 bits floating point, the structure is similar:</p>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>exponent (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>)</th>
+<th>significand (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 bit</td>
+<td>11 bits</td>
+<td>52 bits</td>
+</tr>
+</tbody>
+</table>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mtext>sign</mtext></msup><mo>×</mo><mo stretchy="false">(</mo><mn>1.</mn><msub><mi>x</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mrow><msub><mi>y</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>−</mo><mn>1023</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-1)^\text{sign} \times (1.x_{bin}) \times 2^{y_{bin} - 1023}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1305em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8805em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">sign</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1.</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1023</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>The range of representation is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1.8</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>308</mn></msup><mo separator="true">,</mo><mtext>  </mtext><mo>−</mo><mn>2.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>308</mn></mrow></msup><mo stretchy="false">]</mo><mo>∪</mo><mo stretchy="false">[</mo><mn>2.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>308</mn></mrow></msup><mo separator="true">,</mo><mtext>  </mtext><mn>1.8</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>308</mn></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1.8 \times 10^{308},\;-2.2 \times 10^{-308}] \cup [2.2 \times 10^{-308},\;1.8 \times 10^{308}]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1.8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">308</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">2.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">308</span></span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">2.2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">308</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1.8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">308</span></span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
+<p>Notice now our floating point only use normalized representation, but infact if we accept the denormalized representation, we can represent even smaller numbers.</p>
+<p>The smallest normalized floating points of 32bits is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1.0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>00</mn><msub><mn>0</mn><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>126</mn></mrow></msup><mo>≈</mo><mn>1.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>45</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.0000\ 0000\ 0000\ 0000\ 0000\ 000_{bin} \times 2^{-126} \approx 1.4 \times 10^{-45}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">00</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">126</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">45</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>But the smallest denormalized floating points of 32bits is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>0.0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>0000</mn><mtext> </mtext><mn>00</mn><msub><mn>1</mn><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>126</mn></mrow></msup><mo>=</mo><mn>1.</mn><msub><mn>0</mn><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>149</mn></mrow></msup><mo>≈</mo><mn>1.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>45</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0.0000\ 0000\ 0000\ 0000\ 0000\ 001_{bin} \times 2^{-126} = 1.0_{bin} \times 2^{-149} \approx 1.4 \times 10^{-45}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0.0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">0000</span><span class="mspace"> </span><span class="mord">00</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">126</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">149</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">45</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>Thus in IEEE 754, <strong>When the exponent part is all <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, the number is a denormalized number</strong>. The significand part is interpreted as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.</mn><msub><mi>x</mi><mrow><mi>b</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">0.x_{bin}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0.</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (No leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>), and the exponent part is interpreted as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>126</mn></mrow><annotation encoding="application/x-tex">-126</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">126</span></span></span></span> for a 32 bits floating point and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1022</mn></mrow><annotation encoding="application/x-tex">-1022</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1022</span></span></span></span> for a 64 bits floating point. So the smallest positive number we can represent is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>126</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{-126}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">126</span></span></span></span></span></span></span></span></span></span></span></span> (about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>45</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.4 × 10^{-45}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">45</span></span></span></span></span></span></span></span></span></span></span></span>) for a 32 bits floating point and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>1022</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{-1022}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1022</span></span></span></span></span></span></span></span></span></span></span></span> (about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5.0</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>324</mn></mrow></msup></mrow><annotation encoding="application/x-tex">5.0 × 10^{-324}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5.0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">324</span></span></span></span></span></span></span></span></span></span></span></span>) for a 64 bits floating point.</p>
+<p>In the following Chapters, we'll use IEEE 754 Floating Point Standard.</p>
+<h3 id="Special-Values">Special Values</h3>
+<p>In the IEEE 754 Floating Point Standard, there are some special values to represent some special real numbers.</p>
+<p>Bellow is the table of the special values for a 32 bits floating point:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Single precision</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">Double precision</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">Object represented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Exponent</td>
+<td style="text-align:center">Fraction</td>
+<td style="text-align:center">Exponent</td>
+<td style="text-align:center">Fraction</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">Nonzero</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">Nonzero</td>
+<td style="text-align:center">± denormalized number</td>
+</tr>
+<tr>
+<td style="text-align:center">1–254</td>
+<td style="text-align:center">Anything</td>
+<td style="text-align:center">1–2046</td>
+<td style="text-align:center">Anything</td>
+<td style="text-align:center">± floating-point number</td>
+</tr>
+<tr>
+<td style="text-align:center">255</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2047</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">± infinity</td>
+</tr>
+<tr>
+<td style="text-align:center">255</td>
+<td style="text-align:center">Nonzero</td>
+<td style="text-align:center">2047</td>
+<td style="text-align:center">Nonzero</td>
+<td style="text-align:center">NaN (Not a Number)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Arithmetic-in-Computers">Arithmetic in Computers</h1>
+<h2 id="Integer-Arithmetic">Integer Arithmetic</h2>
+<h3 id="Everything-is-Addition">Everything is Addition</h3>
+<p>Thanks to the &quot;strange&quot; way we represent the integers we learn above, for any addition and substraction, so long as we consider them as two signed integers' addtion, we just need to add their binary representation directly, then we get the answer.</p>
+<p>For example, let's consider <code>3 - 4</code>, which should be condsidered as <code>3 + -4</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    00000000 00000000 00000000 00000110 (3)</span><br><span class="line">+   11111111 11111111 11111111 11111001 (-4) </span><br><span class="line">--------------------------------------</span><br><span class="line">    11111111 11111111 11111111 11111111 (-1)</span><br></pre></td></tr></table></figure>
+<p>If you're unfamiliar with binary addition and can not understand the above arithmetic, go check <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EW411u7th?p=4&amp;vd_source=fdfd8451279302b7750ea2a395a2fe38">this video</a>.</p>
+<p>As for other types of addtion and subtraction, they are the same.</p>
+<h3 id="Overflow-and-Underflow">Overflow and Underflow</h3>
+<p>What will happen if we do calculation like this?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    01111111 11111111 11111111 11111111 (2^31 - 1)</span><br><span class="line">+   00000000 00000000 00000000 00000001 (1)</span><br></pre></td></tr></table></figure>
+<p>By arithmetic in binary, the result should be:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10000000 00000000 00000000 00000000 (-2^31)</span><br></pre></td></tr></table></figure>
+<p>Notice the intepretation of the result is not <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn><mo>−</mo><mn>1</mn><mo>=</mo><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn></mrow><annotation encoding="application/x-tex">2^31 - 1 = 2^31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span></span></span></span>, but <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>3</mn></msup><mn>1</mn></mrow><annotation encoding="application/x-tex">-2^31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">1</span></span></span></span>. This is called <em>overflow</em>. And it's due to the limitation of the bits'amount we use to represent the integer. <strong>We try to represent a number that is larger than the largest number we can represent.</strong></p>
+<p>Correspondingly, if we do calculation like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    10000000 00000000 00000000 00000000 (-2^31)</span><br><span class="line">-   00000000 00000000 00000000 00000001 (1)</span><br></pre></td></tr></table></figure>
+<p>The result should be:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01111111 11111111 11111111 11111111 (2^31 - 1)</span><br></pre></td></tr></table></figure>
+<p>This is called <em>underflow</em>. The reason is the same as overflow. <strong>We try to represent a number that is smaller than the smallest number we can represent.</strong></p>
+<h2 id="Floating-Point-Arithmetic">Floating Point Arithmetic</h2>
+<h3 id="Arithmetic-in-Practical-Life">Arithmetic in Practical Life</h3>
+<p>Recall how we do the arithmetic of numbers represented by scitific notation:</p>
+<ol>
+<li>
+<p>Assumming we are adding <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.23</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">1.23 \times 10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.23</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.56</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">4.56 \times 10^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4.56</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>:</p>
+</li>
+<li>
+<p>First we will &quot;align&quot; the two number, letting them using the same power of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.230</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup><mo>=</mo><mn>1.230</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>4.560</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>2</mn></msup><mo>=</mo><mn>0.456</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">   \begin{align*}
+       1.230 \times 10^3 = 1.230 \times 10^3&amp; \\
+       4.560 \times 10^2 = 0.456 \times 10^3&amp;
+   \end{align*}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0482em;vertical-align:-1.2741em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7741em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.230</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1.230</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-2.3859em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4.560</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0.456</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2741em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7741em;"><span style="top:-3.7741em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2741em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>Then we can add the two number's significand directly:</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em" rowlines="none solid"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.230</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mo>+</mo><mtext> </mtext><mn>0.456</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.686</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">   \begin{align*}
+        1.230 \times 10^3&amp; \\
+       +\ 0.456 \times 10^3&amp; \\
+       \hline
+       1.686 \times 10^3&amp; 
+   \end{align*}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.5723em;vertical-align:-2.0362em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.5362em;"><span class="pstrut" style="height:4.5362em;"></span><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.6721em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.230</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-3.1479em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">+</span><span class="mspace"> </span><span class="mord">0.456</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-1.6238em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.686</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.5362em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-3.0121em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-1.4879em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span></span></span><span style="top:-4.0241em;"><span class="pstrut" style="height:4.5362em;"></span><span class="hline" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>Then we check if the result is normalized, if not, we normalize it, but in this case, the result is already normalized.</p>
+</li>
+</ol>
+<h3 id="Arithmetic-in-Binary">Arithmetic in Binary</h3>
+<p>In fact the arithmetic of floating point numbers in computer is exactly the same as the arithmetic of floating point numbers in practical life. Just use binary instead of decimal.</p>
+<p>For example, let's consider <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><msub><mn>1</mn><mn>2</mn></msub><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">1.01_2 \times 2^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.0</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.1</mn><msub><mn>1</mn><mn>2</mn></msub><mo>×</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">1.11_2 \times 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.1</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>:</p>
+<ol>
+<li>
+<p>Align the two numbers (Notcie the exponent part):</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.010</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>1.010</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.110</mn><mo>×</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>0.111</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">   \begin{align*}
+       1.010 \times 2^3 = 1.010 \times 2^3&amp; \\
+       1.110 \times 2^2 = 0.111 \times 2^3&amp;
+   \end{align*}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0482em;vertical-align:-1.2741em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7741em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.010</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1.010</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-2.3859em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.110</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0.111</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2741em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7741em;"><span style="top:-3.7741em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2741em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>Add the two numbers' significand:</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em" rowlines="none solid"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.010</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mo>+</mo><mtext> </mtext><mn>0.111</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>10.001</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">   \begin{align*}
+        1.010 \times 2^3&amp; \\
+       +\ 0.111 \times 2^3&amp; \\
+       \hline
+       10.001 \times 2^3&amp; 
+   \end{align*}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.5723em;vertical-align:-2.0362em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.5362em;"><span class="pstrut" style="height:4.5362em;"></span><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.6721em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.010</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-3.1479em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">+</span><span class="mspace"> </span><span class="mord">0.111</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-1.6238em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">10.001</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5362em;"><span style="top:-4.5362em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-3.0121em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-1.4879em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span></span></span><span style="top:-4.0241em;"><span class="pstrut" style="height:4.5362em;"></span><span class="hline" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0362em;"><span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>Normalize the result:</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>10.001</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>1.0001</mn><mo>×</mo><msup><mn>2</mn><mn>4</mn></msup></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">   \begin{align*}
+       10.001 \times 2^3 = 1.0001 \times 2^4&amp;
+   \end{align*}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5241em;vertical-align:-0.5121em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0121em;"><span style="top:-3.1479em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">10.001</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1.0001</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5121em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0121em;"><span style="top:-3.0121em;"><span class="pstrut" style="height:2.8641em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5121em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Arithmetic-in-IEEE-754-Floating-Point-Standard">Arithmetic in IEEE 754 Floating Point Standard</h3>
+<p>Now we know how to do the arithmetic of floating point numbers in computer, but there are still some details we need to pay attention tom when we do the arithmetic in IEEE 754 Floating Point Standard.</p>
+<p>This time, we still consider <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><msub><mn>1</mn><mn>2</mn></msub><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">1.01_2 \times 2^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.0</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.1</mn><msub><mn>1</mn><mn>2</mn></msub><mo>×</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">1.11_2 \times 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">1.1</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>:</p>
+<ol>
+<li>
+<p>Represent the two numbers in IEEE 754 Floating Point Standard:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    0 10000010 01000000000000000000000 (1.01 * 2^3)</span><br><span class="line">+   0 10000001 11000000000000000000000 (1.11 * 2^2)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Add the implicit leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> to the significand part.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    0 10000010 (1)01000000000000000000000 (1.01 * 2^3)</span><br><span class="line">+   0 10000001 (1)11000000000000000000000 (1.11 * 2^2)</span><br></pre></td></tr></table></figure>
+<p>Notcie now that the mantiassa part become the significand part. From 23-bits to 24-bits.</p>
+</li>
+<li>
+<p>Align the two numbers (Notcie the exponent part):</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    0 10000010 (1)01000000000000000000000 (1.010 * 2^3)</span><br><span class="line">+   0 10000010 (0)11100000000000000000000 (0.111 * 2^3)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Add the two numbers' significand:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    0 10000010 (1)01000000000000000000000 (1.010 * 2^3)</span><br><span class="line">+   0 10000010 (0)11100000000000000000000 (0.111 * 2^3)</span><br><span class="line">--------------------------------------</span><br><span class="line">    0 10000010 (10)0010000000000000000000 (10.001 * 2^3)</span><br></pre></td></tr></table></figure>
+<p>Notice that the significand part is overflowed. We actuall dropped a <code>0</code> in the end of the significand.</p>
+</li>
+<li>
+<p>Normalize the result:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 10000011 (1)00010000000000000000000 (1.0001 * 2^4)</span><br></pre></td></tr></table></figure>
+<p>Notice that the exponent part is increased by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>.</p>
+</li>
+<li>
+<p>The final representation:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 10000011 00010000000000000000000 (1.0001 * 2^4)</span><br></pre></td></tr></table></figure>
+<p>After making the leading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> implict again, we get the actual bits in the hareware to represent floating point in IEEE 754.</p>
+</li>
+</ol>
+<h3 id="Acurate-Arithmetic-in-IEEE-754">Acurate Arithmetic in IEEE 754</h3>
+<p>In the above example, we can see that there's many chance that we'll drop some bits in the significand part. when the droped bits are non zero, the result will be distorted.</p>
+<p>For example, let's consider we are normalizing such a number:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 10000010 (10)1111111111111111111111 (10.1111111111111111111111 * 2^3)</span><br></pre></td></tr></table></figure>
+<p>After normalization, the result should be:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 10000011 (1)01111111111111111111111 (1.01111111111111111111111 * 2^4)</span><br></pre></td></tr></table></figure>
+<p>And the normalized result is smaller than the actual result by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.00000000000000000000001</mn><mo>×</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">0.00000000000000000000001 \times 2^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.00000000000000000000001</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> (about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>23</mn></mrow></msup></mrow><annotation encoding="application/x-tex">8 \times 10^{-23}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">23</span></span></span></span></span></span></span></span></span></span></span></span>) since we dropped the last bit of the unnormalized significand.</p>
+<p>To reduce the loss caused by the drop of bits, we typically use the following method to do the arithmetic in IEEE 754:</p>
+<ul>
+<li>
+<p>Using 2 buffer bits during the calculation to extend the significand part temporarily.</p>
+<ul>
+<li>The first buffer bit is called <em>guard bit</em>.</li>
+<li>The second buffer bit is called <em>round bit</em>.</li>
+</ul>
+</li>
+<li>
+<p>Using a extra bits to record if there's any bit storing <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> was dropped.</p>
+<ul>
+<li>This bit is called <em>sticky bit</em>.</li>
+</ul>
+</li>
+</ul>
+<p>Here's a demonstration of the method:</p>
+<ol>
+<li>
+<p>Before calculating the mantissa, we add three extra bits to preserve the precision of the result. The three extra bits are the guard bit, the round bit, and the sticky bit.</p>
+<p>Here is a brief explanation of these bits:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Mantissa of the number (assume normalized):</span><br><span class="line">    1.XXXXXXXXXXXXXXXXXXXXXXX   0   0   0</span><br><span class="line"></span><br><span class="line">    ^         ^                 ^   ^   ^</span><br><span class="line">    |         |                 |   |   |</span><br><span class="line">    |         |                 |   |   -  sticky bit (s)</span><br><span class="line">    |         |                 |   -  round bit (r)</span><br><span class="line">    |         |                 -  guard bit (g)</span><br><span class="line">    |         -  23-bit mantissa from a representation</span><br><span class="line">    -  hidden bit</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>The sticky bit is an indication of whether there are any non-zero bits to the right of the round bit.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">                                         gr s</span><br><span class="line">Initial:        1.1100000000000000001010000 0</span><br><span class="line">Shift 1 bit:    0.1110000000000000000101000 0</span><br><span class="line">Shift 2 bits:   0.0111000000000000000010100 0</span><br><span class="line">Shift 3 bits:   0.0011100000000000000001010 0</span><br><span class="line">Shift 4 bits:   0.0001110000000000000000101 0</span><br><span class="line">Shift 5 bits:   0.0000111000000000000000010 1</span><br><span class="line">Shift 6 bits:   0.0000011100000000000000001 1</span><br><span class="line">Shift 7 bits:   0.0000001110000000000000000 1</span><br><span class="line">Shift 8 bits:   0.0000000111000000000000000 1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-1/" rel="prev" title="CS110 Note [1]">
+      <i class="fa fa-chevron-left"></i> CS110 Note [1]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CS110/CS110-Note-3/" rel="next" title="CS110 Note [3]">
+      CS110 Note [3] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-Bits-to-represent-everything"><span class="nav-number">1.</span> <span class="nav-text">Using Bits to represent everything</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hex-Decimal-and-Binary"><span class="nav-number">2.</span> <span class="nav-text">Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexadecimal"><span class="nav-number">2.1.</span> <span class="nav-text">Hexadecimal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary"><span class="nav-number">2.2.</span> <span class="nav-text">Binary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Converting-between-Hex-Decimal-and-Binary"><span class="nav-number">2.3.</span> <span class="nav-text">Converting between Hex, Decimal and Binary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decimal-to-Hex-and-Binary"><span class="nav-number">2.3.1.</span> <span class="nav-text">Decimal to Hex and Binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-to-Decimal"><span class="nav-number">2.3.2.</span> <span class="nav-text">Hex and Binary to Decimal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hex-and-Binary-Conversion"><span class="nav-number">2.3.3.</span> <span class="nav-text">Hex and Binary Conversion</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Number-Representation-in-Computer"><span class="nav-number">3.</span> <span class="nav-text">Number Representation in Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-Representation"><span class="nav-number">3.1.</span> <span class="nav-text">Integer Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-Extension"><span class="nav-number">3.2.</span> <span class="nav-text">Integer Extension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-Point-Representation"><span class="nav-number">3.3.</span> <span class="nav-text">Floating Point Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed-Point"><span class="nav-number">3.3.1.</span> <span class="nav-text">Fixed Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Floating-Point"><span class="nav-number">3.3.2.</span> <span class="nav-text">Basic Floating Point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE-754-Floating-Point-Standard"><span class="nav-number">3.3.3.</span> <span class="nav-text">IEEE 754 Floating Point Standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Special-Values"><span class="nav-number">3.3.4.</span> <span class="nav-text">Special Values</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arithmetic-in-Computers"><span class="nav-number">4.</span> <span class="nav-text">Arithmetic in Computers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-Arithmetic"><span class="nav-number">4.1.</span> <span class="nav-text">Integer Arithmetic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Everything-is-Addition"><span class="nav-number">4.1.1.</span> <span class="nav-text">Everything is Addition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overflow-and-Underflow"><span class="nav-number">4.1.2.</span> <span class="nav-text">Overflow and Underflow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-Point-Arithmetic"><span class="nav-number">4.2.</span> <span class="nav-text">Floating Point Arithmetic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-in-Practical-Life"><span class="nav-number">4.2.1.</span> <span class="nav-text">Arithmetic in Practical Life</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-in-Binary"><span class="nav-number">4.2.2.</span> <span class="nav-text">Arithmetic in Binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-in-IEEE-754-Floating-Point-Standard"><span class="nav-number">4.2.3.</span> <span class="nav-text">Arithmetic in IEEE 754 Floating Point Standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Acurate-Arithmetic-in-IEEE-754"><span class="nav-number">4.2.4.</span> <span class="nav-text">Acurate Arithmetic in IEEE 754</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

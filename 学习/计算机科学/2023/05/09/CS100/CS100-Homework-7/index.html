@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Problems:  Unit Test: Inheritance and Operator Overloading Dynamic Array 3.0 Polynomial Expression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS100 Homework [7]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/05/09/CS100/CS100-Homework-7/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Problems:  Unit Test: Inheritance and Operator Overloading Dynamic Array 3.0 Polynomial Expression">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-09T02:04:31.000Z">
+<meta property="article:modified_time" content="2023-05-09T02:12:51.921Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="CS100">
+<meta property="article:tag" content="C 语言">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/05/09/CS100/CS100-Homework-7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS100 Homework [7] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/05/09/CS100/CS100-Homework-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS100 Homework [7]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2023-05-09 10:04:31 / 修改时间: 10:12:51" itemprop="dateCreated datePublished" datetime="2023-05-09T10:04:31+08:00">2023-05-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:48</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Problems</strong>:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/P701?tid=644c0429e03cc2ed71dab92b">Unit Test: Inheritance and Operator Overloading</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/42?tid=644c0429e03cc2ed71dab92b">Dynamic Array 3.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/43?tid=644c0429e03cc2ed71dab92b">Polynomial</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs100.geekpie.club/p/44?tid=644c0429e03cc2ed71dab92b">Expression</a></li>
+</ul>
+<span id="more"></span>
+<hr>
+<h1 id="CS100-Homework-6-Spring-2023">CS100 Homework 6 (Spring 2023)</h1>
+<p>There will be four problems in total: one set of objective questions and three programming problems.</p>
+<p>(May 4 22:22) Problem 2 has been added.</p>
+<p>(May 9 02:38) Problem 3 has been added.</p>
+<p>(May 9 07:12) Problem 4 has been added.</p>
+<hr>
+<h2 id="Unit-Test-Inheritance-and-Operator-Overloading">Unit Test: Inheritance and Operator Overloading</h2>
+<p>This problem is to answer questions.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zivmax/CS100-2023-Spring-homework-resources/tree/main/hw7_attachments/prob1">👉 Go to GitHub for the HTML page file</a></p>
+<hr>
+<h2 id="Dynamic-Array-3-0">Dynamic Array 3.0</h2>
+<p>This problem is based on the <code>Dynarray</code> you wrote in Homework 6 Problem 2. Before adding anything new to it, your <code>Dynarray</code> should meet all the requirements in that problem first.</p>
+<p>In this task, your <code>Dynarray</code> should support the following new things.</p>
+<h3 id="Subscript-operator">Subscript operator</h3>
+<p>The <code>Dynarray</code> should support the subscript operator, so that we can use <code>a[i]</code> instead of <code>a.at(i)</code> to access the i-th element.</p>
+<p>Let <code>a</code> be an object of type <code>Dynarray</code> or <code>const Dynarray</code>. The behavior of <code>a[i]</code> should be exactly the same as <code>a.at(i)</code> , except that the subscript operator does not perform bounds checking. That is, no exception should be thrown if <code>i &gt;= a.size()</code>.</p>
+<h3 id="Relational-operators">Relational operators</h3>
+<p>The <code>Dynarray</code> should support the six relational operators: <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code> and <code>!=</code>. These operators perform <em>lexicographical comparison</em> of two <code>Dynarray</code>.</p>
+<p>Lexicographical comparison is an operation with the following properties:</p>
+<ul>
+<li>Two ranges are compared element by element.</li>
+<li>The first mismatching element defines which range is lexicographically <em>less</em> or <em>greater</em> than the other.</li>
+<li>If one range is a prefix of another, the shorter range is lexicographically <em>less</em> than the other.</li>
+<li>If two ranges have equivalent elements and are of the same length, then the ranges are lexicographically <em>equal</em>.</li>
+<li>An empty range is lexicographically <em>less</em> than any non-empty range.</li>
+<li>Two empty ranges are lexicographically <em>equal</em>.</li>
+</ul>
+<p>Since we use C++17, you still have to define all six of them. It is often good practice to implement <code>operator&lt;</code> and <code>operator==</code> first, and define the rest in terms of them.</p>
+<p>Note that in homework 8, we will make this <code>Dynarray</code> a class template <code>Dynarray&lt;T&gt;</code>, and we should always minimize the requirements on unknown types when we do generic programming. Since C++17 does not have compiler-generated comparison operators, we suggest that your implementation <strong>depend only upon the <code>operator&lt;</code> and <code>operator==</code> of the element type</strong>.</p>
+<p>You are free to choose to define them as either members or non-members.</p>
+<h3 id="Output-operator">Output operator</h3>
+<p>We want to print a <code>Dynarray</code> directly using <code>operator&lt;&lt;</code>. For example,</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="function">Dynarray <span class="title">a</span><span class="params">(arr, arr + <span class="number">4</span>)</span></span>;</span><br><span class="line">Dynarray b;</span><br><span class="line">std::cout &lt;&lt; a &lt;&lt; <span class="string">&#x27;\n&#x27;</span> &lt;&lt; b &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<p>The output is as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 5]</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<p>In details:</p>
+<ul>
+<li>Elements are separated by a comma ( <code>,</code> ) followed by a space.</li>
+<li>The printed content starts with <code>[</code> and ends with <code>']'</code> . If the dynamic array is empty, just print an empty pair of brackets <code>[]</code> .</li>
+</ul>
+<h3 id="OJ-tests">OJ tests</h3>
+<p>There are three subtasks on OJ. Subtask <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> will be run only if all the testcases of subtask <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> are passed.</p>
+<p>Subtask 1 is a compile-time check. Subtask 2 contains all the testcases from Homework 5 Problem 3 and Homework 6 Problem 2. Subtask 3 contains the new testcases specific for this problem.</p>
+<hr>
+<h2 id="Polynomial">Polynomial</h2>
+<p>In this task, you will design and implement a class <code>Polynomial</code> representing a real polynomial of the following form:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msup><mi>x</mi><mi>i</mi></msup><mo separator="true">,</mo><mspace width="1em"><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>x</mi><mo>∈</mo><mi mathvariant="double-struck">R</mi></mspace></mrow><annotation encoding="application/x-tex">P(x)=\sum_{i=0}^na_ix^i,\quad a_i,x\in\mathbb R
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8747em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span></span></p>
+<p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">a_0,\cdots,a_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are the coefficients and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a_n\neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. The <strong>degree</strong> of a polynomial is the highest degree of the terms with non-zero coefficients, denoted by</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>deg</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\deg(P)=n.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">de<span style="margin-right:0.01389em;">g</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord">.</span></span></span></span></span></p>
+<p>In particular, the following corner cases are defined.</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><msup><mi>x</mi><mn>0</mn></msup><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_0x^0=a_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9641em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> even if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</li>
+<li><strong>A polynomial has at least one coefficient.</strong> When <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, the polynomial becomes a constant function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">P(x)=a_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> whose degree is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, even if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a_0=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</li>
+</ul>
+<p>There are a number of operations that can be performed on polynomials, including addition, subtraction, multiplication, etc. To ensure that the coefficient of the highest-order term is always non-zero, we may need a function <code>adjust</code> to remove the unnecessary trailing zeros.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Polynomial</span> &#123;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">// `m_coeffs` stores the coefficients.</span></span><br><span class="line">  <span class="comment">// Note: This is not the unique correct implementation.</span></span><br><span class="line">  <span class="comment">// For example, you may separate the constant term from others,</span></span><br><span class="line">  <span class="comment">// and store the constant term using another variable.</span></span><br><span class="line">  std::vector&lt;<span class="type">double</span>&gt; m_coeffs;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">static</span> <span class="keyword">auto</span> <span class="title">isZero</span><span class="params">(<span class="type">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> eps = <span class="number">1e-8</span>;</span><br><span class="line">    <span class="keyword">return</span> x &lt; eps &amp;&amp; -x &lt; eps;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Remove trailing zeros, to ensure that the coefficient of the term with</span></span><br><span class="line">  <span class="comment">// the highest order is non-zero.</span></span><br><span class="line">  <span class="comment">// Note that a polynomial should have at least one term, which is the</span></span><br><span class="line">  <span class="comment">// constant. It should not be removed even if it is zero.</span></span><br><span class="line">  <span class="comment">// If m_coeffs is empty, adjust() should also insert a zero into m_coeffs.</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// YOUR CODE HERE</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Other members ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Considering potential floating-point errors, it is suggested to use the function <code>isZero(x)</code> to determine whether <code>x</code> is zero, which is effectively <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>x</mi><mi mathvariant="normal">∣</mi><mo>&lt;</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">|x|&lt;\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span></span></span></span> for some very small <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\epsilon&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+<p>The coefficients, of course, should be stored in a sequential container, and <code>std::vector</code> is a perfect choice.</p>
+<h3 id="Constructors-and-copy-control">Constructors and copy control</h3>
+<p>The class <code>Polynomial</code> should meet the following requirements.</p>
+<ul>
+<li>
+<p>Default-constructible. A <code>Polynomial</code> can be default-initialized to the constant function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(x)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+</li>
+<li>
+<p>Copyable, movable and destructible. A <code>Polynomial</code> should have a copy constructor, a move constructor, a copy assignment operator, a move assignment operator and a destructor. These functions should perform the corresponding operations directly on the member <code>m_coeffs</code>. Before starting to define them, think about the following questions:</p>
+<ul>
+<li>Will the compiler generate these functions for you if you do not define them?</li>
+<li>What are the behaviors of the compiler-generated functions? Do they meet the requirements?</li>
+</ul>
+<p>Note: Direct moving of the member <code>m_coeffs</code> will possibly make the moved-from polynomial have no coefficients (its <code>m_coeffs</code> will possibly be empty), which is not in a valid state if we require all <code>Polynomial</code>s to have at least one coefficient. But considering that this is not the concentration of this problem, we only require that the moved-from object can be safely assigned to or destroyed, which means that the compiler-generated move operations suffice. The move operations of <code>Polynomial</code> are not required to be <code>noexcept</code> here. You are free to choose any reasonable design.</p>
+</li>
+<li>
+<p>Constructible from a pair of <em>InputIterators</em>. This function has been implemented for you, as long as your <code>adjust()</code> is correct.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputIterator&gt;</span><br><span class="line"><span class="built_in">Polynomial</span>(InputIterator begin, InputIterator end)</span><br><span class="line">    : <span class="built_in">m_coeffs</span>(begin, end) &#123; <span class="built_in">adjust</span>(); &#125;</span><br></pre></td></tr></table></figure>
+<p>This allows the following ways of constructing a <code>Polynomial</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> a[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">-1</span>, <span class="number">3.5</span>&#125;;</span><br><span class="line">std::vector b&#123;<span class="number">2.5</span>, <span class="number">3.3</span>, <span class="number">0.0</span>&#125;;</span><br><span class="line">std::list c&#123;<span class="number">2.7</span>, <span class="number">1.828</span>, <span class="number">3.2</span>&#125;; <span class="comment">// not a vector, but have iterators</span></span><br><span class="line">std::deque&lt;<span class="type">double</span>&gt; d; <span class="comment">// empty</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p1</span><span class="params">(a, a + <span class="number">4</span>)</span></span>; <span class="comment">// 1 + 2x - x^2 + 3.5*x^3</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p2</span><span class="params">(b.begin(), b.end())</span></span>; <span class="comment">// 2.5 + 3.3x, the trailing zero removed</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p3</span><span class="params">(c.begin(), c.end())</span></span>; <span class="comment">// 2.7 + 1.828x + 3.2*x^2</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p4</span><span class="params">(d.begin(), d.end())</span></span>; <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>If the iterator range <code>[begin, end)</code> is empty, i.e. <code>begin == end</code>, this constructor initializes the <code>Polynomial</code> to be <code>P(x)=0</code>.</p>
+</li>
+<li>
+<p>Constructible from a <code>const std::vector&lt;double&gt;</code>, which contains the coefficients.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::vector a&#123;<span class="number">2.5</span>, <span class="number">3.3</span>, <span class="number">4.2</span>, <span class="number">0.0</span>, <span class="number">0.0</span>&#125;;</span><br><span class="line">std::vector&lt;<span class="type">double</span>&gt; b; <span class="comment">// empty</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p1</span><span class="params">(a)</span></span>; <span class="comment">// 2.5 + 3.3x + 4.2*x^2.</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p2</span><span class="params">(b)</span></span>; <span class="comment">// 0</span></span><br><span class="line"><span class="function">Polynomial <span class="title">p3</span><span class="params">(std::move(a))</span></span>; <span class="comment">// Move it, instead of copying it.</span></span><br></pre></td></tr></table></figure>
+<p>Note that if the argument passed in is a non-<code>const</code> rvalue, it should be moved instead of being copied. Moreover, implicit conversion from a <code>std::vector&lt;double&gt;</code> to <code>Polynomial</code> through this constructor should be disabled.</p>
+</li>
+</ul>
+<h3 id="Basic-operations">Basic operations</h3>
+<p>Let <code>p</code> be of type <code>Polynomial</code> and <code>cp</code> be of type <code>const Polynomial</code>. The following operations should be supported.</p>
+<ul>
+<li>
+<p>Both <code>p.deg()</code> and <code>cp.deg()</code> return the degree of the polynomial. Any reasonable integral return type is allowed, but it should not be too small.</p>
+</li>
+<li>
+<p>For an integer <code>i</code>, both <code>p[i]</code> and <code>cp[i]</code> return the coefficient of the term <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">x^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span> as a read-only number. Any reasonable return type is allowed. The behavior is undefined if <code>i</code> is not in the valid range <code>[0, deg()]</code>.</p>
+</li>
+<li>
+<p>For an integer <code>i</code> and a real number <code>c</code>, <code>p.setCoeff(i, c)</code> sets the coefficient of the term <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">x^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span> to <code>c</code>. The behavior is undefined if <code>i &lt; 0</code>. If <code>i &gt; deg()</code>, it has the same effect as adding a monomial <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">cx^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span> to it, which means that after this operation,</p>
+<ul>
+<li><code>p.deg()</code> becomes <code>i</code>.</li>
+<li><code>p[j]</code> is zero for every <code>j</code> in <code>(d, i)</code>, where <code>d</code> is the degree of <code>p</code> before this operation.</li>
+</ul>
+<p>Note that allowing the user to modify the coefficients may result in trailing zeros, which your code must handle correctly. This is why we don't allow <code>p[i]</code> to return the non-<code>const</code> reference to the <code>i</code>-th coefficient.</p>
+<p><code>std::vector&lt;T&gt;::resize</code> may help you.</p>
+</li>
+<li>
+<p><code>operator==</code> and <code>operator!=</code> should be defined. Two polynomials <code>a</code> and <code>b</code> are equal if and only if <code>a - b</code> is the zero constant function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(x)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. Equivalently, <code>a == b</code> if and only if</p>
+<ul>
+<li><code>a.deg() == b.deg()</code>, and</li>
+<li><code>isZero(a[i] - b[i])</code> holds for every integer <code>i</code> in <code>[0, a.deg()]</code>.</li>
+</ul>
+</li>
+<li>
+<p>For a number <code>x0</code> (suppose it is a <code>double</code>), both <code>p(x0)</code> and <code>cp(x0)</code> return the value of the polynomial at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x=x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, i.e. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo fence="true">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">P\left(x_0\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>.</p>
+</li>
+</ul>
+<h3 id="Arithmetic-operations">Arithmetic operations</h3>
+<p>The arithmetic operators (as well as the corresponding compound assignment operators) that need to be supported are as follows.</p>
+<ul>
+<li><code>-a</code> (the unary negation operator), <code>a + b</code>, <code>a += b</code>, <code>a - b</code>, <code>a -= b</code>.</li>
+<li><code>a * b</code>, <code>a *= b</code>.</li>
+</ul>
+<h3 id="Derivatives-and-integrals">Derivatives and integrals</h3>
+<p>For a polynomial <code>p</code>,</p>
+<ul>
+<li>
+<p><code>p.derivative()</code> should return the derivative of <code>p</code>, i.e. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi mathvariant="normal">d</mi><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi mathvariant="normal">d</mi><mi>x</mi></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle\frac{\mathrm d p(x)}{\mathrm dx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. Note that this should still be a polynomial.</p>
+</li>
+<li>
+<p><code>p.integral()</code> should return the integral of <code>p</code>, defined as</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mn>0</mn><mi>x</mi></msubsup><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi mathvariant="normal">d</mi><mi>t</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\int_0^xp(t)\mathrm dt.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3262em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord mathrm">d</span><span class="mord mathnormal">t</span><span class="mord">.</span></span></span></span></span></p>
+<p>Note that this should still be a polynomial.</p>
+</li>
+</ul>
+<h3 id="Notes">Notes</h3>
+<p>For each member function, should it be <code>const</code>, or non-<code>const</code>, or having the &quot;<code>const</code> vs non-<code>const</code> overloads&quot;? Think about these questions carefully before coding.</p>
+<p>Regarding the floating-point errors: we will not test this on purpose, but such problems might show up accidentally and cause unexpected results. To avoid such risks, it is suggested to always use <code>isZero(x)</code> and <code>isZero(a - b)</code>, instead of directly comparing floating-point numbers.</p>
+<h3 id="Compile-time-requirements-test">Compile-time requirements test</h3>
+<p>We have provided a compile-time test <code>compile_test.cpp</code> for you.</p>
+<h3 id="Attachments">Attachments</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/zivmax/CS100-homework-attachments/tree/main/hw7_attachments/prob3">👉 Go to GitHub</a></p>
+<hr>
+<h2 id="Expression">Expression</h2>
+<p>In recitations, we showed an example of designing a class hierarchy for different kinds of nodes in an <strong>abstract syntax tree</strong> (AST). In this problem, we will support more functionalities:</p>
+<ul>
+<li>A new kind of node called <code>Variable</code>, which represents the varaible <code>x</code>. With this supported, our AST can be used to represent unary functions, instead of only arithmetic expressions with constants.</li>
+<li>Evaluation of the function at a certain point <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x=x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Evaluation of the derivative of the function at a certain point <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x=x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+</ul>
+<p>The operations that need to be supported are declared in this base class:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NodeBase</span> &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// Make any of these functions virtual, or pure virtual, if necessary.</span></span><br><span class="line">  <span class="built_in">NodeBase</span>() = <span class="keyword">default</span>;</span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">eval</span><span class="params">(<span class="type">double</span> x)</span> <span class="type">const</span></span>; <span class="comment">// Evaluate f(x)</span></span><br><span class="line">  <span class="function"><span class="type">double</span> <span class="title">derivative</span><span class="params">(<span class="type">double</span> x)</span> <span class="type">const</span></span>; <span class="comment">// Evaluate df(x)/dx</span></span><br><span class="line">  <span class="function">std::string <span class="title">rep</span><span class="params">()</span> <span class="type">const</span></span>; <span class="comment">// Returns the parenthesized representation of the function.</span></span><br><span class="line">  ~<span class="built_in">NodeBase</span>() = <span class="keyword">default</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>In recitations, we used only one class <code>BinaryOperator</code> to represent four different kinds of binary operators. Such design may not be convenient for this problem, because the ways of evaluating the function and its derivative differ to a greater extent between different operators. Therefore, we separate them into four classes:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BinaryOperator</span> : <span class="keyword">public</span> NodeBase &#123;</span><br><span class="line"> <span class="keyword">protected</span>:</span><br><span class="line">  Expr m_left;</span><br><span class="line">  Expr m_right;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">BinaryOperator</span>(<span class="type">const</span> Expr &amp;left, <span class="type">const</span> Expr &amp;right)</span><br><span class="line">      : m_left&#123;left&#125;, m_right&#123;right&#125; &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PlusOp</span> : <span class="keyword">public</span> BinaryOperator &#123;</span><br><span class="line">  <span class="keyword">using</span> BinaryOperator::BinaryOperator;</span><br><span class="line">  <span class="comment">// Add functions if necessary.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MinusOp</span> : <span class="keyword">public</span> BinaryOperator &#123;</span><br><span class="line">  <span class="keyword">using</span> BinaryOperator::BinaryOperator;</span><br><span class="line">  <span class="comment">// Add functions if necessary.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MultiplyOp</span> : <span class="keyword">public</span> BinaryOperator &#123;</span><br><span class="line">  <span class="keyword">using</span> BinaryOperator::BinaryOperator;</span><br><span class="line">  <span class="comment">// Add functions if necessary.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DivideOp</span> : <span class="keyword">public</span> BinaryOperator &#123;</span><br><span class="line">  <span class="keyword">using</span> BinaryOperator::BinaryOperator;</span><br><span class="line">  <span class="comment">// Add functions if necessary.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>By declaring <code>using BinaryOperator::BinaryOperator;</code>, we are <strong>inheriting</strong> the constructor from <code>BinaryOperator</code>. For example, the class <code>PlusOp</code> now has a constructor like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PlusOp</span> : <span class="keyword">public</span> BinaryOperator &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">PlusOp</span>(<span class="type">const</span> Expr &amp;left, <span class="type">const</span> Expr &amp;right) : <span class="built_in">BinaryOperator</span>(left, right) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>and the same for <code>MinusOp</code>, <code>MultiplyOp</code> and <code>DivideOp</code>.</p>
+<p>To support the variable <code>x</code>, we define a new class <code>Variable</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Variable</span> : <span class="keyword">public</span> NodeBase &#123;</span><br><span class="line">  <span class="comment">// Add functions if necessary.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Then we define a <code>static</code> member of <code>Expr</code> as follows.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Expr</span> &#123;</span><br><span class="line">  std::shared_ptr&lt;NodeBase&gt; m_ptr;</span><br><span class="line">  <span class="built_in">Expr</span>(std::shared_ptr&lt;NodeBase&gt; ptr) : m_ptr&#123;ptr&#125; &#123;&#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Expr</span>(<span class="type">double</span> value);</span><br><span class="line"></span><br><span class="line">  <span class="type">static</span> <span class="type">const</span> Expr x;</span><br><span class="line">  <span class="comment">// Other members ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// After the definition of `Variable`:</span></span><br><span class="line"><span class="type">const</span> Expr Expr::x&#123;std::<span class="built_in">make_shared</span>&lt;Variable&gt;()&#125;;</span><br></pre></td></tr></table></figure>
+<p>Note that <code>Expr</code> also has a non-<code>explicit</code> constructor that receives a <code>double</code> and creates a <code>Constant</code> node:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expr::<span class="built_in">Expr</span>(<span class="type">double</span> value) : m_ptr&#123;std::<span class="built_in">make_shared</span>&lt;Constant&gt;(value)&#125; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>With all of these, and the overloaded arithmetic operators defined, we can create functions in a very convenient manner:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> &amp;x = Expr::x;</span><br><span class="line"><span class="keyword">auto</span> f = x * x + <span class="number">2</span> * x + <span class="number">1</span>; <span class="comment">// x^2 + 2x + 1</span></span><br><span class="line">std::cout &lt;&lt; f.<span class="built_in">rep</span>() &lt;&lt; std::endl; <span class="comment">// (((x) * (x)) + ((2.000000) * (x))) + (1.000000)</span></span><br><span class="line">std::cout &lt;&lt; f.<span class="built_in">eval</span>(<span class="number">3</span>) &lt;&lt; std::endl; <span class="comment">// 16</span></span><br><span class="line">std::cout &lt;&lt; f.<span class="built_in">derivative</span>(<span class="number">3</span>) &lt;&lt; std::endl; <span class="comment">// 8</span></span><br><span class="line"><span class="keyword">auto</span> g = f / (-x * x + x - <span class="number">1</span>); <span class="comment">// (x^2 + 2x + 1)/(-x^2 + x - 1)</span></span><br><span class="line">std::cout &lt;&lt; g.<span class="built_in">eval</span>(<span class="number">3</span>) &lt;&lt; std::endl; <span class="comment">// -2.28571</span></span><br><span class="line">std::cout &lt;&lt; g.<span class="built_in">derivative</span>(<span class="number">3</span>) &lt;&lt; std::endl; <span class="comment">// 0.489796</span></span><br></pre></td></tr></table></figure>
+<h3 id="Requirements-for-rep">Requirements for <code>rep()</code></h3>
+<p>Note: This is a very simple and naive way to convert an expression to a string, because we don't want to set barriers on this part. You can search for some algorithms to make the expression as simplified as possible, but it may not pass the OJ tests.</p>
+<p>Any operand of the unary operators ( <code>+</code>, <code>-</code> ) or the binary operators ( <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> ) should be surrounded by a pair of parentheses. Correct examples:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>+</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2+3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <code>(2.000000) + (3.000000)</code></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2x+3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <code>((2.000000) * (x)) + (3.000000)</code></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>⋅</mo><mo stretchy="false">(</mo><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2\cdot(-x)+3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <code>((2.000000) * (-(x))) + (3.000000)</code></li>
+</ul>
+<p>There should be a space before and after each binary operator. For example, <code>(expr1) + (expr2)</code> instead of <code>(expr1)+(expr2)</code>.</p>
+<p>To convert a floating-point number to <code>std::string</code>, just use <code>std::to_string</code> and you will be free of troubles caused by precisions and floating-point errors.</p>
+<p>Note: If the floating-point value of a <code>Constant</code> node is negative, it is <strong>not</strong> treated as a unary minus sign applied to its absolute value. For example,</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Expr <span class="title">e</span><span class="params">(<span class="number">-2</span>)</span></span>;</span><br><span class="line">std::cout &lt;&lt; e.<span class="built_in">rep</span>() &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<p>The output should be <code>-2.000000</code> instead of <code>-(2.000000)</code>.</p>
+<p><code>example.cpp</code> contains these simple tests.</p>
+<h3 id="Requirements-for-Expr">Requirements for <code>Expr</code></h3>
+<p>From the user's perspective, only <code>Expr</code> and its arithmetic operators are <strong>interfaces</strong>. Anything else in your code is <strong>implementation details</strong>, which user code will not rely on. In other words, you are free to implement these things in any way, as long as the interfaces of <code>Expr</code> meet our requirements.</p>
+<ul>
+<li><code>Expr</code> is copy-constructible, copy-assignable, move-constructible, move-assignable and destructible. These operations should just perform the corresponding operations on the member <code>m_ptr</code>, and let the corresponding function of <code>std::shared_ptr</code> handle everything. The move operations should be <code>noexcept</code>.</li>
+<li><code>Expr</code> is constructible from a <code>double</code> value, and this constructor is non-<code>explicit</code>.</li>
+<li>Let <code>e</code> be <code>const Expr</code> and <code>x0</code> be <code>double</code>, then the subtree rooted at <code>e</code> represents a function. <code>e.eval(x0)</code> returns the value of this function at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x=x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. <code>e.derivative(x0)</code> returns the value of the derivative of this function at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x=x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. <code>e.rep()</code> returns a <code>std::string</code> representing this function.</li>
+<li>Let <code>e1</code> and <code>e2</code> be two objects of type <code>const Expr</code>. The following expressions return an object of type <code>Expr</code>, which creates a new node corresponding to the operators.
+<ul>
+<li><code>-e1</code></li>
+<li><code>+e1</code></li>
+<li><code>e1 + e2</code></li>
+<li><code>e1 - e2</code></li>
+<li><code>e1 * e2</code></li>
+<li><code>e1 / e2</code></li>
+</ul>
+</li>
+<li><code>Expr::x</code> is an object of type <code>const Expr</code>, which represents the variable <code>x</code>.</li>
+</ul>
+<p>Use <code>compile_test.cpp</code> to check whether your code compiles.</p>
+<h3 id="Submission">Submission</h3>
+<p>Submit <code>expr.hpp</code> or its contents to OJ.</p>
+<h3 id="Thinking">Thinking</h3>
+<p>Why do we use <code>std::shared_ptr</code> instead of <code>std::unique_ptr</code>?</p>
+<p>Can you add support for more functionalities, e.g. the elementary functions <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sin(e)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\cos(e)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span>, exponential expressions <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><msub><mi>e</mi><mn>2</mn></msub></msubsup></mrow><annotation encoding="application/x-tex">e_1^{e_2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0126em;vertical-align:-0.2663em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.4337em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.1449em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2663em;"><span></span></span></span></span></span></span></span></span></span>, ...? More variables? Print expressions to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>?</p>
+<h3 id="Attachments-2">Attachments</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/zivmax/CS100-homework-attachments/tree/main/hw7_attachments/prob4">👉 Go to GitHub</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/CS100/" rel="tag"># CS100</a>
+              <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/2023/04/24/Calculas/%E5%A4%9A%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6-4/" rel="prev" title="多元积分学 [4]">
+      <i class="fa fa-chevron-left"></i> 多元积分学 [4]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2023/09/27/CS100/CS100-Project-HW8/" rel="next" title="CS100-Project(HW8)">
+      CS100-Project(HW8) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS100-Homework-6-Spring-2023"><span class="nav-number">1.</span> <span class="nav-text">CS100 Homework 6 (Spring 2023)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unit-Test-Inheritance-and-Operator-Overloading"><span class="nav-number">1.1.</span> <span class="nav-text">Unit Test: Inheritance and Operator Overloading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array-3-0"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array 3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscript-operator"><span class="nav-number">1.2.1.</span> <span class="nav-text">Subscript operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relational-operators"><span class="nav-number">1.2.2.</span> <span class="nav-text">Relational operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-operator"><span class="nav-number">1.2.3.</span> <span class="nav-text">Output operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OJ-tests"><span class="nav-number">1.2.4.</span> <span class="nav-text">OJ tests</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial"><span class="nav-number">1.3.</span> <span class="nav-text">Polynomial</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructors-and-copy-control"><span class="nav-number">1.3.1.</span> <span class="nav-text">Constructors and copy control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-operations"><span class="nav-number">1.3.2.</span> <span class="nav-text">Basic operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arithmetic-operations"><span class="nav-number">1.3.3.</span> <span class="nav-text">Arithmetic operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivatives-and-integrals"><span class="nav-number">1.3.4.</span> <span class="nav-text">Derivatives and integrals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">1.3.5.</span> <span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compile-time-requirements-test"><span class="nav-number">1.3.6.</span> <span class="nav-text">Compile-time requirements test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attachments"><span class="nav-number">1.3.7.</span> <span class="nav-text">Attachments</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expression"><span class="nav-number">1.4.</span> <span class="nav-text">Expression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements-for-rep"><span class="nav-number">1.4.1.</span> <span class="nav-text">Requirements for rep()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements-for-Expr"><span class="nav-number">1.4.2.</span> <span class="nav-text">Requirements for Expr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Submission"><span class="nav-number">1.4.3.</span> <span class="nav-text">Submission</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thinking"><span class="nav-number">1.4.4.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attachments-2"><span class="nav-number">1.4.5.</span> <span class="nav-text">Attachments</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

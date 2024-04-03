@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="从这篇开始，以后还是尽可能用英文记录。 This post is to teach you how to install Neovim on your Linux machine. Especially without package manager like apt or yum.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neovim Installation">
+<meta property="og:url" content="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Neovim-Installation/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="从这篇开始，以后还是尽可能用英文记录。 This post is to teach you how to install Neovim on your Linux machine. Especially without package manager like apt or yum.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-24T03:46:59.000Z">
+<meta property="article:modified_time" content="2024-03-24T08:46:37.380Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="Neovim">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Neovim-Installation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Neovim Installation | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Neovim-Installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Neovim Installation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2024-03-24 11:46:59 / 修改时间: 16:46:37" itemprop="dateCreated datePublished" datetime="2024-03-24T11:46:59+08:00">2024-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%8F%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">经验</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>40 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>从这篇开始，以后还是尽可能用英文记录。</p>
+<p>This post is to teach you how to install Neovim on your Linux machine.</p>
+<p>Especially without package manager like <code>apt</code> or <code>yum</code>.</p>
+<span id="more"></span>
+<h1 id="Background">Background</h1>
+<p>I recently set up a new Docker container for development, and I want to install Neovim on it.</p>
+<p>The problem is the base image I used is <code>node:latest</code>, which is actually not for development but for running Node.js apps. Thus it literally has nothing but Node.js installed. And many pacakges cannot be installed via <code>apt</code>.</p>
+<p>Thus I have to install Neovim without package manager.</p>
+<h1 id="Pre-knowledge">Pre-knowledge</h1>
+<h2 id="What-is-FUSE-Filesystem-in-Userspace">What is <code>FUSE</code> (Filesystem in Userspace)</h2>
+<p>FUSE is a userspace filesystem framework. It consists of a kernel module (fuse.ko), a userspace library (libfuse.*) and a mount utility (fusermount).</p>
+<p>One of the most important features of FUSE is allowing secure, non-privileged mounts. This opens up new possibilities for the use of filesystems. A good example is sshfs: a secure network filesystem using the sftp protocol.</p>
+<p>More about <code>FUSE</code> can be found on the <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/next/filesystems/fuse.html">Linux Kernel documentation</a></p>
+<h2 id="What-is-AppImage">What is AppImage</h2>
+<p>The AppImage format is a format for packaging applications in a way that allows them to run on a variety of different target systems (base operating systems, distributions) without further modification.</p>
+<p>With AppImage, <strong>applications are packaged with all their dependencies into a single file</strong>. This file can be executed on any Linux distribution without installation. Users just need to make the AppImage file executable and then run it.</p>
+<p>More about <code>AppImage</code> can be found on the <a target="_blank" rel="noopener" href="https://appimage.org/">official website</a>.</p>
+<h2 id="Their-Relationship">Their Relationship</h2>
+<p>While FUSE and AppImage serve different purposes, they can be related in the context of how applications access and manage files:</p>
+<ul>
+<li>
+<p><strong>Integration and Portability</strong>: AppImage can use FUSE to mount or access certain types of file systems in a way that is transparent to the user. For example, an application distributed as an AppImage could interact with a custom or special-purpose file system provided through FUSE. This could be useful for applications that need to deal with non-standard data sources.</p>
+</li>
+<li>
+<p><strong>Sandboxing and Security</strong>: Some applications packaged as AppImages might use FUSE to sandbox themselves or to provide a virtualized view of the filesystem to the application, enhancing security or isolating the application from the rest of the system.</p>
+</li>
+</ul>
+<h1 id="Steps">Steps</h1>
+<h2 id="1-Download-Neovim-package">1. Download Neovim package</h2>
+<p>Since 8.3, Neovim don't provide <code>deb</code> package any more. And it seems that <code>AppImage</code> is recommended.</p>
+<p>So we'll install Neovim via <code>AppImage</code>.</p>
+<p>First we need to download the <code>AppImage</code> package from <a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/releases">Neovim's GitHub release page</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage</span><br></pre></td></tr></table></figure>
+<h2 id="2-Make-it-executable">2. Make it executable</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x nvim.appimage</span><br></pre></td></tr></table></figure>
+<h2 id="3-Unpack-it">3. Unpack it</h2>
+<h3 id="No-FUSE">No FUSE</h3>
+<p>If your system doesn't support <code>FUSE</code>, you can unpack it to get the executable.</p>
+<p>In my case, my base image cannot support <code>FUSE</code>, so I have to unpack it.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nvim.appimage --appimage-extract</span><br></pre></td></tr></table></figure>
+<h3 id="With-FUSE">With FUSE</h3>
+<p>If your system supports <code>FUSE</code>, you can directly run the <code>AppImage</code> file.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nvim.appimage</span><br></pre></td></tr></table></figure>
+<h2 id="4-Install-it">4. Install it</h2>
+<h3 id="No-FUSE-2">No FUSE</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mv squashfs-root/usr/bin/nvim /usr/local/bin/nvim</span><br><span class="line">sudo mv squashfs-root/usr/share/nvim /usr/local/share/nvim</span><br></pre></td></tr></table></figure>
+<p>Add the following line to your <code>.bashrc</code> or <code>.zshrc</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export VIMRUNTIME=/usr/local/share/nvim/runtime</span><br></pre></td></tr></table></figure>
+<h3 id="With-FUSE-2">With FUSE</h3>
+<p>You just need to move the <code>AppImage</code> file to <code>/usr/local/bin</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv nvim.appimage /usr/local/bin/nvim</span><br></pre></td></tr></table></figure>
+<h2 id="5-Test-it">5. Test it</h2>
+<p>Just run <code>nvim</code> anywhere in your terminal to check if it works.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim</span><br></pre></td></tr></table></figure>
+<h2 id="Uninstall">* Uninstall</h2>
+<h3 id="With-FUSE-3">With FUSE</h3>
+<p>If you want to uninstall Neovim, just remove the files you moved to <code>/usr/local/bin</code> and <code>/usr/local/share/nvim</code>.</p>
+<p>Like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -R /usr/local/bin/nvim</span><br><span class="line">sudo rm -R /usr/local/share/nvim</span><br></pre></td></tr></table></figure>
+<p>And remove the line you added to <code>.bashrc</code> or <code>.zshrc</code>.</p>
+<h3 id="No-FUSE-3">No FUSE</h3>
+<p>Same logic, just remove the files you moved.</p>
+<p>No need to remove the line in <code>.bashrc</code> or <code>.zshrc</code> if you don't add it manually.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -R /usr/local/bin/nvim</span><br></pre></td></tr></table></figure>
+<h1 id="Insights">Insights</h1>
+<p>How does the above steps work? With the pre-knowledge we have learned, we can understand it better.</p>
+<p>The process of installing Neovim on a Linux system without a package manager, as described above, leverages the unique capabilities of AppImage and FUSE to provide a seamless and flexible installation method. Here's a deeper insight into how these technologies work together to facilitate this process.</p>
+<h2 id="The-Role-of-AppImage">The Role of AppImage</h2>
+<p>AppImage is a universal software package format for Linux systems. The key feature of AppImage is <strong>its ability to bundle applications along with all their dependencies into a single executable file.</strong> This approach eliminates the need for traditional installation processes, where dependencies must be individually installed and managed. Instead, users can simply download, make executable, and run an AppImage, thereby significantly simplifying application deployment and usage on Linux.</p>
+<p>When you download the Neovim AppImage and make it executable, <strong>you're essentially preparing a self-contained version of Neovim</strong> that can run independently of the system's package management and without the need to resolve dependencies manually. This is particularly advantageous in environments like Docker containers, where minimizing the footprint and complexity of installations is crucial.</p>
+<h2 id="The-Effect-of-FUSE">The Effect of FUSE</h2>
+<p>FUSE (Filesystem in Userspace) further complements the portability and ease of use offered by AppImage. By allowing userland applications to create their own file systems without altering kernel code, FUSE provides a mechanism for AppImages to mount themselves as virtual file systems. <strong>This capability is critical when the AppImage needs to unpack or access its contents transparently, as if it were installed in the traditional sense.</strong></p>
+<p>For systems with FUSE enabled, running an AppImage is as straightforward as executing any binary file. <strong>The AppImage mounts itself using FUSE, providing the application with access to its bundled dependencies as if they were part of the host system's file system.</strong> This seamless integration simplifies application execution and removes the need for manual unpacking in most cases.</p>
+<p>However, in environments where FUSE is not available or practical, AppImages offer an alternative method to extract their contents manually. This flexibility ensures that applications packaged as AppImages can still be utilized in restricted or minimal environments, such as certain Docker containers or systems with strict security policies that disallow kernel modules like FUSE.</p>
+<p>That's why if we don't have <code>FUSE</code> not only we need to move files to <code>/usr/local/bin</code>, but also move files to <code>/usr/local/share</code> which contians the dependencies.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Neovim/" rel="tag"># Neovim</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Docker-Engine-Proxy-Set-up/" rel="prev" title="Docker Engine Proxy Set up">
+      <i class="fa fa-chevron-left"></i> Docker Engine Proxy Set up
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/03/26/CS110/CS110-Lab-1/" rel="next" title="CS110 Lab [1]">
+      CS110 Lab [1] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre-knowledge"><span class="nav-number">2.</span> <span class="nav-text">Pre-knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-FUSE-Filesystem-in-Userspace"><span class="nav-number">2.1.</span> <span class="nav-text">What is FUSE (Filesystem in Userspace)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-AppImage"><span class="nav-number">2.2.</span> <span class="nav-text">What is AppImage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Their-Relationship"><span class="nav-number">2.3.</span> <span class="nav-text">Their Relationship</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Steps"><span class="nav-number">3.</span> <span class="nav-text">Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Download-Neovim-package"><span class="nav-number">3.1.</span> <span class="nav-text">1. Download Neovim package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Make-it-executable"><span class="nav-number">3.2.</span> <span class="nav-text">2. Make it executable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Unpack-it"><span class="nav-number">3.3.</span> <span class="nav-text">3. Unpack it</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-FUSE"><span class="nav-number">3.3.1.</span> <span class="nav-text">No FUSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#With-FUSE"><span class="nav-number">3.3.2.</span> <span class="nav-text">With FUSE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Install-it"><span class="nav-number">3.4.</span> <span class="nav-text">4. Install it</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-FUSE-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">No FUSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#With-FUSE-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">With FUSE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Test-it"><span class="nav-number">3.5.</span> <span class="nav-text">5. Test it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Uninstall"><span class="nav-number">3.6.</span> <span class="nav-text">* Uninstall</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#With-FUSE-3"><span class="nav-number">3.6.1.</span> <span class="nav-text">With FUSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#No-FUSE-3"><span class="nav-number">3.6.2.</span> <span class="nav-text">No FUSE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Insights"><span class="nav-number">4.</span> <span class="nav-text">Insights</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Role-of-AppImage"><span class="nav-number">4.1.</span> <span class="nav-text">The Role of AppImage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Effect-of-FUSE"><span class="nav-number">4.2.</span> <span class="nav-text">The Effect of FUSE</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+
+
+</body>
+</html>
+

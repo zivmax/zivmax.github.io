@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="RISC-V edition.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Note [1]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-1/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="RISC-V edition.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-23T01:37:51.000Z">
+<meta property="article:modified_time" content="2024-03-29T11:29:57.489Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="计算机体系架构">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Note [1] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Note [1]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-02-23 09:37:51" itemprop="dateCreated datePublished" datetime="2024-02-23T09:37:51+08:00">2024-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-03-29 19:29:57" itemprop="dateModified" datetime="2024-03-29T19:29:57+08:00">2024-03-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:30</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RISC-V edition.</p>
+<span id="more"></span>
+<h1 id="Eight-Great-Ideas-in-Computer-Architecture">Eight Great Ideas in Computer Architecture</h1>
+<ul>
+<li>
+<p><strong>Design for Moore's Law</strong></p>
+<blockquote>
+<p>As computer designs can take years, the resources available per chip can easily double or quadruple between the start and finish of the project. Like a skeet shooter, computer architects must anticipate where the technology will be when the design finishes rather than design for where it starts.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Use Abstraction to Simplify Design</strong></p>
+<blockquote>
+<p>The complexity of computer systems makes it impossible to understand every detail of the hardware and software. Abstraction is a way to manage this complexity. By abstracting a system, we can ignore the irrelevant details and focus on the important ones.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Make the Common Case Fast</strong></p>
+<blockquote>
+<p>Computer architects must design systems that are fast for most of the tims. This is often achieved by making the common case fast and the rare case correct. Ironically, the common case is often easier to make fast than the rare case.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Performance via Parallelism</strong></p>
+<blockquote>
+<p>The performance of a computer system can be improved by doing more than one thing at a time. This is called parallelism. There are many forms of parallelism, including instruction-level parallelism, data parallelism, and task parallelism.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Performance via Pipelining</strong></p>
+<blockquote>
+<p>Pipelining is a technique for implementing parallelism within a single processor. It works by breaking down the execution of instructions into a series of independent steps. This allows multiple instructions to be in progress at once. But if we only foucsing on what is piplining, we can image a human assembly line.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Performance via Prediction</strong></p>
+<blockquote>
+<p>If a case could be faster on average by guessing the outcome, then it is worth the cost of the guess. It mostly happen when a case is easy to guess and the cost of wrong guess is low.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Hierarchy of Memories</strong></p>
+<blockquote>
+<p>The memory system is organized in a hierarchy of different storage devices. Each device in the hierarchy is larger, slower, and cheaper per byte than the next smaller, faster, and more expensive device. The memory hierarchy is a key to understanding how computer systems achieve good performance at a reasonable cost.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Dependability via Redundancy</strong></p>
+<blockquote>
+<p>Dependability is the ability to deliver correct service in the presence of faults. Redundancy is a key technique for achieving dependability. Redundancy can be applied to the hardware, the software, and the information. Just like the RAID in hard disk.</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="Bellow-Your-Program">Bellow Your Program</h1>
+<h2 id="From-Application-Software-to-Hardware">From Application Software to Hardware</h2>
+<ul>
+<li>
+<p><strong>Application Software</strong></p>
+<blockquote>
+<p>Application software is the software that is used by the users to perform specific tasks. It is used to solve a particular problem or to do a specific task. For example, word processing, spreadsheet, and database management system.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>System Software</strong></p>
+<blockquote>
+<p>System software is a type of computer program that is designed to run a computer's hardware and application programs. It is designed to provide a platform for running application software. There are many types of systems software, but two types of systems software are central to every computer system today: an operating system and a compiler.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Hardware</strong></p>
+<blockquote>
+<p>Hardware is the physical components of a computer system. It includes the monitor, keyboard, mouse, and the computer itself. The computer is made up of the CPU, memory, and storage devices.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="From-High-Level-Language-to-Machine-Language">From High-Level Language to Machine Language</h2>
+<p>To speak with a machine, we need to be able to represent 2 states: 0 and 1, since the easiest signals for computers to understand are on and off, and so the computer alphabet is just two letters. This is called <em>binary</em>.</p>
+<p>But it is hard to write a program in binary. So we need a language that is easier to write and understand. This is called high-level language. But the computer can only understand binary. So we need a way to translate high-level language to machine language. This is called compiler.</p>
+<p>Typically, compilers first translate high-level language to assembly language, and then translate assembly language to machine language.</p>
+<p>Machine language directly read and execute by the computer, and assembly language is a direct hunman-readable representation of machine language.</p>
+<p>High-level language <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>→</mo><mrow><mi>c</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>i</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\to^{compiles}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mrel"><span class="mrel">→</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">co</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">es</span></span></span></span></span></span></span></span></span></span></span></span> Assembly language <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>→</mo><mrow><mi>a</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>m</mi><mi>b</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\to^{assembles}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mrel"><span class="mrel">→</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">sse</span><span class="mord mathnormal mtight">mb</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">es</span></span></span></span></span></span></span></span></span></span></span></span> Machine language</p>
+<p>Example of compiling and assembling:</p>
+<ol>
+<li>
+<p>Source code:</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Assembly code:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">    .file    &quot;hello.c&quot;</span><br><span class="line">    .intel_syntax noprefix</span><br><span class="line">    .text</span><br><span class="line">    .def    __main;	.scl	2;	.type	32;	.endef</span><br><span class="line">    .section .rdata,&quot;dr&quot;</span><br><span class="line">.LC0:</span><br><span class="line">    .ascii &quot;Hello, World!\0&quot;</span><br><span class="line">    .text</span><br><span class="line">    .globl    main</span><br><span class="line">    .def    main;	.scl	2;	.type	32;	.endef</span><br><span class="line">    .seh_proc    main</span><br><span class="line">main:</span><br><span class="line">    push    rbp</span><br><span class="line">    .seh_pushreg    rbp</span><br><span class="line">    mov    rbp, rsp</span><br><span class="line">    .seh_setframe    rbp, 0</span><br><span class="line">    sub    rsp, 32</span><br><span class="line">    .seh_stackalloc    32</span><br><span class="line">    .seh_endprologue</span><br><span class="line">    call    __main</span><br><span class="line">    lea    rax, .LC0[rip]</span><br><span class="line">    mov    rcx, rax</span><br><span class="line">    call    puts</span><br><span class="line">    mov    eax, 0</span><br><span class="line">    add    rsp, 32</span><br><span class="line">    pop    rbp</span><br><span class="line">    ret</span><br><span class="line">    .seh_endproc</span><br><span class="line">    .ident    &quot;GCC: (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders) 13.2.0&quot;</span><br><span class="line">    .def    puts;	.scl	2;	.type	32;	.endef</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Machine code:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">000000000010010101010101000001100</span><br><span class="line">110101010101010100000111101010100</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Components-of-a-Computer">Components of a Computer</h1>
+<h2 id="The-Big-Picture">The Big Picture</h2>
+<p>The five classic components of a computer are briefly described below. They are:</p>
+<ul>
+<li>
+<p><strong>Input</strong>:</p>
+<blockquote>
+<p>This is the process of entering data and programs into the computer system. You should know that computer is an electronic machine like any other machine which takes as inputs raw data and performs some processing giving out processed data.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Output</strong>:</p>
+<blockquote>
+<p>The result produced by a computer. It can be called as the processed data given by after data processing.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Memory</strong>:</p>
+<blockquote>
+<p>This is the part of the computer that stores data. It stores data, intermediate results, and instructions (program).</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Datapath</strong>:</p>
+<blockquote>
+<p>A datapath is a collection of functional units such as arithmetic logic units (ALUs) or multipliers that perform data processing operations, registers, and buses.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Control</strong>:</p>
+<blockquote>
+<p>The component of the processor that commands the datapath, memory, and I/O devices according to the instructions of the program.</p>
+</blockquote>
+</li>
+</ul>
+<p>The processor (Control and Datapath) gets instructions and data from memory. Input writes data to memory, and output reads data from memory. Control sends the signals that determine the operations of the datapath, memory, input, and output.</p>
+<p>Occasionally, people call the processor the CPU, for the more bureaucratic-sounding central processor unit.</p>
+<h2 id="Slightly-deeper-into-the-Memory">Slightly deeper into the Memory</h2>
+<h3 id="Volatile-Memory">Volatile Memory</h3>
+<p>Storage, such as DRAM, that retains data only if it is receiving power.</p>
+<ul>
+<li>
+<p><strong>Registers</strong>:</p>
+<blockquote>
+<p>Registers are the fastest storage location in the memory hierarchy. They are used to store data that is being used by the CPU. The CPU can access the data in the registers very quickly. The number of registers in a CPU is limited. The registers are used to store the data that is being used by the CPU.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Cache</strong>:</p>
+<blockquote>
+<p>Cache is a small and fast memory that is located between the CPU and the main memory. It is used to store the frequently accessed data and instructions. The cache memory is faster than the main memory.</p>
+<p>Cache is built using a different memory technology, static random access memory (SRAM).</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Main Memory</strong>:</p>
+<blockquote>
+<p>Main memory is the primary memory of the computer. It is used to store the data and instructions that are being used by the CPU. The main memory is slower than the cache memory.</p>
+<p>Main memory is built using a different memory technology, dynamic random access memory (DRAM).</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Nonvolatile-Memory">Nonvolatile Memory</h3>
+<p>A form of memory that retains data even in the absence of a power source and that is used to store programs between runs.</p>
+<p>Such as flash memory, that retains data even when it is not receiving power.</p>
+<ul>
+<li>
+<p><strong>Hard Disk</strong>:</p>
+<blockquote>
+<p>A form of nonvolatile secondary memory composed of rotating platters coated with a magnetic recording material. Because they are rotating mechanical devices, access times are about 5 to 20 milliseconds and cost per gigabyte in 2012 was $0.05 to $0.10.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Flash Memory</strong>:</p>
+<blockquote>
+<p>A nonvolatile semiconductor memory. It is cheaper and slower than DRAM but more expensive per bit and faster than magnetic disks. Access times are about 5 to 50 microseconds and cost per gigabyte in 2012 was $0.75 to $1.00</p>
+</blockquote>
+</li>
+</ul>
+<p>Most of the nonviolatile memory belongs to the secondary memory, which is used to store programs and data between runs.</p>
+<h1 id="Performance">Performance</h1>
+<h2 id="Defining-Performance">Defining Performance</h2>
+<p>Typically, we use response time or throughput to measure the performance of a computer system.</p>
+<ul>
+<li>
+<p><strong>Response Time (Execution time)</strong>:</p>
+<blockquote>
+<p>The time it takes to complete some task. For example, the time it takes to load a web page or the time it takes to execute a program.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Throughput (Bandwidth)</strong>:</p>
+<blockquote>
+<p>The number of tasks completed per unit of time. For example, the number of web pages loaded per second or the number of programs executed per hour.</p>
+</blockquote>
+</li>
+</ul>
+<p>In the first few chapters, we will focus on the response time.</p>
+<h2 id="Measuring-Performance">Measuring Performance</h2>
+<p>We use time to measure the performance of a computer system. But the straightforward time (response time) actually contains many factors, such as memory access, I/O activities, and so on.</p>
+<p>Also, a processor may simultaneously execute multiple programs, so the time to execute a program is not the same as the time to execute a program on a dedicated processor.</p>
+<p>Hence, we often use CPU time to measure the performance, which is the time the CPU spends computing for a specific task. It can be further divided into user CPU time (only program time) and system CPU time (including OS time).</p>
+<p>We'll use response time to measure the <em>system performance</em>, and use user CPU time to measure the <em>CPU performance</em>.</p>
+<h2 id="Understanding-Program-Performance">Understanding Program Performance</h2>
+<p>Different programs have different performance requirements. For example, a web server needs to handle many requests per second, so it needs high throughput. A video game needs to render many frames per second, so it needs high throughput. A word processor needs to respond quickly to user input, so it needs low response time.</p>
+<p>To improve the performance of a program, one must have a clear definition of what performance metric matters and then proceed to find the bottleneck of the program.</p>
+<h2 id="CPU-performance-and-Its-Factors">CPU performance and Its Factors</h2>
+<h3 id="Clock">Clock</h3>
+<p>CPU has some basic utilities to perform when doing computions. For example, it needs to fetch instructions, decode instructions, execute instructions, and write results.</p>
+<p>The <em>clock</em> set the speed of these basic actions. One tick of the clock is called a <em>clock cycle</em>, which represents CPU done one or multiple basic action.</p>
+<p>The <em>clock rate</em> is the number of cycles per second. It is measured in hertz (Hz). The clock rate is also called the clock frequency.</p>
+<h3 id="CPU-time-formula">CPU time formula</h3>
+<p>The CPU time for a program is determined by the number of clock cycles, the clock cycle time, and the number of instructions.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>CPU time</mtext><mo>=</mo><mtext>Clock cycles</mtext><mo>×</mo><mtext>Clock cycle time</mtext><mo>=</mo><mfrac><mtext>Clock cycles</mtext><mtext>Clock rate</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{CPU time} = \text{Clock cycles} \times \text{Clock cycle time} = \frac{\text{Clock cycles}}{\text{Clock rate}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">CPU time</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Clock cycles</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Clock cycle time</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Clock rate</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Clock cycles</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h3 id="Instruction-Performance">Instruction Performance</h3>
+<p>A program is a sequence of instructions. Each instruction needs multiple clock cycles to execute. The average number of clock cycles for an instruction is called the <em>CPI</em> (cycles per instruction).</p>
+<p>So we can compute the clock cycles for a program by the following formula:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Clock cycles</mtext><mo>=</mo><mtext>CPI</mtext><mo>×</mo><mtext>Instructions</mtext></mrow><annotation encoding="application/x-tex">\text{Clock cycles} = \text{CPI} \times \text{Instructions}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Clock cycles</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">CPI</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Instructions</span></span></span></span></span></span></p>
+<p>Combining with the CPU time formula, we can get:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>CPU time</mtext><mo>=</mo><mtext>CPI</mtext><mo>×</mo><mtext>Instructions</mtext><mo>×</mo><mtext>Clock cycle time</mtext><mo>=</mo><mfrac><mrow><mtext>CPI</mtext><mo>×</mo><mtext>Instructions</mtext></mrow><mtext>Clock rate</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{CPU time} = \text{CPI} \times \text{Instructions} \times \text{Clock cycle time} = \frac{\text{CPI} \times \text{Instructions}}{\text{Clock rate}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">CPU time</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">CPI</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord">Instructions</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Clock cycle time</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Clock rate</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">CPI</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">Instructions</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h3 id="How-Program-components-affect-CPU-performance">How Program components affect CPU performance</h3>
+<table>
+<thead>
+<tr>
+<th>Hardware or software component</th>
+<th>Affects what?</th>
+<th>How?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithm</td>
+<td>Instruction count, CPI</td>
+<td>The algorithm determines the number of source program instructions executed and hence the number of processor instructions executed. The algorithm may also affect the CPI, by favoring slower or faster instructions. For example, if the algorithm uses more divides, it will tend to have a higher CPI.</td>
+</tr>
+<tr>
+<td>Programming language</td>
+<td>Instruction count, CPI</td>
+<td>The programming language certainly affects the instruction count, since statements in the language are translated to processor instructions, which determine instruction count. The language may also affect the CPI because of its features; for example, a language with heavy support for data abstraction (e.g., Java) will require indirect calls, which will use higher CPI instructions.</td>
+</tr>
+<tr>
+<td>Compiler</td>
+<td>Instruction count, CPI</td>
+<td>The efficiency of the compiler affects both the instruction count and average cycles per instruction, since the compiler determines the translation of the source language instructions into computer instructions. The compiler’s role can be very complex and affect the CPI in varied ways.</td>
+</tr>
+<tr>
+<td>Instruction set architecture</td>
+<td>Instruction count, clock rate, CPI</td>
+<td>The instruction set architecture affects all three aspects of  CPU performance, since it affects the instructions needed  for a function, the cost in cycles of each instruction, and the  overall clock rate of the processor.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Power-Wall">Power Wall</h1>
+<p>The power used by a computer is divided into two parts: dynamic power and static power.</p>
+<h2 id="Dynamic-Power">Dynamic Power</h2>
+<p>The dominant technology for integrated circuits is called CMOS (complementary metal oxide semiconductor). For CMOS, the primary source of energy consumption is so-called dynamic energy—that is, energy that is consumed when transistors switch states from 0 to 1 and vice versa.</p>
+<p>The dynamic energy depends on the capacitive loading of each transistor, the voltage and the frequency of switching:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Dynamic energy</mtext><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>×</mo><mtext>Capacitance</mtext><mo>×</mo><msup><mtext>Voltage</mtext><mn>2</mn></msup><mo>×</mo><mtext>Frequency of switching</mtext></mrow><annotation encoding="application/x-tex">\text{Dynamic energy} = \frac{1}{2} \times \text{Capacitance} \times \text{Voltage}^2 \times \text{Frequency of switching}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Dynamic energy</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Capacitance</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0929em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord text"><span class="mord">Voltage</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Frequency of switching</span></span></span></span></span></span></p>
+<h2 id="Static-Power">Static Power</h2>
+<p>Although dynamic energy is the primary source of energy consumption in CMOS, static energy consumption occurs because of leakage current that flows even when a transistor is off. In servers, leakage is typically responsible for 40% of the energy consumption. Thus, increasing the number of transistors increases power dissipation, even if the transistors are always off. A variety of design techniques and technology innovations are being deployed to control leakage, but it’s hard to lower voltage further.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/01/26/CS101/CS101-PA-3/" rel="prev" title="CS101 PA [3]">
+      <i class="fa fa-chevron-left"></i> CS101 PA [3]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/23/CS110/CS110-Note-2/" rel="next" title="CS110 Note [2]">
+      CS110 Note [2] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Eight-Great-Ideas-in-Computer-Architecture"><span class="nav-number">1.</span> <span class="nav-text">Eight Great Ideas in Computer Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bellow-Your-Program"><span class="nav-number">2.</span> <span class="nav-text">Bellow Your Program</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#From-Application-Software-to-Hardware"><span class="nav-number">2.1.</span> <span class="nav-text">From Application Software to Hardware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#From-High-Level-Language-to-Machine-Language"><span class="nav-number">2.2.</span> <span class="nav-text">From High-Level Language to Machine Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Components-of-a-Computer"><span class="nav-number">3.</span> <span class="nav-text">Components of a Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-number">3.1.</span> <span class="nav-text">The Big Picture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Slightly-deeper-into-the-Memory"><span class="nav-number">3.2.</span> <span class="nav-text">Slightly deeper into the Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Volatile-Memory"><span class="nav-number">3.2.1.</span> <span class="nav-text">Volatile Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nonvolatile-Memory"><span class="nav-number">3.2.2.</span> <span class="nav-text">Nonvolatile Memory</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Performance"><span class="nav-number">4.</span> <span class="nav-text">Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Defining-Performance"><span class="nav-number">4.1.</span> <span class="nav-text">Defining Performance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Measuring-Performance"><span class="nav-number">4.2.</span> <span class="nav-text">Measuring Performance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-Program-Performance"><span class="nav-number">4.3.</span> <span class="nav-text">Understanding Program Performance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU-performance-and-Its-Factors"><span class="nav-number">4.4.</span> <span class="nav-text">CPU performance and Its Factors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock"><span class="nav-number">4.4.1.</span> <span class="nav-text">Clock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-time-formula"><span class="nav-number">4.4.2.</span> <span class="nav-text">CPU time formula</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction-Performance"><span class="nav-number">4.4.3.</span> <span class="nav-text">Instruction Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Program-components-affect-CPU-performance"><span class="nav-number">4.4.4.</span> <span class="nav-text">How Program components affect CPU performance</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Power-Wall"><span class="nav-number">5.</span> <span class="nav-text">Power Wall</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Power"><span class="nav-number">5.1.</span> <span class="nav-text">Dynamic Power</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Static-Power"><span class="nav-number">5.2.</span> <span class="nav-text">Static Power</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+    </div>
+
+
+</body>
+</html>
+
