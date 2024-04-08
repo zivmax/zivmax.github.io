@@ -20,23 +20,23 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="RISC-V edition.">
+  <meta name="description" content="Instructions: Language of the Computer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS110 Note [3]">
 <meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/02/24/CS110/CS110-Note-3/index.html">
 <meta property="og:site_name" content="青山后小塘">
-<meta property="og:description" content="RISC-V edition.">
+<meta property="og:description" content="Instructions: Language of the Computer">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-24T08:32:40.000Z">
-<meta property="article:modified_time" content="2024-03-30T06:34:33.577Z">
+<meta property="article:modified_time" content="2024-04-08T07:25:35.467Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="上科大">
 <meta property="article:tag" content="CS110">
-<meta property="article:tag" content="计算机体系架构">
+<meta property="article:tag" content="上科大">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="计算机体系架构">
 <meta property="article:tag" content="Unfinished">
 <meta name="twitter:card" content="summary">
 
@@ -145,7 +145,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -155,7 +155,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">74</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -244,7 +244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2024-03-30 14:34:33" itemprop="dateModified" datetime="2024-03-30T14:34:33+08:00">2024-03-30</time>
+                <time title="修改时间: 2024-04-08 15:25:35" itemprop="dateModified" datetime="2024-04-08T15:25:35+08:00">2024-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,15 +266,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数: </span>
-              <span>31k</span>
+              <span>42k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3:14</span>
+              <span>4:24</span>
             </span>
+            <div class="post-description">Instructions: Language of the Computer</div>
 
         </div>
       </header>
@@ -285,9 +286,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RISC-V edition.</p>
-<span id="more"></span>
-<h1 id="Operations-of-the-Computer-Hardware">Operations of the Computer Hardware</h1>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Operations-of-the-Computer-Hardware">Operations of the Computer Hardware</h1>
 <h2 id="Instruction-set">Instruction set</h2>
 <p>In the introduction, we have learned that the CPU have the basic instructions to perform, like <code>add</code>, <code>subtract</code>, <code>load</code>, <code>store</code>, <code>branch</code>, <code>jump</code>, etc. These instructions are the basic operations of the computer hardware.</p>
 <p>By combining these basic operations, we can perform more complex operations, like <code>multiplication</code>, <code>division</code>, <code>array access</code>, <code>function call</code>, etc.</p>
@@ -418,7 +417,7 @@
 <p>If <code>f</code>, <code>g</code>, <code>h</code>, <code>i</code>, <code>j</code> are assigned to <code>x7</code>, <code>x2</code>, <code>x3</code>, <code>x5</code>, <code>x6</code> respectively. And <code>x1</code>, <code>x4</code> are used as the temporary registers.</p>
 <p>An important thing to notice is that, <strong>only on registers can arithmetic operations be performed</strong>.</p>
 <h2 id="Memory-Operands">Memory Operands</h2>
-<p>Limited amount of registers can not be used to construct the essential data structure, which sotres most of the data that programmer handles. But computer's main memory contains billions of <em>bytes</em>. Hence data structures are kept in the main memory.</p>
+<p>Limited amount of registers can not be used to construct the essential data structure, which sotres most of the data that programmer handles. But computer's main memory contains billions of <em>bytes</em>. Hence many of the data are kept in the main memory.</p>
 <p>Since 8 bits is so often used, this size is called a <em>byte</em>. And the memory is organized as a sequence of bytes. Each byte has a unique address, and the address is used to locate the data in the memory.</p>
 <p>As we mentioned before, only registers can be used to perform arithmetic operations. So when we want to perform arithmetic operations on the data in the memory, we have to load the data from the memory to the registers, perform the operations, and then store the result back to the memory. Such instructions are called <em>data transfer instructions.</em></p>
 <p>To access the memory, we have to use the memory address. The memory address is a 64-bit number, and it is used to locate the data in the memory. The memory address is also called <em>pointer</em>. We can abstractly think of the memory as an one dimensional array, and the memory address is the index of the array. (Under the hood, the memory is actually a 2D matrix, the address contains the row and column info.)</p>
@@ -782,31 +781,47 @@
 <ol>
 <li>
 <p>Put parameters in a place where the procedure can access them.</p>
+<ul>
+<li>Using <code>add</code>, <code>mv</code> ...</li>
+</ul>
 </li>
 <li>
 <p>Transfer control to the procedure.</p>
+<ul>
+<li>Using <code>jalr</code>, <code>jal</code> ...</li>
+</ul>
 </li>
 <li>
 <p>Acquire the storage resources needed for the procedure.</p>
+<ul>
+<li>Using <code>sd</code>, <code>sw</code> ...</li>
+</ul>
 </li>
 <li>
 <p>Perform the desired task.</p>
 </li>
 <li>
 <p>Put the result value in a place where the calling program can access it.</p>
+<ul>
+<li>Using <code>add</code>, <code>mv</code> ...</li>
+</ul>
 </li>
 <li>
 <p>Return control to the point of origin, since a procedure can be called from several points in a program.</p>
+<ul>
+<li>Using <code>ret</code>/<code>jal</code>, <code>ld</code>, <code>lw</code> ...</li>
+</ul>
 </li>
 </ol>
 <h2 id="How-procedure-abstractly-implemented">How procedure abstractly implemented?</h2>
 <h3 id="Sharing-the-Registers">Sharing the Registers</h3>
 <p>Recall that, we implement procedures in an abstract way. Why we call it abstract?</p>
-<p>In the high-level programming, we consider the procedure has its own memory space.   we call functions in high-level programming, except we passed pointers as the parameters, we won't worry about the function changes the things &quot;outside&quot; the function. This is because the main memory is big enough to sperate the memory spaces.</p>
+<p>In the high-level programming, we consider the procedure has its own memory space. we call functions in high-level programming, except we passed pointers as the parameters, we won't worry about the function changes the things &quot;outside&quot; the function. This is because the main memory is big enough to sperate the memory spaces.</p>
 <p>But in RISC-V, we are persuing using registers as much as possible, and the registers are very limited, just exactly 32 registers in total and 64bits large per register.</p>
-<p>Thus, when the caller calls a procedure, the caller will lose the control of the registers. After the calling, all the registers turn to serve the callee.</p>
+<p>Thus, when the <em>caller</em> calls a procedure, the caller will lose the control of the registers. After the calling, all the registers turn to serve the <em>callee</em>.</p>
 <h3 id="Communicating-between-the-Caller-and-the-Callee">Communicating between the Caller and the Callee</h3>
-<p>Then how caller and callee communicate? In the high-level programming, the caller and callee communicate through the parameters and the return value. In RISC-V, we follow a convention, or could be called a protocol, to let the caller and callee communicate. Just as the six steps we mentioned above, before the caller calls the callee, the caller will put the parameters in the specific registers, and after the callee returns, the callee will put the return value in the specific registers.</p>
+<p>Then how caller and callee communicate? In the high-level programming, the caller and callee communicate through the parameters and the return value.</p>
+<p>In RISC-V, we follow a convention, or could be called a protocol, to let the caller and callee communicate. Just as the six steps we mentioned above, before the caller calls the callee, the caller will put the parameters in the specific registers, and after the callee returns, the callee will put the return value in the specific registers.</p>
 <p>By convention, we use:</p>
 <ul>
 <li><code>x10</code> to <code>x17</code> as the parameter registers.</li>
@@ -820,7 +835,13 @@
 <li><code>x5</code> to <code>x7</code> and <code>x28</code> to <code>x31</code> as temporary registers that are not preserved by the callee on a procedure call.</li>
 <li><code>x8</code> to <code>x9</code> and <code>x18</code> to <code>x27</code> as saved registers that must be preserved on a procedure call.</li>
 </ul>
-<h3 id="Datas-in-the-main-memory">Datas in the main memory</h3>
+<h3 id="Return">Return</h3>
+<p>In the previous content, we only know we need to go back to the <em>call site</em> (the position where the caller calls), and focus on how caller and callee communicating with eachother. Yet we don't know how to make sure that we could go back to the call site.</p>
+<p>Recall when we use jump instruction to call callees, like <code>jal</code> or <code>jalr</code>, they have an additional step before jumping: linking.</p>
+<p>The linking means to put <code>PC + 4</code> into the <code>x1</code> (we store the return address here). <code>PC</code> stands for <em>Program Counter</em>, which is special register not involved in the 32 normal register. Its value is the address of current executing instruction in the program.</p>
+<p>Since each instruction is 4-byte and each address mapped to one byte of momery, the address of the instruction next the jump instruction is the jump instruction's address plus <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>, i.e. <code>PC + 4</code> when executing the jump instruction.</p>
+<p>Thus when callee finished his job and ready to go back, callee could directly jump to the address stored in <code>x1</code> and start executing immediately.</p>
+<h2 id="Datas-in-the-main-memory">Datas in the main memory</h2>
 <p>As said above, we need to store some data in the main memory. If all the procedures won't call another procedure, which we call a <em>leaf procedure</em>, life will be much easier.</p>
 <p>But it turns out that even the simplest program that print out <code>&quot;Hello, World!&quot;</code> coded in C will call tons of procedures. This leads to so many data transfer between the memory and the registers, and the data we stored in main memory contains the varibles of many different precedures.</p>
 <p>Now the question is, how we determine the address of the data stored in or loaded from the main memory? Besides, we also need a way to distinguish the data of different procedures in the main memory.</p>
@@ -885,7 +906,7 @@
 <p><strong>Zero</strong>: Register <code>x0</code> is hardwired to the value <code>0</code>.</p>
 </li>
 </ol>
-<p>But if we always need to remember these rules, it will be very hard to write the assembly code. Thus, like the pseudo-instructions that assembler can translate to the real instructions, <strong>we can also use the <em>nick name</em> (formally <em>ABI Name</em>) of those registers to represent the registers.</strong> Here's a table shows the nick names of the registers:</p>
+<p>But if we always need to remember these rules, it will be very hard to write the assembly code. Thus, like the pseudo-instructions (compressed-instruction) that assembler can translate to the real instructions, <strong>we can also use the <em>nick name</em> (formally <em>ABI Name</em>) of those registers to represent the registers.</strong> Here's a table shows the nick names of the registers:</p>
 <table>
 <thead>
 <tr>
@@ -965,8 +986,413 @@
 </tbody>
 </table>
 <h1 id="RISC-V-Addressing-for-Wide-Immediates-and-Addresses">RISC-V Addressing for Wide Immediates and Addresses</h1>
+<h2 id="Addressing">Addressing</h2>
+<p>The concept of <em>Addressing</em> in computer science means the actual process when we use a number to express that we want to access a certain part of the memory.</p>
+<p>Formally, the various <em>addressing modes</em> that are defined in a given instruction set architecture define:</p>
+<ul>
+<li>
+<p>How the machine language instructions in that architecture identify the operand(s) of each instruction.</p>
+</li>
+<li>
+<p>How to calculate the effective memory address of an operand by using information held in registers and/or constants contained within a machine instruction or elsewhere.</p>
+</li>
+</ul>
+<p>For example, base addressing is a common way to access the data in the memory. We use the pattern <code>imme(reg)</code> to access the data in the memory. The <code>imme</code> is the offset, and the <code>reg</code> is the base address of the array. The <code>imme</code> is added to the <code>reg</code> to get the address of the data in the memory. Thus the actual address we are accessing is <code>imme + reg</code>.</p>
+<p>We're going to mainly talk about the addressing of wide/large immediate operands and branches' addresses</p>
+<h2 id="Wide-Immediate-Operands">Wide Immediate Operands</h2>
+<p>As we know, in the RISC-V32, the size of instructions are 32-bit. And if we use those instructions contain immediate, like <code>addi</code>, it will be encoded into the instruction itself when assembling. If you don't know that, just check out the format of I type instruction.</p>
+<p>Most of the instructions only have 12-bit field for storing the immediate. But the size of register is 64-bit, which means we could store 32-bit number in the register. And indeed, there's a instruction <code>li</code> allowing us to load a 32-bit immediate into a register directly.</p>
+<p>However, so long as you understand the instruction size are only 32-bit, you can image <code>li</code> must be not a normal instruction, since some of bits must used for storing <code>opcode</code>, <code>func3</code> ...</p>
+<p>Yep, it's a pseudo instruction. What <code>li</code> does, is utilizing <code>lui</code> to load the first 20 bits into register, and use <code>addi</code> to load the remaining 12 bits.</p>
+<p>For an conrete example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li x19, 3998976</span><br></pre></td></tr></table></figure>
+<p>where</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>399897</mn><msub><mn>6</mn><mn>10</mn></msub><mo>=</mo><mn>00000000</mn><mtext>  </mtext><mn>00111101</mn><mtext>  </mtext><mn>00000101</mn><mtext>  </mtext><mn>0000000</mn><msub><mn>0</mn><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">3998976_{10} =  00000000\;00111101\;00000101\;00000000_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">399897</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">00000000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">00111101</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">00000101</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>, will be translated into:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lui  x19, 976</span><br><span class="line">addi x19, x19, 1280</span><br></pre></td></tr></table></figure>
+<p>where</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>97</mn><msub><mn>6</mn><mn>10</mn></msub><mo>=</mo><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>0011</mn><mtext>  </mtext><mn>1101</mn><mtext>  </mtext><mn>000</mn><msub><mn>0</mn><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">976_{10} = 0000\;0000\;0011\;1101\;0000_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">97</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0011</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1101</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>and</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>128</mn><msub><mn>0</mn><mn>10</mn></msub><mo>=</mo><mn>00000101</mn><mtext>  </mtext><mn>0000000</mn><msub><mn>0</mn><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">1280_{10} = 00000101\;00000000_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">128</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">00000101</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>.</p>
+<p>As you can see, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>976</mn></mrow><annotation encoding="application/x-tex">976</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">976</span></span></span></span> is the integer representation of the first 20 bits of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3998976</mn></mrow><annotation encoding="application/x-tex">3998976</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3998976</span></span></span></span>. And <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1280</mn></mrow><annotation encoding="application/x-tex">1280</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1280</span></span></span></span> is the integer representation of the last 12 bits of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3998976</mn></mrow><annotation encoding="application/x-tex">3998976</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3998976</span></span></span></span>.</p>
+<p>What <code>lui</code> exactly will do is shifting right the <code>imme</code> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>976</mn></mrow><annotation encoding="application/x-tex">976</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">976</span></span></span></span> here) by 12 bits and store the shifted number in the <code>reg</code> (<code>x19</code> here). Just as it's name: <strong>Load the number into the register as if it is the upper 20-bit part of an integer</strong>.</p>
+<blockquote>
+<p>In the previous example, bit 11 of the constant was <code>0</code>. If bit 11 had been set, there would have been an additional complication: the 12-bit immediate is sign-extended, so the addend would have been negative. This means that in addition to adding in the rightmost 11 bits of the constant, we would have also subtracted <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">2^{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span></span></span></span></span></span></span></span></span>. To compensate for this error, it suffices to add <code>1</code> to the constant loaded with <code>lui</code>, since the <code>lui</code> constant is scaled by <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">2^{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+</blockquote>
+<h2 id="Addressing-in-Branches">Addressing in Branches</h2>
+<p>The branch instructions in the RISC-V instruction use the instruction format called <em>SB-type</em>.</p>
+<p>For example, <code>bne x10, x11, 2000</code> will be represented in machine code as:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">imm[12]</th>
+<th style="text-align:center">imm[10:5]</th>
+<th style="text-align:center">rs2</th>
+<th style="text-align:center">rs1</th>
+<th style="text-align:center">funct3</th>
+<th style="text-align:center">imm[4:1]</th>
+<th style="text-align:center">imm[11]</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">111110</td>
+<td style="text-align:center">01011</td>
+<td style="text-align:center">01010</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1100111</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The reason why this format don't cover <code>imm[0]</code> is because each instruction is 32-bit or 4-byte. So the address distance between the instructions is 4 (recall each address corresponds to one byte of memory). Thus the <code>imm</code> is always a multiple of 4, and the last bit of <code>imm</code> is always <code>0</code>, so we leave it implicit, like the implicit <code>1</code> in IEEE 754.</p>
+</blockquote>
+<p>As you can see, the immediate field could only cover the range of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>4096</mn><mo separator="true">,</mo><mtext>  </mtext><mn>4094</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[−4096,\;4094]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">4096</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4094</span><span class="mclose">]</span></span></span></span>, and if we use the direct addressing mode, we can only have 2192 instruction in one program, each instruction takes one address. If this be true, then we're done, at least you won't see any modern program today.</p>
+<p>And a similar format <em>UJ-type</em>, which is only used by <code>jal</code>, also only have 20 bits for the immediate.</p>
+<p>For example, <code>jal x0, 2000</code> will be represented in machine code as:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">imm[20]</th>
+<th style="text-align:center">imm[10:1]</th>
+<th style="text-align:center">imm[11]</th>
+<th style="text-align:center">imm[19:12]</th>
+<th style="text-align:center">rd</th>
+<th style="text-align:center">opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1111101000</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">00000000</td>
+<td style="text-align:center">00000</td>
+<td style="text-align:center">1101111</td>
+</tr>
+</tbody>
+</table>
+<p>Even if we only use <code>jal</code> to jump, if addresses of the program still had to fit in this 20-bit field, no program could be bigger than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">20</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>So RISC-V have to seek a way solving this, and the way is: <em>PC-relative addressing</em></p>
+<p>It help us jump by setting the Program Counter in this way:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PC = PC + Branch offset</span><br></pre></td></tr></table></figure>
+<p>The key idea here is: <strong>For the most of time, the distance we want to jump is not that large.</strong></p>
+<p>This still limits us that we can only branch within <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">\pm2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">±</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span></span></span></span></span></span></span></span> words of the current instruction, or jump only within <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><msup><mn>2</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">\pm2^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">±</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">18</span></span></span></span></span></span></span></span></span></span></span></span> words of the current<br>
+instruction, But all loops and if statements are smaller than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span></span></span></span></span></span></span></span> words.</p>
+<h2 id="Addressing-in-Storing-and-Loading">Addressing in Storing and Loading</h2>
+<p>Notice the syntax of the Load and Store function:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sd x1, 100(x2)</span><br><span class="line">ld x1, 100(x2)</span><br></pre></td></tr></table></figure>
+<p>The pattern <code>imme(reg)</code> is used to access the data in the memory. The <code>imme</code> is the offset, and the <code>reg</code> is the base address of the array. The <code>imme</code> is added to the <code>reg</code> to get the address of the data in the memory. Thus the actual address we are accessing is <code>imme + reg</code>.</p>
+<p>This is called the <em>base addressing mode</em>. And it actually hint us, the amount of the memory corresponds the bits of the memory address, which corresponds to the bits of the register.</p>
+<h1 id="Parallelism-and-Instructions-Synchronization">Parallelism and Instructions: Synchronization</h1>
+<p>In the world of computing, particularly within the RISC-V architecture, achieving parallelism often requires tasks to work in tandem. However, this collaboration introduces the need for synchronization to ensure that tasks don't interfere with each other, potentially leading to <em>data races</em>. Data races occur when multiple threads access the same memory location without proper synchronization, and at least one of them is writing to it.</p>
+<h2 id="Data-Race-and-Synchronization">Data Race and Synchronization</h2>
+<p>Consider the analogy of reporters working on different sections of a story; if one reporter needs to read all sections before concluding, they must know when others have finished. <strong>If the latter reporter make the conclusion earlier than the completion of the former reporter, then the conclusion might missing the evaluation of the unfinished part.</strong> This is called a data race.</p>
+<p>This scenario emphasizes the need for synchronization to prevent any changes that could affect the final outcome.</p>
+<p>In computing, synchronization is typically managed through software routines that utilize hardware synchronization instructions. These instructions are crucial for implementing lock and unlock operations, which ensure that only one processor can access a specific region at a time—a concept known as mutual exclusion.</p>
+<h2 id="Atomic-Operations-The-Foundation-of-Synchronization">Atomic Operations: The Foundation of Synchronization</h2>
+<p>Atomic operations means: <strong>Some operations are strongly bonded and can't be split (like an atom).</strong></p>
+<p>The cornerstone of synchronization in a multiprocessor environment is the ability to atomically read and modify a memory location. Without this, the complexity and cost of building synchronization mechanisms would skyrocket with an increasing number of processors.</p>
+<p>A basic example of such an operation is the atomic exchange or swap, which allows a value in a register to be exchanged with a value in memory atomically. This operation can be used to implement a simple locking mechanism, ensuring that only one processor can acquire the lock at a time.</p>
+<h2 id="RISC-V-s-Approach-to-Synchronization">RISC-V's Approach to Synchronization</h2>
+<p>RISC-V introduces a pair of instructions, load-reserved (<code>lr.d</code>) and store-conditional (<code>sc.d</code>), to facilitate atomic operations.</p>
+<p>These instructions work together to ensure that if the memory location used by the load-reserved instruction is altered before the store-conditional instruction is executed, if some instruction tries to modify the location before <code>sc.d</code>, it fails.</p>
+<p>This mechanism allows for the implementation of atomic exchanges and other synchronization primitives.</p>
+<h2 id="Practical-Applications-and-Considerations">Practical Applications and Considerations</h2>
+<p>While atomic exchange is a powerful tool for multiprocessor synchronization, it's also beneficial for single-processor systems in managing multiple processes. Furthermore, the load-reserved/store-conditional mechanism can be extended to build more complex synchronization primitives, such as atomic compare-and-swap or atomic fetch-and-increment.</p>
+<p>However, developers must be cautious about the instructions placed between the load-reserved and store-conditional instructions to avoid deadlocks and ensure the atomicity of the operation.</p>
 <hr>
 <h1 id="Unfinished-yet">Unfinished yet...</h1>
+<h1 id="Translating-and-Starting-a-Program">Translating and Starting a Program</h1>
+<pre class="mermaid" style="text-align: center;">
+            graph TD
+            A["C Program"] -->|Compiler| B["Assembly Language Program"]
+B -->|Assembler| C["Object: Machine Language Module"]
+D["Object: Library Routine<br>(Machine Language)"] -->|Linker| E["Executable: Machine Language Program"]
+C -->|Linker| E
+E -->|Loader| F["Memory"]
+          </pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Object file header</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Name</td>
+<td style="text-align:center">Procedure A</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Text size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">100_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">10</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Data size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">20_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">2</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Text segment</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center">Instruction</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>ld x10, 0(x3)</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>jal x1, 0</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Data segment</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">(X)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Relocation information</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center">Instruction type</td>
+<td style="text-align:center">Dependency</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>ld</code></td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>jal</code></td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol table</td>
+<td style="text-align:center">L abel</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Name</td>
+<td style="text-align:center">Procedure B</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Text size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">200_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">20</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Data size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">30_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">3</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Text segment</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center">Instruction</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>sd x11, 0(x3)</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>jal x1, 0</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Data segment</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">(Y)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Relocation information</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center">Instruction type</td>
+<td style="text-align:center">Dependency</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><code>sd</code></td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>jal</code></td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:center">Symbol table</td>
+<td style="text-align:center">L abel</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Executable file header</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Text size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">300_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">30</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Data size</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">50_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">5</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center">Text segment</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center">Instruction</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>0040</mn><mtext>  </mtext><mn>000</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;0040\;0000_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0040</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>ld x10, 0(x3)</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>0040</mn><mtext>  </mtext><mn>000</mn><msub><mn>4</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;0040\;0004_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0040</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">000</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>jal x1, 252</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>0040</mn><mtext>  </mtext><mn>010</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;0040\;0100_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0040</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">010</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>sd x11, 32(x3)</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>0040</mn><mtext>  </mtext><mn>010</mn><msub><mn>4</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;0040\;0104_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0040</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">010</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>jal x1, -260</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center">Data segment</td>
+<td style="text-align:center">Address</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>1000</mn><mtext>  </mtext><mn>000</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;1000\;0000_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center">(X)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn><mtext>  </mtext><mn>0000</mn><mtext>  </mtext><mn>1000</mn><mtext>  </mtext><mn>002</mn><msub><mn>0</mn><mn>8</mn></msub></mrow><annotation encoding="application/x-tex">0000\;0000\;1000\;0020_8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7944em;vertical-align:-0.15em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">002</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center">(Y )</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi><mi mathvariant="normal">⋮</mi><mpadded height="0em" voffset="0em"><mspace mathbackground="black" width="0em" height="1.5em"></mspace></mpadded></mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.03em;"></span><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span></td>
+</tr>
+</tbody>
+</table>
 
     </div>
 
@@ -976,10 +1402,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
               <a href="/tags/CS110/" rel="tag"># CS110</a>
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
               <a href="/tags/Unfinished/" rel="tag"># Unfinished</a>
           </div>
 
@@ -1054,7 +1480,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-will-a-Procedure-Do"><span class="nav-text">What will a Procedure Do?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-procedure-abstractly-implemented"><span class="nav-text">How procedure abstractly implemented?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharing-the-Registers"><span class="nav-text">Sharing the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communicating-between-the-Caller-and-the-Callee"><span class="nav-text">Communicating between the Caller and the Callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saving-and-Restoring-the-States-of-the-Registers"><span class="nav-text">Saving and Restoring the States of the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datas-in-the-main-memory"><span class="nav-text">Datas in the main memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Stack"><span class="nav-text">The Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Frame"><span class="nav-text">The Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-the-Stack-and-Frame"><span class="nav-text">Managing the Stack and Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap"><span class="nav-text">Heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global"><span class="nav-text">Global</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-Calling-Convention"><span class="nav-text">Full Calling Convention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RISC-V-Addressing-for-Wide-Immediates-and-Addresses"><span class="nav-text">RISC-V Addressing for Wide Immediates and Addresses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations-of-the-Computer-Hardware"><span class="nav-text">Operations of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-set"><span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Language"><span class="nav-text">Assembly Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operands-of-the-Computer-Hardware"><span class="nav-text">Operands of the Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Operands"><span class="nav-text">Register Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Operands"><span class="nav-text">Memory Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-or-Imemdiate-Operands"><span class="nav-text">Constant or Imemdiate Operands</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Representing-Instructions-in-the-Computer"><span class="nav-text">Representing Instructions in the Computer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Language"><span class="nav-text">Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitwise-Operations"><span class="nav-text">Bitwise Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-NOT-XOR"><span class="nav-text">AND, OR, NOT, XOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instructions-of-Making-Decisions"><span class="nav-text">Instructions of Making Decisions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional"><span class="nav-text">Conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Checking-Shortcut"><span class="nav-text">Boundary Checking Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Switch-Statement"><span class="nav-text">Case&#x2F;Switch Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supporting-Procedures-in-Computer-Hardware"><span class="nav-text">Supporting Procedures in Computer Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-will-a-Procedure-Do"><span class="nav-text">What will a Procedure Do?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-procedure-abstractly-implemented"><span class="nav-text">How procedure abstractly implemented?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharing-the-Registers"><span class="nav-text">Sharing the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communicating-between-the-Caller-and-the-Callee"><span class="nav-text">Communicating between the Caller and the Callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saving-and-Restoring-the-States-of-the-Registers"><span class="nav-text">Saving and Restoring the States of the Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return"><span class="nav-text">Return</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Datas-in-the-main-memory"><span class="nav-text">Datas in the main memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Stack"><span class="nav-text">The Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Frame"><span class="nav-text">The Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-the-Stack-and-Frame"><span class="nav-text">Managing the Stack and Frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap"><span class="nav-text">Heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global"><span class="nav-text">Global</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-Calling-Convention"><span class="nav-text">Full Calling Convention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RISC-V-Addressing-for-Wide-Immediates-and-Addresses"><span class="nav-text">RISC-V Addressing for Wide Immediates and Addresses</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing"><span class="nav-text">Addressing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-Immediate-Operands"><span class="nav-text">Wide Immediate Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-in-Branches"><span class="nav-text">Addressing in Branches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-in-Storing-and-Loading"><span class="nav-text">Addressing in Storing and Loading</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parallelism-and-Instructions-Synchronization"><span class="nav-text">Parallelism and Instructions: Synchronization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Race-and-Synchronization"><span class="nav-text">Data Race and Synchronization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Atomic-Operations-The-Foundation-of-Synchronization"><span class="nav-text">Atomic Operations: The Foundation of Synchronization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RISC-V-s-Approach-to-Synchronization"><span class="nav-text">RISC-V&#39;s Approach to Synchronization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practical-Applications-and-Considerations"><span class="nav-text">Practical Applications and Considerations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-yet"><span class="nav-text">Unfinished yet...</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Translating-and-Starting-a-Program"><span class="nav-text">Translating and Starting a Program</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1070,7 +1496,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -1084,7 +1510,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1254,6 +1680,19 @@ window.addEventListener('pjax:success', () => {
 
 
 
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
     <div id="pjax">
