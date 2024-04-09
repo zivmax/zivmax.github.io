@@ -8426,6 +8426,16 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%8F%82%E8%80%83%E4%BF%A1%E6%81%AF/2023/03/16/Refs/2022%E7%BA%A7CS%E5%9F%B9%E5%85%BB%E6%96%B9%E6%A1%88/',]
+      });
+      });
+  </script>
 
 
 

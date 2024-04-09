@@ -523,6 +523,16 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E7%AC%94/2023/03/20/Daily/%E5%B7%B2%E7%BB%8F-%E8%A6%81%E7%B4%AF%E6%AD%BB%E6%83%B9/',]
+      });
+      });
+  </script>
 
 
 

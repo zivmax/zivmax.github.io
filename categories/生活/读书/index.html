@@ -457,6 +457,16 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/categories/%E7%94%9F%E6%B4%BB/%E8%AF%BB%E4%B9%A6/',]
+      });
+      });
+  </script>
 
 
 
