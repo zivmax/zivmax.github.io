@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Goals   Learning advanced techniques to help you create more concise circuits within Logisim.   Feel free to do each part as separate sub-circuits in the same Logisim file.   Strengthening experience">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Lab [6]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/04/25/CS110/CS110-Lab-6/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Goals   Learning advanced techniques to help you create more concise circuits within Logisim.   Feel free to do each part as separate sub-circuits in the same Logisim file.   Strengthening experience">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_left.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_right.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_error.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels_error.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders.png">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_0.PNG">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_1.PNG">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_2.PNG">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/practice1.PNG">
+<meta property="article:published_time" content="2024-04-25T01:05:51.000Z">
+<meta property="article:modified_time" content="2024-04-25T03:06:33.529Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/04/25/CS110/CS110-Lab-6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Lab [6] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/04/25/CS110/CS110-Lab-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Lab [6]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2024-04-25 09:05:51 / 修改时间: 11:06:33" itemprop="dateCreated datePublished" datetime="2024-04-25T09:05:51+08:00">2024-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>8.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>55 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Goals</strong></p>
+<ul>
+<li>
+<p>Learning advanced techniques to help you create more concise circuits within Logisim.</p>
+</li>
+<li>
+<p>Feel free to do each part as separate sub-circuits in the same Logisim file.</p>
+</li>
+<li>
+<p>Strengthening experience in designing circuits using Logisim.</p>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="Lab-6">Lab 6</h1>
+<p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/index.html">Computer Architecture I</a> @ <a target="_blank" rel="noopener" href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p>
+<h2 id="Advanced-Logisim">Advanced Logisim</h2>
+<p>Download the <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/lab6_starter.zip">files</a> for Lab 6 first.</p>
+<p>Here are three Logisim features that should both save you a lot of time and make your circuits look much cleaner.</p>
+<h4 id="1-Splitters">1. Splitters</h4>
+<p>Splitters allow you to take a multi-bit value and split it up into smaller parts, or (despite the name) combine multiple values that are one or more bits into a single value.<br>
+Here, we split the 4-bit binary number <code>0111</code> into <code>01</code> and <code>11</code>, then recombine it with <code>10</code> into the final 6-bit number <code>100111</code>:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters.png" alt></p>
+<p>Click on a splitter to get its menu in the sidebar. This menu determine the number of arms on your splitter and how many bits should go on each arm. For the circuit above, the left splitter's menu looks like this:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_left.png" alt></p>
+<p>While the right splitter's menu looks like this:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_right.png" alt></p>
+<p><strong>Notice that there's an option called</strong> <code>facing</code>. You can use this to rotate your splitter. Above, see that the splitter on the right is facing West while the splitter on the left is facing East.</p>
+<p>If you see an error wire that is orange, this means that your bit width in does not match your bit width out. Make sure that if you're connecting two components with a wire, you correctly set the bit width in that component's menu.</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_error.png" alt></p>
+<h4 id="2-Tunnels">2. Tunnels</h4>
+<p>A tunnel allows you draw an &quot;invisible wire&quot; to bind two points together. Tunnels are grouped by case-sensitive labels give to a wire. They are used to connect wires like so:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels.png" alt></p>
+<p>Some care should be taken as to which wires are connected with tunnels to which other wires, such as in this case:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels_error.png" alt></p>
+<p>We <em>strongly</em> recommend you use tunnels with Logisim, because they make your circuits much cleaner looking, and therefore easier to debug.</p>
+<h4 id="3-Extenders">3. Extenders</h4>
+<p>When changing the width of a wire, you should use a bit extender for clarity. For example, consider the following implementation of extending an 8-bit wire into a 16-bit wire:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_0.PNG" alt></p>
+<p>Compared to the splitter, the extender is easier to understand at a glance. This becomes especially helpful when working with complex circuits.</p>
+<p>Additionally, consider the case of throwing out bits. Despite its name, an extender can also perform this operation:</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_1.PNG" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_2.PNG" alt></p>
+<h2 id="Exercises">Exercises</h2>
+<h3 id="Exercise-1-Practice-with-Advanced-features">Exercise 1: Practice with Advanced features</h3>
+<p>In this part of the lab, we will construct a circuit that manipulates an 8-bit number.</p>
+<h4 id="ACTION-ITEM">ACTION ITEM:</h4>
+<p>Complete the following steps to create the splitter circuit, and show this to your TA (remember to save). When you've completed the circuit, answer the question in the checkoff session.</p>
+<ol>
+<li>
+<p>Open up the Exercise 1 schematic (<code>File-&gt;Open-&gt;ex1.circ</code>) and go to the empty Split circuit.</p>
+</li>
+<li>
+<p>Go to the <code>Wiring</code> folder and select the <code>Splitter</code> circuit. This circuit will take a wire and split it into a set of wires of smaller width. Conversely, it can also take many sets of wires and combine them into one.</p>
+</li>
+<li>
+<p>Change the <code>Bit Width In</code> property (bus width) to <code>8</code>, and <code>Fan Out</code> property to <code>8</code>. Connect the inputs to tunnels</p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/practice1.PNG" alt></p>
+</li>
+<li>
+<p>Now, judge the number of '1s' in the input whether odd. You can use <code>XOR</code> gates to eath bit of input and route the output to <code>OUT1</code>.</p>
+</li>
+<li>
+<p>Then, judge the number of '1s' in the input whether greater than '0s'. You can use <code>Bit Adder and Comparator</code> from <code>Arithmetic</code> to implement this circuit and route the output to <code>OUT2</code> .</p>
+</li>
+<li>
+<p>We need to add a parity bit to the input to ensure that output has odd number of '1s', you are not allowed to use parity circuits from logisim <code>Gates</code>. Place another splitter with the proper properties to combine the parity bit and the input to <code>OUT3</code>.</p>
+</li>
+<li>
+<p>We consider the <code>OUT2</code> is the sign bit of input, changing input into 2's complement format. Place another splitter with the proper properties to combine the sign bit and the 2's complement to <code>OUT4</code>.</p>
+</li>
+</ol>
+<p><strong>Hint 1</strong>: An unsigned comparator is required in <code>OUT2</code>.</p>
+<p><strong>Hint 2</strong>: The parity bit can be obtained from <code>OUT1</code> because when input has odd bit '1s', the parity bit will be 0, otherwise, the parity bit will be 1.</p>
+<p><strong>Hint 3</strong>: 2's complement transform is different according to sign bit.</p>
+<ul>
+<li>Show your <code>ex1.circ</code> to your TA.</li>
+<li>When the output from <code>OUT4</code> is negative and we want to compute its two's complement once more, what would the outcome be? <strong>Hint:</strong> In fact, this is a question about finding the two's complement of a two's complement. Just share your findings with TA.</li>
+</ul>
+<h3 id="Exercise-2-Rotate-Right">Exercise 2: Rotate Right</h3>
+<p>With your knowledge and experience of splitters and multiplexers, you are ready to implement a non-trivial combinational logic block: <code>rotr</code>, which stands for &quot;Rotate Right&quot;. The idea is that <code>rotr A,B</code> will &quot;rotate&quot; the bit pattern of input <code>A</code> to the right by <code>B</code> bits. So, if <code>A</code> were <code>0b1011010101110011</code> and <code>B</code> were <code>0b0101</code> (<code>5</code> in decimal), the output of the block would be <code>0b1001110110101011</code>. Notice that the rightmost <code>5</code> bits were rotated off the right end of the value and back onto the left end. In RTL, the operation would be something like <code>R = A &gt;&gt; B | A &lt;&lt; (16 - B)</code>.</p>
+<h4 id="ACTION-ITEM-2">ACTION ITEM:</h4>
+<p>Implement a subcircuit named <code>rotr</code> with the following inputs. Show the final circuit to your TA (remember to save!).</p>
+<ul>
+<li><code>A</code> (16-bit), the 16-bit input to be rotated</li>
+<li><code>B</code> (4-bit), the rotation amount (why 4 bits?) You can find the starter subcircuit in <code>ex2.circ</code>.</li>
+</ul>
+<p>The output should be <code>A</code> rotated right by <code>B</code> bit positions, as outlined above. You are <strong>NOT</strong> allowed to use Logisim shifters in your solution, though all other combinational logic (MUXes, constants, gates, adders, etc.) is allowed. Logisim's built-in MUXes (find them under the <code>Plexers</code> menu) might be especialy helpful. Your solution shouldn't involve a clock or any clocked elements, like registers.</p>
+<p><strong>Hint 1</strong>: Before you start wiring, you should think very carefully about how you might decompose this problem into smaller ones and join them together. You should feel very free to use subcircuits when implementing <code>rot4</code> and <code>rot8</code> as well as <code>rotr</code>.</p>
+<p><strong>Hint 2</strong>: Just because we gave you an RTL representation doesn't mean it's the best way to look at this problem. Think about the input bits of <code>B</code> and think about how to effectively use splitters! Can you do something with the binary form? Remember why binary is good for use in computers: a <code>1</code> is easy to represent as an <code>ON</code> signal, and a <code>0</code> is easy to represent as an <code>OFF</code> signal. Let's say we want to rotate <code>11</code> times. <code>11</code> is <code>1011</code> in binary, or <code>1*8 + 0*4 + 1*2 + 1*1</code>. Can you use this to make a cleaner circuit? Making use of the <code>rot*</code>circuits we have provided is a good idea that will keep things clean!</p>
+<p><strong>Hint 3</strong>: Perhaps you also need to create other sub-circuits and call them in the <code>rotr</code> circuit. Please explore how to customize the appearance of your components! It's important to note that after designing their appearance, they also need to be saved immediately and their <code>Appearance</code> attribute should be changed to <code>Custom</code>.</p>
+<ul>
+<li>Show your TA your <code>rotr</code> circuit and verify that it works.</li>
+</ul>
+<h3 id="Exercise-3-Runing-LED">Exercise 3: Runing LED</h3>
+<p>From Exercise 2, we obtained a combinational circuits which can rotate the input with different values. In this part of lab, we will implement a version for sequential circuits. For each clock, the input will rotate with step of 1 and the rotated value will be input next time. For example, if <code>input</code> is <code>0b10000000</code> and we set the rotate step of <code>1</code>. At clock 2, <code>output</code> is <code>0b01000000</code>, at clock 3, output is <code>0b00100000</code>...</p>
+<h4 id="ACTION-ITEM-3">ACTION ITEM:</h4>
+<p>Complete the following steps and show this completed circuit to your TA (remember to save!)</p>
+<ol>
+<li>
+<p>Open up the Exercise 3 schematic (<code>File-&gt;Open-&gt;ex3.circ</code>) and fill in the <code>rot1</code>, you can use the circuits in Exercise 2 and revise the width of input and output.</p>
+</li>
+<li>
+<p>Using the <code>Register</code> to store the previous value, and then using a <code>rot1</code> to rotate the value, the output is <code>OUT_LED</code>.</p>
+</li>
+<li>
+<p>Using a <code>Multiplexer</code> to set the initinal value <code>INITIAL_LED</code> of <code>Register</code> when reset signal <code>RST</code> is 1. When <code>RST</code> is 0, the input of Multiplexer will be <code>OUT_LED</code>.</p>
+</li>
+</ol>
+<ul>
+<li>Show your TA your <code>Runing LED</code> circuit and verify that it works.</li>
+<li>If we want to control the LED to shift for a certain number of times, such that it stops after moving 8 times, remaining stationary until the next change in the <code>RST</code> signal occurs. What changes should we make to the circuit? Show your TA your revised circuit drawing or create a new Logisim file containing your revised circuit.</li>
+</ul>
+<h3 id="Testing">Testing</h3>
+<p>Debugging circuits can be done in two ways. One method involves directly using the poke tool to alter component values and observe the output instantly. The second approach is to use the testing scripts provided by us via:</p>
+<p>./test.sh</p>
+<p>Since Logisim will be running in one terminal window already, make sure to open up a new window to run the testing script.</p>
+<p>If it says you don't have permission to <code>test.sh</code>, run the following code:</p>
+<p>chmod +x <a target="_blank" rel="noopener" href="http://test.sh">test.sh</a></p>
+<p>If it says you don't have permission to <code>test.py</code>, run the following code <strong>in</strong> the <code>./testing</code> folder:</p>
+<p>chmod +x <a target="_blank" rel="noopener" href="http://test.py">test.py</a></p>
+<hr>
+<p>The following TA(s) are responsible for this lab:</p>
+<p>Zhaojun Ni <nizhj2022 at shanghaitech.edu.cn></nizhj2022></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB/2024/04/16/%E4%BD%93%E5%A4%96%E7%A5%9E%E7%BB%8F%E5%85%83%E5%9C%A8%E6%A8%A1%E6%8B%9F%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C%E4%B8%AD%E5%AD%A6%E4%B9%A0%E5%B9%B6%E8%A1%A8%E7%8E%B0%E5%87%BA%E6%84%9F%E7%9F%A5%E8%83%BD%E5%8A%9B/" rel="prev" title="体外神经元在模拟游戏世界中学习并表现出感知能力">
+      <i class="fa fa-chevron-left"></i> 体外神经元在模拟游戏世界中学习并表现出感知能力
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/04/25/CS110/CS110-Project-2-1/" rel="next" title="CS110 Project 2.1">
+      CS110 Project 2.1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-6"><span class="nav-text">Lab 6</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Logisim"><span class="nav-text">Advanced Logisim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Splitters"><span class="nav-text">1. Splitters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Tunnels"><span class="nav-text">2. Tunnels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Extenders"><span class="nav-text">3. Extenders</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises"><span class="nav-text">Exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-1-Practice-with-Advanced-features"><span class="nav-text">Exercise 1: Practice with Advanced features</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACTION-ITEM"><span class="nav-text">ACTION ITEM:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-2-Rotate-Right"><span class="nav-text">Exercise 2: Rotate Right</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACTION-ITEM-2"><span class="nav-text">ACTION ITEM:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise-3-Runing-LED"><span class="nav-text">Exercise 3: Runing LED</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACTION-ITEM-3"><span class="nav-text">ACTION ITEM:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing"><span class="nav-text">Testing</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/04/25/CS110/CS110-Lab-6/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+
