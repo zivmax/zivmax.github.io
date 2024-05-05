@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="A simple 2D-Convolution algorithm in C and RISC-V and a padded 2D-Convolution in RISC-V.  (Individual Project)">
@@ -299,12 +297,12 @@
 <h2 id="Background">Background</h2>
 <h3 id="2D-Convolution">2D-Convolution</h3>
 <p>2D-Convolution is the convolution applied using two matrices, image and kernel. The progress of applying 2D-Convolution is shown below.</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/2D-Convolution.gif" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/2D-Convolution.gif" alt loading="lazy"></p>
 <p>The left most matrix is the image matrix and the middle matrix is the kernel matrix. Each step is a product-and-sum. We need to product the corresponding elements and sum the result up. Or you can refer to the mathematical representation below, where K_w and K_l represents width and length of the kernel matrix, respectively.</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/convolution-math.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/convolution-math.png" alt loading="lazy"></p>
 <h3 id="Zero-Padding-2D-Convolution">Zero Padding 2D-Convolution</h3>
 <p>As shown in the above animation, the result matrix is not the same size with the image matrix. To make them the same size, we can add a circle of zero around the image matrix, as shown below. Then we can get a same size result matrix. This is called Zero Padding Convolution.</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/Zero-Padding.gif" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p1.2-web/Zero-Padding.gif" alt loading="lazy"></p>
 <p>The number of zero to add at right and left of the image matrix is (kernel_length-1)/2. The number of zero to add at top and buttom of the image matrix is (kernel_width-1)/2.</p>
 <h2 id="Implementation">Implementation</h2>
 <h3 id="Part1-2D-Convolution-in-C">Part1: 2D-Convolution in C</h3>

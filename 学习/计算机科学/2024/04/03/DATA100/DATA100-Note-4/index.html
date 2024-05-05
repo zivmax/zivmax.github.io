@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Introduction to Visualization.">
@@ -339,7 +337,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Visualization"><strong>Visualization</strong></h1>
 <p>Encoding Information into Intuition</p>
 <h1 id="1-Goals-of-Visualization">1. Goals of Visualization</h1>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt loading="lazy"></p>
 <ul>
 <li>
 <p>To broaden your understanding of the data.</p>
@@ -350,7 +348,7 @@
 </ul>
 <p>Altogether, these goals emphasize the fact that <em><strong>visualizations aren’t a matter of making “pretty” pictures</strong></em>.</p>
 <h1 id="2-An-Overview-of-Distributions">2. An Overview of Distributions</h1>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-10-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-10-output-1.png" alt loading="lazy"></p>
 <ul>
 <li>
 <p>The total frequency of all categories must sum to 100%</p>
@@ -362,24 +360,24 @@
 <p>Most of the time, we're ploting the distribution of the data.</p>
 <h1 id="3-Variable-Types-Inform-Plot-Choice">3. Variable Types Inform Plot Choice</h1>
 <p>Recall the types of the variable:</p>
-<p><img src="https://ds100.org/course-notes/visualization_1/images/variable_types_vis_1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/images/variable_types_vis_1.png" alt loading="lazy"></p>
 <h2 id="3-1-Qualitative-Variables-Bar-Plots">3.1 Qualitative Variables: Bar Plots</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment"># seaborn is typically given the alias sns</span></span><br><span class="line">sns.countplot(data = wb, x = <span class="string">&#x27;Continent&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-5-output-1.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-5-output-1.png" alt=" " loading="lazy"></p>
 <h2 id="3-2-Quantitative-Variables-Box-Violin-and-Hist">3.2 Quantitative Variables: Box, Violin and Hist</h2>
 <h3 id="Box">Box</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=wb, y=<span class="string">&#x27;Gross domestic product: % growth : 2016&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-11-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-11-output-1.png" alt loading="lazy"></p>
 <h3 id="Violin">Violin</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(data=wb, y=<span class="string">&#x27;Gross domestic product: % growth : 2016&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-12-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-12-output-1.png" alt loading="lazy"></p>
 <h3 id="Histograms">Histograms</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.histplot(data=wb, x=<span class="string">&quot;Gross n...&quot;</span>, stat=<span class="string">&quot;density&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-15-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-15-output-1.png" alt loading="lazy"></p>
 <h3 id="Overlap">Overlap</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=wb, x=<span class="string">&quot;Continent&quot;</span>, y=<span class="string">&#x27;Gross n...&#x27;</span>)</span><br><span class="line">sns.histplot(data=wb, x=<span class="string">&quot;Gross n...: 2016&quot;</span>, hue=<span class="string">&quot;Hemisphere&quot;</span>, stat=<span class="string">&quot;density&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-13-output-1.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-17-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-13-output-1.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-17-output-1.png" alt loading="lazy"></p>
 <h1 id="4-Evaluating-Histograms">4. Evaluating Histograms</h1>
 <ul>
 <li>
@@ -404,17 +402,17 @@
 </ul>
 <h2 id="4-1-Skewness-and-Tails">4.1 Skewness and Tails</h2>
 <h3 id="Left-Skew-and-Right-Tail">Left Skew and Right Tail</h3>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-19-output-2.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-19-output-2.png" alt loading="lazy"></p>
 <h3 id="Right-Skew-and-Left-Tail">Right Skew and Left Tail</h3>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-20-output-2.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-20-output-2.png" alt loading="lazy"></p>
 <h2 id="4-2-Outliers">4.2 Outliers</h2>
 <p>Loosely speaking, an outlier is defined as a data point that <em><strong>lies an abnormally large distance</strong></em> away from other values.</p>
 <h2 id="4-3-Modes">4.3 Modes</h2>
 <p><em>We describe a “mode” of a histogram as a peak in the distribution.</em></p>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-22-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-22-output-1.png" alt loading="lazy"></p>
 <h2 id="4-4-Challenge">4.4 Challenge</h2>
 <p><em>In this image, it's hard to observe. It is these ambiguities that motivate us to consider using <strong>Kernel Density Estimation (KDE)</strong></em></p>
-<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-23-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-23-output-1.png" alt loading="lazy"></p>
 <h1 id="5-KDE-Kernel-Density-Estimation">5. KDE (Kernel Density Estimation)</h1>
 <ul>
 <li>
@@ -424,7 +422,7 @@
 <p><em>More formally, a KDE attempts to <strong>approximate the underlying probability distribution</strong> from which our dataset was drawn.</em></p>
 </li>
 </ul>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-3-output-2.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-3-output-2.png" alt=" " loading="lazy"></p>
 <h2 id="5-1-Constructing-KDE">5.1 Constructing KDE</h2>
 <ol>
 <li>
@@ -438,14 +436,14 @@
 </li>
 </ol>
 <p>Assume we want KDE this dataset: <strong>[ 2.2, 2.8, 3.7, 5.3, 5.7 ]</strong></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-4-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-4-output-1.png" alt loading="lazy"></p>
 <p><em><strong>Step 1: Place a kernel at each datapoint.</strong></em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-6-output-1.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-7-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-6-output-1.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-7-output-1.png" alt loading="lazy"></p>
 <p><em><strong>Step 2: Normalize the kernels to have a total area of 1.</strong></em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-8-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-8-output-1.png" alt loading="lazy"></p>
 <p><em><strong>Step 3: Sum the normalized kernels.</strong></em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-9-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-9-output-1.png" alt loading="lazy"></p>
 <h2 id="5-2-Kernel-Functions-and-Bandwidths">5.2 Kernel Functions and Bandwidths</h2>
 <p>A general “KDE formula” function is given bello</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mi>α</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>K</mi><mi>α</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{\alpha}(x) = \frac{1}{n} \sum_{i=1}^{n} K_{\alpha}(x, x_i)
@@ -500,10 +498,10 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </li>
 </ol>
 <p><em><strong>Gaussian kernel KDE with bandwiths: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.1</mn></mrow><annotation encoding="application/x-tex">0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.1</span></span></span></span>; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn></mrow><annotation encoding="application/x-tex">1.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.0</span></span></span></span>; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.0</mn></mrow><annotation encoding="application/x-tex">2.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2.0</span></span></span></span>; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10.0</mn></mrow><annotation encoding="application/x-tex">10.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10.0</span></span></span></span>:</strong></em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_0.1.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_1.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_2.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_10.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_0.1.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_1.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_2.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/gaussian_10.png" alt loading="lazy"></p>
 <h1 id="6-Multi-Quantitative-Variables">6. Multi Quantitative Variables</h1>
 <ul>
 <li>
@@ -515,57 +513,57 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 <h2 id="6-1-Scatter-Plots">6.1 Scatter Plots</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(wb[<span class="string">&quot;per c...&quot;</span>], wb[<span class="string">&#x27;Adult l...&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-14-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-14-output-1.png" alt loading="lazy"></p>
 <h2 id="6-1-Scatter-Plots-2">6.1 Scatter Plots</h2>
 <p><em>But this seems overplotting...</em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-14-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-14-output-1.png" alt loading="lazy"></p>
 <h2 id="6-1-Scatter-Plots-3">6.1 Scatter Plots</h2>
 <p>We can <em><strong>shrink the marks</strong></em> and <em><strong>add random shifting noise</strong></em>.</p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-16-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-16-output-1.png" alt loading="lazy"></p>
 <h2 id="6-2-Linear-Plots">6.2 Linear Plots</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.lmplot(data = wb, x = <span class="string">&quot;per c...&quot;</span>, y = <span class="string">&quot;Adult l...&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-17-output-2.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-17-output-2.png" alt=" " loading="lazy"></p>
 <h2 id="6-3-Joint-Plots">6.3 Joint Plots</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(data = wb, x = <span class="string">&quot;per c...&quot;</span>, y = <span class="string">&quot;Adult l...&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-18-output-1.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-18-output-1.png" alt=" " loading="lazy"></p>
 <h2 id="6-4-Hex-Plots">6.4 Hex Plots</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(data = wb, x = <span class="string">&quot;per c...&quot;</span>, y = <span class="string">&quot;Adult l...&quot;</span>, kind = <span class="string">&quot;hex&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt=" " loading="lazy"></p>
 <h2 id="6-4-Hex-Plots-2">6.4 Hex Plots</h2>
 <p>Hex plots can be thought of as <em><strong>two-dimensional histograms</strong></em> !</p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-19-output-1.png" alt=" " loading="lazy"></p>
 <h2 id="6-5-Contour-Plots">6.5 Contour Plots</h2>
 <p>Contour plots can be thought of as <em><strong>two-dimensional KDE</strong></em> !</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(data = wb, x = <span class="string">&quot;per c...&quot;</span>, y = <span class="string">&quot;Adult l...&quot;</span>, fill = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-20-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-20-output-1.png" alt loading="lazy"></p>
 <h1 id="7-Transformation">7. Transformation</h1>
 <p>As said before, we want to <em><strong>reveal the relationships</strong></em>.</p>
 <p>However, relying on plotting directly alone is limiting, <em><strong>not all plots show association</strong></em>.</p>
 <p><em>Consider the following plot.</em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-21-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-21-output-1.png" alt loading="lazy"></p>
 <p>We can try applying transformation !</p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/linearize.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/linearize.png" alt loading="lazy"></p>
 <h2 id="7-1-Making-Transformation">7.1 Making Transformation</h2>
 <p><em>Step 1: Observe the plot</em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/horizontal.png" alt=" "></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/horizontal.png" alt=" " loading="lazy"></p>
 <p><em>Step 2: Transform on X axis</em></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(np.log(df[<span class="string">&quot;inc&quot;</span>]), df[<span class="string">&quot;lit&quot;</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-22-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-22-output-1.png" alt loading="lazy"></p>
 <p><em>Step 3: Transform on Y axis</em></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(np.log(df[<span class="string">&quot;inc&quot;</span>]), df[<span class="string">&quot;lit&quot;</span>]**<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-23-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-23-output-1.png" alt loading="lazy"></p>
 <p><em>Step 4: Linear regression</em></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression <span class="comment"># Discuss in the future</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-24-output-2.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-24-output-2.png" alt loading="lazy"></p>
 <h2 id="7-2-Inference-reversely">7.2 Inference reversely</h2>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>y</mi><mn>4</mn></msup><mo>=</mo><mi>m</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mspace width="1em"><mo>→</mo><mspace width="1em"><mi>y</mi><mo>=</mo><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><msup><mo stretchy="false">]</mo><mfrac><mn>1</mn><mn>4</mn></mfrac></msup></mspace></mspace></mrow><annotation encoding="application/x-tex">y^4 = m(\log{x}) + b \quad \to \quad y = [m(\log{x}) + b]^{\frac{1}{4}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0585em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.254em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.004em;"><span style="top:-3.413em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-24-output-2.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-25-output-1.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-24-output-2.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/visualization_2_files/figure-html/cell-25-output-1.png" alt loading="lazy"></p>
 <h2 id="7-3-Tukey-Mosteller-Bulge-Diagram">7.3 Tukey-Mosteller Bulge Diagram</h2>
 <p>This diagram is a good guide when determining possible transformations.</p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/tukey_mosteller.png" alt></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/bulge.png" alt></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/tukey_mosteller.png" alt loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/bulge.png" alt loading="lazy"></p>
 <h1 id="8-Visualization-Theory">8. Visualization Theory</h1>
 <p>Remember, we had two goals for visualizing data. <em>Visualization Theory</em> is particularly important in:</p>
 <ul>
@@ -575,7 +573,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <h2 id="8-1-Information-Channels">8.1 Information Channels</h2>
 <p>Visualizations are able to convey information through various encodings.</p>
 <p><em>Except things in the image, <strong>marks' relative position</strong> is also a important channel.</em></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/markings_viz.png" alt="bg left:40%"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/markings_viz.png" alt="bg left:40%" loading="lazy"></p>
 <p>Each visulization should <strong>at least contains one accurate channel</strong>.</p>
 <p><em>Thus don't use pie chart any more!</em></p>
 <h2 id="8-2-What-is-Good-Encoding">8.2 What is Good Encoding?</h2>
@@ -586,8 +584,8 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/wrong_scale_viz.png" alt="❌"></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/good_viz_scale_1.png" alt="✔️"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/wrong_scale_viz.png" alt="❌" loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/good_viz_scale_1.png" alt="✔️" loading="lazy"></p>
 <ul>
 <li><em>No redundent infomation encoded</em>
 <ul>
@@ -595,8 +593,8 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/unrevealed_viz.png" alt="❌"></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/revealed_viz.png" alt="✔️"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/unrevealed_viz.png" alt="❌" loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/revealed_viz.png" alt="✔️" loading="lazy"></p>
 <ul>
 <li><em>Encode information linearly</em>
 <ul>
@@ -604,8 +602,8 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/jet_colormap.png" alt="❌"></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/viridis_colormap.png" alt="✔️"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/jet_colormap.png" alt="❌" loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/viridis_colormap.png" alt="✔️" loading="lazy"></p>
 <ul>
 <li><em>Encode information linearly</em>
 <ul>
@@ -613,8 +611,8 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/jet_perceptually_uniform.png" alt="❌"></p>
-<p><img src="https://ds100.org/course-notes/visualization_2/images/viridis_perceptually_uniform.png" alt="✔️"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/jet_perceptually_uniform.png" alt="❌" loading="lazy"></p>
+<p><img src="https://ds100.org/course-notes/visualization_2/images/viridis_perceptually_uniform.png" alt="✔️" loading="lazy"></p>
 <h1 id="9-Summary">9. Summary</h1>
 <p>Good visualizations are always made by <em><strong>Intuitive  and Empathetic Person</strong></em></p>
 

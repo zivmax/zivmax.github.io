@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Goals   Understand the structure of a shift and add multiplier.   Implement a non-pipelined 4-bit shift and add multiplier.   Implement a pipelined 4-bit shift and add multiplier.">
@@ -305,13 +303,13 @@
 </ul>
 <h3 id="Warmup">Warmup</h3>
 <p>Recall multiplication by hand:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/by_hand.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/by_hand.png" alt loading="lazy"></p>
 <p>Similarly to calculating by hand, multipliers find a way to sum up all partial products. Many different circuits exist for multiplication. Each one has a different balance between speed (performance) and amount of logic (cost). Today, we are going to implement and optimize one of the most basic multiplier: shift and add multiplier.</p>
 <h3 id="Shift-and-Add-Multiplier">Shift and Add Multiplier</h3>
 <p>Here we review the structure of shift and add multiplier:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/structure.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/structure.png" alt loading="lazy"></p>
 <p>The Controal Algorithm of the shift and add multiplier is:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/control_algorithm.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab8/pictures/control_algorithm.png" alt loading="lazy"></p>
 <p>In this practice, we assume that the multiplier and multiplicand are 4-bit unsigned integers, and the output is an 8-bit unsigned integer. Hence the whole multiplier can be flattened to a combined logic.</p>
 <h3 id="1-non-pipelined-4-bit-shift-and-add-multiplier">1. non_pipelined 4-bit shift and add multiplier</h3>
 <p>We're going to finish a non-pipelined 4-bit shift and add multiplier in this section.</p>

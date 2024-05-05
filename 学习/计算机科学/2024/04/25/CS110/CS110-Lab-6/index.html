@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Goals   Learning advanced techniques to help you create more concise circuits within Logisim.   Feel free to do each part as separate sub-circuits in the same Logisim file.   Strengthening experience">
@@ -311,28 +309,28 @@
 <h4 id="1-Splitters">1. Splitters</h4>
 <p>Splitters allow you to take a multi-bit value and split it up into smaller parts, or (despite the name) combine multiple values that are one or more bits into a single value.<br>
 Here, we split the 4-bit binary number <code>0111</code> into <code>01</code> and <code>11</code>, then recombine it with <code>10</code> into the final 6-bit number <code>100111</code>:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters.png" alt loading="lazy"></p>
 <p>Click on a splitter to get its menu in the sidebar. This menu determine the number of arms on your splitter and how many bits should go on each arm. For the circuit above, the left splitter's menu looks like this:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_left.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_left.png" alt loading="lazy"></p>
 <p>While the right splitter's menu looks like this:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_right.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_right.png" alt loading="lazy"></p>
 <p><strong>Notice that there's an option called</strong> <code>facing</code>. You can use this to rotate your splitter. Above, see that the splitter on the right is facing West while the splitter on the left is facing East.</p>
 <p>If you see an error wire that is orange, this means that your bit width in does not match your bit width out. Make sure that if you're connecting two components with a wire, you correctly set the bit width in that component's menu.</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_error.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/splitters_error.png" alt loading="lazy"></p>
 <h4 id="2-Tunnels">2. Tunnels</h4>
 <p>A tunnel allows you draw an &quot;invisible wire&quot; to bind two points together. Tunnels are grouped by case-sensitive labels give to a wire. They are used to connect wires like so:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels.png" alt loading="lazy"></p>
 <p>Some care should be taken as to which wires are connected with tunnels to which other wires, such as in this case:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels_error.png" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Tunnels_error.png" alt loading="lazy"></p>
 <p>We <em>strongly</em> recommend you use tunnels with Logisim, because they make your circuits much cleaner looking, and therefore easier to debug.</p>
 <h4 id="3-Extenders">3. Extenders</h4>
 <p>When changing the width of a wire, you should use a bit extender for clarity. For example, consider the following implementation of extending an 8-bit wire into a 16-bit wire:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders.png" alt></p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_0.PNG" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders.png" alt loading="lazy"></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_0.PNG" alt loading="lazy"></p>
 <p>Compared to the splitter, the extender is easier to understand at a glance. This becomes especially helpful when working with complex circuits.</p>
 <p>Additionally, consider the case of throwing out bits. Despite its name, an extender can also perform this operation:</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_1.PNG" alt></p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_2.PNG" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_1.PNG" alt loading="lazy"></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/Extenders_2.PNG" alt loading="lazy"></p>
 <h2 id="Exercises">Exercises</h2>
 <h3 id="Exercise-1-Practice-with-Advanced-features">Exercise 1: Practice with Advanced features</h3>
 <p>In this part of the lab, we will construct a circuit that manipulates an 8-bit number.</p>
@@ -347,7 +345,7 @@ Here, we split the 4-bit binary number <code>0111</code> into <code>01</code> an
 </li>
 <li>
 <p>Change the <code>Bit Width In</code> property (bus width) to <code>8</code>, and <code>Fan Out</code> property to <code>8</code>. Connect the inputs to tunnels</p>
-<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/practice1.PNG" alt></p>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab6/practice1.PNG" alt loading="lazy"></p>
 </li>
 <li>
 <p>Now, judge the number of '1s' in the input whether odd. You can use <code>XOR</code> gates to eath bit of input and route the output to <code>OUT1</code>.</p>

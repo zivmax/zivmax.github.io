@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="CS50X是我的计算机科学启蒙课，我向来不遗余力地向任何一位想打好基础的新人推荐这门课程 本篇在CS50X官网的英文原版">
@@ -37,8 +35,8 @@
 <meta property="article:published_time" content="2023-03-07T02:10:38.000Z">
 <meta property="article:modified_time" content="2024-04-16T04:53:32.829Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="C 语言">
+<meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="CS50X">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png">
@@ -330,7 +328,7 @@
 </li>
 <li>
 <p><em>VS Code</em> 可以被分为多个区域：</p>
-<p><img src="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png" alt="IDE"></p>
+<p><img src="https://s2.loli.net/2023/03/07/S5DkmdClbgKNvET.png" alt="IDE" loading="lazy"></p>
 <p>请注意，左侧有一个<em>文件资源管理器</em> ，你可以在其中找到你的文件。此外，中间有一个称为<em>文本编辑器</em> 的区域，你可以在其中编辑你的程序。最后，有一个称为 <code>命令行界面</code> 的区域，也称为<em>CLI</em>，<em>命令行</em> 或<em>终端窗口</em>，我们可以在其中向云服务器上的计算机发送命令。</p>
 </li>
 <li>
@@ -493,7 +491,7 @@
 </li>
 <li>
 <p>想象我们想要模拟超级马里奥兄弟游戏的视觉效果。考虑到图示的四个问号方块，我们如何编写代码来大致表示这四个水平方块呢？</p>
-<p><img src="https://s2.loli.net/2023/03/07/BaGsej8MzE9tOxN.png" alt="mario ?"></p>
+<p><img src="https://s2.loli.net/2023/03/07/BaGsej8MzE9tOxN.png" alt="mario ?" loading="lazy"></p>
 </li>
 <li>
 <p>在终端窗口中，输入 <code>code mario.c</code> 并编写如下代码：</p>
@@ -502,7 +500,7 @@
 </li>
 <li>
 <p>同样地，我们可以运用相同的逻辑来创建三个垂直砖块。</p>
-<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png" alt="mario v"></p>
+<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png" alt="mario v" loading="lazy"></p>
 </li>
 <li>
 <p>为了实现这个，你可以修改代码如下：</p>
@@ -511,7 +509,7 @@
 </li>
 <li>
 <p>那么如果我们想要结合这些思想来创建一个三行三列的砖块组合怎么办？</p>
-<p><img src="https://s2.loli.net/2023/03/07/38NgDewUqnIrY1X.png" alt="mario 3 3"></p>
+<p><img src="https://s2.loli.net/2023/03/07/38NgDewUqnIrY1X.png" alt="mario 3 3" loading="lazy"></p>
 </li>
 <li>
 <p>我们可以按照上面的逻辑，结合相同的思想来实现。修改代码如下：</p>
@@ -626,8 +624,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
               <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
+              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
               <a href="/tags/CS50X/" rel="tag"># CS50X</a>
           </div>
 

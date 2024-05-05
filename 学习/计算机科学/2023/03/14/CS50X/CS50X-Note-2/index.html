@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本篇在CS50X官网的英文原版">
@@ -50,8 +48,8 @@
 <meta property="article:published_time" content="2023-03-14T02:45:34.000Z">
 <meta property="article:modified_time" content="2024-04-16T04:53:31.741Z">
 <meta property="article:author" content="Zivmax">
-<meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="C 语言">
+<meta property="article:tag" content="精校翻译">
 <meta property="article:tag" content="CS50X">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png">
@@ -329,7 +327,7 @@
 </li>
 <li>
 <p>一段加密的文本可能长成这样：</p>
-<p><img src="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png" alt></p>
+<p><img src="https://s2.loli.net/2023/03/15/KyVS7fFWALMa1JE.png" alt loading="lazy"></p>
 </li>
 <li>
 <p>回顾一下上周你学习的有关编译器的知识，编译器是一种专门的计算机程序，可以将源代码转换为机器代码，以便计算机能够理解。</p>
@@ -340,7 +338,7 @@
 </li>
 <li>
 <p>编译器将读取上面的代码，并将其转换为机器代码,  如下：</p>
-<p><img src="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png" alt></p>
+<p><img src="https://s2.loli.net/2023/03/15/R8fpdXKDk3GnN5F.png" alt loading="lazy"></p>
 </li>
 <li>
 <p>提供给你的编程环境 <em>VS Code</em>，使用了一个名为 <code>clang</code> 或 <em>c language</em> 的编译器。</p>
@@ -377,15 +375,15 @@
 </li>
 <li>
 <p>第二， <em>编译（compiling）</em> 是将你的程序转换为汇编代码的过程。这个步骤的结果可以被视为下面的形式：</p>
-<p><img src="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png" alt></p>
+<p><img src="https://s2.loli.net/2023/03/15/re8nbQawDMUJIZc.png" alt loading="lazy"></p>
 </li>
 <li>
 <p>第三， <em>汇编（assembling）</em> 是编译器将你的汇编代码转换为机器代码的过程。这个步骤的结果可以被视为下面的形式：</p>
-<p><img src="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png" alt></p>
+<p><img src="https://s2.loli.net/2023/03/15/WKMn5R9c3fJGj4P.png" alt loading="lazy"></p>
 </li>
 <li>
 <p>最后，在 <em>链接（linking）</em> 步骤中，来自包含库（included libraries）的代码也将被转换为机器代码并与你的代码组合；然后输出最终的可执行文件。</p>
-<p><img src="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png" alt></p>
+<p><img src="https://s2.loli.net/2023/03/15/HK2O4tMRZypBfgo.png" alt loading="lazy"></p>
 </li>
 </ul>
 </li>
@@ -397,7 +395,7 @@
 </li>
 <li>
 <p>回过头来看一张上次课上的图片：</p>
-<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png" alt="[cs50Week2Slide061.png]"></p>
+<p><img src="https://s2.loli.net/2023/03/07/rq5L87ntHfwObvg.png" alt="[cs50Week2Slide061.png]" loading="lazy"></p>
 </li>
 <li>
 <p>接着，请注意以下代码，其中有一个故意留下的 bug：</p>
@@ -426,7 +424,7 @@
 </li>
 <li>
 <p>要使用此调试器，首先，我们要通过单击代码行左侧（行号的左侧）设置一个 <em>断点（breakpoint）</em> 。当您单击此处时，将看到一个红点出现。将其想象为一个停止标志，要求编译器在这里暂停，以便您可以考虑在代码的这部分中发生了什么。</p>
-<p><img src="https://s2.loli.net/2023/03/17/13SBFrdKEo5L9Qs.png" alt="[cs50Week2Debugging.png]"></p>
+<p><img src="https://s2.loli.net/2023/03/17/13SBFrdKEo5L9Qs.png" alt="[cs50Week2Debugging.png]" loading="lazy"></p>
 </li>
 <li>
 <p>其次，运行 <code>debug50 ./buggy0</code> 。您会注意到，在调试器启动后，您的代码中的一行将以接近金色的颜色高亮显示。字面意思上，代码已经在这一行代码处 <em>暂停</em> 了。注意在窗口左上角，显示有所有的局部变量，包括 <code>i</code> ，它当前的值为 <code>0</code> 。在窗口顶部，您可以点击击 <code>step over</code> 按钮，它将让您的代码继续向下执行。注意 <code>i</code> 的值增加随着代码的执行不断增加。</p>
@@ -456,7 +454,7 @@
 <li>
 <p>最后一种调试的方式被称为 <em>橡皮鸭调试</em> 。当您在代码中遇到困难时，可以考虑大声对一个橡皮鸭（字面意义上）喊出代码问题。如果您不想和一个小塑料鸭子说话，欢迎您告诉身边的人！他们不需要了解如何编程：与他们交谈是您谈论代码的机会。</p>
 <p><em>（这段可能看起来有点奇怪，但是原文的确如此。简单地解释一下就是：你可以对别人或小鸭子逐步讲述你这个代码是如何解决问题的，你为什么要这么写，而这其实就相当于在逐步复盘代码的运行逻辑是什么，在你复盘的过程中，你很可能就发现了逻辑上的谬误或者漏洞，进而成功修复 bug）</em></p>
-<p><img src="https://s2.loli.net/2023/03/17/Cqco1aErQx8Znpe.png" alt="[cs50Week2Slide070.png]"></p>
+<p><img src="https://s2.loli.net/2023/03/17/Cqco1aErQx8Znpe.png" alt="[cs50Week2Slide070.png]" loading="lazy"></p>
 </li>
 </ul>
 <h2 id="Arrays-数组">Arrays [数组]</h2>
@@ -478,15 +476,15 @@
 </li>
 <li>
 <p>在计算机内部，你的内存是有限的。</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide084.png" alt="[cs50Week2Slide084.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide084.png" alt="[cs50Week2Slide084.png]" loading="lazy"></p>
 </li>
 <li>
 <p>从物理意义上来看，在计算机内存中，你可以想象特定类型的数据是如何存储在计算机中的。你可以想象一个只需要 1 byte 内存的 <code>char</code> 类型变量，可能如下所示：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide087.png" alt="[cs50Week2Slide087.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide087.png" alt="[cs50Week2Slide087.png]" loading="lazy"></p>
 </li>
 <li>
 <p>同样地，一个需要 4 bytes 的 <code>int</code> 可能如下所示：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide088.png" alt="[cs50Week2Slide088.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide088.png" alt="[cs50Week2Slide088.png]" loading="lazy"></p>
 </li>
 <li>
 <p>我们可以创建一个程序来探索这些概念。在您的终端内输入 <code>code scores.c</code> 并编写以下代码：</p>
@@ -498,7 +496,7 @@
 </li>
 <li>
 <p>你可以想象这些变量是如何存储在内存中的：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide098.png" alt="[cs50Week2Slide098.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide098.png" alt="[cs50Week2Slide098.png]" loading="lazy"></p>
 </li>
 <li>
 <p><em>数组（Arrays）</em> 是一种将数据依次存储在内存中的方式，以便该数据可以轻松访问。</p>
@@ -529,11 +527,11 @@
 </li>
 <li>
 <p>从下面的图片中可以看出，一个字符串就是一个由字符组成的数组，以一个特殊的字符作为结尾，这个特殊字符称为 <code>NUL character</code>（空字符）：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide116.png" alt="[cs50Week2Slide116.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide116.png" alt="[cs50Week2Slide116.png]" loading="lazy"></p>
 </li>
 <li>
 <p>如果用十进制来想象这个数组，它将如下所示：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide117.png" alt="[cs50Week2Slide117.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide117.png" alt="[cs50Week2Slide117.png]" loading="lazy"></p>
 </li>
 <li>
 <p>在你自己的代码中实现这一点，可以在终端窗口中键入 <code>code hi.c</code> ，然后编写以下代码：</p>
@@ -552,7 +550,7 @@
 </li>
 <li>
 <p>你可以将其可视化如下：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide126.png" alt="[cs50Week2Slide126.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide126.png" alt="[cs50Week2Slide126.png]" loading="lazy"></p>
 </li>
 <li>
 <p>我们可以进一步改进这段代码。请按照以下方式修改您的代码：</p>
@@ -577,7 +575,7 @@
 </li>
 <li>
 <p>回顾我们上周的学习内容，你可能还记得这个 ASCII 值表：</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide120.png" alt="[cs50Week2Slide120.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide120.png" alt="[cs50Week2Slide120.png]" loading="lazy"></p>
 </li>
 <li>
 <p>当从小写字符中减去<code>32</code>时，会得到相应大写版本的字符。</p>
@@ -639,7 +637,7 @@
 </li>
 <li>
 <p>通过向 <code>cipher</code> （加密器）提供 <code>plaintext</code>（明文）和<code>key</code>（密钥），得到 ciphered text（加密文本）。</p>
-<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide153.png" alt="[cs50Week2Slide153.png]"></p>
+<p><img src="https://cs50.harvard.edu/x/2023/notes/2/cs50Week2Slide153.png" alt="[cs50Week2Slide153.png]" loading="lazy"></p>
 </li>
 <li>
 <p><strong>密钥（Key）</strong> 是一个特殊的参数，与明文一起传递给 <strong>密码（cipher）</strong> 。密码使用密钥来做出关于如何实现其密码算法的决策。</p>
@@ -667,8 +665,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
               <a href="/tags/C-%E8%AF%AD%E8%A8%80/" rel="tag"># C 语言</a>
+              <a href="/tags/%E7%B2%BE%E6%A0%A1%E7%BF%BB%E8%AF%91/" rel="tag"># 精校翻译</a>
               <a href="/tags/CS50X/" rel="tag"># CS50X</a>
           </div>
 
