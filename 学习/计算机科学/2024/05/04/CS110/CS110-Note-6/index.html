@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Large and Fast: Exploiting Memory Hierarchy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Note [6]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/04/CS110/CS110-Note-6/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Large and Fast: Exploiting Memory Hierarchy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/iNBmJqDO7p5kMex.png">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/8C1tMfpADxyWv5k.png">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/cE29HhwGFM6S1VN.png">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/b2HJaIYPwReAq7m.png">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/MQiPamKLjd1OpE6.png">
+<meta property="article:published_time" content="2024-05-04T08:32:40.000Z">
+<meta property="article:modified_time" content="2024-05-06T06:31:24.048Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Unfinished">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/05/06/iNBmJqDO7p5kMex.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/04/CS110/CS110-Note-6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Note [6] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">82</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/04/CS110/CS110-Note-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Note [6]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-05-04 16:32:40" itemprop="dateCreated datePublished" datetime="2024-05-04T16:32:40+08:00">2024-05-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-05-06 14:31:24" itemprop="dateModified" datetime="2024-05-06T14:31:24+08:00">2024-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>18k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:50</span>
+            </span>
+            <div class="post-description">Large and Fast: Exploiting Memory Hierarchy</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Principle-of-Locality">Principle of Locality</h1>
+<p>When a student who is researching something gathers several relevant books on a library desk, <strong>he create a localized, easily accessible pool of memory</strong>, reducing the need to constantly retrieve additional materials.</p>
+<p>Just as the student did not need to access all the books in the library at once with equal probability, a program does not access all of its code or data at once with equal probability.</p>
+<p>This mirrors the <em>principle of locality</em> in computer memory, where programs access a relatively small portion of their address space at any instant oftime, just as you accessed a very small portion of the library's collection.</p>
+<p>There are two different types of locality:</p>
+<ul>
+<li>
+<p>Temporal locality (locality in time): if an item is referenced, it will tend to be referenced again soon. If you recently brought a book to your desk to look at, you will probably need to look at it again soon.</p>
+</li>
+<li>
+<p>Spatial locality (locality in space): if an item is referenced, items whose addresses are close by will tend to be referenced soon.</p>
+</li>
+</ul>
+<p>Just as accesses to books on the desk naturally exhibit locality, locality in programs arises from simple and natural program structures.</p>
+<p>For example, most programs contain loops, so instructions and data are likely to be accessed repeatedly, showing large temporal locality.</p>
+<p>Since instructions are normally accessed sequentially, programs also show high spatial locality. Accesses to data also exhibit a natural spatial locality. For example, sequential accesses to elements of an array or a record will naturally have high degrees of spatial locality.</p>
+<h1 id="Memory-Hierarchy">Memory Hierarchy</h1>
+<p>We take advantage of the principle of locality by implementing the memory of a computer as a memory hierarchy. A memory hierarchy consists of multiple levels of memory with different speeds and sizes. The faster memories are more expensive per bit than the slower memories and thus are smaller.</p>
+<p>Below is the basic structure of a memory hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Speed</th>
+<th>Size</th>
+<th>Cost ($/bit)</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache</td>
+<td>Fastest</td>
+<td>Smallest</td>
+<td>Highest</td>
+<td>SRAM</td>
+</tr>
+<tr>
+<td>Main Memory</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>DRAM</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Slowest</td>
+<td>Biggest</td>
+<td>Lowest</td>
+<td>Magnetic Disk / NAND Flash</td>
+</tr>
+</tbody>
+</table>
+<p>The data are similarly hierarchical: a level closer to the processor is generally a subset of any level further away, and all the data are stored at the lowest level. By analogy, the books on your desk form a subset of the library you are working in, which is in turn a subset of all the libraries on campus. Furthermore, as we move away from the processor, the levels take progressively longer to access, just as we might encounter in a hierarchy of campus libraries.</p>
+<p>A memory hierarchy can consist of multiple levels, <strong>but data are copied between only two adjacent levels at a time</strong>, so we can focus our attention on just two levels.</p>
+<p>The minimum unit of information that can be either present or not present in the two-level hierarchy is called a block or a line; in our library analogy, a block of information is one book.</p>
+<p><img src="https://s2.loli.net/2024/05/06/iNBmJqDO7p5kMex.png" alt="Usually we transfer an entire block when we copy something between levels" loading="lazy"></p>
+<p>If the data requested by the processor appear in some block in the upper level, this is called a <em>hit</em> (analogous to your finding the information in one of the books on your desk). If the data are not found in the upper level, the request is called a <em>miss</em>. The lower level in the hierarchy is then accessed to retrieve the block containing the requested data. (Continuing our analogy, you go from your desk to the shelves to find the desired book.) The <em>hit rate</em>, or <em>hit ratio</em>, is the fraction of memory accesses found in the upper level; <strong>it is often used as a measure of the performance of the memory hierarchy</strong>. The <em>miss rate</em> (1−hit rate) is the fraction of memory accesses not found in the upper level.</p>
+<p>Since performance is the major reason for having a memory hierarchy, the time to service hits and misses is important. <em>Hit time</em> is the time to access the upper level of the memory hierarchy, which includes the time needed to determine whether the access is a hit or a miss (that is, the time needed to look through the books on the desk). The <em>miss penalty</em> is the time to replace a block in the upper level with the corresponding block from the lower level, plus the time to deliver this block to the processor (or the time to get another book from the shelves and place it on the desk).</p>
+<h2 id="The-Big-Picture">The Big Picture</h2>
+<p>Below shows that a memory hierarchy uses smaller and faster memory technologies close to the processor. Thus, <strong>accesses that hit in the highest level of the hierarchy can be processed quickly.</strong> <strong>Accesses that miss go to lower levels of the hierarchy, which are larger but slower.</strong> If the hit rate is high enough, the memory hierarchy has an effective access time close to that of the highest (and fastest) level and a size equal to that of the lowest (and largest) level.</p>
+<p><img src="https://s2.loli.net/2024/05/06/8C1tMfpADxyWv5k.png" alt="As the distance from the processor increases, so does the size." loading="lazy"></p>
+<h1 id="Memory-Technologies">Memory Technologies</h1>
+<p>There are four primary technologies used today in memory hierarchies. Main memory is implemented from DRAM, while levels closer to the processor (caches) use SRAM. The third technology is flash memory. This nonvolatile memory is the secondary memory in Personal Mobile Devices. The fourth technology, used to implement the largest and slowest level in the hierarchy in servers, is magnetic disk. However, nowadays in 2024, the SSD (flash) is rapidly replacing the position of the HDD (magnetic disk).</p>
+<p>Previously in &quot;The Basics of Logic Design&quot;, we've introduced the low-level implementation of SRAM and DRAM, this time we'll more focus on the high-level details along with the flash and magnetic disk.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Memory technology</th>
+<th style="text-align:center">Typical access time</th>
+<th style="text-align:center">$ per GiB in 2012</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SRAM semiconductor memory</td>
+<td style="text-align:center">0.5-2.5 ns</td>
+<td style="text-align:center">$500-$1000</td>
+</tr>
+<tr>
+<td style="text-align:center">DRAM semiconductor memory</td>
+<td style="text-align:center">50-70 ns</td>
+<td style="text-align:center">$10-$20</td>
+</tr>
+<tr>
+<td style="text-align:center">Flash semiconductor memory</td>
+<td style="text-align:center">5,000-50,000 ns</td>
+<td style="text-align:center">$0.75-$1.00</td>
+</tr>
+<tr>
+<td style="text-align:center">Magnetic disk</td>
+<td style="text-align:center">5,000,000-20,000,000 ns</td>
+<td style="text-align:center">$0.05-$0.10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="SRAM-Technology">SRAM Technology</h2>
+<p>SRAMs are simply integrated circuits that are memory arrays with (usually) a single access port that can provide either a read or a write. SRAMs have a fixed access time to any datum, though the read and write access times may differ.</p>
+<p>SRAMs don't need to refresh and so the access time is very close to the cycle time. SRAMs typically use six to eight transistors per bit to prevent the information from being disturbed when read. SRAM needs only minimal power to retain the charge in standby mode.</p>
+<p>In the past, most PCs and server systems used separate SRAM chips for either their primary, secondary, or even tertiary caches. Today, thanks to Moore's Law, all levels of caches are integrated onto the processor chip, so the market for independent SRAM chips has nearly evaporated.</p>
+<h2 id="DRAM-Technology">DRAM Technology</h2>
+<p>In a SRAM, as long as power is applied, the value can be kept indefinitely. In a dynamic RAM (DRAM), the value kept in a cell is stored as a charge in a capacitor. A single transistor is then used to access this stored charge, either to read the value or to overwrite the charge stored there. Because DRAMs use only one transistor per bit of storage, they are much denser and cheaper per bit than SRAM. <strong>As DRAMs store the charge on a capacitor, it cannot be kept indefinitely and must periodically be refreshed.</strong> That is why this memory structure is called dynamic, in contrast to the static storage in an SRAM cell.</p>
+<p>To refresh the cell, we merely read its contents and write it back. The charge can be kept for several milliseconds. If in every clock we could only refresh one bit, we would constantly be just refreshing the DRAM, leaving no time for really use it. Fortunately, DRAMs use a two-level decoding structure, and this allows us to refresh an entire <em>row</em> (which shares a word line) with a read cycle followed immediately by a write cycle.</p>
+<p>To improve performance, DRAMs buffer rows for repeated access. The buffer acts like an SRAM; by changing the address, random bits can be accessed in the buffer until the next row access. This capability improves the access time significantly, since the access time to bits in the row is much lower.</p>
+<p>To improve the interface to processors further, DRAMs added clocks and are properly called synchronous DRAMs or SDRAMs. The advantage of SDRAMs is that the use of a clock eliminates the time for the memory and processor to synchronize. The speed advantage of synchronous DRAMs comes from the ability to transfer the bits in the burst without having to specify the address of data bits. Instead, the clock transfers the successive bits in a burst. <strong>Without a global clock to synchronize operations, each access to memory would require its own control signals and potentially its own address specification.</strong></p>
+<p>The fastest version is called Double Data Rate (DDR) SDRAM. The name means data transfers on both the rising and falling edge of the clock, thereby getting twice as much bandwidth as you might expect based on the clock rate and the data width.</p>
+<p>Sustaining that much bandwidth requires clever organization inside the DRAM. Instead of just a faster row buffer, <strong>the DRAM can be internally organized to read or write from multiple <em>banks</em>, with each having its own row buffer</strong>. Sending an address to several banks permits them all to read or write simultaneously. For example, with four banks, there is just one access time and then accesses rotate between the four banks to supply four times the bandwidth. This rotating access scheme is called <em>address interleaving</em>.</p>
+<p>Modern DRAMs are organized in banks, typically four for DDR3. Each bank consists of a series of rows. Sending a Pre (precharge) command opens or closes a bank. A row address is sent with an Act (activate), which causes the row to transfer to a buffer. When the row is in the buffer, it can be transferred by successive column addresses at whatever the width of the DRAM is (typically 4, 8, or 16 bits in DDR3) or by specifying a block transfer and the starting address. Each command, as well as block transfers, is synchronized with a clock.</p>
+<p><img src="https://s2.loli.net/2024/05/06/cE29HhwGFM6S1VN.png" alt="Internal organization of a DRAM" loading="lazy"></p>
+<h2 id="Flash-Memory">Flash Memory</h2>
+<p>Flash memory is a type of <em>electrically erasable programmable read-only memory</em> (EEPROM). Unlike disks and DRAM, but like other EEPROM technologies, <strong>writes can wear out flash memory bits</strong>. To cope with such limits, most flash products include a controller to spread the writes by remapping blocks that have been written many times to less trodden blocks. This technique is called <em>wear leveling</em>. With wear leveling, personal mobile devices are very unlikely to exceed the write limits in the flash. Such wear leveling lowers the potential performance of flash, but it is needed unless higher-level software monitors block wear. Flash controllers that perform wear leveling can also improve yield by mapping out memory cells that were manufactured incorrectly.</p>
+<h2 id="Disk-Memory">Disk Memory</h2>
+<p>As below shows, a magnetic hard disk consists of a collection of platters, which rotate on a spindle at 5400 to 15,000 revolutions per minute. The metal platters are covered with magnetic recording material on both sides, similar to the material found on a cassette or videotape. To read and write information on a hard disk, a movable arm containing a small electromagnetic coil called a <em>read-write head</em> is located just above each surface. The entire drive is permanently sealed to control the environment inside the drive, which, in turn, allows the disk heads to be much closer to the drive surface.</p>
+<p><img src="https://s2.loli.net/2024/05/06/b2HJaIYPwReAq7m.png" alt="A disk showing 10 disk platters and the read/write heads" loading="lazy"></p>
+<p>Each disk surface is divided into concentric circles, called <em>tracks</em>. There are typically tens of thousands of tracks per surface. Each track is in turn divided into <em>sectors</em> that contain the information; each track may have thousands of sectors. Sectors are typically 512 to 4096 bytes in size. The sequence recorded on the magnetic media is <code>... | a sector number | a gap | the information for that sector including error correction code | a gap | the sector number of the next sector | ...</code>, and so on.</p>
+<p>The disk heads for each surface are connected together and move in conjunction, <strong>so that every head is over the same track of every surface</strong>. The term <em>cylinder</em> is used to refer to all the tracks under the heads at a given point on all surfaces.</p>
+<p>To access data, the operating system must direct the disk through a three-stage process. The first step is to position the head over the proper track. This operation is called a <em>seek</em>, and the time to move the head to the desired track is called the <em>seek time</em>.</p>
+<p>Once the head has reached the correct track, we must wait for the desired sector to rotate under the read/write head. This time is called the <em>rotational latency</em> or <em>rotational delay</em>. The average latency to the desired information is halfway around the disk. Disks rotate at 5400 RPM to 15,000 RPM. The average rotational latency at 5400 RPM is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>Average rotational latency</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mrow><mn>0.5</mn><mrow><mtext> </mtext><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow></mrow><mrow><mn>5400</mn><mrow><mtext> </mtext><mi mathvariant="normal">R</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">M</mi></mrow></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0.5</mn><mrow><mtext> </mtext><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow></mrow><mrow><mn>5400</mn><mrow><mtext> </mtext><mi mathvariant="normal">R</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">M</mi></mrow><mi mathvariant="normal">/</mi><mrow><mo fence="true">(</mo><mn>60</mn><mfrac><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></mfrac><mo fence="true">)</mo></mrow></mrow></mfrac></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>0.0056</mn><mrow><mtext> </mtext><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">s</mi></mrow><mo>=</mo><mn>5.6</mn><mrow><mtext> </mtext><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+\text{Average rotational latency}&amp; =\frac{0.5\mathrm{~rotation}}{5400\mathrm{~RPM}}=\frac{0.5\mathrm{~rotation}}{5400\mathrm{~RPM}/\left(60\frac{\mathrm{seconds}}{\mathrm{minute}}\right)} \\
+&amp;=0.0056\mathrm{~seconds}=5.6\mathrm{~ms}
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.265em;vertical-align:-1.8825em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.3825em;"><span style="top:-4.3825em;"><span class="pstrut" style="height:3.3449em;"></span><span class="mord"><span class="mord text"><span class="mord">Average rotational latency</span></span></span></span><span style="top:-2.1224em;"><span class="pstrut" style="height:3.3449em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8825em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.3825em;"><span style="top:-4.3825em;"><span class="pstrut" style="height:3.3449em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3449em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5400</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">RPM</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0.5</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">rotation</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3449em;"><span style="top:-2.2299em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5400</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">RPM</span></span><span class="mord">/</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord">60</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">minute</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">seconds</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0.5</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">rotation</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1201em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-2.1224em;"><span class="pstrut" style="height:3.3449em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0.0056</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">seconds</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">5.6</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">ms</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8825em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>The last component of a disk access, <em>transfer time</em>, is the time to transfer a block of bits. The transfer time is a function of the sector size, the rotation speed, and the recording density of a track. Transfer rates in 2012 were between <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mtext>  </mtext><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">B</mi></mrow><mi mathvariant="normal">/</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow></mrow><annotation encoding="application/x-tex">200\;\mathrm{MB}/\mathrm{sec}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">200</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathrm">MB</span></span><span class="mord">/</span><span class="mord"><span class="mord mathrm">sec</span></span></span></span></span>.</p>
+<blockquote>
+<p>Alas, where block numbers are located is no longer intuitive. <strong>The assumptions of the sector-track-cylinder model above are that nearby blocks are on the same track, blocks in the same cylinder take less time to access since there is no seek time, and some tracks are closer than others</strong>. The reason for the change was the raising of the level of the disk interfaces. To speed up sequential transfers, these higher-level interfaces organize disks more like tapes than like random access devices. The logical blocks are ordered in serpentine fashion across a single surface, trying to capture all the sectors that are recorded at the same bit density to try to get best performance. Hence, sequential blocks may be on different tracks</p>
+</blockquote>
+<h1 id="The-Basics-of-Caches">The Basics of Caches</h1>
+<p>In our library example, the desk acted as a cache: a safe place to store things (books) that we needed to examine. <em>Cache</em> was the name chosen to represent the level of the memory hierarchy between the processor and main memory in the first commercial computer to have this extra level.</p>
+<p>Today, although this remains the dominant use of the word <em>cache</em>, the term is also used to refer to any storage managed to take advantage of locality of access. Like in the SSD, we have a &quot;cache&quot; to store the frequently accessed data too.</p>
+<h2 id="Cache-Mapping">Cache Mapping</h2>
+<p>Cache copies a subset of the all data in the main memory, then, there are two questions to answer:</p>
+<ul>
+<li>How do we know if a data item is in the cache?</li>
+<li>If it is in the cache, how do we find it?</li>
+</ul>
+<p><strong>The answers are related.</strong> If each word can go in exactly one place in the cache, then it is straightforward to find the word if it is in the cache. The simplest way to assign a location in the cache for each word in memory is to assign the cache location based on the address of the word in memory. <strong>In other words, we build a hash map.</strong></p>
+<p>This cache structure is called <em>direct mapped</em>, since each memory location is mapped directly to exactly one location in the cache. The typical mapping between addresses and cache locations for a direct-mapped cache is usually simple. For example, almost all direct-mapped caches use this mapping to find a block:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>(Block address) modulo (Number of blocks in the cache)</mtext></mrow><annotation encoding="application/x-tex">\text{(Block address) modulo (Number of blocks in the cache)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(Block address) modulo (Number of blocks in the cache)</span></span></span></span></span></span></p>
+<p>This is also one of the simplest hash function in the field of hasing. But in this simple way, there will be hash collisions:</p>
+<p><img src="https://s2.loli.net/2024/05/06/MQiPamKLjd1OpE6.png" alt="The addresses of memory words between 0 and 31 that map to the same cache locations" loading="lazy"></p>
+<p>, which is multipile main memory blocks point to a same cache block.</p>
+<p>Because each cache location may contains the contents of a number of different memory locations, how do we know whether a requested word is in the cache or not? We answer this question by adding a set of <em>tags</em> to the cache.</p>
+<p>The tags contain the address information required to identify whether a word in the cache is the requested word. The tag needs just to contain the upper portion of the address, corresponding to the bits that are <strong>not</strong> used as an index into the cache. More specificly, those address mapped into the same address in the cache are differed in the upper portion of the address.</p>
+<p>For example, in figure above showing collisions, <strong>we need only have the upper two of the five address bits in the tag, since the lower 3-bit index field of the address selects the block in cache</strong>. Architects omit the index bits because they are redundant, since by definition, the index field of any address of a cache block must be that block number.</p>
+<p>We also need a way to recognize that a cache block does not have valid information. For instance, when a processor starts up, the cache does not have good data, and the tag fields will be meaningless. Even after executing many instructions, some of the cache entries may still be empty. Thus, we need to know that the tag should be ignored for such entries. The most common method is to add a <em>valid bit</em> to indicate whether an entry contains a valid cache address. If the bit is not set, there cannot be a match for this block.</p>
+<h2 id="The-Big-Picture-2">The Big Picture</h2>
+<p><strong>Caching is perhaps the most important example of the big idea of prediction.</strong> It relies on the principle of locality to try to find the desired data in the higher levels of the memory hierarchy, and provides mechanisms to ensure that when the prediction is wrong it finds and uses the proper data from the lower levels of the memory hierarchy. The hit rates of the cache prediction on modern computers are often above 95%</p>
+<h2 id="Accessing-a-Cache">Accessing a Cache</h2>
+<h1 id="Unfinished-Yet">Unfinished Yet...</h1>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/Unfinished/" rel="tag"># Unfinished</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/03/CS110/CS110-Note-5/" rel="prev" title="CS110 Note [5]">
+      <i class="fa fa-chevron-left"></i> CS110 Note [5]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/" rel="next" title="CS110 Lab [10]">
+      CS110 Lab [10] <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Principle-of-Locality"><span class="nav-text">Principle of Locality</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-Hierarchy"><span class="nav-text">Memory Hierarchy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture"><span class="nav-text">The Big Picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-Technologies"><span class="nav-text">Memory Technologies</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SRAM-Technology"><span class="nav-text">SRAM Technology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRAM-Technology"><span class="nav-text">DRAM Technology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flash-Memory"><span class="nav-text">Flash Memory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk-Memory"><span class="nav-text">Disk Memory</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Basics-of-Caches"><span class="nav-text">The Basics of Caches</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache-Mapping"><span class="nav-text">Cache Mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Big-Picture-2"><span class="nav-text">The Big Picture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessing-a-Cache"><span class="nav-text">Accessing a Cache</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unfinished-Yet"><span class="nav-text">Unfinished Yet...</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/04/CS110/CS110-Note-6/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+

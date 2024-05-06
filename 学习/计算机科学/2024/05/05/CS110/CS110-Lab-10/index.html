@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Goals   Understand cache behavior and performance terminology through visualization tools in Venus.   Analyze different cache scenarios to predict and record hit rates.   Optimize a Gaussian Blur prog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Lab [10]">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Goals   Understand cache behavior and performance terminology through visualization tools in Venus.   Analyze different cache scenarios to predict and record hit rates.   Optimize a Gaussian Blur prog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/05/06/ETZvluMBmzKeqGQ.png">
+<meta property="article:published_time" content="2024-05-05T03:03:54.000Z">
+<meta property="article:modified_time" content="2024-05-06T06:30:52.291Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/05/06/ETZvluMBmzKeqGQ.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Lab [10] | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">82</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Lab [10]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-05-05 11:03:54" itemprop="dateCreated datePublished" datetime="2024-05-05T11:03:54+08:00">2024-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-05-06 14:30:52" itemprop="dateModified" datetime="2024-05-06T14:30:52+08:00">2024-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:04</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Goals</strong></p>
+<ul>
+<li>
+<p>Understand cache behavior and performance terminology through visualization tools in Venus.</p>
+</li>
+<li>
+<p>Analyze different cache scenarios to predict and record hit rates.</p>
+</li>
+<li>
+<p>Optimize a Gaussian Blur program focusing on memory access performance.</p>
+</li>
+<li>
+<p>Modify data structures to be more cache-friendly to reduce cache misses.</p>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="Lab-10">Lab 10</h1>
+<p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/">Computer Architecture I</a> <a target="_blank" rel="noopener" href="http://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p>
+<h2 id="Set-Up">Set Up</h2>
+<p>Get source code from <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/lab10/Lab10.zip">here</a> and you should find cache.s, exe2_template and exe3_template after extraction.</p>
+<h2 id="Exercise-1-Cache-Visualization">Exercise 1: Cache Visualization</h2>
+<p>Caches is typically one of the hardest topics for students in Computer Architecture to grasp at first. This exercise will use some cool cache visualization tools in Venus to get you more familiar with cache behavior and performance terminology with the help of the file cache.s. At this point, read through cache.s to get a rough idea of what the program does.</p>
+<p>To get started with each of the scenarios below:</p>
+<ol>
+<li>Copy the code in cache.s to Venus.</li>
+<li>In the code for cache.s, set the appropriate Program Parameters as indicated at the beginning of each scenario (by changing the immediates of the commented li instructions in main).</li>
+<li>Click Simulator, in right partition, there is a tag called Cache.</li>
+<li>Set the appropriate Cache Parameters as indicated at the beginning of each scenario.</li>
+<li>Click Simulator--&gt;Assemble &amp; Simulate from Editor.</li>
+<li>Click Simulator--&gt;Step and see the cache states.</li>
+</ol>
+<p>Get familiar with the parameters in cache windows:</p>
+<ol>
+<li>Cache Levels: The number of layers your cache simulator will have. We will only use L1 cache in this lab, but you can play with it to learn more.</li>
+<li>Block Size: Every block's size, should be a power of 2, take a quick review of the lecture content, the number of offset should be decided by block size.</li>
+<li>Number of Blocks: How many blocks your cache have totally. Attention, the number is the total number, no matter how many ways you choose, therefore, if you want to satisfy the requirement, please take care of it (divide associativity).</li>
+<li>Associativity: The number of ways, only if you select the N-way Set Associative can you change this value.</li>
+<li>Cache size: The result of block size multiply number of blocks. You cannot change it.</li>
+</ol>
+<p>The Data Cache Simulator will show the state of your data cache. Please remember that these are running with your code, so if you reset your code, it will also reset your cache and memory status.</p>
+<p>If you run the code all at once, you will get the final state of the cache and hit rate. You will probably benefit the most from setting breakpoints at each memory access to see exactly where the hits and misses are coming from. The method to set a breakpoint in Venus is just clicking the corresponding line in the simulator, if the line become red, that means your program will stop when the execution meets that line.</p>
+<p>Simulate the following scenarios and record the final cache hit rates. Try to reason out what the hit rate will be BEFORE running the code. After running each simulation, make sure you understand WHY you see what you see (the TAs will ask related questions later)!</p>
+<p><strong>Do not hesitate to ask questions if you feel confused! This is perfectly normal and the TA is there to help you out!</strong></p>
+<p>Good questions to ask yourself as you do these exercises:</p>
+<ul>
+<li>How big is your cache block? How many consecutive accesses fit within a single block?</li>
+<li>How big is your cache? How many jumps do you need to make before you &quot;wrap around?&quot;</li>
+<li>What is your cache's associativity? Where can a particular block fit?</li>
+<li>Have you accessed this piece of data before? If so, is it still in the cache or not?</li>
+</ul>
+<h3 id="Scenario-1">Scenario 1:</h3>
+<p><strong>Cache Parameters:</strong></p>
+<ul>
+<li><strong>Cache Levels:</strong> 1</li>
+<li><strong>Block Size (Bytes):</strong> 8</li>
+<li><strong>Number of blocks:</strong> 4</li>
+<li><strong>Associativity:</strong> 1 (Venus won't let you change this, why?)</li>
+<li><strong>Cache Size (Bytes):</strong> 32 (Why?)</li>
+<li><strong>Placement Policy:</strong> Direct Mapping</li>
+<li><strong>Block Replacement Policy:</strong> LRU</li>
+<li><strong>Enable current selected level of the cache.</strong></li>
+</ul>
+<p><strong>Program Parameters:</strong></p>
+<ul>
+<li><strong>Array Size:</strong> 128</li>
+<li><strong>Step Size:</strong> 8</li>
+<li><strong>Rep Count:</strong> 4</li>
+<li><strong>Option:</strong> 0</li>
+</ul>
+<p>Checkoff</p>
+<ol>
+<li>What combination of parameters is producing the hit rate you observe? (Hint: Your answer should be the process of your calculation.)</li>
+<li>What is our hit rate if we increase Rep Count arbitrarily? Why?</li>
+<li>How could we modify our program parameters to maximize our hit rate?</li>
+</ol>
+<h3 id="Scenario-2">Scenario 2:</h3>
+<p><strong>Cache Parameters:</strong></p>
+<ul>
+<li><strong>Cache Levels:</strong> 1</li>
+<li><strong>Block Size (Bytes):</strong> 16</li>
+<li><strong>Number of blocks:</strong> 16</li>
+<li><strong>Associativity:</strong> 4</li>
+<li><strong>Cache Size (Bytes):</strong> 256</li>
+<li><strong>Placement Policy:</strong> N-Way Set Associative</li>
+<li><strong>Block Replacement Policy:</strong> LRU</li>
+<li><strong>Enable current selected level of the cache.</strong></li>
+</ul>
+<p><strong>Program Parameters:</strong></p>
+<ul>
+<li><strong>Array Size:</strong> 256</li>
+<li><strong>Step Size:</strong> 2</li>
+<li><strong>Rep Count:</strong> 1</li>
+<li><strong>Option:</strong> 1</li>
+</ul>
+<p>Checkoff</p>
+<ol>
+<li>What combination of parameters is producing the hit rate you observe? (Hint: Your answer should be the process of your calculation.)</li>
+<li>What happens to our hit rate as Rep Count goes to infinity? Why?</li>
+<li>Suppose we have a program that uses a very large array and during each Rep, we apply a different operator to the elements of our array (e.g. if Rep Count = 1024, we apply 1024 different operations to each of the array elements). How can we restructure our program to achieve a hit rate like that achieved in this scenario? (Assume that the number of operations we apply to each element is very large and that the result for each element can be computed independently of the other elements.) What is this technique called? (<a target="_blank" rel="noopener" href="http://software.intel.com/en-us/articles/cache-blocking-techniques">Hint</a>)</li>
+</ol>
+<h3 id="Scenario-3">Scenario 3:</h3>
+<p><strong>Cache Parameters:</strong></p>
+<ul>
+<li><strong>Cache Levels:</strong> 1</li>
+<li><strong>Block Size (Bytes):</strong> 16</li>
+<li><strong>Number of blocks:</strong> 16</li>
+<li><strong>Associativity:</strong> 4</li>
+<li><strong>Cache Size (Bytes):</strong> 256</li>
+<li><strong>Placement Policy:</strong> N-Way Set Associative</li>
+<li><strong>Block Replacement Policy:</strong> Random</li>
+<li><strong>Enable current selected level of the cache.</strong></li>
+</ul>
+<p><strong>Program Parameters:</strong></p>
+<ul>
+<li><strong>Array Size:</strong> 256</li>
+<li><strong>Step Size:</strong> 8</li>
+<li><strong>Rep Count:</strong> 2</li>
+<li><strong>Option:</strong> 0</li>
+</ul>
+<p>Checkoff</p>
+<ol>
+<li>Run the simulation a few times. Every time, set a different seed value (bottom of the cache window). Note that the hit rate is non-deterministic. What is the range of its hit rate? Why is this the case? (&quot;The cache eviction is random&quot; is not a sufficient answer)</li>
+<li>Which Cache parameter can you modify in order to get a constant hit rate? Record the parameter and its value (and be prepared to show your TA a few runs of the simulation). How does this parameter allow us to get a constant hit rate? And explain why the constant hit rate value is that value.</li>
+<li>Ensure that you thoroughly understand each answer. Your TA may ask for additional explanations.</li>
+</ol>
+<h2 id="Exercise-2-Matrix-multiplication-and-Execution-order">Exercise 2: Matrix multiplication and Execution order</h2>
+<h4 id="Gaussian-Blur-On-Image">Gaussian Blur On Image</h4>
+<p>In image processing, a Gaussian blur (also known as Gaussian smoothing) is the result of blurring an image by a Gaussian function. Mathematically, applying a Gaussian blur to an image is the same as convolving the image with a Gaussian function. In this lab, we adopt a 1-dimensional Gaussian distribution kernel, and the blurring process is done in two steps: Given image A as our input, we first convolve the kernel over the rows of image A to produce a horizontally blurred image B. We then convolve the kernel over the columns of image B to produce a horizontally and vertically blurred image C. The image C is our final blurred image</p>
+<p>The process of image convolution works like below. It consists a simple multiplication and add.</p>
+<p><img src="https://s2.loli.net/2024/05/06/ETZvluMBmzKeqGQ.png" alt loading="lazy"></p>
+<p>We provide an implement of Gaussian Blur in exe2_template and your job is to optimize the program without changing the algorithm. To make things easy, you only need to focus on apply_gb_fast.c.</p>
+<p>In apply_gb_fast.c, there is a function called apply_gb(). This function will receive two parameters, where Image a indicates the input image and FVec gv indicates the kernel. It will call gb_h and gb_v to do convolution horizontally and vertically. gb_h and gb_v will return a new image.</p>
+<p>At first, you can use make base_test to run the origin version of gaussian blur, which will show you the time of gb_h and gh_v. Then, you will find there is a gap between the two time.</p>
+<p>Then, to optimize the program, we can take another look on the execution order of Gaussian Blur. The vertical convolution equals to apply horizontal convolution to a transposed matrix. Thus, we can first transpose the image, apply horizontal convolution to it and finally transpose it again to get a correct result. In this way, we can optimize the memory access performance of the program.</p>
+<p>In apply_gb_fast.c, there is a completed function transpose(), which will return a transposed image of the input image. You can use it to optimize your program following the method mentioned above.</p>
+<p>You can run make all to test your modified program. The program test_accuracy will test the result of your program and output the average error between your result and the correct result.</p>
+<h4 id="Optional">(Optional)</h4>
+<p>To make the program even faster, we can apply <strong>cache blocking</strong> to the function transpose(), which can be learned from <a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/articles/technical/cache-blocking-techniques.html">here</a></p>
+<p><strong>Checkoff:</strong> Show your program to your TA and answer the following questions:</p>
+<ol>
+<li>
+<p>Why there is a gap between gb_v and gb_h ?</p>
+</li>
+<li>
+<p>Why the changed execution order will achieve a better performance even if we do more things(transpose)?</p>
+</li>
+</ol>
+<h2 id="Exercise-3-Effort-of-Cache-Miss">Exercise 3: Effort of Cache Miss</h2>
+<h3 id="Cache-Friendly-Data-Structure">Cache Friendly Data Structure</h3>
+<p>Some data structures are cache friendly while others will cause a lot of cache miss. For those programs whose workloads are mainly in data access instead of calculation, cache miss will influence to performance significantly.</p>
+<h3 id="Demo-Web-Log-Engine">Demo Web Log Engine</h3>
+<p>Every time there is someone who visits our website, the website log engine will record some information such as IP and state. The website log engine will do some operations on the recorded logs, where the main work is accessing data. To simplify the situation, we provide a demo web log engine in exe3_template which will traverse all logs and do map function to some information</p>
+<p>Your task is to modify the given struct log_entry in log_fast.c to make the data structure more cache friendly. You can use the following command to test your program's performance compared with the origin one.(If you use a virtual machine, you may need to increase the memory if there comes a sigment fault)</p>
+<p>$ make all</p>
+<h4 id="Hint">Hint</h4>
+<p>In the function traverse(), we only use three members in the log_entry. However, the three members are separated to different large arrays, which make them placed into three different cache lines. Thus, each access of one element in the array logs will cause 3 cache misses.</p>
+<p><strong>Checkoff:</strong> Show your result to your TA and explain why you do this modification.</p>
+<hr>
+<p>Daqian Cao &lt;<code>caodq</code> AT <code>shanghaitech.edu.cn</code>&gt;</p>
+<p>Modeled after UC Berkeley's CS61C.<br>
+Last modified: 2024-04-10</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/04/CS110/CS110-Note-6/" rel="prev" title="CS110 Note [6]">
+      <i class="fa fa-chevron-left"></i> CS110 Note [6]
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-10"><span class="nav-text">Lab 10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-Up"><span class="nav-text">Set Up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercise-1-Cache-Visualization"><span class="nav-text">Exercise 1: Cache Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scenario-1"><span class="nav-text">Scenario 1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scenario-2"><span class="nav-text">Scenario 2:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scenario-3"><span class="nav-text">Scenario 3:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercise-2-Matrix-multiplication-and-Execution-order"><span class="nav-text">Exercise 2: Matrix multiplication and Execution order</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gaussian-Blur-On-Image"><span class="nav-text">Gaussian Blur On Image</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional"><span class="nav-text">(Optional)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercise-3-Effort-of-Cache-Miss"><span class="nav-text">Exercise 3: Effort of Cache Miss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Friendly-Data-Structure"><span class="nav-text">Cache Friendly Data Structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-Web-Log-Engine"><span class="nav-text">Demo Web Log Engine</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hint"><span class="nav-text">Hint</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+
