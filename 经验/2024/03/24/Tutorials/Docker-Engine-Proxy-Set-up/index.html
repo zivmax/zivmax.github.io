@@ -24,18 +24,18 @@
   <meta name="description" content="再不记一些解决问题的方法，就有太多东西遗落在我的记忆中了。。。 这个 Post 是关于 Docker Engine 的代理设置，尤其是在 Build Docker Image 的时候。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Engine Proxy Set up">
-<meta property="og:url" content="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Docker-Engine-Proxy-Set-up/index.html">
+<meta property="og:url" content="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Tutorials/Docker-Engine-Proxy-Set-up/index.html">
 <meta property="og:site_name" content="青山后小塘">
 <meta property="og:description" content="再不记一些解决问题的方法，就有太多东西遗落在我的记忆中了。。。 这个 Post 是关于 Docker Engine 的代理设置，尤其是在 Build Docker Image 的时候。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-24T01:54:14.000Z">
-<meta property="article:modified_time" content="2024-03-25T07:40:28.802Z">
+<meta property="article:modified_time" content="2024-05-15T14:52:22.349Z">
 <meta property="article:author" content="Zivmax">
 <meta property="article:tag" content="Docker">
-<meta property="article:tag" content="代理">
+<meta property="article:tag" content="Proxy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Docker-Engine-Proxy-Set-up/">
+<link rel="canonical" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Tutorials/Docker-Engine-Proxy-Set-up/">
 
 
 <script id="page-configurations">
@@ -140,7 +140,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">82</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a>
 
   </li>
         <li class="menu-item menu-item-playlist">
@@ -209,7 +209,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Docker-Engine-Proxy-Set-up/">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Tutorials/Docker-Engine-Proxy-Set-up/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间: 2024-03-25 15:40:28" itemprop="dateModified" datetime="2024-03-25T15:40:28+08:00">2024-03-25</time>
+                <time title="修改时间: 2024-05-15 22:52:22" itemprop="dateModified" datetime="2024-05-15T22:52:22+08:00">2024-05-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,7 +325,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Docker/" rel="tag"># Docker</a>
-              <a href="/tags/%E4%BB%A3%E7%90%86/" rel="tag"># 代理</a>
+              <a href="/tags/Proxy/" rel="tag"># Proxy</a>
           </div>
 
         
@@ -338,7 +338,7 @@
       <i class="fa fa-chevron-left"></i> CS110 Note [3]
     </a></div>
       <div class="post-nav-item">
-    <a href="/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Neovim-Installation/" rel="next" title="Neovim Installation">
+    <a href="/%E7%BB%8F%E9%AA%8C/2024/03/24/Tutorials/Neovim-Installation/" rel="next" title="Neovim Installation">
       Neovim Installation <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -415,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
           
         </a>
@@ -429,7 +429,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -565,7 +565,7 @@ if (document.querySelectorAll('pre.mermaid').length) {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Refs/Docker-Engine-Proxy-Set-up/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/03/24/Tutorials/Docker-Engine-Proxy-Set-up/',]
       });
       });
   </script>
