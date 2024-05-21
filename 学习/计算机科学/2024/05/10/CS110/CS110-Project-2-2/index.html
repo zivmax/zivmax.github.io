@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="A RV32C Toy CPU running RVC instructions. (Individual Project)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Project 2.2">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/10/CS110/CS110-Project-2-2/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="A RV32C Toy CPU running RVC instructions. (Individual Project)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p2.2/2024-04-10-15-38-55-image.png">
+<meta property="article:published_time" content="2024-05-10T03:01:25.000Z">
+<meta property="article:modified_time" content="2024-05-21T10:12:12.421Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p2.2/2024-04-10-15-38-55-image.png">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/10/CS110/CS110-Project-2-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Project 2.2 | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">85</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/10/CS110/CS110-Project-2-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Project 2.2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-05-10 11:01:25" itemprop="dateCreated datePublished" datetime="2024-05-10T11:01:25+08:00">2024-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-05-21 18:12:12" itemprop="dateModified" datetime="2024-05-21T18:12:12+08:00">2024-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>9.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>59 分钟</span>
+            </span>
+            <div class="post-description">A RV32C Toy CPU running RVC instructions. (Individual Project)</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Project-2-A-RV32C-Toy-CPU">Project 2: A RV32C Toy CPU</h1>
+<h2 id="IMPORTANT-INFO-PLEASE-READ">IMPORTANT INFO - PLEASE READ</h2>
+<p>The projects are part of your design project worth 2 credit points. As such they run in parallel to the actual course. So be aware that the due date for project and homework might be very close to each other! Start early and do not procrastinate.</p>
+<h2 id="Overview">Overview</h2>
+<p>In this <strong>individual</strong> project, you will embark on a two-step journey to create a toy <strong>RVC CPU</strong>. Before diving into the task, please pay close attention to the following important points:</p>
+<ul>
+<li>
+<p>Any behavior that violates course rules is strictly prohibited. This includes viewing, copying or plagiarizing other individuals' circuits and codes. <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/lecture_notes/L01-Intro.pdf">Violators will face severe consequences</a></p>
+</li>
+<li>
+<p>You are allowed to use any built-in blocks of Logisim, except for the <strong>System On a Chip</strong> group, throughout this project.</p>
+</li>
+<li>
+<p>Save frequently and commit frequently! Try to save your code in Logisim every 5 minutes or so, and commit every time you produce a new feature, even if it is small.</p>
+</li>
+<li>
+<p>Don't move around the given inputs and outputs in your circuit; this could lead to issues with the autograder.</p>
+</li>
+</ul>
+<h2 id="Introduction">Introduction</h2>
+<p>This excerpt from the RISC-V User-Level ISA Specification describes the current draft proposal for the RISC-V standard compressed instruction set extension, named “C”, which reduces static and dynamic code size by adding short 16-bit instruction encodings for common operations. The C extension can be added to any of the base ISAs (RV32, RV64, RV128), and we use the generic term “RVC” to cover any of these. Typically, 50%–60% of the RISC-V instructions in a program can be replaced with RVC instructions, resulting in a 25%–30% code-size reduction. In this project, we will build a CPU that solely supports some of the RVC instructions.</p>
+<h3 id="Project-2-1-Implement-CI-and-CR-type-instructions-DDL-May-7th">Project 2.1: Implement CI and CR type instructions (DDL: May 7th)</h3>
+<p>In this part, your task involves implementing all <strong>CI and CR type instructions</strong> shown in <strong>The Instruction Set</strong> below. Feel free to refer to the advice provided in the <strong>How to Get Started</strong> section to kickstart your circuit adventure.</p>
+<h3 id="Project-2-2-Implement-all-instructions-DDL-May-26th">Project 2.2: Implement all instructions (DDL: May 26th)</h3>
+<p>In this part, you need to implement all instructions shonw in The Instruction Set table below. Notice: A new template is provided for you to implement the instructions. You can copy and paste your circuit from the previous part to save time.</p>
+<h3 id="The-Instruction-Set">The Instruction Set</h3>
+<p>The instructions you need to implement are shown in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>ISA</th>
+<th>OP[1:0]</th>
+<th>Funct3</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CR</td>
+<td>add</td>
+<td>10</td>
+<td>100</td>
+<td>x[rd] = x[rd] + x[rs2]</td>
+</tr>
+<tr>
+<td>CR</td>
+<td>mv</td>
+<td>10</td>
+<td>100</td>
+<td>x[rd] = x[rs2]</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>addi</td>
+<td>01</td>
+<td>000</td>
+<td>x[rd] = x[rd] + sext(imm)</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>slli</td>
+<td>10</td>
+<td>000</td>
+<td>x[rd] = x[rd] &lt;&lt; uimm</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>li</td>
+<td>01</td>
+<td>010</td>
+<td>x[rd] = sext(imm)</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>lui</td>
+<td>01</td>
+<td>011</td>
+<td>x[rd] = sext(imm[17:12] &lt;&lt; 12)</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>nop</td>
+<td>01</td>
+<td>000</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>swsp</td>
+<td>10</td>
+<td>110</td>
+<td>M[x[2] + uimm][31:0] = x[rs2]</td>
+</tr>
+<tr>
+<td>CIW</td>
+<td>addi4spn</td>
+<td>00</td>
+<td>000</td>
+<td>x[8+rd'] = x[2] + nzuimm</td>
+</tr>
+<tr>
+<td>CL</td>
+<td>lw</td>
+<td>00</td>
+<td>010</td>
+<td>x[8+rd'] = sext(M[x[8+rs1'] + uimm][31:0])</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>sw</td>
+<td>00</td>
+<td>110</td>
+<td>M[x[8+rs1'] + uimm][31:0] = x[8+rs2']</td>
+</tr>
+<tr>
+<td>CB</td>
+<td>beqz</td>
+<td>01</td>
+<td>110</td>
+<td>if (x[8+rs1'] == 0) pc += sext(offset)</td>
+</tr>
+<tr>
+<td>CJ</td>
+<td>j</td>
+<td>01</td>
+<td>101</td>
+<td>pc += sext(offset)</td>
+</tr>
+<tr>
+<td>CR</td>
+<td>jr</td>
+<td>10</td>
+<td>100</td>
+<td>pc = x[rs1]</td>
+</tr>
+</tbody>
+</table>
+<p>A detailed description of compressed instruction formats is provided in <a target="_blank" rel="noopener" href="https://riscv.org/wp-content/uploads/2015/11/riscv-compressed-spec-v1.9.pdf">The RISC-V Compressed Instruction Set Manual, Version 1.9</a>. Some important information is also provided below. Please note that there are different versions of RVC instructions, and referencing other documents or webpages may result in failing the test.</p>
+<h3 id="Instruction-Formats">Instruction Formats</h3>
+<p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p2.2/2024-04-10-15-38-55-image.png" alt="2024-04-10-15-38-55-image.png" loading="lazy"></p>
+<p>Table 1.1 shows the eight compressed instruction formats. CR, CI, and CSS can use any of the 32 RVI registers, but CIW, CL, CS, and CB are limited to use only 8 of them, which are registers x8 to x15 listed in Table 1.2. In project 2, you do not need to implement all 32 registers, please refer to the <strong>Restriction</strong> section for details.</p>
+<p><strong>Tips:</strong> you can try to decode the instruction to opcode, register address, immediate and so on firstly.</p>
+<h4 id="CR-Format">CR Format</h4>
+<table>
+<thead>
+<tr>
+<th>CR</th>
+<th>FUNCT4</th>
+<th>RD/RS1</th>
+<th>RS2</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.ADD</strong></td>
+<td>1001</td>
+<td>dest≠ 0</td>
+<td>src≠ 0</td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong><a target="_blank" rel="noopener" href="http://C.MV">C.MV</a></strong></td>
+<td>1000</td>
+<td>dest≠ 0</td>
+<td>src≠ 0</td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong>C.JR</strong></td>
+<td>1000</td>
+<td>src≠ 0</td>
+<td>0</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CI-Format">CI Format</h4>
+<table>
+<thead>
+<tr>
+<th>CI</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>RD/RS1</th>
+<th>IMM</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong><a target="_blank" rel="noopener" href="http://C.LI">C.LI</a></strong></td>
+<td>010</td>
+<td>imm[5]</td>
+<td>dest≠ 0</td>
+<td>imm[4:0]</td>
+<td>01</td>
+</tr>
+<tr>
+<td><strong>C.LUI</strong></td>
+<td>011</td>
+<td>nzimm[17]</td>
+<td>dest≠{0,2}</td>
+<td>nzimm[16:12]</td>
+<td>01</td>
+</tr>
+<tr>
+<td><strong>C.ADDI</strong></td>
+<td>000</td>
+<td>nzimm[5]</td>
+<td>dest≠ 0</td>
+<td>nzimm[4:0]</td>
+<td>01</td>
+</tr>
+<tr>
+<td><strong>C.SLLI</strong></td>
+<td>000</td>
+<td>shamt[5]</td>
+<td>dest≠ 0</td>
+<td>shamt[4:0]</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CL-Format">CL Format</h4>
+<table>
+<thead>
+<tr>
+<th>CL</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>RS1'</th>
+<th>IMM</th>
+<th>RD'</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.LW</strong></td>
+<td>010</td>
+<td>offset[5:3]</td>
+<td>base</td>
+<td>offset[2|6]</td>
+<td>dest</td>
+<td>00</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CS-Format">CS Format</h4>
+<table>
+<thead>
+<tr>
+<th>CS</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>RS1'</th>
+<th>IMM</th>
+<th>RS2'</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.SW</strong></td>
+<td>110</td>
+<td>offset[5:3]</td>
+<td>base</td>
+<td>offset[2|6]</td>
+<td>src</td>
+<td>00</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CSS-Format">CSS Format</h4>
+<table>
+<thead>
+<tr>
+<th>CSS</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>RS2'</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.SWSP</strong></td>
+<td>110</td>
+<td>offset[5:2|7:6]</td>
+<td>src</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CIW-Format">CIW Format</h4>
+<table>
+<thead>
+<tr>
+<th>CIW</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>rd'</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>8</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.ADDI4SPN</strong></td>
+<td>000</td>
+<td>zimm[5:4|9:6|2|3]</td>
+<td>dest</td>
+<td>00</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CJ-Format">CJ Format</h4>
+<table>
+<thead>
+<tr>
+<th>CJ</th>
+<th>FUNCT3</th>
+<th>JUMP TARGET</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>11</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.J</strong></td>
+<td>101</td>
+<td>offset[11|4|9:8|10|6|7|3:1|5]</td>
+<td>01</td>
+</tr>
+</tbody>
+</table>
+<h4 id="CB-Format">CB Format</h4>
+<table>
+<thead>
+<tr>
+<th>CB</th>
+<th>FUNCT3</th>
+<th>IMM</th>
+<th>RD'/RS1'</th>
+<th>IMM</th>
+<th>OPCODE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bits</strong></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>C.BEQZ</strong></td>
+<td>110</td>
+<td>offset[8|4:3]</td>
+<td>src</td>
+<td>offset[7:6|2:1|5]</td>
+<td>01</td>
+</tr>
+</tbody>
+</table>
+<h3 id="TOP-I-O">TOP I/O</h3>
+<p>The inputs and outputs of top level are fixed in <code>TOP</code> circuit. It's not allowed to add extra pins in <code>TOP</code> circuit in your submission. Fail to comply with this may result in losing all your points!</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>signal</th>
+<th>bit width</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>clk</td>
+<td>1</td>
+<td>clock</td>
+</tr>
+<tr>
+<td>input</td>
+<td>rst</td>
+<td>1</td>
+<td>reset</td>
+</tr>
+<tr>
+<td>input</td>
+<td>inst</td>
+<td>16</td>
+<td>RVC instruction</td>
+</tr>
+<tr>
+<td>input</td>
+<td>mem_dout</td>
+<td>32</td>
+<td>data from memory</td>
+</tr>
+<tr>
+<td>input</td>
+<td>current_pc</td>
+<td>32</td>
+<td>current pc value</td>
+</tr>
+<tr>
+<td>output</td>
+<td>mem_wen</td>
+<td>1</td>
+<td>memory write enable</td>
+</tr>
+<tr>
+<td>output</td>
+<td>mem_din</td>
+<td>32</td>
+<td>data written to memory</td>
+</tr>
+<tr>
+<td>output</td>
+<td>mem_ren</td>
+<td>1</td>
+<td>memory read enable</td>
+</tr>
+<tr>
+<td>output</td>
+<td>mem_addr</td>
+<td>32</td>
+<td>address of memory</td>
+</tr>
+<tr>
+<td>output</td>
+<td>control_en</td>
+<td>1</td>
+<td>enable writing value to pc</td>
+</tr>
+<tr>
+<td>output</td>
+<td>control_pc</td>
+<td>32</td>
+<td>value written to pc</td>
+</tr>
+<tr>
+<td>output</td>
+<td>wb_en</td>
+<td>1</td>
+<td>regfile write enable</td>
+</tr>
+<tr>
+<td>output</td>
+<td>wb_addr</td>
+<td>5</td>
+<td>address written to regfile</td>
+</tr>
+<tr>
+<td>output</td>
+<td>wb_data</td>
+<td>32</td>
+<td>data written to regfile</td>
+</tr>
+</tbody>
+</table>
+<p>Some of these pins are not involved in Project 2.1 but will be used in Project 2.2, so you can temporarily ignore them.</p>
+<h3 id="Fetch">Fetch</h3>
+<p>Throughout this project, you will work with the <strong>Fetch module</strong> provided by the TA. This module assumes that</p>
+<ul>
+<li>The instruction memory is halfword-addressable, i.e., each address refers to a 16-bit memory space.</li>
+<li>During each clock cycle, an instruction is fetched from the address stored in the program counter.</li>
+<li>The address value in the program counter increments by one each clock cycle to fetch the next instruction without considering branch or jump.</li>
+</ul>
+<p>Additionally, you have the flexibility to incorporate sub-circuits to explore the functionality of the Fetch module. Doing so will enhance your understanding of its operational principles.</p>
+<h2 id="How-to-get-start">How to get start</h2>
+<p>Here is a simple <a target="_blank" rel="noopener" href="https://classroom.github.com/a/YmOsB4yi">template</a> to get started. Please download and unzip it first. Opening <code>proj_2_1.circ</code> with logisim-evolution, you will find several subcircuits inside it.</p>
+<p>For project 2.2, you can use this <a target="_blank" rel="noopener" href="https://classroom.github.com/a/-IqGtrZC">template</a> to get started.</p>
+<ul>
+<li><strong>TOP</strong> is the top-level circuit you need to complete. It represents the implementation of the target toy CPU that includes the subcircuits you designed. <strong>Please note that do not modify the packaging of the TOP circuit or any parts marked as &quot;Don't touch&quot;</strong>, as failing to comply with this may result in failing the test cases.</li>
+<li><strong>testbench</strong> is a completed circuit provided by TAs for testing purposes. You can write any binary format instruction to the ROM and observe whether your circuit operates as expected. This circuit will not be used in grading, so feel free to make any attempts.</li>
+</ul>
+<p>Here are some suggestions for your information:</p>
+<ul>
+<li>It's recommended that try to implement instructions one by one and you can start with <strong>LI</strong> or <strong>LUI</strong> instructions! This method is debug-friendly.</li>
+<li>List all the signals you need, and try to classify them into different groups. Classifying signals helps complete circuits in the simplest way. You will find that the workload is much smaller in this way.</li>
+</ul>
+<h3 id="Test">Test</h3>
+<p>Test for all CR and CI type instruction has been included with the template package. You can run it with the command<code>./test.sh</code>. The provided test case is carried out in the order (LI-LI-LUI-LUI-SLLI-ADD-MV-ADDI-ADDI), and errors in the previous instructions may result in incorrect results in the later ones even if you implement them correctly.</p>
+<p>The <code>8000</code> instruction utilizes a reserved instruction space to generate the halt signal. This signal serves the same purpose as the halt signal in Lab 5, which is to terminate the execution of the auto-test script. While this signal is crucial for the auto-test script, it does not produce any additional effects. Please be aware that when the 8000 instruction is executed, your system should not generate any significant output. The Autograder will not evaluate the output of this instruction.</p>
+<p>In submission, you need to correctly implement at least one of <strong>LI</strong> or <strong>LUI</strong> to ensure that the other instructions can be successfully tested.</p>
+<p>Notice: The Autograder of project 2.2 will test all instruction shown in the Instruction Set.</p>
+<h2 id="Restriction">Restriction</h2>
+<p>In order to reduce your workload and help you pass the test smoothly, some restrictions are stipulated as follows. You should read this section carefully as it may not be consistent with the content in the Instruction Set Manual.</p>
+<ul>
+<li>
+<p>All data is represented in 2's complement form.</p>
+</li>
+<li>
+<p>The data memory (RAM) is word-addressable, i.e., each address refers to a 32-bit memory space.</p>
+</li>
+<li>
+<p>The Autograder will <strong>reset your system</strong> before carrying out any instructions. In other words, during the first cycle, all pins should output <strong>0</strong>.</p>
+</li>
+<li>
+<p>To reduce your workload, all test scripts will only involve ten integer registers <strong>x0, x2, x8-x15</strong>.</p>
+</li>
+<li>
+<p>All instructions in testcases are valid, and you don't need to consider instruction checking (please note that <strong>NOP</strong> is also a valid instruction in RVC and our CPU).</p>
+</li>
+<li>
+<p>Since logisim supports memory with limited size, only the lower 8 bits of an 32-bit address are used to access instruction memory (ROM) and lower 16 bits to access data memory (RAM).</p>
+</li>
+</ul>
+<hr>
+<p>In project 2.1 are,</p>
+<p><em>Siting Liu &lt;<code>liust</code> AT <code>shanghaitech.edu.cn</code>&gt;</em></p>
+<p><em>Yutong Wang &lt;<code>wangyt32023</code> AT <code>shanghaitech.edu.cn</code>&gt;</em></p>
+<p>and</p>
+<p><em>Suting Chen &lt;<code>chenst</code> AT <code>shanghaitech.edu.cn</code>&gt;</em></p>
+<p>In project 2.2 are,</p>
+<p><em>Siting Liu &lt;<code>liust</code> AT <code>shanghaitech.edu.cn</code>&gt;</em></p>
+<p>and</p>
+<p><em>Yutong Wang &lt;<code>wangyt32023</code> AT <code>shanghaitech.edu.cn</code>&gt;</em></p>
+<p>Last modified: 2024-05-12</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/05/CS110/CS110-Lab-10/" rel="prev" title="CS110 Lab [10]">
+      <i class="fa fa-chevron-left"></i> CS110 Lab [10]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E7%BB%8F%E9%AA%8C/2024/05/15/Tutorials/Sync-Fonts-WSL/" rel="next" title="Synchronizing Windows Fonts with WSL for LaTeX Typesetting">
+      Synchronizing Windows Fonts with WSL for LaTeX Typesetting <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Project-2-A-RV32C-Toy-CPU"><span class="nav-text">Project 2: A RV32C Toy CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IMPORTANT-INFO-PLEASE-READ"><span class="nav-text">IMPORTANT INFO - PLEASE READ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-2-1-Implement-CI-and-CR-type-instructions-DDL-May-7th"><span class="nav-text">Project 2.1: Implement CI and CR type instructions (DDL: May 7th)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-2-2-Implement-all-instructions-DDL-May-26th"><span class="nav-text">Project 2.2: Implement all instructions (DDL: May 26th)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Instruction-Set"><span class="nav-text">The Instruction Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction-Formats"><span class="nav-text">Instruction Formats</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CR-Format"><span class="nav-text">CR Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CI-Format"><span class="nav-text">CI Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CL-Format"><span class="nav-text">CL Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CS-Format"><span class="nav-text">CS Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS-Format"><span class="nav-text">CSS Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CIW-Format"><span class="nav-text">CIW Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CJ-Format"><span class="nav-text">CJ Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CB-Format"><span class="nav-text">CB Format</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TOP-I-O"><span class="nav-text">TOP I&#x2F;O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-get-start"><span class="nav-text">How to get start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test"><span class="nav-text">Test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Restriction"><span class="nav-text">Restriction</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/10/CS110/CS110-Project-2-2/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+
