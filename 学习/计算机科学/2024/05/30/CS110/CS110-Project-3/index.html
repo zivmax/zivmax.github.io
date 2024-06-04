@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Flappy-bird game on Longan Nano. (Individual Project)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS110 Project 3">
+<meta property="og:url" content="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-3/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="Flappy-bird game on Longan Nano. (Individual Project)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-30T03:01:25.000Z">
+<meta property="article:modified_time" content="2024-06-04T07:16:01.868Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="上科大">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="CS110">
+<meta property="article:tag" content="计算机体系架构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS110 Project 3 | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">92</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS110 Project 3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间: 2024-05-30 11:01:25" itemprop="dateCreated datePublished" datetime="2024-05-30T11:01:25+08:00">2024-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间: 2024-06-04 15:16:01" itemprop="dateModified" datetime="2024-06-04T15:16:01+08:00">2024-06-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:08</span>
+            </span>
+            <div class="post-description">Flappy-bird game on Longan Nano. (Individual Project)</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/index.html">Computer Architecture I</a> | <a target="_blank" rel="noopener" href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p>
+<h1 id="CS110-Project-3-24s-Flappy-bird-game-on-Longan-Nano">CS110 Project 3 (24s): Flappy-bird game on Longan Nano</h1>
+<p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p3/index.html#">Reference Implementation</a></p>
+<p>As CS110 is coming to an end, it's time to put the skills we've learned into practice.</p>
+<p>In this project, you will code in C language and RISC-V assembly to implement a Flappy-bird game. You will also use <code>platformIO</code> to cross-compile and generate a program for the Longan Nano development board.</p>
+<p>While we do have a reference implementation, you are not required to fully replicate it. Once you have completed the basic requirements, you are free to add or modify more features according to your preferences.</p>
+<p>We hope you enjoy playing with Longan Nano in this project.</p>
+<p><strong>Important Note 1</strong>: Project 3 this year is an individual project - one person, no teammate.</p>
+<p><strong>Important Note 2</strong>: We only score Flappy Bird game. You may implement your own game for fun, but they are not scored.</p>
+<p><strong>Important Note 3</strong>: Grading of Project 3 is manually done by TAs during Lab 15 check procedure, instead of using Autograder. See <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p3/index.html#grading-policy">Grading Policy</a> for details.</p>
+<h2 id="Academic-Integrity-Policy">Academic Integrity Policy</h2>
+<p>Project 3 this year is an individual project - one person, no teammate.</p>
+<p>We will conduct code similarity check. If your code (except for Lab 12 template) is too similar to code from others, prepare to face the penalty from entire TA group and two professors. See slide from the 1st lecture for all possible consequences.</p>
+<h2 id="Grading-Policy">Grading Policy</h2>
+<ol>
+<li>The overall score for project 3 is 17 points. Note that <strong>if your code does not compile or assemble, you will get 0 points for project 3</strong>. However, the good news is that in project 3, there will be <strong>no</strong> memory leak check and <strong>no</strong> additional compiler flags like <code>-Wall</code> and <code>-Werror</code>.</li>
+<li>The grading rubrics sum up to 19 points, which is more than 17. You will get a final score of 17 even if your score exceeds 17. If you are more than confident with the stability and robustness of your implementation, it is explicitly allowed to ignore some of the tasks. However, it is still strongly recommended that you implement everything that is within your reach.</li>
+<li>Since checking procedure of Project 3 is complicated, it might be impossible to check all the ≈ 25 students of one Lab within your Lab's time slot. Therefore, expect Lab 15 to last a long time ( ≈ 3 hours).</li>
+<li>Grading of Project 3 is manually done by TAs during check procedure, instead of using Autograder.</li>
+<li>Location and time slot for Project 3 Check: Same as your Lab location.</li>
+<li>Project 3 check procedure after DDL: On student's computer, fetch project 3 source code from Gradescope, then compile the newly fetched source code, and download the firmware into device.</li>
+<li>All requirements other than <em>RISCV Code</em> has an all-or-nothing grading scheme, for example, you will only get 0 or 2 points for player part of <em>Moving Entities (Sprites)</em>.</li>
+</ol>
+<h2 id="Implementation-and-Submission-Policy">Implementation and Submission Policy</h2>
+<p>Project 3 has no fixed template, but no fixed template means less constraint. You will implement project 3 from the ground up. Starting from the Lab 12 template (<code>lab12-starter-20240515.tar.gz</code>), you are free to:</p>
+<ul>
+<li>Change any code in <code>lab12-starter-20240515.tar.gz</code>. In fact, our reference implementation modifies the LCD library.</li>
+<li>Add and remove <code>.c</code> or <code>.h</code> files.</li>
+</ul>
+<p>The submission must at least include:</p>
+<ul>
+<li>Anything in Lab 12 template (<code>lab12-starter-20240515.tar.gz</code>), unless removed by yourself.</li>
+<li>Any new source code and assets added.</li>
+</ul>
+<p>Do not modify compiler framework (located in <code>&lt;pio root&gt;</code>)!</p>
+<h2 id="Detailed-Implementation-Requirements">Detailed Implementation Requirements</h2>
+<p>Your implementation should look like the <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p3/index.html#">Reference Implementation</a>, but we do not require them to be identical. For unspecified requirements, please refer to the reference firmware for detail. If there are ambiguous statements, first check Piazza post <a target="_blank" rel="noopener" href="https://piazza.com/class/lsvl55gd4jz4h0/post/270">@270</a>, then post on Piazza.</p>
+<h3 id="3-Points-RISCV-Code">(3 Points) RISCV Code</h3>
+<ul>
+<li>Grading Prerequisites: None.</li>
+</ul>
+<p>Use RISCV to create the splash screen (the welcome screen before starting the game or selecting difficulty, depending on your implementation). Comments and labels are not counted. Pseudo-instructions are always counted as one instruction.</p>
+<p>Let n be the number of <em><strong>meaningful</strong></em> RISCV instructions, then your score for this section is min ( 3 , ⌊ n / 100 ⌋ ) . The term <em>meaningful</em> here refers to: TAs think your splash screen have meaningful animations, <strong>or</strong> your RISCV code does not come from simple copy-and-paste operation.</p>
+<p>For example, hand-writing <code>add t0, t0, t0</code> or doing useless <code>lw</code> and <code>sw</code> instructions for 300 times will not lead to 3 points for this section.</p>
+<p>Note on Venus: Do not rely only on Venus. Your code may execute normally on Longan Nano even if Venus reports error. In fact, it is suggested not to use Venus in project 3.</p>
+<p>Tips: If you want to display a series of images, please make sure that you are not exceeding the maximum memory and storage limit of the hardware. Those two limits will be reported by <code>pio run</code> or the build command in PlatformIO VSCode Plugin.</p>
+<h3 id="4-Points-Moving-Entities-Sprites">(4 Points) Moving Entities (Sprites)</h3>
+<p><strong>(2 Point)</strong> Display player on screen and player can react to keyboard input.</p>
+<ul>
+<li>Grading Prerequisites: None.</li>
+</ul>
+<p>When key k is pushed, the player is given a upward speed. When k is released, the player will fall as if caught by gravity.</p>
+<p>k , upward speed, player color, initial player location, and gravity constant are defined by you. An optional constraint on maximum falling speed could also be implemented.</p>
+<p><strong>(2 Point)</strong> There are static walls and moving walls on screen and remaining life will reduce by one if player hit the wall.</p>
+<ul>
+<li>Grading Prerequisites: Player part of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>When the player hits any wall, including floor, ceil, and moving wall, the player life should be reduced by one, then the player's location is set to its initial location. However, the game should continue even if the player life reaches 0 or negative, because some TAs are dying again and again when trying Songhui Cao's reference implementation. The initial player life is defined by you.</p>
+<p>Player score is not a factor for grading here.</p>
+<p>Moving walls refer to the walls that move left in the reference firmware. Wall color, static wall location, wall moving speed, and the vertical and horizonal space between walls are defined by you.</p>
+<p>Tips: It is explicitly allowed to eliminate player's hitbox against walls for a while after the player respawns (including initial spawn and respawn after hitting a wall). However, eliminating player's hitbox is an optional feature. In the reference firmware, when the player appears green, its hitbox is eliminated against walls.</p>
+<p>Note on collision handling: 1 or 2 pixels of error or overlap is explicitly allowed. You may have noticed that the <a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p3/index.html#">Reference Implementation</a> allows overlap that is no more than 1 pixel.</p>
+<h3 id="2-Points-Life-and-Score">(2 Points) Life and Score</h3>
+<p><strong>(1 Point)</strong> Player life is correctly displayed.</p>
+<ul>
+<li>Grading Prerequisites: Player part of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>When the player life reaches negative, you may do one of the two following: displaying player life as a negative number, <strong>or</strong> adding a constant (defined by you) to player life.</p>
+<p>Player life location, font, text, and color is defined by you.</p>
+<p><strong>(1 Point)</strong> Player score is correctly displayed.</p>
+<ul>
+<li>Grading Prerequisites: All 2 parts of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>When the player passes through the space between a pair of walls (and did not die), the player score should be increased by one.</p>
+<p>Though not scored, we recommend that you handle the case where player score exceeds the display length properly.</p>
+<p>Player score location, font, text, and color is defined by you.</p>
+<h3 id="4-Points-Difficulty-Selection">(4 Points) Difficulty Selection</h3>
+<p><strong>(2 Points)</strong> You have implemented difficulty selection screen. Different difficulty levels must have identifiable differences.</p>
+<ul>
+<li>Grading Prerequisites: All 2 parts of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>At least 2 different difficulties should be implemented so that it is possible to <em>select</em> one. The difficulty selection screen must contain <strong>all</strong> of the following key points: all possible difficulties; highlighting of the chosen option.</p>
+<p>The differences must contain <strong>at least one</strong> of the following: player uprising and falling speed; the vertical space between walls; the horizonal space between walls.</p>
+<p><strong>(2 Points)</strong> You have implemented input key de-bouncing during difficulty selection.</p>
+<ul>
+<li>Grading Prerequisites: A working interface (such as difficulty selection screen) as a showcase to your input key de-bouncing implementation.</li>
+</ul>
+<p>Definition of input key de-bouncing: if a key (for example, joystick down) is triggered at t 0 , it cannot be triggered again before t 0 + 0.3 , while other keys can. Unit of time here is seconds.</p>
+<p>Without input key de-bouncing, during difficulty selection, when you press the controlling key once, the target difficulty may stroll more than once, making accurate selection impossible. Therefore, your task is to implement input key de-bouncing and use it to address this issue.</p>
+<p>Input key de-bouncing is an optional feature during actual gameplay.</p>
+<h3 id="2-Points-Guaranteed-Stable-FPS">(2 Points) Guaranteed Stable FPS</h3>
+<ul>
+<li>Grading Prerequisites: None, but TAs will manually review your code for this section.</li>
+</ul>
+<p>Assume: 1. The CPU frequency of your Longan Nano is stable and fixed; 2. The compute time per one frame is always less than the length of one frame; 3. Power consumption is not an issue.</p>
+<p>According to the assumption above, if you use a fixed delay to maintain FPS, your actual FPS is subject to the compute time within a frame. For example, if the compute time within a frame is 2ms, and you are delaying 20ms for 50 FPS, the actual FPS will be 45.5.</p>
+<p>Your task for this section is to change your code, such that your frame rate have nothing to do with the compute time within a frame.</p>
+<p>TAs will manually check your code for this section.</p>
+<p>Tips: See implementation of <code>delay_1ms</code> for how to exploit the CPU cycle counter.</p>
+<h3 id="2-Points-Player-Trace">(2 Points) Player Trace</h3>
+<ul>
+<li>Grading Prerequisites: Player part of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>Sample player location once per frame, move the sampled points left, and connect adjacent point pairs, so that all points, as a whole, mimics a tail of the player.</p>
+<p>Whether or not the tail will fade by time is not a factor for grading here.</p>
+<p>Tips: You may modify the LCD library. See piazza post <a target="_blank" rel="noopener" href="https://piazza.com/class/lsvl55gd4jz4h0/post/313">@313</a> for details.</p>
+<h3 id="2-Points-Incremental-Rendering">(2 Points) Incremental Rendering</h3>
+<ul>
+<li>Grading Prerequisites: All 2 parts of <em>Moving Entities (Sprites)</em>.</li>
+</ul>
+<p>Use everything at your disposal, to prevent the screen from blinking.</p>
+<p><a target="_blank" rel="noopener" href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/labs/Lab12/lab12-starter-20240515.tar.gz">Lab 12 Starter</a> is an example of blinking. It does not implement incremental rendering and is calling <code>LCD_Clear</code> periodically.</p>
+<p>Criteria of <em>prevent the screen from blinking</em>: TA think the screen does not have visual blinking, <strong>or</strong> by reviewing your code, TA is convinced that you are not calling <code>LCD_Clear</code> or its equivalents periodically.</p>
+<p>Tips: the reference implementation is to first identify difference between the current frame and the last frame, then perform update instead of call <code>LCD_Clear</code> and re-draw. You may come up with your own implementation, as long as your screen does not blink.</p>
+<hr>
+<p>Dark mode</p>
+<p>Author: Songhui Cao (<code>caosh2022</code>).</p>
+<p>Verified by: Luojia Hu (<code>hulj</code>)</p>
+<p>Last modified: 2024-05-21</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/" rel="tag"># 上科大</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/CS110/" rel="tag"># CS110</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" rel="tag"># 计算机体系架构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/28/CS110/CS110-Homework-8/" rel="prev" title="CS110 Homework [8]">
+      <i class="fa fa-chevron-left"></i> CS110 Homework [8]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-4/" rel="next" title="CS110 Project 4">
+      CS110 Project 4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS110-Project-3-24s-Flappy-bird-game-on-Longan-Nano"><span class="nav-text">CS110 Project 3 (24s): Flappy-bird game on Longan Nano</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Academic-Integrity-Policy"><span class="nav-text">Academic Integrity Policy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grading-Policy"><span class="nav-text">Grading Policy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation-and-Submission-Policy"><span class="nav-text">Implementation and Submission Policy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-Implementation-Requirements"><span class="nav-text">Detailed Implementation Requirements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Points-RISCV-Code"><span class="nav-text">(3 Points) RISCV Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Points-Moving-Entities-Sprites"><span class="nav-text">(4 Points) Moving Entities (Sprites)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Points-Life-and-Score"><span class="nav-text">(2 Points) Life and Score</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Points-Difficulty-Selection"><span class="nav-text">(4 Points) Difficulty Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Points-Guaranteed-Stable-FPS"><span class="nav-text">(2 Points) Guaranteed Stable FPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Points-Player-Trace"><span class="nav-text">(2 Points) Player Trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Points-Incremental-Rendering"><span class="nav-text">(2 Points) Incremental Rendering</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:marsh.mallow@foxmail.com" title="E-Mail → mailto:marsh.mallow@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-3/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+
