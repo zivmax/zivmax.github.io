@@ -43,42 +43,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
     
-  </entry>
-  
-  <entry>
-    <title>CS110 Project 4</title>
-    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-4/"/>
-    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-4/</id>
-    <published>2024-05-30T03:01:25.000Z</published>
-    <updated>2024-06-04T07:17:04.214Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Project-4">Project 4</h2><p><a href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/index.html">Computer Architecture I</a> @ <a href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p><h2 id="1-Introduction">1. Introduction</h2><p>First, read the code snippet below, which is a simple program that simulates heat conduction in a 2D plate.</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; step; k++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; N - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; N - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            p_next[i * N + j] = (p[(i - <span class="number">1</span>) * N + j] + p[(i + <span class="number">1</span>) * N + j] + p[i * N + j + <span class="number">1</span>] + p[i * N + j - <span class="number">1</span>]) / <span class="number">4.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> *temp = p;</span><br><span class="line">    p = p_next;</span><br><span class="line">    p_next = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Here, <code>p</code> and <code>p_next</code> are 2D arrays representing the current and next state of the plate, respectively. The loop iterates over each cell in the 2D array and calculates the next state based on the surrounding cells.</p><h2 id="2-Getting-started">2. Getting started</h2><p>Make sure you read through the entire specification before starting the project.</p><p>Just like all other programming assignments/projects this semester, you will obtain your files from the GitHub classroom, the link is <a href="https://classroom.github.com/a/c5sSJmfd">here</a>.</p><h3 id="Files">Files</h3><p>The framework contains the following files:</p><ul><li><strong>test.c</strong>: Contains the test framework code.</li><li><strong>baseline.c</strong>: Contains the baseline implementation.</li><li><strong>impl.c</strong>: You need to complete the function <code>impl(int N, int step, double *p)</code>. When the function returns, the array pointed to by <code>p</code> should contain the state after <code>step</code> iterations from its initial values. However, to enable more kinds of optimization techniques, there is a special formula to calculate the error between your implementation and the baseline implementation. Please <strong>READ THE FOLLOWING SECTION CAREFULLY</strong>, or you may <strong>LOSE POINTS!</strong></li></ul><h3 id="Validation">Validation</h3><p>We will calculate the error between the state of your <code>p</code> matrix and the baseline according to the following rules:</p><ul><li><p>Assume the matrix side length is <code>N</code> and the number of iterations is <code>step</code>.</p></li><li><p>Let the result matrix after <code>step</code> iterations using the baseline algorithm be <code>p^&#123;step&#125;</code>, and the result after <code>step-1</code> iterations be <code>p^&#123;step-1&#125;</code>. Denote the value at a point in the matrix as <code>p_&#123;i,j&#125;</code>.</p></li><li><p>For each point <code>p_&#123;i,j&#125;</code> in your <code>p</code>, the error is calculated as follows:</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/error_formula.png" alt="Error Formula" loading="lazy"></p></li><li><p>The total error is the sum of the errors of all points. Your total error should less than a certain value (1e-5 in the framework code). If you believe this precision requirement is too harsh, please contact us, and we may loosen the requirement based on our evaluation.</p></li></ul><h4 id="Example">Example</h4><p>Assuming the baseline's values after <code>step</code> iterations are as shown in the figure below:</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/iteration_steps.png" alt="Iteration Steps" loading="lazy"></p><p>Then, as long as your result is close enough to any of the ones shown in the figure below (only partial examples are displayed), your result will be considered valid.</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/answer_examples.png" alt="Answer Examples" loading="lazy"></p><h2 id="3-Optimization-Techniques">3. Optimization Techniques</h2><p>You can find many obvious optimizations in the implementation we provide, based on what you have learned in Computer Architecture. We are listing some of the possible approaches below:</p><h3 id="Compiler">Compiler</h3><p>There are some optimization flags that can be turned on in GCC. The available flags for x86 ISA from GCC are listed <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html">here</a>. However, we hope that you can do most of the optimization yourself, instead of relying on the compiler. So in this project, you are not allowed to modify the <code>Makefile</code>.</p><h3 id="Multithreading">Multithreading</h3><p>The outer loop of the algorithm is a good candidate for multithreading. You can use <code>OpenMP</code> or <code>pthread</code> to parallelize.</p><h3 id="SIMD-instructions">SIMD instructions</h3><p>SIMD processes multiple data in parallel. Part of this algorithm is also a good candidate for SIMD instructions.</p><h3 id="Loop-unrolling">Loop unrolling</h3><p>Loop unrolling can be used to reduce the overhead of the loop.</p><h3 id="Cache-Blocking">Cache Blocking</h3><p>The main idea here is to make memory access more efficient and exploit memory locality.</p><h2 id="4-Grading-Policy">4. Grading Policy</h2><p>The total score for this project is 100:</p><ol><li>We will first run your code on small test cases on GradeScope (automatically). If your program does not produce the correct result, you will receive 0 points. As always, your code should not have any memory issues.</li><li>After the deadline, we will test your code on our local machine and new test cases. Your grade on this part depends on the speedup of your code. If your code runs slower than adding the baseline (what we've provided), you will receive 0 points.</li><li>If your code runs at the same speed with bare <code>OpenMP</code>, you will receive 50 points.</li><li>If your code ranks among the top 30 in performance in the class, you will receive <strong>100 points</strong>.</li><li>For the rest, we will give a linear grade according to the speedup rate.<ul><li>If your speedup is <code>3.0</code> and the bare <code>OpenMP</code> speedup is <code>5.0</code>, then your score will be <code>(3.0 / 5.0) * 50 = 30.0</code> points.</li><li>If your speedup is <code>7.3</code> and the bare <code>OpenMP</code> speedup is <code>5.0</code>, while the 30th fastest code is <code>10.0</code> then your score will be <code>50 + ((7.3 - 5.0) / (10.0 - 5.0)) * 50 = 73.0</code> points.</li></ul></li><li>If your code crashes during our test, you will receive 0 points.</li><li>Your submission must contain meaningful use of multithreading technique and <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/">Intel SIMD intrinsics</a>. Otherwise, you will get 0 points. This check will be done manually after the deadline so there will be no feedback on this from GradeScope.</li></ol><h2 id="5-Parameters-for-Speed-Test">5. Parameters for Speed Test</h2><p>For the final speed test, we will use a map with <code>N=2000</code>.</p><h2 id="6-Server-Configurations">6. Server Configurations</h2><p>The GrapeScope server is used for correctness check only because it has limited hardware resources and unstable performance.</p><h3 id="Toast-Lab-Server-Used-for-final-speed-test">Toast Lab Server (Used for final speed test):</h3><ul><li><p>CPU: Intel Xeon E5-2690 v4 2.6 GHz, 14 cores (28 threads) <a href="https://ark.intel.com/content/www/us/en/ark/products/91770/intel-xeon-processor-e52690-v4-35m-cache-2-60-ghz.html">Details here</a></p><ul><li>L1 i-cache 32 KiB (per core)</li><li>L1 d-cache 32 KiB (per core)</li><li>L2 cache 3.5 MiB (unified)</li><li>L3 cache 35 MiB (unified)</li></ul></li><li><p>Memory: 120 GiB</p></li></ul><h3 id="More-about-the-final-speed-test">More about the final speed test</h3><p>The final test server in fact has two cpus that uses the NUMA architecture which is commonly used in modern servers. In the final test we will use numactl to run the program in a NUMA node. This is to avoid the impact of NUMA's memory arrangement on openmp. If you're interested, you can find out what numa is and why it has an effect on openmp. But we're not asking too much here, you can simply think of it as having only one CPU with 14 cores, as the same as the server configurations listed above.</p><hr><p>Letong Han &lt;<code>hanlt</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>Suting Chen &lt;<code>chenst</code> AT <code>shanghaitech.edu.cn</code>&gt;</p><p>Last modified: 2024-05-31</p>]]></content>
-    
-    
-    <summary type="html">Finsh the given optimization task. (Individual Project)</summary>
-    
-    
-    
-    <category term="学习" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
-    
-    
     <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
     
     <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
     
   </entry>
   
@@ -101,13 +72,42 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
+    <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
     <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
     
     <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
+  </entry>
+  
+  <entry>
+    <title>CS110 Project 4</title>
+    <link href="https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-4/"/>
+    <id>https://zivmax.top/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/05/30/CS110/CS110-Project-4/</id>
+    <published>2024-05-30T03:01:25.000Z</published>
+    <updated>2024-06-04T07:17:04.214Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Project-4">Project 4</h2><p><a href="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/index.html">Computer Architecture I</a> @ <a href="https://www.shanghaitech.edu.cn/">ShanghaiTech University</a></p><h2 id="1-Introduction">1. Introduction</h2><p>First, read the code snippet below, which is a simple program that simulates heat conduction in a 2D plate.</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; step; k++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; N - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; N - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            p_next[i * N + j] = (p[(i - <span class="number">1</span>) * N + j] + p[(i + <span class="number">1</span>) * N + j] + p[i * N + j + <span class="number">1</span>] + p[i * N + j - <span class="number">1</span>]) / <span class="number">4.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> *temp = p;</span><br><span class="line">    p = p_next;</span><br><span class="line">    p_next = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Here, <code>p</code> and <code>p_next</code> are 2D arrays representing the current and next state of the plate, respectively. The loop iterates over each cell in the 2D array and calculates the next state based on the surrounding cells.</p><h2 id="2-Getting-started">2. Getting started</h2><p>Make sure you read through the entire specification before starting the project.</p><p>Just like all other programming assignments/projects this semester, you will obtain your files from the GitHub classroom, the link is <a href="https://classroom.github.com/a/c5sSJmfd">here</a>.</p><h3 id="Files">Files</h3><p>The framework contains the following files:</p><ul><li><strong>test.c</strong>: Contains the test framework code.</li><li><strong>baseline.c</strong>: Contains the baseline implementation.</li><li><strong>impl.c</strong>: You need to complete the function <code>impl(int N, int step, double *p)</code>. When the function returns, the array pointed to by <code>p</code> should contain the state after <code>step</code> iterations from its initial values. However, to enable more kinds of optimization techniques, there is a special formula to calculate the error between your implementation and the baseline implementation. Please <strong>READ THE FOLLOWING SECTION CAREFULLY</strong>, or you may <strong>LOSE POINTS!</strong></li></ul><h3 id="Validation">Validation</h3><p>We will calculate the error between the state of your <code>p</code> matrix and the baseline according to the following rules:</p><ul><li><p>Assume the matrix side length is <code>N</code> and the number of iterations is <code>step</code>.</p></li><li><p>Let the result matrix after <code>step</code> iterations using the baseline algorithm be <code>p^&#123;step&#125;</code>, and the result after <code>step-1</code> iterations be <code>p^&#123;step-1&#125;</code>. Denote the value at a point in the matrix as <code>p_&#123;i,j&#125;</code>.</p></li><li><p>For each point <code>p_&#123;i,j&#125;</code> in your <code>p</code>, the error is calculated as follows:</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/error_formula.png" alt="Error Formula" loading="lazy"></p></li><li><p>The total error is the sum of the errors of all points. Your total error should less than a certain value (1e-5 in the framework code). If you believe this precision requirement is too harsh, please contact us, and we may loosen the requirement based on our evaluation.</p></li></ul><h4 id="Example">Example</h4><p>Assuming the baseline's values after <code>step</code> iterations are as shown in the figure below:</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/iteration_steps.png" alt="Iteration Steps" loading="lazy"></p><p>Then, as long as your result is close enough to any of the ones shown in the figure below (only partial examples are displayed), your result will be considered valid.</p><p><img src="https://toast-lab.sist.shanghaitech.edu.cn/courses/CS110@ShanghaiTech/Spring-2024/project/p4/pic/answer_examples.png" alt="Answer Examples" loading="lazy"></p><h2 id="3-Optimization-Techniques">3. Optimization Techniques</h2><p>You can find many obvious optimizations in the implementation we provide, based on what you have learned in Computer Architecture. We are listing some of the possible approaches below:</p><h3 id="Compiler">Compiler</h3><p>There are some optimization flags that can be turned on in GCC. The available flags for x86 ISA from GCC are listed <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html">here</a>. However, we hope that you can do most of the optimization yourself, instead of relying on the compiler. So in this project, you are not allowed to modify the <code>Makefile</code>.</p><h3 id="Multithreading">Multithreading</h3><p>The outer loop of the algorithm is a good candidate for multithreading. You can use <code>OpenMP</code> or <code>pthread</code> to parallelize.</p><h3 id="SIMD-instructions">SIMD instructions</h3><p>SIMD processes multiple data in parallel. Part of this algorithm is also a good candidate for SIMD instructions.</p><h3 id="Loop-unrolling">Loop unrolling</h3><p>Loop unrolling can be used to reduce the overhead of the loop.</p><h3 id="Cache-Blocking">Cache Blocking</h3><p>The main idea here is to make memory access more efficient and exploit memory locality.</p><h2 id="4-Grading-Policy">4. Grading Policy</h2><p>The total score for this project is 100:</p><ol><li>We will first run your code on small test cases on GradeScope (automatically). If your program does not produce the correct result, you will receive 0 points. As always, your code should not have any memory issues.</li><li>After the deadline, we will test your code on our local machine and new test cases. Your grade on this part depends on the speedup of your code. If your code runs slower than adding the baseline (what we've provided), you will receive 0 points.</li><li>If your code runs at the same speed with bare <code>OpenMP</code>, you will receive 50 points.</li><li>If your code ranks among the top 30 in performance in the class, you will receive <strong>100 points</strong>.</li><li>For the rest, we will give a linear grade according to the speedup rate.<ul><li>If your speedup is <code>3.0</code> and the bare <code>OpenMP</code> speedup is <code>5.0</code>, then your score will be <code>(3.0 / 5.0) * 50 = 30.0</code> points.</li><li>If your speedup is <code>7.3</code> and the bare <code>OpenMP</code> speedup is <code>5.0</code>, while the 30th fastest code is <code>10.0</code> then your score will be <code>50 + ((7.3 - 5.0) / (10.0 - 5.0)) * 50 = 73.0</code> points.</li></ul></li><li>If your code crashes during our test, you will receive 0 points.</li><li>Your submission must contain meaningful use of multithreading technique and <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/">Intel SIMD intrinsics</a>. Otherwise, you will get 0 points. This check will be done manually after the deadline so there will be no feedback on this from GradeScope.</li></ol><h2 id="5-Parameters-for-Speed-Test">5. Parameters for Speed Test</h2><p>For the final speed test, we will use a map with <code>N=2000</code>.</p><h2 id="6-Server-Configurations">6. Server Configurations</h2><p>The GrapeScope server is used for correctness check only because it has limited hardware resources and unstable performance.</p><h3 id="Toast-Lab-Server-Used-for-final-speed-test">Toast Lab Server (Used for final speed test):</h3><ul><li><p>CPU: Intel Xeon E5-2690 v4 2.6 GHz, 14 cores (28 threads) <a href="https://ark.intel.com/content/www/us/en/ark/products/91770/intel-xeon-processor-e52690-v4-35m-cache-2-60-ghz.html">Details here</a></p><ul><li>L1 i-cache 32 KiB (per core)</li><li>L1 d-cache 32 KiB (per core)</li><li>L2 cache 3.5 MiB (unified)</li><li>L3 cache 35 MiB (unified)</li></ul></li><li><p>Memory: 120 GiB</p></li></ul><h3 id="More-about-the-final-speed-test">More about the final speed test</h3><p>The final test server in fact has two cpus that uses the NUMA architecture which is commonly used in modern servers. In the final test we will use numactl to run the program in a NUMA node. This is to avoid the impact of NUMA's memory arrangement on openmp. If you're interested, you can find out what numa is and why it has an effect on openmp. But we're not asking too much here, you can simply think of it as having only one CPU with 14 cores, as the same as the server configurations listed above.</p><hr><p>Letong Han &lt;<code>hanlt</code> AT <code>shanghaitech.edu.cn</code>&gt;<br>Suting Chen &lt;<code>chenst</code> AT <code>shanghaitech.edu.cn</code>&gt;</p><p>Last modified: 2024-05-31</p>]]></content>
+    
+    
+    <summary type="html">Finsh the given optimization task. (Individual Project)</summary>
+    
+    
+    
+    <category term="学习" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
+    
+    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -131,13 +131,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -171,13 +171,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -217,13 +217,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -247,13 +247,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -308,13 +308,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -337,13 +337,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -380,13 +380,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -409,11 +409,11 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
+    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
     <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
     
     <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
     
     <category term="笔记" scheme="https://zivmax.top/tags/%E7%AC%94%E8%AE%B0/"/>
     
@@ -440,11 +440,11 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
+    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
     <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
     
     <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
     
     <category term="笔记" scheme="https://zivmax.top/tags/%E7%AC%94%E8%AE%B0/"/>
     
@@ -482,13 +482,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -511,13 +511,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -551,13 +551,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -603,11 +603,11 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
+    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
     <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
     
     <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
     
     <category term="笔记" scheme="https://zivmax.top/tags/%E7%AC%94%E8%AE%B0/"/>
     
@@ -663,13 +663,13 @@
     <category term="计算机科学" scheme="https://zivmax.top/categories/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
     
-    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
-    
-    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="作业" scheme="https://zivmax.top/tags/%E4%BD%9C%E4%B8%9A/"/>
     
     <category term="上科大" scheme="https://zivmax.top/tags/%E4%B8%8A%E7%A7%91%E5%A4%A7/"/>
+    
+    <category term="CS110" scheme="https://zivmax.top/tags/CS110/"/>
+    
+    <category term="计算机体系架构" scheme="https://zivmax.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
