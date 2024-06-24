@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/soundwave.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/soundwave.svg">
+  <link rel="mask-icon" href="/images/soundwave.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zivmax.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基于 VScode 编写 Marp 幻灯片的工作流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Marp with VScode Tutorial for Anyone">
+<meta property="og:url" content="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/06/24/Tutorials/Marp-with-VScode-Tutorial/index.html">
+<meta property="og:site_name" content="青山后小塘">
+<meta property="og:description" content="基于 VScode 编写 Marp 幻灯片的工作流">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/RvOaFKqHQJ2Vh1s.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/6O1hsSfuokzdHR5.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/qQb34dzTXVLMkZl.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/z9wTXhIKblW2QFv.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/wiOU7ohcL3VgRHA.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/WuhTU8IaLNsjq2C.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/TLmpEBVeqNlO3ZC.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/qHGopjVtAwRuCMJ.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/ToXGyQmV7d3UtuF.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/VbKMeiPE49l6JWI.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/L1Sw93fudvEZ4F8.png">
+<meta property="og:image" content="https://s2.loli.net/2024/06/24/vfVSAxzDWBdyO4H.png">
+<meta property="article:published_time" content="2024-06-24T07:51:14.000Z">
+<meta property="article:modified_time" content="2024-06-24T10:15:30.158Z">
+<meta property="article:author" content="Zivmax">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Proxy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/06/24/RvOaFKqHQJ2Vh1s.png">
+
+<link rel="canonical" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/06/24/Tutorials/Marp-with-VScode-Tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Marp with VScode Tutorial for Anyone | 青山后小塘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="/dist/APlayer.min.css"media="all">
+  <div id="aplayer"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="青山后小塘" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">青山后小塘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅，我亦是行人</p>
+      <a>
+        <img class="custom-logo-image" src="/uploads/cib-boeing.svg" alt="青山后小塘">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/06/24/Tutorials/Marp-with-VScode-Tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zivmax">
+      <meta itemprop="description" content="记录我在 STU 的所见所闻,以及成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山后小塘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Marp with VScode Tutorial for Anyone
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间: 2024-06-24 15:51:14 / 修改时间: 18:15:30" itemprop="dateCreated datePublished" datetime="2024-06-24T15:51:14+08:00">2024-06-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%8F%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">经验</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数: </span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>52 分钟</span>
+            </span>
+            <div class="post-description">基于 VScode 编写 Marp 幻灯片的工作流</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Marp-with-VScode-Tutorial-for-Anyone">Marp with VScode Tutorial for Anyone</h1>
+<p>本文意在为任何人讲解如何使用 VScode 编写 Marp 幻灯片。</p>
+<h2 id="Marp">Marp</h2>
+<p>Marp 是一个基于前端技术的 Slides 制作工具，它可以将 Markdown 文档渲染成幻灯片。</p>
+<p>Marp 基于前端技术就意味着它渲染出来的幻灯片实际上是一个网页，而其渲染出来的 <code>pdf</code> 和 <code>pptx</code> 文件实际上都是通过 <code>html</code> 网页文件用浏览器内核渲染出来的。</p>
+<p>这也是为什么 Marp 导出的 PDF 和 PPTX 文件中所有 Slide 都是纯图片，无法选中任何文本。</p>
+<p>它最初是一个前端程序员圈子内的工具，因此有着强烈的前端技术气息。如果去看<a target="_blank" rel="noopener" href="https://marpit.marp.app/?id=how-to-use">官网的 Tutorial</a>，它会教你从 Node.js 的环境中安装 Marp CLI，写一份内嵌了 Markdown 语法的 JS 代码，然后使用 <code>marp</code> 命令来渲染 Markdown 文件。</p>
+<p>但是对于大部分不接触前端技术的人来说，<strong>使用 VScode 的 Marp 插件可能是一个更好的选择</strong>。</p>
+<h2 id="VScode">VScode</h2>
+<h3 id="介绍">介绍</h3>
+<p>VScode 是一个文本编辑器（代码编辑器），它的本体就和 Windows 自带的记事本一样，只是一个文本编辑器。但是其基于前端技术开发，因此借助前端庞大的开发者群体，VScode 的插件生态非常丰富。因此完全可以通过安装和管理插件让 VScode 变成任何语言的 IDE。</p>
+<h3 id="安装">安装</h3>
+<p>从<a target="_blank" rel="noopener" href="https://code.visualstudio.com/#alt-downloads">官网下载</a>并安装 VScode。</p>
+<p>如果安装的电脑只会有一个人使用，个人推荐使用 System Installer 版本，便于管理 VScode 的软件本体，否则 Windows 会把 VScode 安装在用户目录下（如<code>C:\Users\USER\AppData\Local</code>）。</p>
+<p>如果不清楚 x64 版本和 arm 版本的区别，那么简单来说，只要是 AMD 和 Intel 的 CPU 就用 x64。需要使用 arm 版本的人自会知道。</p>
+<p><strong>总结就是：对于大部分人而言，去<a target="_blank" rel="noopener" href="https://code.visualstudio.com/#alt-downloads">官网下载</a> System Installer x64 版本。</strong></p>
+<p>安装结束页面，对于<code>其他</code>选项的解释（红框内的选项）：</p>
+<ul>
+<li>
+<p>前两个选项：让右键菜单出现通过 VScode 打开的选项，第一个是右击文件出现，第二个是右击空白处出现</p>
+</li>
+<li>
+<p>添加文件关联，注册默认应用</p>
+</li>
+<li>
+<p>可以在终端中使用 code 命令行工具快速管理，启动 VScode</p>
+<p><img src="https://s2.loli.net/2024/06/24/RvOaFKqHQJ2Vh1s.png" alt="VScode After Installation" loading="lazy"></p>
+</li>
+</ul>
+<p>第一次启动 VScode 界面大概如下：<br>
+<img src="https://s2.loli.net/2024/06/24/6O1hsSfuokzdHR5.png" alt="VScode GUI" loading="lazy"></p>
+<h3 id="配置">配置</h3>
+<p>打开在左边栏中的 Extension 板块</p>
+<p><img src="https://s2.loli.net/2024/06/24/qQb34dzTXVLMkZl.png" alt="VScode Extention" loading="lazy"></p>
+<p>搜索 <code>Marp for VScode</code></p>
+<p><img src="https://s2.loli.net/2024/06/24/z9wTXhIKblW2QFv.png" alt="Marp for VScode" loading="lazy"></p>
+<p>图中第一个插件便是要安装的插件（<code>identifier: marp-team.marp-vscode</code>）</p>
+<p>安装好之后，功能性上没有暂时没有更多需要配置的选项</p>
+<blockquote>
+<p>如果需要中文支持，在 Extension 中搜索 <code>Chinese Simplified</code> 安装后</p>
+<p>使用快捷键 <code>Ctrl + Shift + P</code> 输入 <code>Configure Display Language</code>(可以模糊输入) 并回车后，切换为中文即可。</p>
+<p><img src="https://s2.loli.net/2024/06/24/wiOU7ohcL3VgRHA.png" alt="VScode Language Support" loading="lazy"></p>
+<p>或者似乎现在的 VScode 会自动添加语言支持。</p>
+</blockquote>
+<h2 id="正式编写">正式编写</h2>
+<p>对于正式编写的工作流，便是建立一个项目（一份 Slides）专属的文件夹，VScode（包括绝大多数代码开发工具）都需要在一个独立的文件夹中进行使用。</p>
+<p>作为演示：</p>
+<ol>
+<li>在桌面创建文件夹 <code>marp-example/</code></li>
+<li>用 VScode 打开这个文件夹
+<ul>
+<li>如果你添加了<code>通过 Code 打开</code> 在右键菜单，那么你可以直接右键文件夹图标，通过 Code 打开。</li>
+<li>如果没有的话，首先普通地打开 VScode，点击左上角的 File &gt; Open Folder<br>
+<img src="https://s2.loli.net/2024/06/24/WuhTU8IaLNsjq2C.png" alt="VScode Open Folder" loading="lazy"></li>
+<li>或者按照图中显示的快捷键，<code>Ctrl + K</code> （此时 VScode 进入一种激活状态）然后再 <code>Ctrl + O</code></li>
+</ul>
+</li>
+<li>打开文件后，理论上 File Explorer 会自动展开<br>
+<img src="https://s2.loli.net/2024/06/24/TLmpEBVeqNlO3ZC.png" alt loading="lazy"></li>
+<li>可以看到 <code>MARP-EXAMPLE</code> 是被打开的文件夹名称，Explorer 中显示的文件都是这个文件夹中的文件</li>
+<li>现在创建一个新的文件，鼠标放在图中 New File 的位置即可<br>
+<img src="https://s2.loli.net/2024/06/24/qHGopjVtAwRuCMJ.png" alt loading="lazy"></li>
+<li>输入完整的文件名，包括后缀，然后回车即可<br>
+<img src="https://s2.loli.net/2024/06/24/ToXGyQmV7d3UtuF.png" alt loading="lazy"></li>
+<li>接着打开刚刚新建的文件，现在我们就完成正式编写前的所有操作了。</li>
+</ol>
+<p>以上流程在每一次编写一份新的 Slides 都推荐进行：建立新的文件夹，用 VScode 打开，创建文件……</p>
+<h3 id="Markdown">Markdown</h3>
+<p>前文提到，Marp 使用 Markdown 作为编写语言进行解析和渲染，最后得到渲染好的 HTML 文件。</p>
+<p>因此首先需要学习 Markdown 的基础语法。</p>
+<p>Markdown 是一种用来进行简单（简洁）排版的文本，它起源于前端程序员手动编写 HTML 页面的痛苦。</p>
+<p>后来随着网络发展，逐渐扩展到了很多普通人，用来编写在网络上被浏览的文档。</p>
+<p>以下是最常用的 Markdown 语法，将它复制到我们刚刚创建的新文件中，并打开 VScode 自带的预览，即点击右上角有一个带有放大镜的图标（旁边的重叠三角形来自安装的 Marp VScode 扩展）：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">不同数量的 <span class="code">`#`</span> 可以完成不同的标题，如下：</span><br><span class="line"></span><br><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="code">`---`</span> 是分割线</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 字体</span></span><br><span class="line"></span><br><span class="line">粗体、斜体、粗体和斜体，删除线，需要在文字前后加不同的标记符号。如下：</span><br><span class="line"></span><br><span class="line"><span class="strong">**这个是粗体**</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">*这个是斜体*</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**<span class="emphasis">*这个是粗体加斜体*</span>**</span></span><br><span class="line"></span><br><span class="line">~~这里想用删除线~~</span><br><span class="line"></span><br><span class="line"><span class="section"># 列表</span></span><br><span class="line"></span><br><span class="line">无序列表的使用，在符号 <span class="code">`-`</span> 后加空格使用。如下：</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 无序列表 1</span><br><span class="line"><span class="bullet">-</span> 无序列表 2</span><br><span class="line"><span class="bullet">-</span> 无序列表 3</span><br><span class="line"></span><br><span class="line">如果要控制列表的层级，则需要在符号 <span class="code">`-`</span> 前使用空格。如下：</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 无序列表 1</span><br><span class="line"><span class="bullet">-</span> 无序列表 2</span><br><span class="line"><span class="bullet">  -</span> 无序列表 2.1</span><br><span class="line"><span class="bullet">  -</span> 无序列表 2.2</span><br><span class="line"></span><br><span class="line">有序列表的使用，在数字及符号 <span class="code">`.`</span> 后加空格后输入内容，如下：</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> 有序列表 1</span><br><span class="line"><span class="bullet">2.</span> 有序列表 2</span><br><span class="line"><span class="bullet">3.</span> 有序列表 3</span><br><span class="line"></span><br><span class="line">事实上此语法关键在于数字加上 <span class="code">`.`</span>，最后渲染的结果的编号为自动决定的</span><br><span class="line"></span><br><span class="line"><span class="bullet">3.</span> 有序列表 1</span><br><span class="line"><span class="bullet">2.</span> 有序列表 2</span><br><span class="line"><span class="bullet">1.</span> 有序列表 3</span><br><span class="line"></span><br><span class="line"><span class="section"># 链接</span></span><br><span class="line"></span><br><span class="line">微信公众号仅支持公众号文章链接，即域名为<span class="code">`https://mp.weixin.qq.com/`</span>的合法链接。使用方法如下所示：</span><br><span class="line"></span><br><span class="line">对于该论述，欢迎读者查阅之前发过的文章，[<span class="string">你是《未来世界的幸存者》么？</span>](<span class="link">https://mp.weixin.qq.com/s/s5IhxV2ooX3JN_X416nidA</span>)</span><br><span class="line"></span><br><span class="line"><span class="section"># 图片</span></span><br><span class="line"></span><br><span class="line">插入图片，格式如下：</span><br><span class="line"></span><br><span class="line">![<span class="string">这里写图片描述</span>](<span class="link">https://s2.loli.net/2024/06/24/6O1hsSfuokzdHR5.png</span>)</span><br><span class="line"></span><br><span class="line">图片描述的意义是如果图片加载不出来，就用图片描述替代，不过其具体作用取决于具体 Markdown 渲染器的处理。</span><br><span class="line"></span><br><span class="line">支持 jpg、png、gif、等图片格式</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 引用</span></span><br><span class="line">引用的格式是在符号<span class="code">`&gt;`</span>后面书写文字。如下：</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 读一本好书，就是在和高尚的人谈话。 ——歌德</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 雇用制度对工人不利，但工人根本无力摆脱这个制度。 ——阮一峰</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>VScode 的 Markdown 预览为实时预览，可以随意修改内容并看见最终渲染结果。</p>
+<p>同时图片也不一定要是图片的云端链接，可以写本地图片的路径，例如 <a target="_blank" rel="noopener" href="http://example.md">example.md</a> <strong>同一个文件夹下</strong>有一个 image 文件夹，里面有一张 test.jpg 图片</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](<span class="link">image/test.jpg</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Marpit">Marpit</h3>
+<p>以上的 Markdown 是其用来编写文档的用法，对于使用这种语法来编写 Marp Slides，官方称其为 <a target="_blank" rel="noopener" href="https://marpit.marp.app/markdown">Marpit Markdown</a>。</p>
+<p>将以下 Markdown 代码复制粘贴到 <code>example.md</code> 文件中，你会发现已经变成了 Slides。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">marp: true</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line"><span class="section"># Slide 1</span></span><br><span class="line"></span><br><span class="line">foo</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Slide 2</span></span><br><span class="line"></span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+<p>显然， Marpit Markdown 有两个核心要点：</p>
+<ol>
+<li>开头用 <code>---</code> 包裹的部分，激活了 Marp，这个部分也可以有更多进一步的总体设置。</li>
+<li>不同的 Slide 之间使用 <code>---</code> 分割。</li>
+</ol>
+<p>除了上述提到的核心要点，其他的写法与普通的 Markdown 文档区别不大。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">marp: true</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 有序列表</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> 有序列表 1</span><br><span class="line"><span class="bullet">2.</span> 有序列表 2</span><br><span class="line"><span class="bullet">3.</span> 有序列表 3</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 引用</span></span><br><span class="line">引用的格式是在符号<span class="code">`&gt;`</span>后面书写文字。如下：</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 读一本好书，就是在和高尚的人谈话。 ——歌德</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 雇用制度对工人不利，但工人根本无力摆脱这个制度。 ——阮一峰</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 字体</span></span><br><span class="line"></span><br><span class="line">粗体、斜体、粗体和斜体，删除线，需要在文字前后加不同的标记符号。如下：</span><br><span class="line"></span><br><span class="line"><span class="strong">**这个是粗体**</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">*这个是斜体*</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**<span class="emphasis">*这个是粗体加斜体*</span>**</span></span><br><span class="line"></span><br><span class="line">~~这里想用删除线~~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Marp-全局配置">Marp 全局配置</h3>
+<p>前文提到，我们可以在开头的被包裹部分提供更加进一步的全局设置，分别试试下面几种配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">marp: true</span><br><span class="line">theme: default </span><br><span class="line">paginate: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">marp: true</span><br><span class="line">theme: default </span><br><span class="line">paginate: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">marp: true</span><br><span class="line">theme: uncover </span><br><span class="line">paginate: true</span><br><span class="line">header: &#x27;Header content&#x27;</span><br><span class="line">footer: &#x27;Footer content&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">marp: true</span><br><span class="line">theme: uncover </span><br><span class="line">class: invert</span><br><span class="line">paginate: true</span><br><span class="line">header: &#x27;Header content&#x27;</span><br><span class="line">footer: &#x27;Footer content&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h3 id="Marp-内嵌-HTML">Marp 内嵌 HTML</h3>
+<p>然而，多加尝试就会发现，Marp 的便利性和排版需求，有的时候很难匹配具体的情况，举一个最简单的例子，Marp 中无法将多个列表并排放置。除此以外，对图片大小的精细调整也是一个难题，虽然对于图片 Marpit 已经做出了一些<a target="_blank" rel="noopener" href="https://marpit.marp.app/image-syntax">拓展语法</a></p>
+<p>前文不断提到，Markdown，Marp 均为前端技术，他们都会被编译成 HTML，再让浏览器渲染 HTML 得到画面。</p>
+<p>因此我们实际上也可以直接内嵌 HTML 在 Markdown 或者 Marpit Markdown 中。而 HTML 作为一切网页的基础，可以实现的排版效果是近乎无穷的。</p>
+<p>在开始尝试使用内嵌 HTML 之前，首先要去设置。<br>
+<img src="https://s2.loli.net/2024/06/24/VbKMeiPE49l6JWI.png" alt="VScode Open settings" loading="lazy"></p>
+<p>搜索，并打开 Marp VScode 插件的 HTML 开关（默认为关闭）<br>
+<img src="https://s2.loli.net/2024/06/24/L1Sw93fudvEZ4F8.png" alt="Open Marp HTML" loading="lazy"></p>
+<p>然后可以尝试以下的 Slide 代码</p>
+<ul>
+<li>
+<p>并列列表</p>
+  <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 4. Evaluating Histograms</span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display: flex; justify-content: space-around; margin-top: 30px;&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span>  Skewness and Tails</span><br><span class="line"><span class="bullet">    -</span> Skewed left vs skewed right</span><br><span class="line"><span class="bullet">    -</span> Left tail vs right tail</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span>  Outliers</span><br><span class="line"><span class="bullet">    -</span> Using percentiles</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span>  Modes</span><br><span class="line"><span class="bullet">    -</span> Most commonly occuring data</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>有序列表并列分割</p>
+  <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="code">    .two-columns &#123;</span></span><br><span class="line"><span class="code">    display: flex;</span></span><br><span class="line"><span class="code">    justify-content: center; /* Center the columns */</span></span><br><span class="line"><span class="code">    margin-left: 100px;</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">.two-columns .column &#123;</span></span><br><span class="line"><span class="code">    flex: 1;</span></span><br><span class="line"><span class="code">    padding: 10px 10px;</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">.two-columns ol &#123;</span></span><br><span class="line"><span class="code">    padding-left: 0;</span></span><br><span class="line"><span class="code">    list-style: none;</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;two-columns&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">class</span>=<span class="string">&quot;column&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">    &lt;li&gt;引言&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;概念辨析&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;假设前提&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;在传授知识方面的优势&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;在给予学习反馈方面的优势&lt;/li&gt;</span></span><br><span class="line"><span class="code">&lt;/ol&gt;</span></span><br><span class="line"><span class="code">&lt;ol class=&quot;column&quot; start=&quot;6&quot;&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;在安全性方面的优势&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;在社会成本方面的优势&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;面临的挑战&lt;/li&gt;</span></span><br><span class="line"><span class="code">    &lt;li&gt;结论&lt;/li&gt;</span></span><br><span class="line"><span class="code">&lt;/ol&gt;</span></span><br><span class="line"><span class="code">&lt;/div&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>图文对应</p>
+  <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># 4. Evaluating Histograms</span></span><br><span class="line"><span class="section">## 4.1 Skewness and Tails</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display: flex; justify-content: space-around; margin-left: -150px;&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;margin-right:-300px;&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center;&quot;</span>&gt;</span></span> </span><br><span class="line"></span><br><span class="line"><span class="emphasis">*Left Skew and Right Tail:*</span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">![<span class="string">w:500</span>](<span class="link">https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-19-output-2.png</span>)</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;margin-right:-150px;&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center;&quot;</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">*Right Skew and Left Tail:*</span> </span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">![<span class="string">w:500</span>](<span class="link">https://ds100.org/course-notes/visualization_1/visualization_1_files/figure-html/cell-20-output-2.png</span>)</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>插入视频</p>
+  <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span>= <span class="string">&quot;controls&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://www.shanghaitech.edu.cn/_upload/article/videos/b3/6a/50b2c11c4d188c4a7b392b74bb28/0428a130-e35a-4584-9684-f70000162e38-B.mp4&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>本文的标题中写到，“for Anyone” 因此这里自然不会过多涉及前端技术，而之所以这些可以 “for Anyone”，是因为我们完全可以让生成式人工智能（如 ChatGPT）来完成我们具体的详细排版工作，关键在于至少知道一些关键词： <code>请使用内嵌 HTML 的方式为我完成这页 Marp Slide，要求是……</code>。</strong></p>
+<p>不过其实单纯这里提供的 HTML 模板，加上<a target="_blank" rel="noopener" href="https://marpit.marp.app/image-syntax">官方的一些图片排版语法</a>也已经足够应对绝大多数的排版需求了。</p>
+<h3 id="Marp-for-VScode-导出">Marp for VScode 导出</h3>
+<p>上文介绍了大量 Marp 的编写，但是最终的目的是为了导出为 Slides 使用。</p>
+<p>对于已经编写好并且确认要导出的 Marp Slides</p>
+<ul>
+<li>可以使用快捷键 <code>Ctrl + Shift + P</code>，输入 <code>Marp: Export Slides</code>(可以模糊输入)，然后选择导出的格式。</li>
+<li>或者点击右上角的重叠三角形图标，选择 <code>Export Slides Deck...</code> 选项，然后选择导出的格式。</li>
+</ul>
+<p>对于导出的格式，最佳的格式自然是 HTML，尤其是 Slides 中包含一些互动，动态内容：gif 图，视频插入等。因为对于其他格式，如 PDF，PPTX，本质就是用浏览器内核渲染 HTML 文件得到图片，然后再组合成 PDF 或 PPTX 文件。</p>
+<p>不过要注意，如果使用的是本地图片，那么导出的 HTML 文件中的图片链接是本地的，使用的时候，要保证图片文件和 HTML 文件的相对位置关系和导出时 Markdown 文档的相对位置关系一致。而 PDF 和 PPTX 文件则会将图片嵌入其中，因此不会有这个问题。</p>
+<h3 id="使用导出结果">使用导出结果</h3>
+<p>对于 PDF 和 PPTX 文件，按照正常的文件使用方式即可。</p>
+<p>而对于 HTML 文件，则用浏览器打开，并且如上文所说，如果使用了本地图片，要保证图片文件和 HTML 文件的相对位置关系和导出时 Markdown 文档的相对位置关系一致。</p>
+<p>注意打开的页面是一个网页，中间的工具栏在鼠标不靠近一会后会自动隐藏。</p>
+<p>全屏按钮旁边的按钮可以切换到 Presenter 模式，Presenter 模式和 PPT 的 Presenter 模式类似，重点在于 Presenter Note，也就是备注，下一节 Section 将讲解。</p>
+<p><img src="https://s2.loli.net/2024/06/24/vfVSAxzDWBdyO4H.png" alt loading="lazy"></p>
+<h3 id="添加备注">添加备注</h3>
+<p>要添加备注，只需要在 Markdown 文档中使用注释（源代码被执行，源代码中的注释不被执行，是用来给写代码的人看的）。</p>
+<p>注释的格式为 <code>&lt;!-- 注释 --&gt;</code>，可以换行。</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># AI 替代初高中人类教学面临的挑战</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 学习动机和集体秩序的维持</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">  -</span> <span class="strong">**缺乏社会角色定位和地位**</span>：</span><br><span class="line"><span class="bullet">    -</span> 作为一种非具身工具，其社会角色模糊，难以赢得学生的角色认同</span><br><span class="line"></span><br><span class="line"><span class="bullet">  -</span> <span class="strong">**社会化过程的参与**</span>：</span><br><span class="line"><span class="bullet">    -</span> 作为非社会性存在</span><br><span class="line"><span class="bullet">    -</span> 无法有效参与和影响学生的社会化过程</span><br><span class="line"></span><br><span class="line">&lt;!-- </span><br><span class="line"></span><br><span class="line">正如本文中的评价前提所述，教学的评价还取决于维持学习动机和维持集体秩序这两个维度。</span><br><span class="line"></span><br><span class="line">这其中最核心的原因是， AI 缺乏明确的社会角色定位和地位。</span><br><span class="line">人类社会是一个复杂的系统，个体在其中扮演特定的社会角色，并被赋予相应的权力、责任和义务。</span><br><span class="line"></span><br><span class="line">教师作为知识和道德的传播者，在学生心目中具有崇高的地位。</span><br><span class="line">而 AI 作为一种非具身工具，其社会角色模糊，难以赢得学生的角色认同，因此 AI 的言行很难对学生产生应有的影响力。</span><br><span class="line"></span><br><span class="line">再次，学习动机和集体秩序的维持本质上是一个社会化的过程。</span><br><span class="line">学生的学习动机不仅来自求知欲，更来自于荣誉感、责任感、集体认同感等社会情感的驱动。</span><br><span class="line"></span><br><span class="line">AI 作为非社会性存在，无法参与和影响学生社会化过程，因此难以在维持学习动机和集体秩序方面发挥关键作用。</span><br><span class="line"></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>给某页 Slide 添加注释后再导出，就可以在 Presenter View 的对应页面中看见备注。</p>
+<p>而导出的 PPTX 中也同样自动添加了备注。</p>
+<h2 id="最后">最后</h2>
+<p>Enjoy😎.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Proxy/" rel="tag"># Proxy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/2024/06/04/CS110/CS110-Lab-14/" rel="prev" title="CS110 Lab [14]">
+      <i class="fa fa-chevron-left"></i> CS110 Lab [14]
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Marp-with-VScode-Tutorial-for-Anyone"><span class="nav-text">Marp with VScode Tutorial for Anyone</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Marp"><span class="nav-text">Marp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VScode"><span class="nav-text">VScode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E7%BC%96%E5%86%99"><span class="nav-text">正式编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown"><span class="nav-text">Markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Marpit"><span class="nav-text">Marpit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Marp-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="nav-text">Marp 全局配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Marp-%E5%86%85%E5%B5%8C-HTML"><span class="nav-text">Marp 内嵌 HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Marp-for-VScode-%E5%AF%BC%E5%87%BA"><span class="nav-text">Marp for VScode 导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AF%BC%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="nav-text">使用导出结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%87%E6%B3%A8"><span class="nav-text">添加备注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zivmax"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zivmax</p>
+  <div class="site-description" itemprop="description">记录我在 STU 的所见所闻,以及成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">日志</span>
+          
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zivmax" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zivmax" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zivmax@foxmail.com" title="E-Mail → mailto:zivmax@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat/" title="Wechat → &#x2F;wechat&#x2F;"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/QQ/" title="QQ → &#x2F;QQ&#x2F;"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+          
+        </div>
+  
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-8-11 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zivmax</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='255,255,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://zivmax.top/%E7%BB%8F%E9%AA%8C/2024/06/24/Tutorials/Marp-with-VScode-Tutorial/',]
+      });
+      });
+  </script>
+
+
+
+</body>
+</html>
+
